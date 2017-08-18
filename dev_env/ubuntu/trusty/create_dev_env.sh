@@ -44,7 +44,9 @@ create_dev_env() {
     BASE64_ENCODED_GITHUB_SSH_PRIVATE_KEY=$(cat "$GITHUB_SSH_PRIVATE_KEY_FILENAME" | base64)
 
     pushd $(mktemp -d 2> /dev/null || mktemp -d -t DAS) >& /dev/null
+
     curl -s --output Vagrantfile "${1:-}/Vagrantfile"
+    cp "$( cd "$( dirname "$0" )" && pwd )/provision.sh" .
 
     VAGRANT_GITHUB_USERNAME=$GITHUB_USERNAME \
         VAGRANT_GITHUB_EMAIL=$GITHUB_EMAIL \
