@@ -43,7 +43,7 @@ create_dev_env() {
     BASE64_ENCODED_GITHUB_SSH_PUBLIC_KEY=$(cat "$GITHUB_SSH_PUBLIC_KEY_FILENAME" | base64)
     BASE64_ENCODED_GITHUB_SSH_PRIVATE_KEY=$(cat "$GITHUB_SSH_PRIVATE_KEY_FILENAME" | base64)
 
-    pushd $(mktemp -d 2> /dev/null || mktemp -d -t DAS)
+    pushd $(mktemp -d 2> /dev/null || mktemp -d -t DAS) >& /dev/null
     curl -s --output Vagrantfile "${1:-}/Vagrantfile"
 
     VAGRANT_GITHUB_USERNAME=$GITHUB_USERNAME \
