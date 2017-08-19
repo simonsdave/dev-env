@@ -3,14 +3,14 @@
 # that looks something like this
 #
 #   #!/usr/bin/env bash
-#   curl -s https://raw.githubusercontent.com/simonsdave/dev-env/master/dev_env/ubuntu/trusty/create_dev_env.sh | bash -s -- "$PWD/provision.sh" "$@"
+#   curl -s https://raw.githubusercontent.com/simonsdave/dev-env/master/ubuntu/trusty/create_dev_env.sh | bash -s -- "$PWD/provision.sh" "$@"
 #   exit $?
 #
 
 pushd $(mktemp -d 2> /dev/null || mktemp -d -t DAS) >& /dev/null
 # :TODO: reminder to find a way to eliminate the hard coded URL
 # and in particular the branch from the URL
-curl -s --output Vagrantfile "https://raw.githubusercontent.com/simonsdave/dev-env/master/dev_env/ubuntu/trusty/Vagrantfile"
+curl -s --output Vagrantfile "https://raw.githubusercontent.com/simonsdave/dev-env/master/ubuntu/trusty/Vagrantfile"
 cp "${1:-}" "./provision.sh"
 
 if [ ! -r "${4:-}" ]; then
