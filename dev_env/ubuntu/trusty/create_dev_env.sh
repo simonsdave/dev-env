@@ -1,3 +1,12 @@
+#
+# this script is expected to be invoked by a shell script
+# that looks something like this
+#
+#   #!/usr/bin/env bash
+#   curl -s https://raw.githubusercontent.com/simonsdave/dev-env/master/dev_env/ubuntu/trusty/create_dev_env.sh | bash -s "$PWD/provision.sh"
+#   exit $?
+#
+
 create_dev_env() {
 
     SCRIPT_DIR_NAME="$( cd "$( dirname "$0" )" && pwd )"
@@ -45,9 +54,6 @@ create_dev_env() {
 
     pushd $(mktemp -d 2> /dev/null || mktemp -d -t DAS) >& /dev/null
 
-    curl -s --output Vagrantfile "${1:-}/Vagrantfile"
-    cp "${2:-}" ./provision.sh
-
     VAGRANT_GITHUB_USERNAME=$GITHUB_USERNAME \
         VAGRANT_GITHUB_EMAIL=$GITHUB_EMAIL \
         VAGRANT_BASE64_ENCODED_GITHUB_SSH_PUBLIC_KEY=$BASE64_ENCODED_GITHUB_SSH_PUBLIC_KEY \
@@ -56,3 +62,9 @@ create_dev_env() {
 
     return $?
 }
+
+pushd $(mktemp -d 2> /dev/null || mktemp -d -t DAS) >& /dev/null
+curl -s --output Vagrantfile "https://raw.githubusercontent.com/simonsdave/dev-env/master/dev_env/ubuntu/trusty/Vagrantfile"
+cp "${1:-}" "./provision.sh"
+create_dev_env
+exit $?
