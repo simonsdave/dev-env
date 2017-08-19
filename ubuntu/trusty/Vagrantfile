@@ -3,7 +3,7 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "trusty"
   config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
-  config.vm.provision "base", type: "shell", path: "https://raw.githubusercontent.com/simonsdave/dev-env/master/dev_env/ubuntu/trusty/provision.sh", args: [
+  config.vm.provision "base", type: "shell", path: "https://raw.githubusercontent.com/simonsdave/dev-env/master/ubuntu/trusty/provision.sh", args: [
     ENV.fetch("VAGRANT_GITHUB_USERNAME", ""),
     ENV.fetch("VAGRANT_GITHUB_EMAIL", ""),
     ENV.fetch("VAGRANT_BASE64_ENCODED_GITHUB_SSH_PUBLIC_KEY", ""),
