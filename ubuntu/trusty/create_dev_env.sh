@@ -10,7 +10,6 @@
 # :TODO: reminder to find a way to eliminate the hard coded URL
 # and in particular the branch from the URL
 curl -s --output Vagrantfile "https://raw.githubusercontent.com/simonsdave/dev-env/master/ubuntu/trusty/Vagrantfile"
-cp "${1:-}" "./provision.sh"
 
 if [ ! -r "${4:-}" ]; then
     echo "Can't read SSH public key file '${4:-}'"
