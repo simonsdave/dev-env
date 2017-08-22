@@ -6,6 +6,15 @@
 #   curl -s https://raw.githubusercontent.com/simonsdave/dev-env/master/ubuntu/trusty/create_dev_env.sh | bash -s -- "$PWD/provision.sh" "$@"
 #   exit $?
 #
+# to test
+#
+#   curl -s file://create_dev_env.sh | bash
+#
+
+if [ $# != 5 ]; then
+    echo "usage: `basename $0` <provision filename> <github username> <github email> <github public key> <github private key>" >&2
+    exit 1
+fi
 
 # :TODO: reminder to find a way to eliminate the hard coded URL
 # and in particular the branch from the URL
