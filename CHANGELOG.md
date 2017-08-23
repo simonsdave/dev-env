@@ -13,6 +13,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 
 - improved create_dev_env.sh command line arg checking
+- no longer need to pass provision.sh to create_dev_env.sh
 
 ### Removed
 
