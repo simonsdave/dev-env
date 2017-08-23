@@ -8,7 +8,7 @@
 #
 # to test
 #
-#   curl -s file://create_dev_env.sh | bash
+#   curl -s file://create_dev_env.sh | bash -s --
 #
 
 if [ $# != 5 ]; then
@@ -24,13 +24,13 @@ if [ ! -r "${4:-}" ]; then
     echo "Can't read SSH public key file '${4:-}'"
     exit 1
 fi
-BASE64_ENCODED_GITHUB_SSH_PUBLIC_KEY=$(cat "${5:-}" | base64)
+BASE64_ENCODED_GITHUB_SSH_PUBLIC_KEY=$(cat "${4:-}" | base64)
 
 if [ ! -r "${5:-}" ]; then
     echo "Can't read SSH private key file '${5:-}'"
     exit 1
 fi
-BASE64_ENCODED_GITHUB_SSH_PRIVATE_KEY=$(cat "${4:-}" | base64)
+BASE64_ENCODED_GITHUB_SSH_PRIVATE_KEY=$(cat "${5:-}" | base64)
 
 VAGRANT_GITHUB_USERNAME=${2:-} \
     VAGRANT_GITHUB_EMAIL=${3:-} \
