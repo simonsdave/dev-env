@@ -43,4 +43,7 @@ VAGRANT_GITHUB_USERNAME=${1:-} \
     VAGRANT_BASE64_ENCODED_GITHUB_SSH_PRIVATE_KEY=$BASE64_ENCODED_GITHUB_SSH_PRIVATE_KEY \
     vagrant up
 
+# cleanup: would normally remove previously curl'ed Vagrantfile
+# but vagrant does not respond well if that's done:-(
+
 exit $?
