@@ -96,6 +96,14 @@ chown root.root "$JQ_BIN"
 chmod a+x "$JQ_BIN"
 
 #
+# Common scenario:
+#   -- projects have a README.md
+#   -- setup.py creates long description by reading README.rst
+#   -- README.rst is created by pypandoc reading README.md
+#
+apt-get install -y pandoc
+
+#
 # install docker
 #
 apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
