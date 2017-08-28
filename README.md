@@ -2,7 +2,7 @@
 
 ![Maintained](https://img.shields.io/maintenance/yes/2017.svg?style=flat)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
-[![Build Status](https://travis-ci.org/simonsdave/analyze-restful-api-load-test-results.svg)](https://travis-ci.org/simonsdave/analyze-restful-api-load-test-results)
+[![Build Status](https://travis-ci.org/simonsdave/dev-env.svg)](https://travis-ci.org/simonsdave/dev-env)
 
 To increase predicability and simplify onboarding of new
 collaborators, a common pattern for many of
