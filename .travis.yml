@@ -1,0 +1,11 @@
+language: bash
+addons:
+  apt:
+    sources:
+    - debian-sid
+    packages:
+    - shellcheck
+dist: trusty
+script:
+  - find . -name \*.sh
+  - shellcheck $(find . -name \*.sh)
