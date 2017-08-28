@@ -12,7 +12,7 @@
 #
 
 if [ $# != 4 ]; then
-    echo "usage: `basename $0` <github username> <github email> <github public key> <github private key>" >&2
+    echo "usage: $(basename "$0") <github username> <github email> <github public key> <github private key>" >&2
     exit 1
 fi
 
@@ -29,13 +29,13 @@ if [ ! -r "${3:-}" ]; then
     echo "Can't read SSH public key file '${3:-}'"
     exit 1
 fi
-BASE64_ENCODED_GITHUB_SSH_PUBLIC_KEY=$(cat "${3:-}" | base64)
+BASE64_ENCODED_GITHUB_SSH_PUBLIC_KEY=$(base64 < "${3:-}")
 
 if [ ! -r "${4:-}" ]; then
     echo "Can't read SSH private key file '${4:-}'"
     exit 1
 fi
-BASE64_ENCODED_GITHUB_SSH_PRIVATE_KEY=$(cat "${4:-}" | base64)
+BASE64_ENCODED_GITHUB_SSH_PRIVATE_KEY=$(base64 < "${4:-}")
 
 VAGRANT_GITHUB_USERNAME=${1:-} \
     VAGRANT_GITHUB_EMAIL=${2:-} \
