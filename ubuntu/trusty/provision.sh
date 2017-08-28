@@ -5,6 +5,8 @@
 #   -- install and configure git
 #   -- configure vi
 #   -- install jq
+#   -- install nginx
+#   -- install nodejs, npm, raml2md
 #   -- install docker
 #
 
@@ -107,6 +109,21 @@ apt-get install -y nginx
 #   -- README.rst is created by pypandoc reading README.md
 #
 apt-get install -y pandoc
+
+#
+# assuming RAML is used to document APIs ...
+#
+# this install process does not feel right
+# look @ .travis.yml for how it uses nvm - that feels correct
+# could not get nvm to work here :-(
+#
+apt-get install -y nodejs
+apt-get install -y npm
+ln -s /usr/bin/nodejs /usr/bin/node
+chmod a+x /usr/bin/nodejs
+curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+apt-get install -y nodejs
+npm i -g raml2md
 
 #
 # install docker
