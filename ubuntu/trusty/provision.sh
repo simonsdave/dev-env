@@ -6,7 +6,7 @@
 #   -- install and configure git
 #   -- configure vi
 #   -- install jq
-#   -- install nginx
+#   -- install nginx, apache2-utils
 #   -- install nodejs, npm, raml2md
 #   -- install docker
 #
@@ -99,9 +99,14 @@ chown root.root "$JQ_BIN"
 chmod a+x "$JQ_BIN"
 
 #
-# another super useful tool
+# install nginx
 #
 apt-get install -y nginx
+
+#
+# install apache2-utils (mostly to get access to htpasswd)
+#
+apt-get install -y apache2-utils
 
 #
 # Common scenario:
