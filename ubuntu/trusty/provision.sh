@@ -96,6 +96,11 @@ chown root.root "$JQ_BIN"
 chmod a+x "$JQ_BIN"
 
 #
+# another super useful tool
+#
+apt-get install -y nginx
+
+#
 # Common scenario:
 #   -- projects have a README.md
 #   -- setup.py creates long description by reading README.rst
