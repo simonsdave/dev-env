@@ -4,6 +4,7 @@
 #   -- install latest OS updates
 #   -- install and configure git
 #   -- configure vi
+#   -- install jq
 #   -- install docker
 #
 
@@ -84,6 +85,15 @@ mkdir -p ~/.vim/autoload ~/.vim/bundle
 curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 sed -i '1s|^|execute pathogen#infect()\n|' ~/.vimrc
 EOF
+
+#
+# jq is just so generally useful
+#
+JQ_SOURCE=https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64
+JQ_BIN=/usr/local/bin/jq
+curl -s -L --output "$JQ_BIN" "$JQ_SOURCE"
+chown root.root "$JQ_BIN"
+chmod a+x "$JQ_BIN"
 
 #
 # install docker
