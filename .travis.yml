@@ -7,5 +7,4 @@ addons:
     - shellcheck
 dist: trusty
 script:
-  - find . -name \*.sh
   - shellcheck $(find . -name \*.sh)
