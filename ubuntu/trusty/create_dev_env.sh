@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 #
 # this script is expected to be invoked by a shell script
 # that looks something like this

@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 #
 # this script provisions a basic ubuntu 14.04 development environment
 #
