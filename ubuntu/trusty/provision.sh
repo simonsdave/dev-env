@@ -109,6 +109,16 @@ apt-get install -y nginx
 apt-get install -y apache2-utils
 
 #
+# install shell linter shellcheck
+#
+# installed via docker so it's easy to have same version
+# in dev env as well as travis
+#
+docker pull koalaman/shellcheck:latest
+
+#
+# install pandoc
+#
 # Common scenario:
 #   -- projects have a README.md
 #   -- setup.py creates long description by reading README.rst
