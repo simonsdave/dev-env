@@ -1,10 +1,6 @@
 language: bash
-addons:
-  apt:
-    sources:
-    - debian-sid
-    packages:
-    - shellcheck
 dist: trusty
+install:
+  - docker pull koalaman/shellcheck:latest
 script:
-  - shellcheck $(find . -name \*.sh)
+  - docker run -v "$PWD:/mnt" koalaman/shellcheck:latest $(find . -name \*.sh)
