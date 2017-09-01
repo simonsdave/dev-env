@@ -9,6 +9,7 @@
 #   -- install nginx, apache2-utils
 #   -- install nodejs, npm, raml2md
 #   -- install docker
+#   -- install shellcheck (via docker)
 #
 
 set -e
@@ -109,14 +110,6 @@ apt-get install -y nginx
 apt-get install -y apache2-utils
 
 #
-# install shell linter shellcheck
-#
-# installed via docker so it's easy to have same version
-# in dev env as well as travis
-#
-docker pull koalaman/shellcheck:latest
-
-#
 # install pandoc
 #
 # Common scenario:
@@ -150,3 +143,11 @@ apt-get update
 apt-get install -y docker-engine
 usermod -aG docker vagrant
 service docker restart
+
+#
+# install shell linter shellcheck
+#
+# installed via docker so it's easy to have same version
+# in dev env as well as travis
+#
+docker pull koalaman/shellcheck:latest
