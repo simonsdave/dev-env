@@ -161,3 +161,5 @@ service docker restart
 # in dev env as well as travis
 #
 docker pull koalaman/shellcheck:latest
+
+exit 0
