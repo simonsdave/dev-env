@@ -120,9 +120,24 @@ chown root.root "$JQ_BIN"
 chmod a+x "$JQ_BIN"
 
 #
-# install nginx
+# install and configure nginx which is often used for
+# serving the output of raml2html
 #
 apt-get install -y nginx
+API_HTML_NGINX_SITE=/etc/nginx/sites-available/default
+API_HTML_PORT=$(grep forwarded_port < /vagrant/Vagrantfile | sed -e 's|.*host:\s*||g' | sed -e 's|\s*||g')
+API_HTML_DIR=/usr/share/nginx/raml2html/html
+rm "$API_HTML_NGINX_SITE"
+{
+    echo "server {"
+    echo "    listen $API_HTML_PORT;"
+    echo "    root $API_HTML_DIR;"
+    echo "    index index.html;"
+    echo "}"
+} >> "$API_HTML_NGINX_SITE"
+mkdir -p "$API_HTML_DIR"
+chown root:root "$API_HTML_DIR"
+service nginx restart
 
 #
 # install apache2-utils (mostly to get access to htpasswd)
