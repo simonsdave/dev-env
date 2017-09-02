@@ -3,7 +3,9 @@
 # this script provisions a basic ubuntu 14.04 development environment
 #
 #   -- install latest OS updates
-#   -- install and configure git
+#   -- configure timezone & NTP sync
+#   -- configure interactive shell prompt
+#   -- install and configure git assuming git accessed via SSH
 #   -- configure vi
 #   -- install jq
 #   -- install nginx, apache2-utils
@@ -22,6 +24,11 @@ apt-get update -y
 #
 timedatectl set-timezone EST
 apt-get install -y ntp
+
+#
+# configure interactive shell prompt to CWD 
+#
+echo "PS1='\w\> '" >> ~/.profile
 
 #
 # install and configure git
