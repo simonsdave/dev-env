@@ -18,6 +18,7 @@ apt-get update -y
 
 #
 # assumes we're working in EST and enable NTP synchronization.
+# :TODO: there should be some way to configure which timezone is used
 #
 timedatectl set-timezone EST
 apt-get install -y ntp
