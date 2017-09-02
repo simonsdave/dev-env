@@ -46,6 +46,17 @@ su - vagrant -c "echo \"${3:-}\" | base64 --decode > ~/.ssh/id_rsa_github.pub"
 su - vagrant -c "echo \"${4:-}\" | base64 --decode > ~/.ssh/id_rsa_github"
 su - vagrant -c "chmod u=r,og= ~/.ssh/id_rsa_github ~/.ssh/id_rsa_github.pub"
 
+# per https://serverfault.com/questions/132970/can-i-automatically-add-a-new-host-to-known-hosts
+# add github.com to know ssh hosts to avoid being prompted to confirm authenticity
+# like this
+#   git clone git@github.com:simonsdave/cloudfeaster-services.git
+#   Cloning into 'cloudfeaster-services'...
+#   The authenticity of host 'github.com (192.30.253.113)' can't be established.
+#   RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.
+#   Are you sure you want to continue connecting (yes/no)?
+su - vagrant -c "ssh-keyscan -t rsa,dsa github.com 2>&1 > ~/.ssh/known_hosts"
+su - vagrant -c "for IP in $(getent hosts github.com | awk '{ print $1 }'); do ssh-keyscan -t rsa,dsa $IP 2>&1 >> ~/.ssh/known_hosts; done"
+
 su vagrant <<'EOF'
 echo 'export VISUAL=vim' >> ~/.profile
 echo 'export EDITOR="$VISUAL"' >> ~/.profile
