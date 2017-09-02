@@ -57,11 +57,6 @@ su - vagrant -c "chmod u=r,og= ~/.ssh/id_rsa_github ~/.ssh/id_rsa_github.pub"
 su - vagrant -c "ssh-keyscan -t rsa,dsa github.com 2>&1 > ~/.ssh/known_hosts"
 su - vagrant -c "for IP in $(getent hosts github.com | awk '{ print $1 }'); do ssh-keyscan -t rsa,dsa $IP 2>&1 >> ~/.ssh/known_hosts; done"
 
-su vagrant <<'EOF'
-echo 'export VISUAL=vim' >> ~/.profile
-echo 'export EDITOR="$VISUAL"' >> ~/.profile
-EOF
-
 #
 # customize vim
 #
