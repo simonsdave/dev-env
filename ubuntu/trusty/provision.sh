@@ -28,7 +28,7 @@ apt-get install -y ntp
 #
 # configure interactive shell prompt to CWD 
 #
-echo "PS1='\w\> '" >> ~/.profile
+echo 'PS1="\w> "' >> ~/.profile
 
 #
 # install and configure git
