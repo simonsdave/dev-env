@@ -28,7 +28,9 @@ apt-get install -y ntp
 #
 # configure interactive shell prompt to CWD 
 #
+su vagrant <<'EOF'
 echo 'PS1="\w> "' >> ~/.profile
+EOF
 
 #
 # install and configure git
