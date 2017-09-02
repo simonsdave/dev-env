@@ -9,7 +9,7 @@
 #   -- configure vi
 #   -- install jq
 #   -- install nginx, apache2-utils
-#   -- install nodejs, npm, raml2md
+#   -- install nodejs, npm, raml2md & raml2html
 #   -- install docker
 #   -- install shellcheck (via docker)
 #
@@ -153,6 +153,7 @@ chmod a+x /usr/bin/nodejs
 curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
 apt-get install -y nodejs
 npm i -g raml2md
+npm i -g raml2html
 
 #
 # install docker
