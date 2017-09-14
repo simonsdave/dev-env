@@ -19,7 +19,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - Nothing
 
-## [0.1.0] - [2017-MM-DD]
+## [0.1.0] - [2017-08-20]
 
 ### Added
 
