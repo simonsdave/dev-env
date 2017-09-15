@@ -111,9 +111,6 @@ sed \
     -e "s|\\?branch=master|?branch=$RELEASE_BRANCH|g" \
     "$SCRIPT_DIR_NAME/../README.md"
 
-git diff "$SCRIPT_DIR_NAME/../README.md"
-confirm_ok_to_proceed "These changes to $RELEASE_BRANCH look ok?"
-
 #------------------------------
 #
 # this is the part of this script that should be customized
@@ -133,7 +130,10 @@ sed \
 #
 #------------------------------
 
-git commit "$SCRIPT_DIR_NAME/../README.md" -m "$VERSION release prep"
+git diff "$SCRIPT_DIR_NAME/../README.md" "$SCRIPT_DIR_NAME/../ubuntu/trusty/create_dev_env.sh" "$SCRIPT_DIR_NAME/../ubuntu/trusty/Vagrantfile"
+confirm_ok_to_proceed "These changes to $RELEASE_BRANCH look ok?"
+
+git commit "$SCRIPT_DIR_NAME/../README.md" "$SCRIPT_DIR_NAME/../ubuntu/trusty/create_dev_env.sh" "$SCRIPT_DIR_NAME/../ubuntu/trusty/Vagrantfile" -m "$VERSION release prep"
 RELEASE_COMMIT_ID=$(git rev-parse HEAD)
 
 git push origin "$RELEASE_BRANCH"

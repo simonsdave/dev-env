@@ -12,7 +12,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-- Nothing
+- fix bug in ```prep-for-release.sh``` which meant ```Vagrantfile``` and ```create_dev_env.sh```
+where not part of the pre-release commit
 
 ### Removed
 
