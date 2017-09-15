@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# see contributing.md for where this script fits into
+# the release process
+
 set -e
 
 SCRIPT_DIR_NAME="$( cd "$( dirname "$0" )" && pwd )"
@@ -111,17 +114,24 @@ sed \
 git diff "$SCRIPT_DIR_NAME/../README.md"
 confirm_ok_to_proceed "These changes to $RELEASE_BRANCH look ok?"
 
-#---------------
+#------------------------------
 #
 # this is the part of this script that should be customized
 # for the specifics of a repo
 #
 
-##### PUT MORE URL REPLACEMENT IN HERE
+sed \
+    -i \
+    -e "s|\\/master\\/|\\/$RELEASE_BRANCH\\/|g" \
+    "$SCRIPT_DIR_NAME/../ubuntu/trusty/create_dev_env.sh"
+
+sed \
+    -i \
+    -e "s|\\/master\\/|\\/$RELEASE_BRANCH\\/|g" \
+    "$SCRIPT_DIR_NAME/../ubuntu/trusty/Vagrantfile"
 
 #
-#---------------
-#
+#------------------------------
 
 git commit "$SCRIPT_DIR_NAME/../README.md" -m "$VERSION release prep"
 RELEASE_COMMIT_ID=$(git rev-parse HEAD)
