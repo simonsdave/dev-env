@@ -4,7 +4,7 @@
 # that looks something like this
 #
 #   #!/usr/bin/env bash
-#   curl -s https://raw.githubusercontent.com/simonsdave/dev-env/master/ubuntu/trusty/create_dev_env.sh | bash -s -- "$@"
+#   curl -s https://raw.githubusercontent.com/simonsdave/dev-env/release-0.2.0/ubuntu/trusty/create_dev_env.sh | bash -s -- "$@"
 #   exit $?
 #
 # to test
@@ -24,7 +24,7 @@ fi
 
 # :TODO: reminder to find a way to eliminate the hard coded URL
 # and in particular the branch from the URL
-curl -s --output Vagrantfile "https://raw.githubusercontent.com/simonsdave/dev-env/master/ubuntu/trusty/Vagrantfile"
+curl -s --output Vagrantfile "https://raw.githubusercontent.com/simonsdave/dev-env/release-0.2.0/ubuntu/trusty/Vagrantfile"
 
 if [ ! -r "${3:-}" ]; then
     echo "Can't read SSH public key file '${3:-}'"
