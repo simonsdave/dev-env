@@ -59,25 +59,21 @@ if [ $# != 1 ]; then
 fi
 
 VERSION=${1:-}
+RELEASE_DATE=$(date "+%Y-%m-%d")
 
 #
 # update CHANGELOG.md with version # and release date (today),
-# get CHANGELOG.md in good shape for the next release and
+# put CHANGELOG.md in good shape for the next release and
 # figure out what COMMIT_ID in master the release is based# off.
 #
 git checkout master
 
 sed \
     -i \
-    -e "s|%RELEASE_VERSION%|$VERSION|g" \
+    -e "s|## \\[%RELEASE_VERSION%\\] \\- \\[%RELEASE_DATE%\\]|## \\[$VERSION\\] \\- \\[$RELEASE_DATE\\]|g" \
     "$SCRIPT_DIR_NAME/../CHANGELOG.md"
 
-sed \
-    -i \
-    -e "s|%RELEASE_DATE%|$(date "+%Y-%m-%d")|g" \
-    "$SCRIPT_DIR_NAME/../CHANGELOG.md"
-
-git diff
+git diff "$SCRIPT_DIR_NAME/../CHANGELOG.md"
 confirm_ok_to_proceed "These changes to master look ok?"
 
 git commit "$SCRIPT_DIR_NAME/../CHANGELOG.md" -m "$VERSION pre-release prep"
@@ -85,11 +81,13 @@ MASTER_RELEASE_COMMIT_ID=$(git rev-parse HEAD)
 
 sed \
     -i \
-    -e "s|## \\[$VERSION\\]|## [%RELEASE_VERSION%] - [%RELEASE_DATE%]\\n\\n## \\[$VERSION\\]|g" \
+    -e "s|## \\[$VERSION\\] \\- \\[$RELEASE_DATE\\]|## [%RELEASE_VERSION%] \\- [%RELEASE_DATE%]\\n\\n### Added\\n\\n- Nothing\\n\\n### Changed\\n\\n- Nothing\\n\\n### Removed\\n\\n- Nothing\\n\\n\\## [$VERSION\\] \\- \\[$RELEASE_DATE\\]|g" \
     "$SCRIPT_DIR_NAME/../CHANGELOG.md"
 
-exit 0
-git commit "$SCRIPT_DIR_NAME/../CHANGELOG.md" -m "Add CHANGELOG.md placeholder for next release"
+git diff "$SCRIPT_DIR_NAME/../CHANGELOG.md"
+confirm_ok_to_proceed "These changes to master look ok?"
+
+git commit "$SCRIPT_DIR_NAME/../CHANGELOG.md" -m "Prep CHANGELOG.md for next release"
 
 git push origin master
 
@@ -102,24 +100,37 @@ git push origin master
 #
 
 RELEASE_BRANCH="release-$VERSION"
-git checkout -b "$RELEASE_BRANCH" master "$MASTER_RELEASE_COMMIT_ID"
+git branch "$RELEASE_BRANCH" "$MASTER_RELEASE_COMMIT_ID"
+git checkout "$RELEASE_BRANCH"
 
 sed \
     -i \
     -e "s|\\?branch=master|?branch=$RELEASE_BRANCH|g" \
     "$SCRIPT_DIR_NAME/../README.md"
 
+git diff "$SCRIPT_DIR_NAME/../README.md"
+confirm_ok_to_proceed "These changes to $RELEASE_BRANCH look ok?"
+
+#---------------
+#
+# this is the part of this script that should be customized
+# for the specifics of a repo
+#
+
+##### PUT MORE URL REPLACEMENT IN HERE
+
+#
+#---------------
+#
+
 git commit "$SCRIPT_DIR_NAME/../README.md" -m "$VERSION release prep"
 RELEASE_COMMIT_ID=$(git rev-parse HEAD)
 
-git push origin "$VERSION"
+git push origin "$RELEASE_BRANCH"
 
 echo_if_verbose "Release should be based on commit '$RELEASE_COMMIT_ID' in branch '$RELEASE_BRANCH' with name & tag = 'v$VERSION'"
 
-# https://github.com/simonsdave/dev-env/releases/new
+git checkout master
 
-exit 1
-
-echo ">>>$VERSION<<<"
 exit 0
 
