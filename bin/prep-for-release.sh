@@ -65,6 +65,15 @@ VERSION=${1:-}
 RELEASE_DATE=$(date "+%Y-%m-%d")
 
 #
+# CHANGELOG.md must exist @ the top of the repo
+#
+CHANGELOG_DOT_MD=$(git rev-parse --show-toplevel)/CHANGELOG.md
+if [ ! -r "$CHANGELOG_DOT_MD" ]; then
+    echo "could not find change log @ '$CHANGELOG_DOT_MD'" >&2
+    exit 2
+fi
+
+#
 # on the master branch update CHANGELOG.md with version # and release date (today),
 # put CHANGELOG.md in good shape for the next release and
 # figure out what COMMIT_ID in master the release is based# off.
@@ -85,7 +94,7 @@ fi
 sed \
     -i \
     -e "s|## \\[%RELEASE_VERSION%\\] \\- \\[%RELEASE_DATE%\\]|## \\[$VERSION\\] \\- \\[$RELEASE_DATE\\]|g" \
-    "$SCRIPT_DIR_NAME/../CHANGELOG.md"
+    "$CHANGELOG_DOT_MD"
 # :TODO: check if the above sed command actually did anything
 
 git diff
@@ -97,7 +106,7 @@ MASTER_RELEASE_COMMIT_ID=$(git rev-parse HEAD)
 sed \
     -i \
     -e "s|## \\[$VERSION\\] \\- \\[$RELEASE_DATE\\]|## [%RELEASE_VERSION%] \\- [%RELEASE_DATE%]\\n\\n### Added\\n\\n- Nothing\\n\\n### Changed\\n\\n- Nothing\\n\\n### Removed\\n\\n- Nothing\\n\\n\\## [$VERSION\\] \\- \\[$RELEASE_DATE\\]|g" \
-    "$SCRIPT_DIR_NAME/../CHANGELOG.md"
+    "$CHANGELOG_DOT_MD"
 # :TODO: check if the above sed command actually did anything
 
 git diff
