@@ -65,33 +65,50 @@ VERSION=${1:-}
 RELEASE_DATE=$(date "+%Y-%m-%d")
 
 #
-# update CHANGELOG.md with version # and release date (today),
+# on the master branch update CHANGELOG.md with version # and release date (today),
 # put CHANGELOG.md in good shape for the next release and
 # figure out what COMMIT_ID in master the release is based# off.
 #
 git checkout master
 
+# this check is enforced so commands like "git diff" and "git commit"
+# can be executed across the entire repo rather than picking out
+# individual files which is important because want this script to
+# provide a framework which other repos can extend (specifically other
+# repos should be able to provide their own customizations to the
+# release branch.
+if ! git diff-index --quiet HEAD --; then
+    echo "$(basename "$0") won't work if there are outstanding commits on master" >&2
+    exit 2
+fi
+
 sed \
     -i \
     -e "s|## \\[%RELEASE_VERSION%\\] \\- \\[%RELEASE_DATE%\\]|## \\[$VERSION\\] \\- \\[$RELEASE_DATE\\]|g" \
     "$SCRIPT_DIR_NAME/../CHANGELOG.md"
+# :TODO: check if the above sed command actually did anything
 
-git diff "$SCRIPT_DIR_NAME/../CHANGELOG.md"
+git diff
 confirm_ok_to_proceed "These changes to master look ok?"
 
-git commit "$SCRIPT_DIR_NAME/../CHANGELOG.md" -m "$VERSION pre-release prep"
+git commit -a -m "$VERSION pre-release prep"
 MASTER_RELEASE_COMMIT_ID=$(git rev-parse HEAD)
 
 sed \
     -i \
     -e "s|## \\[$VERSION\\] \\- \\[$RELEASE_DATE\\]|## [%RELEASE_VERSION%] \\- [%RELEASE_DATE%]\\n\\n### Added\\n\\n- Nothing\\n\\n### Changed\\n\\n- Nothing\\n\\n### Removed\\n\\n- Nothing\\n\\n\\## [$VERSION\\] \\- \\[$RELEASE_DATE\\]|g" \
     "$SCRIPT_DIR_NAME/../CHANGELOG.md"
+# :TODO: check if the above sed command actually did anything
 
-git diff "$SCRIPT_DIR_NAME/../CHANGELOG.md"
+git diff
 confirm_ok_to_proceed "These changes to master look ok?"
 
-git commit "$SCRIPT_DIR_NAME/../CHANGELOG.md" -m "Prep CHANGELOG.md for next release"
+git commit -a -m "Prep CHANGELOG.md for next release"
 
+# :TODO: does this push need to be here? can we put the master
+# and release branch pushes in the same spot so all changes
+# to both the master and release branches are made locally
+# and then together pushed to the remote branches?
 git push origin master
 
 #
@@ -110,6 +127,7 @@ sed \
     -i \
     -e "s|\\?branch=master|?branch=$RELEASE_BRANCH|g" \
     "$SCRIPT_DIR_NAME/../README.md"
+# :TODO: check if the above sed command actually did anything
 
 #------------------------------
 #
@@ -121,19 +139,21 @@ sed \
     -i \
     -e "s|\\/master\\/|\\/$RELEASE_BRANCH\\/|g" \
     "$SCRIPT_DIR_NAME/../ubuntu/trusty/create_dev_env.sh"
+# :TODO: check if the above sed command actually did anything
 
 sed \
     -i \
     -e "s|\\/master\\/|\\/$RELEASE_BRANCH\\/|g" \
     "$SCRIPT_DIR_NAME/../ubuntu/trusty/Vagrantfile"
+# :TODO: check if the above sed command actually did anything
 
 #
 #------------------------------
 
-git diff "$SCRIPT_DIR_NAME/../README.md" "$SCRIPT_DIR_NAME/../ubuntu/trusty/create_dev_env.sh" "$SCRIPT_DIR_NAME/../ubuntu/trusty/Vagrantfile"
+git diff 
 confirm_ok_to_proceed "These changes to $RELEASE_BRANCH look ok?"
 
-git commit "$SCRIPT_DIR_NAME/../README.md" "$SCRIPT_DIR_NAME/../ubuntu/trusty/create_dev_env.sh" "$SCRIPT_DIR_NAME/../ubuntu/trusty/Vagrantfile" -m "$VERSION release prep"
+git commit -a -m "$VERSION release prep"
 RELEASE_COMMIT_ID=$(git rev-parse HEAD)
 
 git push origin "$RELEASE_BRANCH"
@@ -143,4 +163,3 @@ echo_if_verbose "Release should be based on commit '$RELEASE_COMMIT_ID' in branc
 git checkout master
 
 exit 0
-
