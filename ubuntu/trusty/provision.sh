@@ -7,7 +7,7 @@
 #   -- configure interactive shell prompt
 #   -- install and configure git assuming git accessed via SSH
 #   -- configure vi
-#   -- install jq
+#   -- install jq & yq
 #   -- install nginx, apache2-utils
 #   -- install nodejs, npm, raml2md & raml2html
 #   -- install docker
@@ -111,13 +111,18 @@ sed -i '1s|^|execute pathogen#infect()\n|' ~/.vimrc
 EOF
 
 #
-# jq is just so generally useful
+# jq is just so generally useful for parsing json docs
 #
 JQ_SOURCE=https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64
 JQ_BIN=/usr/local/bin/jq
 curl -s -L --output "$JQ_BIN" "$JQ_SOURCE"
 chown root.root "$JQ_BIN"
 chmod a+x "$JQ_BIN"
+
+#
+# just like jq, yq is just so generally useful for parsing yaml docs
+#
+pip install yq
 
 #
 # install and configure nginx which is often used for

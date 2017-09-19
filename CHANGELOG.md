@@ -12,8 +12,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-- fix bug in ```prep-for-release.sh``` which meant ```Vagrantfile``` and ```create_dev_env.sh```
-where not part of the pre-release commit
+- ```prep-for-release.sh``` now fails if there are outstanding commits
+on the master branch
+- ```provision.sh``` now installs yq (https://yq.readthedocs.io/en/latest/)
 
 ### Removed
 
