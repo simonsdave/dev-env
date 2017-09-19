@@ -5,8 +5,6 @@
 
 set -e
 
-SCRIPT_DIR_NAME="$( cd "$( dirname "$0" )" && pwd )"
-
 echo_if_verbose() {
     if [ "1" -eq "${VERBOSE:-0}" ]; then
         echo "${1:-}"
@@ -141,19 +139,19 @@ git checkout "$RELEASE_BRANCH"
 sed \
     -i \
     -e "s|\\?branch=master|?branch=$RELEASE_BRANCH|g" \
-    "$SCRIPT_DIR_NAME/../README.md"
+    "$(git rev-parse --show-toplevel)/README.md"
 # :TODO: check if the above sed command actually did anything
 
 sed \
     -i \
     -e "s|\\/master\\/|\\/$RELEASE_BRANCH\\/|g" \
-    "$SCRIPT_DIR_NAME/../ubuntu/trusty/create_dev_env.sh"
+    "$(git rev-parse --show-toplevel)/ubuntu/trusty/create_dev_env.sh"
 # :TODO: check if the above sed command actually did anything
 
 sed \
     -i \
     -e "s|\\/master\\/|\\/$RELEASE_BRANCH\\/|g" \
-    "$SCRIPT_DIR_NAME/../ubuntu/trusty/Vagrantfile"
+    "$(git rev-parse --show-toplevel)/ubuntu/trusty/Vagrantfile"
 # :TODO: check if the above sed command actually did anything
 
 #
