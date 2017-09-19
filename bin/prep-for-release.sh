@@ -123,17 +123,17 @@ RELEASE_BRANCH="release-$VERSION"
 git branch "$RELEASE_BRANCH" "$MASTER_RELEASE_COMMIT_ID"
 git checkout "$RELEASE_BRANCH"
 
-sed \
-    -i \
-    -e "s|\\?branch=master|?branch=$RELEASE_BRANCH|g" \
-    "$SCRIPT_DIR_NAME/../README.md"
-# :TODO: check if the above sed command actually did anything
-
 #------------------------------
 #
 # this is the part of this script that should be customized
 # for the specifics of a repo
 #
+
+sed \
+    -i \
+    -e "s|\\?branch=master|?branch=$RELEASE_BRANCH|g" \
+    "$SCRIPT_DIR_NAME/../README.md"
+# :TODO: check if the above sed command actually did anything
 
 sed \
     -i \
