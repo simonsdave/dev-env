@@ -3,6 +3,30 @@
 Below are the (very opinionated) steps for integrating ```dev-env``` into
 your repo.
 
+In the root directory of your repo create a file called ```CHANGELOG.md```.
+
+```
+# Change Log
+
+All notable changes to this project will be documented in this file.
+Format of this file follows [these](http://keepachangelog.com/) guidelines.
+This project adheres to [Semantic Versioning](http://semver.org/).
+
+## [%RELEASE_VERSION%] - [%RELEASE_DATE%]
+
+### Added
+
+- ...
+
+### Changed
+
+- ...
+
+### Removed
+
+- ...
+```
+
 In the root directory of your repo create a directory called ```dev_env```.
 The remainder of these instructions are all conducted in the ```dev_env``` directory.
 
@@ -37,16 +61,6 @@ no customizations.
 
 ```bash
 #!/usr/bin/env bash
-exit 0
-```
-
-Or you could install just enough to do some basic python development.
-
-```bash
-#!/usr/bin/env bash
-set -e
-apt-get install -y python-virtualenv
-apt-get install -y python-dev
 exit 0
 ```
 
