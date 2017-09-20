@@ -7,6 +7,7 @@
 #   -- configure interactive shell prompt
 #   -- install and configure git assuming git accessed via SSH
 #   -- configure vi
+#   -- install basic python dev env
 #   -- install jq & yq
 #   -- install nginx, apache2-utils
 #   -- install nodejs, npm, raml2md & raml2html
@@ -109,6 +110,12 @@ mkdir -p ~/.vim/autoload ~/.vim/bundle
 curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 sed -i '1s|^|execute pathogen#infect()\n|' ~/.vimrc
 EOF
+
+#
+# install basic python dev env
+#
+apt-get install -y python-virtualenv
+apt-get install -y python-dev
 
 #
 # jq is just so generally useful for parsing json docs

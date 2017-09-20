@@ -19,6 +19,7 @@ on the master branch
 - update ```prep-for-release.sh``` wtith support for repo specific release
 branch change scripts so ```prep-for-release.sh``` can be used in more than
 just this repo
+- ```provision.sh``` now installs a basic python dev env (since it's used so often)
 
 ### Removed
 
