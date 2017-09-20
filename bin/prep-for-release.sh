@@ -145,8 +145,12 @@ echo_if_verbose "Done looking for and executing release branch change scripts"
 git diff 
 confirm_ok_to_proceed "These changes to $RELEASE_BRANCH look ok?"
 
-git commit -a -m "$VERSION release prep"
-RELEASE_COMMIT_ID=$(git rev-parse HEAD)
+# "git commit" will fail if there are no changes to commit
+# this should be a very rare case
+if ! git diff-index --quiet HEAD --; then
+    git commit -a -m "$VERSION release prep"
+    RELEASE_COMMIT_ID=$(git rev-parse HEAD)
+fi
 
 git push origin "$RELEASE_BRANCH"
 
