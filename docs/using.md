@@ -14,7 +14,7 @@ Vagrantfile
 ```
 
 Create an executable ```create_dev_env.sh```
-The example below references the ```master`` branch of [dev-env](https://github.com/simonsdave/dev-env)
+The example below references the ```master``` branch of [dev-env](https://github.com/simonsdave/dev-env)
 which is the active development branch of [dev-env](https://github.com/simonsdave/dev-env).
 It probably makes more sense to reference a specific [dev-env release](https://github.com/simonsdave/dev-env/releases)
 by changing ```master``` with something like ```v0.2.0```.
