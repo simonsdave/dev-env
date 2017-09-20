@@ -125,6 +125,15 @@ chmod a+x "$JQ_BIN"
 pip install yq
 
 #
+# install prep-for-release.sh from the dev-env project 
+#
+PFR_SOURCE=https://raw.githubusercontent.com/simonsdave/dev-env/master/bin/prep-for-release.sh
+PFR_BIN=/usr/local/bin/prep-for-release.sh
+curl -s -L --output "$PFR_BIN" "$PFR_SOURCE"
+chown root.root "$PFR_BIN"
+chmod a+x "$PFR_BIN"
+
+#
 # install and configure nginx which is often used for
 # serving the output of raml2html
 #

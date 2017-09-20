@@ -5,6 +5,8 @@
 
 set -e
 
+REPO_ROOT_DIR=$(git rev-parse --show-toplevel)
+
 echo_if_verbose() {
     if [ "1" -eq "${VERBOSE:-0}" ]; then
         echo "${1:-}"
@@ -65,7 +67,7 @@ RELEASE_DATE=$(date "+%Y-%m-%d")
 #
 # CHANGELOG.md must exist @ the top of the repo
 #
-CHANGELOG_DOT_MD=$(git rev-parse --show-toplevel)/CHANGELOG.md
+CHANGELOG_DOT_MD=$REPO_ROOT_DIR/CHANGELOG.md
 if [ ! -r "$CHANGELOG_DOT_MD" ]; then
     echo "could not find change log @ '$CHANGELOG_DOT_MD'" >&2
     exit 2
@@ -130,32 +132,15 @@ RELEASE_BRANCH="release-$VERSION"
 git branch "$RELEASE_BRANCH" "$MASTER_RELEASE_COMMIT_ID"
 git checkout "$RELEASE_BRANCH"
 
-#------------------------------
-#
-# this is the part of this script that should be customized
-# for the specifics of a repo
-#
-
-sed \
-    -i \
-    -e "s|\\?branch=master|?branch=$RELEASE_BRANCH|g" \
-    "$(git rev-parse --show-toplevel)/README.md"
-# :TODO: check if the above sed command actually did anything
-
-sed \
-    -i \
-    -e "s|\\/master\\/|\\/$RELEASE_BRANCH\\/|g" \
-    "$(git rev-parse --show-toplevel)/ubuntu/trusty/create_dev_env.sh"
-# :TODO: check if the above sed command actually did anything
-
-sed \
-    -i \
-    -e "s|\\/master\\/|\\/$RELEASE_BRANCH\\/|g" \
-    "$(git rev-parse --show-toplevel)/ubuntu/trusty/Vagrantfile"
-# :TODO: check if the above sed command actually did anything
-
-#
-#------------------------------
+# the while loop pattern below looks awkward but came as a result
+# dealing with https://github.com/koalaman/shellcheck/wiki/SC2044
+echo_if_verbose "Looking for and executing release branch change scripts"
+while IFS= read -r -d '' RELEASE_BRANCH_CHANGE_SCRIPT
+do
+    echo_if_verbose "Executing '$RELEASE_BRANCH_CHANGE_SCRIPT'"
+    echo "$RELEASE_BRANCH_CHANGE_SCRIPT" "$RELEASE_BRANCH"
+done < <(find "$REPO_ROOT_DIR" -executable -name .prep-for-release-branch-changes.sh -print0)
+echo_if_verbose "Done looking for and executing release branch change scripts"
 
 git diff 
 confirm_ok_to_proceed "These changes to $RELEASE_BRANCH look ok?"

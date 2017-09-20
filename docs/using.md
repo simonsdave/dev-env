@@ -3,8 +3,8 @@
 Below are the (very opinionated) steps for integrating ```dev-env``` into
 your repo.
 
-In the root directory of your project create a directory called ```dev_env```. The remainder of these instructions are all conducted in
-the ```dev_env``` directory.
+In the root directory of your repo create a directory called ```dev_env```.
+The remainder of these instructions are all conducted in the ```dev_env``` directory.
 
 Create a ```.gitignore```
 
@@ -14,6 +14,10 @@ Vagrantfile
 ```
 
 Create an executable ```create_dev_env.sh```
+The example below references the ```master`` branch of [dev-env](https://github.com/simonsdave/dev-env)
+which is the active development branch of [dev-env](https://github.com/simonsdave/dev-env).
+It probably makes more sense to reference a specific [dev-env release](https://github.com/simonsdave/dev-env/releases)
+by changing ```master``` with something like ```v0.2.0```.
 
 ```bash
 #!/usr/bin/env bash
@@ -66,6 +70,9 @@ Bringing machine 'default' up with 'virtualbox' provider...
 
 * take a look at [my other projects on github](https://github.com/simonsdave)
 for examples of how ```dev-env``` is being used
+* ```dev-env``` includes a script ([prep-for-release.sh](../bin/prep-for-release.sh))
+which, if you follow the required conventions, can dramatically simplify the process
+of creating releases - take a look at [this description for more details](using-prep-for-release-dot-sh.md)
 * as you start to integrate ```dev-env``` into your projects
 some feedback would be great - create [issues](../../../issues) and/or
 send me an e-mail (```simonsdave@gmail.com```) - thanks in advance!
