@@ -14,7 +14,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - ```prep-for-release.sh``` now fails if there are outstanding commits
 on the master branch
-- ```provision.sh``` now installs yq (https://yq.readthedocs.io/en/latest/)
+- ```provision.sh``` now installs [yq](https://yq.readthedocs.io/en/latest/)
 - ```provision.sh``` installs ```prep-for-release.sh```
 - update ```prep-for-release.sh``` wtith support for repo specific release
 branch change scripts so ```prep-for-release.sh``` can be used in more than
