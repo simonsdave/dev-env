@@ -1,4 +1,4 @@
-# Using
+# Provisioning
 
 Below are the (very opinionated) steps for integrating ```dev-env``` into
 your repo to provision a development environment.
