@@ -18,7 +18,7 @@ MEMORY_IN_MB=2048
 
 while true
 do
-    # :TODO: was using "${1,,}" so command line args where not case sensitive
+    # note - was using "${1,,}" so command line args where not case sensitive
     # but was getting "bad substitution" errors on
     #
     #    GNU bash, version 3.2.57(1)-release (x86_64-apple-darwin15)
