@@ -18,7 +18,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ]
   config.vm.provision "project", type: "shell", path: "provision.sh"
   config.vm.provider :virtualbox do |vb|
-    # :TODO: should be able to customize VM's memory
-    vb.customize ["modifyvm", :id, "--memory", "2048"]
+    vb.customize ["modifyvm", :id, "--memory", ENV.fetch("VAGRANT_MEMORY_IN_MB", "2048")]
   end
 end

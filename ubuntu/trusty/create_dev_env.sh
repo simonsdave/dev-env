@@ -12,8 +12,32 @@
 #   curl -s file://create_dev_env.sh | bash -s --
 #
 
+set -e
+
+MEMORY_IN_MB=2048
+
+while true
+do
+    # :TODO: was using "${1,,}" so command line args where not case sensitive
+    # but was getting "bad substitution" errors on
+    #
+    #    GNU bash, version 3.2.57(1)-release (x86_64-apple-darwin15)
+    #
+    # which is why reverted to using the sub-optimal "${1:-}"
+    case "${1:-}" in
+        --memory)
+            shift
+            MEMORY_IN_MB=${1:-}
+            shift
+            ;;
+        *)
+            break
+            ;;
+    esac
+done
+
 if [ $# != 4 ]; then
-    echo "usage: $(basename "$0") <github username> <github email> <github public key> <github private key>" >&2
+    echo "usage: $(basename "$0") [--memory <MB>] <github username> <github email> <github public key> <github private key>" >&2
     exit 1
 fi
 
@@ -42,6 +66,7 @@ VAGRANT_GITHUB_USERNAME=${1:-} \
     VAGRANT_GITHUB_EMAIL=${2:-} \
     VAGRANT_BASE64_ENCODED_GITHUB_SSH_PUBLIC_KEY=$BASE64_ENCODED_GITHUB_SSH_PUBLIC_KEY \
     VAGRANT_BASE64_ENCODED_GITHUB_SSH_PRIVATE_KEY=$BASE64_ENCODED_GITHUB_SSH_PRIVATE_KEY \
+    VAGRANT_MEMORY_IN_MB=$MEMORY_IN_MB \
     vagrant up
 
 # cleanup: would normally remove previously curl'ed Vagrantfile
