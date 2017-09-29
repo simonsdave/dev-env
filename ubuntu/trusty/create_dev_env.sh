@@ -46,8 +46,6 @@ if [ ! -r "provision.sh" ]; then
     exit 1
 fi
 
-# :TODO: reminder to find a way to eliminate the hard coded URL
-# and in particular the branch from the URL
 curl -s --output Vagrantfile "https://raw.githubusercontent.com/simonsdave/dev-env/master/ubuntu/trusty/Vagrantfile"
 
 if [ ! -r "${3:-}" ]; then
