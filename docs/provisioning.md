@@ -3,6 +3,11 @@
 Below are the (very opinionated) steps for integrating ```dev-env``` into
 your repo to provision a development environment.
 
+* [The Fundamentals](#the-fundamentals)
+* [Customizations](#customizations)
+    * [Memory](#memory)
+* [What Next](#what-next)
+
 ## The Fundamentals
 
 In the root directory of your repo create a file called ```CHANGELOG.md```.
