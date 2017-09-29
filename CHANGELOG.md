@@ -8,7 +8,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-- Nothing
+- ```create_dev_env.sh``` now has a ```--memory``` command line option
+allowing customization of amount of RAM is provisioned for a VM
 
 ### Changed
 
