@@ -63,3 +63,11 @@ You can have any number of scripts called ```.prep-for-release-branch-changes.sh
 in any directory of the repo. ```prep-for-release.sh``` will find all
 the scripts named ```.prep-for-release-branch-changes.sh``` and run them
 when creating the release branch.
+
+## What Next
+
+* take a look at [my other projects on github](https://github.com/simonsdave)
+for examples of how ```dev-env``` is being used
+* as you start to integrate ```dev-env``` into your projects
+some feedback would be great - create [issues](../../../issues) and/or
+send me an e-mail (```simonsdave@gmail.com```) - thanks in advance!
