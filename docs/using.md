@@ -6,6 +6,7 @@ for all the gory details
 * ```dev-env``` includes a script ([prep-for-release.sh](../bin/prep-for-release.sh))
 which, if you follow the required conventions, can dramatically simplify the process
 of creating releases - take a look at [this description for more details](prep-for-release-dot-sh.md)
+* [testing - details coming soon](testing.md)
 
 ## What Next
 
