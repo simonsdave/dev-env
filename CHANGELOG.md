@@ -34,7 +34,7 @@ line option allowing customization of the port
 on the master branch
 - ```provision.sh``` now installs [yq](https://yq.readthedocs.io/en/latest/)
 - ```provision.sh``` installs ```prep-for-release.sh```
-- update ```prep-for-release.sh``` wtith support for repo specific release
+- update ```prep-for-release.sh``` with support for repo specific release
 branch change scripts so ```prep-for-release.sh``` can be used in more than
 just this repo
 - ```provision.sh``` now installs a basic python dev env (since it's used so often)
