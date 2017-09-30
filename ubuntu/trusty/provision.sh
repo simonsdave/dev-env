@@ -15,8 +15,6 @@
 #   -- install shellcheck (via docker)
 #
 
-exit 0
-
 set -e
 
 apt-get update -y
