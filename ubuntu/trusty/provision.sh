@@ -148,7 +148,7 @@ chmod a+x "$PFR_BIN"
 #
 apt-get install -y nginx
 API_HTML_NGINX_SITE=/etc/nginx/sites-available/default
-API_HTML_PORT=$(grep forwarded_port < /vagrant/Vagrantfile | sed -e 's|.*host:\s*||g' | sed -e 's|\s*||g')
+API_HTML_PORT=$(grep forwarded_port < /vagrant/Vagrantfile | sed -e 's|.*guest:\s*||g' | sed -e 's|\s*\,.*$||g')
 API_HTML_DIR=/usr/share/nginx/raml2html/html
 rm "$API_HTML_NGINX_SITE"
 {
