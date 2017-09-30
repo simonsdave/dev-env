@@ -15,6 +15,7 @@
 set -e
 
 MEMORY_IN_MB=2048
+NGINX_PORT=8085
 
 while true
 do
@@ -30,6 +31,11 @@ do
             MEMORY_IN_MB=${1:-}
             shift
             ;;
+        --nginx)
+            shift
+            NGINX_PORT=${1:-}
+            shift
+            ;;
         *)
             break
             ;;
@@ -37,7 +43,7 @@ do
 done
 
 if [ $# != 4 ]; then
-    echo "usage: $(basename "$0") [--memory <MB>] <github username> <github email> <github public key> <github private key>" >&2
+    echo "usage: $(basename "$0") [--memory <MB>|--nginx <port>] <github username> <github email> <github public key> <github private key>" >&2
     exit 1
 fi
 
@@ -65,6 +71,7 @@ VAGRANT_GITHUB_USERNAME=${1:-} \
     VAGRANT_BASE64_ENCODED_GITHUB_SSH_PUBLIC_KEY=$BASE64_ENCODED_GITHUB_SSH_PUBLIC_KEY \
     VAGRANT_BASE64_ENCODED_GITHUB_SSH_PRIVATE_KEY=$BASE64_ENCODED_GITHUB_SSH_PRIVATE_KEY \
     VAGRANT_MEMORY_IN_MB=$MEMORY_IN_MB \
+    VAGRANT_NGINX_PORT=$NGINX_PORT \
     vagrant up
 
 # cleanup: would normally remove previously curl'ed Vagrantfile

@@ -10,6 +10,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - ```create_dev_env.sh``` now has a ```--memory``` command line option
 allowing customization of amount of RAM is provisioned for a VM
+- by default nginx is installed on a VM and exposed to the host
+on port 8085 - ```create_dev_env.sh``` now has an ```--nginx``` command
+line option allowing customization of the port
 
 ### Changed
 
