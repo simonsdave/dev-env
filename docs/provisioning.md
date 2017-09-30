@@ -6,6 +6,7 @@ your repo to provision a development environment.
 * [The Fundamentals](#the-fundamentals)
 * [Customizations](#customizations)
     * [Memory](#memory)
+    * [NGINX Port](#nginx-port)
 * [What Next](#what-next)
 
 ## The Fundamentals
@@ -110,6 +111,23 @@ curl -s https://raw.githubusercontent.com/simonsdave/dev-env/master/ubuntu/trust
 exit $?
 ```
 
+### NGINX Port
+
+By default [NGINX](https://nginx.org/) is installed on a VM and exposed to the host
+on port 8085. ```create_dev_env.sh``` has an ```--nginx``` command
+line option allowing customization of the port.
+
+```bash
+#!/usr/bin/env bash
+
+if [ $# != 4 ]; then
+    echo "usage: $(basename "$0") <github username> <github email> <github public key> <github private key>" >&2
+    exit 1
+fi
+
+curl -s https://raw.githubusercontent.com/simonsdave/dev-env/master/ubuntu/trusty/create_dev_env.sh | bash -s -- --nginx 9000 "$@"
+exit $?
+```
 
 ## What Next
 
