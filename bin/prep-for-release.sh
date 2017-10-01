@@ -114,12 +114,6 @@ confirm_ok_to_proceed "These changes to master look ok?"
 
 git commit -a -m "Prep CHANGELOG.md for next release"
 
-# :TODO: does this push need to be here? can we put the master
-# and release branch pushes in the same spot so all changes
-# to both the master and release branches are made locally
-# and then together pushed to the remote branches?
-git push origin master
-
 #
 # create release branch from the right commit on the master branch,
 # change links in various files to point to the release branch rather
@@ -152,10 +146,20 @@ if ! git diff-index --quiet HEAD --; then
     RELEASE_COMMIT_ID=$(git rev-parse HEAD)
 fi
 
+#
+# all changes have been made locally - now it's time to push changes to github
+#
+git checkout master
+git push origin master
+
+git checkout "$RELEASE_BRANCH"
 git push origin "$RELEASE_BRANCH"
 
-echo_if_verbose "Release should be based on commit '$RELEASE_COMMIT_ID' in branch '$RELEASE_BRANCH' with name & tag = 'v$VERSION'"
-
 git checkout master
+
+#
+# all done:-)
+#
+echo_if_verbose "Release should be based on commit '$RELEASE_COMMIT_ID' in branch '$RELEASE_BRANCH' with name & tag = 'v$VERSION'"
 
 exit 0
