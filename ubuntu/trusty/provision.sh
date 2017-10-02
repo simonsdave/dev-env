@@ -17,13 +17,40 @@
 
 set -e
 
+#
+# parse command line args
+#
+TIMEZONE=EST
+
+while true
+do
+    case "${1,,}" in
+        --timezone)
+            shift
+            TIMEZONE=${1:-EST}
+            shift
+            ;;
+        *)
+            break
+            ;;
+    esac
+done
+
+if [ $# != 0 ]; then
+    echo "usage: $(basename "$0") [--timezone <timezone>]" >&2
+    exit 1
+fi
+
+#
+# standard os updates
+#
 apt-get update -y
 
 #
 # assumes we're working in EST and enable NTP synchronization.
 # :TODO: there should be some way to configure which timezone is used
 #
-timedatectl set-timezone EST
+timedatectl set-timezone "$TIMEZONE"
 apt-get install -y ntp
 
 #

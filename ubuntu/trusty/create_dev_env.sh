@@ -16,6 +16,7 @@ set -e
 
 MEMORY_IN_MB=2048
 NGINX_PORT=8085
+TIMEZONE=EST
 
 while true
 do
@@ -36,6 +37,11 @@ do
             NGINX_PORT=${1:-}
             shift
             ;;
+        --timezone)
+            shift
+            TIMEZONE=${1:-EST}
+            shift
+            ;;
         *)
             break
             ;;
@@ -43,7 +49,7 @@ do
 done
 
 if [ $# != 4 ]; then
-    echo "usage: $(basename "$0") [--memory <MB>|--nginx <port>] <github username> <github email> <github public key> <github private key>" >&2
+    echo "usage: $(basename "$0") [--memory <MB>|--nginx <port>|--timezone <timezone>] <github username> <github email> <github public key> <github private key>" >&2
     exit 1
 fi
 
@@ -72,6 +78,7 @@ VAGRANT_GITHUB_USERNAME=${1:-} \
     VAGRANT_BASE64_ENCODED_GITHUB_SSH_PRIVATE_KEY=$BASE64_ENCODED_GITHUB_SSH_PRIVATE_KEY \
     VAGRANT_MEMORY_IN_MB=$MEMORY_IN_MB \
     VAGRANT_NGINX_PORT=$NGINX_PORT \
+    VAGRANT_TIMEZONE=$TIMEZONE \
     vagrant up
 
 # cleanup: would normally remove previously curl'ed Vagrantfile
