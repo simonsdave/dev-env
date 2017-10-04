@@ -7,6 +7,7 @@ your repo to provision a development environment.
 * [Customizations](#customizations)
     * [Memory](#memory)
     * [NGINX Port](#nginx-port)
+    * [Timezone](#timezone)
 * [What Next](#what-next)
 
 ## Fundamentals
@@ -127,6 +128,59 @@ fi
 
 curl -s https://raw.githubusercontent.com/simonsdave/dev-env/master/ubuntu/trusty/create_dev_env.sh | bash -s -- --nginx 9000 "$@"
 exit $?
+```
+
+### Timezone
+
+By default VMs are provisioned with an EST timezone. ```create_dev_env.sh```
+has a ```--timezone``` command line option
+allowing customization of the provisioned VM's timezone.
+
+```bash
+#!/usr/bin/env bash
+
+TIMEZONE=EST
+
+while true
+do
+    case "${1:-}" in
+        --timezone)
+            shift
+            TIMEZONE=${1:-EST}
+            shift
+            ;;
+        *)
+            break
+            ;;
+    esac
+done
+
+if [ $# != 4 ]; then
+    echo "usage: $(basename "$0") [--timezone <timezone>] <github username> <github email> <github public key> <github private key>" >&2
+    exit 1
+fi
+
+curl -s https://raw.githubusercontent.com/simonsdave/dev-env/master/ubuntu/trusty/create_dev_env.sh | bash -s -- --timezone "$TIMEZONE" "$@"
+exit $?
+```
+
+The value of the timezone argument comes from
+the output of ```timedatectl list-timezones```.
+
+```bash
+~> timedatectl list-timezones
+Africa/Abidjan
+Africa/Accra
+Africa/Addis_Ababa
+Africa/Algiers
+Africa/Asmara
+Africa/Bamako
+Africa/Bangui
+Africa/Banjul
+.
+.
+.
+~>
 ```
 
 ## What Next
