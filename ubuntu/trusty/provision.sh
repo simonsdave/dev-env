@@ -20,7 +20,6 @@ set -e
 #
 # parse command line args
 #
-set -x
 TIMEZONE=EST
 
 while true
@@ -37,12 +36,10 @@ do
     esac
 done
 
-if [ $# != 0 ]; then
-    echo "usage: $(basename "$0") [--timezone <timezone>]" >&2
-    set +x
+if [ $# != 4 ]; then
+    echo "usage: $(basename "$0") [--timezone <timezone>] <github username> <github email> <github public key> <github private key>" >&2
     exit 1
 fi
-set +x
 
 #
 # standard os updates
