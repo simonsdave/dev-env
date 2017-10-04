@@ -20,6 +20,7 @@ set -e
 #
 # parse command line args
 #
+set -x
 TIMEZONE=EST
 
 while true
@@ -38,8 +39,10 @@ done
 
 if [ $# != 0 ]; then
     echo "usage: $(basename "$0") [--timezone <timezone>]" >&2
+    set +x
     exit 1
 fi
+set +x
 
 #
 # standard os updates
