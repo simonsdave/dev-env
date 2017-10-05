@@ -41,7 +41,7 @@ QUIET=0
 
 while true
 do
-    case "${1,,}" in
+    case "${1:-}" in
         --verbose)
             shift
             VERBOSE=1
