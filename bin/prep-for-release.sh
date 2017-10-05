@@ -21,11 +21,11 @@ confirm_ok_to_proceed() {
             read -p "${1:-} (y/n)> " -n 1 -r
             echo
 
-            case "${REPLY,,}" in
-                y)
+            case "${REPLY:-}" in
+                [yY])
                     break
                     ;;
-                n)
+                [nN])
                     exit 0
                     ;;
                 *)
