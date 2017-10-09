@@ -1,5 +1,16 @@
 # Provisioning
 
+To increase predicability and simplify onboarding of new
+collaborators, a common pattern on many of
+[my projects on github](https://github.com/simonsdave)
+is to create a development environment using a [Vagrant](http://www.vagrantup.com/)
+provisioned [VirtualBox](https://www.virtualbox.org/)
+VM running [some version of Ubuntu](http://releases.ubuntu.com).
+The provisioning scripts for most of these projects have a
+ton of commonality and it became obvious that it would make
+provisioning script maintenance easier if the scripts were
+defined in a single location.
+
 Below are the (very opinionated) steps for integrating ```dev-env``` into
 your repo to provision a development environment.
 
@@ -11,6 +22,12 @@ your repo to provision a development environment.
 * [What Next](#what-next)
 
 ## Fundamentals
+
+```dev-env``` is known to work various combinations of:
+
+* Mac OS X 10.11.6 (El Capitan)
+* Vagrant 1.8.5, 1.9.3, 2.0.0
+* VirtualBox 5.1.26 r117224 (Qt5.6.2), 5.1.28 r117968 (Qt5.6.2)
 
 In the root directory of your repo create a file called ```CHANGELOG.md```.
 
