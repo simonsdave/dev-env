@@ -7,8 +7,8 @@
 To increase predicability and simplify onboarding of new
 collaborators, a common pattern on many of
 [my projects on github](https://github.com/simonsdave)
-is to create a development environment using a [Vagrant](http://www.vagrantup.com/) provisioned
-[VirtualBox](https://www.virtualbox.org/)
+is to create a development environment using a [Vagrant](http://www.vagrantup.com/)
+provisioned [VirtualBox](https://www.virtualbox.org/)
 VM running [some version of Ubuntu](http://releases.ubuntu.com).
 The provisioning scripts for most of these projects have a
 ton of commonality and it became obvious that it would make
