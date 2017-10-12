@@ -28,7 +28,7 @@ a link to a build badge.
 
 This kind of build badge should be updated when cutting a release
 and ```prep-for-release.sh``` will do that for you automatically
-if you create a script called ```.prep-for-release-branch-changes.sh```
+if you create a script called ```.prep-for-release-release-branch-changes.sh```
 and put it in the repo's root directory.
 
 ```bash
@@ -59,9 +59,9 @@ search_and_replace \
 exit 0
 ```
 
-You can have any number of scripts called ```.prep-for-release-branch-changes.sh```
+You can have any number of scripts called ```.prep-for-release-release-branch-changes.sh```
 in any directory of the repo. ```prep-for-release.sh``` will find all
-the scripts named ```.prep-for-release-branch-changes.sh``` and run them
+the scripts named ```.prep-for-release-release-branch-changes.sh``` and run them
 when creating the release branch.
 
 ## What Next

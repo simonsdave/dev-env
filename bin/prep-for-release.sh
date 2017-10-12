@@ -133,7 +133,7 @@ while IFS= read -r -d '' RELEASE_BRANCH_CHANGE_SCRIPT
 do
     echo_if_verbose "Executing '$RELEASE_BRANCH_CHANGE_SCRIPT'"
     "$RELEASE_BRANCH_CHANGE_SCRIPT" "$RELEASE_BRANCH"
-done < <(find "$REPO_ROOT_DIR" -executable -name .prep-for-release-branch-changes.sh -print0)
+done < <(find "$REPO_ROOT_DIR" -executable -name .prep-for-release-release-branch-changes.sh -print0)
 echo_if_verbose "Done looking for and executing release branch change scripts"
 
 git diff 

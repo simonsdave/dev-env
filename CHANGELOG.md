@@ -19,7 +19,8 @@ of the timezone argument comes from ```timedatectl list-timezones```
 
 ### Changed
 
-- Nothing
+- ```prep-for-release.sh``` now executes  ```.prep-for-release-release-branch-changes.sh```
+instead of ```.prep-for-release-branch-changes.sh```
 
 ### Removed
 
