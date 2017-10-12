@@ -23,7 +23,7 @@ of the timezone argument comes from ```timedatectl list-timezones```
 
 ### Removed
 
-- Nothing
+- ```ubuntu/trusty/provision.sh``` no longer installs ```raml2md```
 
 ## [0.3.0] - [2017-09-21]
 
