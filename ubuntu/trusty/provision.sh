@@ -11,11 +11,37 @@
 #   -- install jq & yq
 #   -- install nginx, apache2-utils
 #   -- install nodejs, npm & raml2html
-#   -- install docker
+#   -- install Docker CE
 #   -- install shellcheck (via docker)
 #
 
 set -e
+
+#
+# Install docker CE per instructions at
+# https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-using-the-repository
+#
+apt-get install -y \
+    linux-image-extra-$(uname -r) \
+    linux-image-extra-virtual
+apt-get update -y
+apt-get install -y \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+apt-get update -y
+apt-get install -y docker-ce
+
+usermod -aG docker vagrant
+service docker restart
+
+exit 0
 
 #
 # parse command line args
@@ -217,21 +243,25 @@ apt-get install -y nodejs
 npm i -g raml2html
 
 #
-# install docker
+# Install docker CE per instructions at
+# https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-using-the-repository
 #
-apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
-echo "deb https://apt.dockerproject.org/repo ubuntu-trusty main" | tee /etc/apt/sources.list.d/docker.list
-apt-get update
-apt-get install -y docker-engine
-
-echo 'waiting for docker0 network to start '
-while ! ifconfig | grep docker0 >& /dev/null
-do
-   echo '.'
-   sleep 1
-done
-echo 'docker0 network started'
-sed -i -e 's|#DOCKER_OPTS="--dns 8.8.8.8 --dns 8.8.4.4"|DOCKER_OPTS="-H tcp://172.17.0.1:2375 -H unix:///var/run/docker.sock"|g' /etc/default/docker
+apt-get install -y \
+    linux-image-extra-$(uname -r) \
+    linux-image-extra-virtual
+apt-get update -y
+apt-get install -y \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+apt-get update -y
+apt-get install -y docker-ce
 
 usermod -aG docker vagrant
 service docker restart
