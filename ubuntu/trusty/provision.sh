@@ -23,9 +23,10 @@ apt-get update -y
 # Install docker CE per instructions at
 # https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-using-the-repository
 #
-apt-get install -y \
-    linux-image-extra-$(uname -r) \
-    linux-image-extra-virtual
+apt-get update -y
+apt-get install -y linux-image-extra-$(uname -r)
+apt-get update -y
+apt-get install -y linux-image-extra-virtual
 apt-get update -y
 apt-get install -y \
     apt-transport-https \
