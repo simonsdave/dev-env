@@ -24,6 +24,8 @@ apt-get update -y
 # https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-using-the-repository
 #
 apt-get update -y
+apt-get install -y linux-headers-generic-lts-trusty
+apt-get update -y
 apt-get install -y "linux-image-extra-$(uname -r)"
 apt-get update -y
 apt-get install -y linux-image-extra-virtual
