@@ -221,16 +221,17 @@ npm i -g raml2html
 #
 # Install docker CE per instructions at
 # https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-using-the-repository
+# -- docker logs @ /var/log/upstart/docker.log
 #
 apt-get update -y
-apt-get install -y "linux-image-extra-$(uname -r)"
+#### apt-get install -y "linux-image-extra-$(uname -r)"
 # needed linux-headers-generic-lts-trusty to avoid an install
 # error with linux-image-extra-virtual
-apt-get update -y
-apt-get install -y linux-headers-generic-lts-trusty
-apt-get update -y
-apt-get install -y linux-image-extra-virtual
-apt-get update -y
+#### apt-get update -y
+#### apt-get install -y linux-headers-generic-lts-trusty
+#### apt-get update -y
+#### apt-get install -y linux-image-extra-virtual
+#### apt-get update -y
 apt-get install -y \
     apt-transport-https \
     ca-certificates \
@@ -247,7 +248,7 @@ apt-get install -y docker-ce
 usermod -aG docker vagrant
 service docker restart
 
-# wait for docker service to restart before proceeding
+# wait for docker service to restart
 while true
 do
     if docker images >& /dev/null; then
