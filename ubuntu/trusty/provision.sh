@@ -20,6 +20,33 @@ set -e
 apt-get update -y
 
 #
+# Install docker CE per instructions at
+# https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-using-the-repository
+#
+apt-get update -y
+apt-get install -y "linux-image-extra-$(uname -r)"
+apt-get update -y
+apt-get install -y linux-image-extra-virtual
+apt-get update -y
+apt-get install -y \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+apt-get update -y
+apt-get install -y docker-ce
+
+usermod -aG docker vagrant
+service docker restart
+
+exit 0
+
+#
 # parse command line args
 #
 TIMEZONE=EST
@@ -223,7 +250,7 @@ npm i -g raml2html
 # https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-using-the-repository
 #
 apt-get update -y
-apt-get install -y linux-image-extra-$(uname -r)
+apt-get install -y "linux-image-extra-$(uname -r)"
 apt-get update -y
 apt-get install -y linux-image-extra-virtual
 apt-get update -y
