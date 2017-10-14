@@ -247,12 +247,21 @@ apt-get install -y docker-ce
 usermod -aG docker vagrant
 service docker restart
 
+# wait for docker service to restart before proceeding
+while true
+do
+    if docker images >& /dev/null; then
+        break
+    fi
+done
+
 #
 # install shell linter shellcheck
 #
 # installed via docker so it's easy to have same version
 # in dev env as well as travis
 #
+
 docker pull koalaman/shellcheck:latest
 
 exit 0
