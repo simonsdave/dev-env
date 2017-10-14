@@ -224,6 +224,11 @@ npm i -g raml2html
 # -- docker logs @ /var/log/upstart/docker.log
 #
 apt-get update -y
+apt-get install -y "linux-image-extra-$(uname -r)"
+# needed linux-headers-generic-lts-trusty to avoid an install
+# error with linux-image-extra-virtual
+apt-get install -y linux-headers-generic-lts-trusty
+apt-get install -y linux-image-extra-virtual
 apt-get install -y \
     apt-transport-https \
     ca-certificates \
