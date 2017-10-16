@@ -109,6 +109,16 @@ sed \
     "$CHANGELOG_DOT_MD"
 # :TODO: check if the above sed command actually did anything
 
+# the while loop pattern below looks awkward but came as a result
+# dealing with https://github.com/koalaman/shellcheck/wiki/SC2044
+echo_if_verbose "Looking for and executing master branch change scripts"
+while IFS= read -r -d '' MASTER_BRANCH_CHANGE_SCRIPT
+do
+    echo_if_verbose "Executing '$MASTER_BRANCH_CHANGE_SCRIPT'"
+    "$MASTER_BRANCH_CHANGE_SCRIPT"
+done < <(find "$REPO_ROOT_DIR" -executable -name .prep-for-release-master-branch-changes.sh -print0)
+echo_if_verbose "Done looking for and executing master branch change scripts"
+
 git diff
 confirm_ok_to_proceed "These changes to master look ok?"
 
