@@ -70,4 +70,4 @@ when creating the release branch.
 for examples of how ```dev-env``` is being used
 * as you start to integrate ```dev-env``` into your projects
 some feedback would be great - create [issues](../../../issues) and/or
-send me an e-mail (```simonsdave@gmail.com```) - thanks in advance!
+send me an e-mail [simonsdave@gmail.com](mailto:simonsdave@gmail.com) - thanks in advance!
