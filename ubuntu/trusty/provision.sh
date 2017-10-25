@@ -142,7 +142,11 @@ EOF
 #
 # install basic python dev env
 #
-apt-get install -y python-virtualenv
+# apt-get install -y python-virtualenv
+
+# from https://stackoverflow.com/questions/31002091/what-is-python-dev-package-used-for
+# "python-dev contains the header files you need to build Python extensions"
+# "python-dev is the package that contains the header files for the Python C API"
 apt-get install -y python-dev
 
 #
