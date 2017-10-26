@@ -2,7 +2,7 @@
 
 ![Maintained](https://img.shields.io/maintenance/yes/2017.svg?style=flat)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
-[![Build Status](https://travis-ci.org/simonsdave/dev-env.svg?branch=master)](https://travis-ci.org/simonsdave/dev-env)
+[![Build Status](https://travis-ci.org/simonsdave/dev-env.svg?branch=release-0.4.0)](https://travis-ci.org/simonsdave/dev-env)
 
 This repo was originally created as a way to centralize
 the code/configuration used to provision development environments.
