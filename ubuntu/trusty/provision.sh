@@ -142,7 +142,13 @@ EOF
 #
 # install basic python dev env
 #
-# apt-get install -y python-virtualenv
+
+# per https://www.howtodojo.com/2016/03/install-use-pip-ubuntu-14-04/
+apt-get -y install python-pip
+
+# per https://virtualenv.pypa.io/en/stable/installation/ to get latest
+# version as per https://virtualenv.pypa.io/en/stable/changes/
+pip install virtualenv
 
 # from https://stackoverflow.com/questions/31002091/what-is-python-dev-package-used-for
 # "python-dev contains the header files you need to build Python extensions"
