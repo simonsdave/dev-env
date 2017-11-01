@@ -3,4 +3,8 @@ dist: trusty
 install:
   - docker pull koalaman/shellcheck:latest
 script:
+  - pycodestyle
+  - flake8
   - docker run -v "$PWD:/mnt" koalaman/shellcheck:latest $(find . -name \*.sh)
+  - nosetests --with-coverage --cover-branches --cover-erase --cover-package dev_env
+  - python setup.py sdist --formats=gztar

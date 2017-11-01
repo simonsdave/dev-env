@@ -1,1 +1,11 @@
+*~
+*pyc
 *.swp
+.Python
+env
+.DS_Store
+.coverage
+coverage_report
+dist
+dev_env.egg-info
+*.rst
