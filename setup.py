@@ -23,7 +23,6 @@
 #   >pip install -i https://test.pypi.org/pypi dev-env
 #
 import re
-import sys
 from setuptools import setup
 
 #
