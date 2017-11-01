@@ -1,6 +1,7 @@
 language: bash
 dist: trusty
 install:
+  - source cfg4dev
   - docker pull koalaman/shellcheck:latest
 script:
   - pycodestyle
