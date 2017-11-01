@@ -127,4 +127,74 @@ curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 sed -i '1s|^|execute pathogen#infect()\n|' ~/.vimrc
 EOF
 
+#
+# install basic python dev env
+#
+
+# per https://www.howtodojo.com/2016/03/install-use-pip-ubuntu-14-04/
+apt-get -y install python-pip
+
+# per https://virtualenv.pypa.io/en/stable/installation/ to get latest
+# version as per https://virtualenv.pypa.io/en/stable/changes/
+pip install virtualenv
+
+# from https://stackoverflow.com/questions/31002091/what-is-python-dev-package-used-for
+# "python-dev contains the header files you need to build Python extensions"
+# "python-dev is the package that contains the header files for the Python C API"
+apt-get install -y python-dev
+
+#
+# install pandoc
+#
+# Common scenario:
+#   -- projects have a README.md
+#   -- setup.py creates long description by reading README.rst
+#   -- README.rst is created by pypandoc reading README.md
+#
+apt-get install -y pandoc
+
+#
+# Install docker CE per instructions at
+# https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-using-the-repository
+# -- docker logs @ /var/log/upstart/docker.log
+#
+apt-get update -y
+apt-get install -y "linux-image-extra-$(uname -r)"
+# needed linux-headers-generic-lts-trusty to avoid an install
+# error with linux-image-extra-virtual
+apt-get install -y linux-headers-generic-lts-trusty
+apt-get install -y linux-image-extra-virtual
+apt-get install -y \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+apt-get update -y
+apt-get install -y docker-ce
+
+usermod -aG docker vagrant
+service docker restart
+
+# wait for docker service to restart
+while true
+do
+    if docker images >& /dev/null; then
+        break
+    fi
+done
+
+#
+# install shell linter shellcheck
+#
+# installed via docker so it's easy to have same version
+# in dev env as well as travis
+#
+
+docker pull koalaman/shellcheck:latest
+
 exit 0
