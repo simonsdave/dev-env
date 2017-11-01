@@ -12,7 +12,11 @@ fi
 RELEASE_BRANCH=${1:-}
 
 sed -i -e \
-    "s|\\?branch=master|?branch=$RELEASE_BRANCH|g" \
+    "s|?branch=master|?branch=$RELEASE_BRANCH|g" \
+    "$SCRIPT_DIR_NAME/README.md"
+
+sed -i -e \
+    "s|(docs|(https://github.com/simonsdave/dev-env/tree/$RELEASE_BRANCH/docs|g" \
     "$SCRIPT_DIR_NAME/README.md"
 
 exit 0
