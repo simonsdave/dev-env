@@ -12,7 +12,7 @@ This repo now contains tools, scripts and utilities which:
 
 * provision development environments
 * automate cutting releases
-* integration testing
+* simplify integration testing
 
 ## What Next
 
