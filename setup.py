@@ -88,6 +88,7 @@ setup(
         'dev_env',
     ],
     scripts=[
+        'bin/dev_env_nosetests.py',
         'bin/prep-for-release-python.sh',
         'bin/prep-for-release.sh',
     ],

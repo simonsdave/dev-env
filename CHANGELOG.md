@@ -8,7 +8,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-- Nothing
+- ```dev_env_nosetests.py``` and ```dev_env/nose_plugins.FileCapture```
+for the basis for supporting integration testing
 
 ### Changed
 

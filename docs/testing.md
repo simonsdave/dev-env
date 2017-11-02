@@ -1,6 +1,43 @@
 # Testing
 
-* details coming soon
+```bash
+~/dev-env/samples/testing> nosetests
+F
+======================================================================
+FAIL: test_happy_path (integration_tests.SomeTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/vagrant/dev-env/samples/testing/integration_tests.py", line 33, in test_happy_path
+    self.assertEqual(process.returncode, 1)
+AssertionError: 0 != 1
+
+----------------------------------------------------------------------
+Ran 1 test in 0.004s
+
+FAILED (failures=1)
+```
+
+```bash
+~/dev-env/samples/testing> dev_env_nosetests.py
+F
+======================================================================
+FAIL: test_happy_path (integration_tests.SomeTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/vagrant/dev-env/samples/testing/integration_tests.py", line 33, in test_happy_path
+    self.assertEqual(process.returncode, 1)
+AssertionError: ------------------------- >> begin stdout << -------------------------
+"dave was here"
+
+-------------------------- >> end stdout << --------------------------
+0 != 1
+
+----------------------------------------------------------------------
+Ran 1 test in 0.004s
+
+FAILED (failures=1)
+~/dev-env/samples/testing>
+```
 
 ## What Next
 
