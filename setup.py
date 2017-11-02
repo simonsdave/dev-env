@@ -23,6 +23,7 @@
 #   >pip install -i https://test.pypi.org/pypi dev-env
 #
 import re
+import sys
 from setuptools import setup
 
 #
@@ -50,8 +51,12 @@ if not version:
 
 
 def _long_description():
-    with open('README.rst', 'r') as f:
-        return f.read()
+    try:
+        with open('README.rst', 'r') as f:
+            return f.read()
+    except IOError as ex:
+        # simple fix for avoid failure on "source cfg4dev"
+        return "a long description"
 
 
 _author = 'Dave Simons'
