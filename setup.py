@@ -11,6 +11,7 @@
 # since pypi requires long description in RST but the repo's readme is in
 # markdown)
 #
+#   >./.prep-for-release-release-branch-changes.sh
 #   >pandoc README.md -o README.rst
 #   >twine upload dist/* -r testpypi
 #
