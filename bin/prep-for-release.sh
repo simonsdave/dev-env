@@ -73,6 +73,8 @@ if [ ! -r "$CHANGELOG_DOT_MD" ]; then
     exit 2
 fi
 
+#----------------------------------------------------------------------
+
 #
 # on the master branch update CHANGELOG.md with version # and release date (today),
 # put CHANGELOG.md in good shape for the next release and
@@ -98,10 +100,16 @@ sed \
 # :TODO: check if the above sed command actually did anything
 
 git diff
-confirm_ok_to_proceed "These changes to master look ok?"
+confirm_ok_to_proceed "These changes to master for release look ok?"
 
 git commit -a -m "$VERSION pre-release prep"
 MASTER_RELEASE_COMMIT_ID=$(git rev-parse HEAD)
+
+#----------------------------------------------------------------------
+
+#
+# changes to master to prep for next release
+#
 
 sed \
     -i \
@@ -120,9 +128,11 @@ done < <(find "$REPO_ROOT_DIR" -executable -name .prep-for-release-master-branch
 echo_if_verbose "Done looking for and executing master branch change scripts"
 
 git diff
-confirm_ok_to_proceed "These changes to master look ok?"
+confirm_ok_to_proceed "These changes to master for next release look ok?"
 
 git commit -a -m "Prep CHANGELOG.md for next release"
+
+#----------------------------------------------------------------------
 
 #
 # create release branch from the right commit on the master branch,
@@ -155,6 +165,8 @@ if ! git diff-index --quiet HEAD --; then
     git commit -a -m "$VERSION release prep"
     RELEASE_COMMIT_ID=$(git rev-parse HEAD)
 fi
+
+#----------------------------------------------------------------------
 
 #
 # all changes have been made locally - now it's time to push changes to github
