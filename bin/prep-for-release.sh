@@ -171,6 +171,8 @@ fi
 #
 # all changes have been made locally - now it's time to push changes to github
 #
+confirm_ok_to_proceed "All changes made locally. Ok to push changes to github?"
+
 git checkout master
 git push origin master
 
