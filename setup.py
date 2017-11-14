@@ -1,18 +1,17 @@
 #
-# to build the distrubution @ dev_env-*.*.*.tar.gz
+# Steps below build the distribution @ dev_env-*.*.*.tar.gz
+# (FYI ... use of pandoc is as per https://github.com/pypa/pypi-legacy/issues/148#issuecomment-226939424
+# since pypi requires long description in RST but the repo's readme is in
+# markdown)
 #
 #   >git clone https://github.com/simonsdave/dev-env.git
 #   >cd dev-env
 #   >source cfg4dev
+#   >pandoc README.md -o README.rst
 #   >python setup.py sdist --formats=gztar
 #
-# update pypi with both meta data and source distribution (FYI ...
-# use of pandoc is as per https://github.com/pypa/pypi-legacy/issues/148#issuecomment-226939424
-# since pypi requires long description in RST but the repo's readme is in
-# markdown)
+# update pypi with both meta data and source distribution
 #
-#   >./.prep-for-release-release-branch-changes.sh
-#   >pandoc README.md -o README.rst
 #   >twine upload dist/* -r testpypi
 #
 # you will be able to find the package at
