@@ -170,13 +170,10 @@ chmod a+x "$JQ_BIN"
 pip install yq
 
 #
-# install prep-for-release.sh from the dev-env project 
+# install the dev-env project directly from github as per
+# https://pip.pypa.io/en/stable/reference/pip_install/#vcs-support
 #
-PFR_SOURCE=https://raw.githubusercontent.com/simonsdave/dev-env/master/bin/prep-for-release.sh
-PFR_BIN=/usr/local/bin/prep-for-release.sh
-curl -s -L --output "$PFR_BIN" "$PFR_SOURCE"
-chown root.root "$PFR_BIN"
-chmod a+x "$PFR_BIN"
+pip install git+https://github.com/simonsdave/dev-env.git@master
 
 #
 # install and configure nginx which is often used for
