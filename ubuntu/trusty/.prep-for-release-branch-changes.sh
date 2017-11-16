@@ -26,4 +26,8 @@ search_and_replace \
     "s|\\/master\\/|\\/$RELEASE_BRANCH\\/|g" \
     "$SCRIPT_DIR_NAME/Vagrantfile"
 
+search_and_replace \
+    "s|dev-env.git@master|dev-env.git@$RELEASE_BRANCH|g" \
+    "$SCRIPT_DIR_NAME/provision.sh"
+
 exit 0
