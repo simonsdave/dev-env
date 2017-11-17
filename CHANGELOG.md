@@ -12,7 +12,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-- Nothing
+- fixed bug in ```ubuntu/trusty/.prep-for-release-branch-changes.sh``` which
+meant ```ubuntu/trusty/.prep-for-release-branch-changes.sh``` wasn't installing
+the right version of various shell scripts.
 
 ### Removed
 
