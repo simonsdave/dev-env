@@ -15,6 +15,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - fixed bug in ```ubuntu/trusty/.prep-for-release-branch-changes.sh``` which
 meant ```ubuntu/trusty/.prep-for-release-branch-changes.sh``` wasn't installing
 the right version of various shell scripts.
+- fix bug in ```.prep-for-release-release-branch-changes.sh```
+to support running ```bin/prep-for-release-python.sh```
+and ```bin/prep-for-release.sh``` from any directory
 
 ### Removed
 
