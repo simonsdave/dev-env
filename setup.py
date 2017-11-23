@@ -93,6 +93,7 @@ setup(
         'bin/prep-for-release.sh',
     ],
     install_requires=[
+        'nose>=1.3.7',
     ],
     include_package_data=True,
     version=version,
