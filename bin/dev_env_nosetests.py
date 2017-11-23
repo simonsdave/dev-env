@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 """Integration tests often run database installer(s),
 start up service(s) and then direct various requests at the
 service(s). When the tests fail it's very useful to output the
