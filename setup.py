@@ -8,7 +8,7 @@
 #   >cd dev-env
 #   >source cfg4dev
 #   >pandoc README.md -o README.rst
-#   >python setup.py sdist --formats=gztar
+#   >python setup.py bdist_wheel sdist --formats=gztar
 #
 # update pypi with both meta data and source distribution
 #
