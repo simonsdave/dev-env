@@ -7,5 +7,6 @@ env
 .coverage
 coverage_report
 dist
+build
 dev_env.egg-info
 *.rst
