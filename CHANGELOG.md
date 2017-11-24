@@ -12,7 +12,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-- Nothing
+- changes to enable ```dev_env_nosetests.py``` to work when ```dev-env```
+installed as a site package
 
 ### Removed
 
