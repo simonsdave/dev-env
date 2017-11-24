@@ -62,26 +62,6 @@ _author = 'Dave Simons'
 _author_email = 'simonsdave@gmail.com'
 
 
-_keywords = [
-    'development',
-    'tools',
-]
-
-
-# list of valid classifiers @ https://pypi.python.org/pypi?%3Aaction=list_classifiers
-_classifiers = [
-    'Development Status :: 5 - Production/Stable',
-    'Intended Audience :: Developers',
-    'Natural Language :: English',
-    'License :: OSI Approved :: MIT License',
-    'Operating System :: OS Independent',
-    'Programming Language :: Python',
-    'Programming Language :: Python :: 2.7',
-    'Programming Language :: Python :: Implementation :: CPython',
-    'Topic :: Software Development :: Libraries :: Python Modules',
-]
-
-
 setup(
     name='dev_env',
     packages=[
@@ -106,6 +86,20 @@ setup(
     license='MIT',
     url='https://github.com/simonsdave/dev-env',
     download_url='https://github.com/simonsdave/dev-env/tarball/v%s' % version,
-    keywords=_keywords,
-    classifiers=_classifiers,
+    keywords=[
+        'development',
+        'tools',
+    ],
+    # list of valid classifiers @ https://pypi.python.org/pypi?%3Aaction=list_classifiers
+    classifiers=[
+        'Development Status :: 5 - Production/Stable',
+        'Intended Audience :: Developers',
+        'Natural Language :: English',
+        'License :: OSI Approved :: MIT License',
+        'Operating System :: OS Independent',
+        'Programming Language :: Python',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: Implementation :: CPython',
+        'Topic :: Software Development :: Libraries :: Python Modules',
+    ],
 )
