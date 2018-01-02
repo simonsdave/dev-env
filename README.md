@@ -1,6 +1,6 @@
 # dev-env
 
-![Maintained](https://img.shields.io/maintenance/yes/2017.svg?style=flat)
+![Maintained](https://img.shields.io/maintenance/yes/2018.svg?style=flat)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 ![PythonVersions](https://img.shields.io/pypi/pyversions/dev-env.svg?style=flat)
 ![status](https://img.shields.io/pypi/status/dev-env.svg?style=flat)
