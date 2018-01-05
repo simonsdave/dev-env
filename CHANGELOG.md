@@ -8,7 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-- Nothing
+- [memcached](http://memcached.org) is now installed as part of standard provisioning
 
 ### Changed
 

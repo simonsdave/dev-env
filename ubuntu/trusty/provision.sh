@@ -269,4 +269,9 @@ done
 
 docker pull koalaman/shellcheck:latest
 
+#
+# install memcached
+#
+apt-get install -y memcached
+
 exit 0
