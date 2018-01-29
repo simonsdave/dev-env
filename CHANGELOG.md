@@ -14,6 +14,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - changes to enable ```dev_env_nosetests.py``` to work when ```dev-env```
 installed as a site package
+- ndg-httpsclient 0.4.3 -> 0.4.4
 
 ### Removed
 
