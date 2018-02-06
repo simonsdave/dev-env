@@ -12,6 +12,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
+- default value for ```--nginx``` command line option of ```create_dev_env.sh``` 
+is now zero which means by default the VM's port 8085 is not exposed to the host
+which means nginx won't be exposed to the host by default
 - changes to enable ```dev_env_nosetests.py``` to work when ```dev-env```
 installed as a site package
 - ndg-httpsclient 0.4.3 -> 0.4.4
