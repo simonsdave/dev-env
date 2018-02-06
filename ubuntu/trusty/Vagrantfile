@@ -6,7 +6,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # :WARNING: don't change the format of the line below
   # without also adjusting the code that's in provision.sh
   # which parses this line to configure nginx
-  config.vm.network "forwarded_port", guest: 8085, host: ENV.fetch("VAGRANT_NGINX_PORT", "8085")
+  config.vm.network "forwarded_port", guest: 8085, host: ENV.fetch("VAGRANT_NGINX_PORT", "0") if "0" != ENV.fetch("VAGRANT_NGINX_PORT", "0")
   config.vm.provision "base", type: "shell", path: "https://raw.githubusercontent.com/simonsdave/dev-env/master/ubuntu/trusty/provision.sh", args: [
     "--timezone",
     ENV.fetch("VAGRANT_TIMEZONE", "EST"),
