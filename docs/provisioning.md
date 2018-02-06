@@ -131,9 +131,11 @@ exit $?
 
 ### NGINX Port
 
-By default [NGINX](https://nginx.org/) is installed on a VM and exposed to the host
-on port 8085. ```create_dev_env.sh``` has an ```--nginx``` command
-line option allowing customization of the port.
+[NGINX](https://nginx.org/) is installed on all VMs and listens on port 8085.
+By default the VMs 8085 port is not mapped to a host port.
+```create_dev_env.sh``` has an ```--nginx``` command
+line option allowing specification of the host port to which the VMs port 8085 is mapped.
+Setting ```--nginx``` to zero explicitly disables mapping of the VMs port 8085 to any host ports.
 
 ```bash
 #!/usr/bin/env bash
