@@ -1,5 +1,9 @@
-language: bash
-dist: trusty
+language: python
+python:
+    - '2.7'
+sudo: required
+services:
+    - docker
 install:
   - source cfg4dev
   - docker pull koalaman/shellcheck:latest
