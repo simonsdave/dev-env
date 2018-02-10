@@ -22,7 +22,7 @@ sed -i -e \
     "README.md"
 
 pandoc README.md -o README.rst
-python setup.py sdist --formats=gztar
+python setup.py bdist_wheel sdist --formats=gztar
 
 popd
 
