@@ -1,9 +1,9 @@
 language: python
 python:
-    - '2.7'
+  - '2.7'
 sudo: required
 services:
-    - docker
+  - docker
 install:
   - source cfg4dev
   - docker pull koalaman/shellcheck:latest
@@ -12,4 +12,6 @@ script:
   - flake8
   - docker run -v "$PWD:/mnt" koalaman/shellcheck:latest $(find . -name \*.sh)
   - nosetests --with-coverage --cover-branches --cover-erase --cover-package dev_env
+  - travis_fold start "build.python.packages"
   - python setup.py bdist_wheel sdist --formats=gztar
+  - travis_fold end "build.python.packages"
