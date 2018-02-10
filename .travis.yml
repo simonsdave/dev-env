@@ -8,4 +8,4 @@ script:
   - flake8
   - docker run -v "$PWD:/mnt" koalaman/shellcheck:latest $(find . -name \*.sh)
   - nosetests --with-coverage --cover-branches --cover-erase --cover-package dev_env
-  - python bdist_wheel setup.py sdist --formats=gztar
+  - python setup.py bdist_wheel sdist --formats=gztar
