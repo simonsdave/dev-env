@@ -234,10 +234,6 @@ Uploading dev_env-0.5.2.tar.gz
 Now look on [https://pypi.org/project/dev-env/}(https://pypi.org/project/dev-env/)
 to confirm all is ok and if it is upload to the live version of pypi.
 
-* after running [prep-for-release.sh](../bin/prep-for-release.sh) follow the standard
-process of [creating a github release](https://help.github.com/articles/creating-releases/)
-in [this UI](https://github.com/simonsdave/dev-env/releases/new)
-
 * on the [releases](https://github.com/simonsdave/dev-env/releases)
 page hit the <Draft a new release> button in the upper right corner
 * fill out the release form as per the screenshot below
