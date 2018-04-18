@@ -1,0 +1,21 @@
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = "ubuntu/bionic64"
+  # :WARNING: don't change the format of the line below
+  # without also adjusting the code that's in provision.sh
+  # which parses this line to configure nginx
+  config.vm.network "forwarded_port", guest: 8085, host: ENV.fetch("VAGRANT_NGINX_PORT", "0") if "0" != ENV.fetch("VAGRANT_NGINX_PORT", "0")
+  config.vm.provision "base", type: "shell", path: "https://raw.githubusercontent.com/simonsdave/dev-env/master/ubuntu/bionic/provision.sh", args: [
+    "--timezone",
+    ENV.fetch("VAGRANT_TIMEZONE", "EST"),
+    ENV.fetch("VAGRANT_GITHUB_USERNAME", ""),
+    ENV.fetch("VAGRANT_GITHUB_EMAIL", ""),
+    ENV.fetch("VAGRANT_BASE64_ENCODED_GITHUB_SSH_PUBLIC_KEY", ""),
+    ENV.fetch("VAGRANT_BASE64_ENCODED_GITHUB_SSH_PRIVATE_KEY", "")
+  ]
+  config.vm.provision "project", type: "shell", path: "provision.sh"
+  config.vm.provider :virtualbox do |vb|
+    vb.customize ["modifyvm", :id, "--memory", ENV.fetch("VAGRANT_MEMORY_IN_MB", "2048")]
+  end
+end
