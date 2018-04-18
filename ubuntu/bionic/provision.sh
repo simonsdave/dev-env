@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# this script provisions a basic ubuntu 14.04 development environment
+# this script provisions a basic ubuntu 18.04 (bionic) development environment
 #
 #   -- install latest OS updates
 #   -- configure timezone & NTP sync
@@ -9,15 +9,12 @@
 #   -- configure vi
 #   -- install basic python dev env
 #   -- install jq & yq
-#   -- install nginx, apache2-utils
-#   -- install nodejs, npm & raml2html
+#   -- install apache2-utils
 #   -- install Docker CE
 #   -- install shellcheck (via docker)
 #
 
 set -e
-
-apt-get update -y
 
 #
 # parse command line args
@@ -176,26 +173,6 @@ pip install yq
 pip install git+https://github.com/simonsdave/dev-env.git@master
 
 #
-# install and configure nginx which is often used for
-# serving the output of raml2html
-#
-apt-get install -y nginx
-API_HTML_NGINX_SITE=/etc/nginx/sites-available/default
-API_HTML_PORT=$(grep forwarded_port < /vagrant/Vagrantfile | sed -e 's|.*guest:\s*||g' | sed -e 's|\s*\,.*$||g')
-API_HTML_DIR=/usr/share/nginx/raml2html/html
-rm "$API_HTML_NGINX_SITE"
-{
-    echo "server {"
-    echo "    listen $API_HTML_PORT;"
-    echo "    root $API_HTML_DIR;"
-    echo "    index index.html;"
-    echo "}"
-} >> "$API_HTML_NGINX_SITE"
-mkdir -p "$API_HTML_DIR"
-chown root:root "$API_HTML_DIR"
-service nginx restart
-
-#
 # install apache2-utils (mostly to get access to htpasswd)
 #
 apt-get install -y apache2-utils
@@ -211,43 +188,10 @@ apt-get install -y apache2-utils
 apt-get install -y pandoc
 
 #
-# assuming RAML is used to document APIs ...
-#
-# this install process does not feel right
-# look @ .travis.yml for how it uses nvm - that feels correct
-# could not get nvm to work here :-(
-#
-apt-get install -y nodejs
-apt-get install -y npm
-ln -s /usr/bin/nodejs /usr/bin/node
-chmod a+x /usr/bin/nodejs
-curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
-apt-get install -y nodejs
-npm i -g raml2html
-
-#
 # Install docker CE per instructions at
-# https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-using-the-repository
-# -- docker logs @ /var/log/upstart/docker.log
+# https://linuxconfig.org/how-to-install-docker-on-ubuntu-18-04-bionic-beaver
 #
-apt-get update -y
-apt-get install -y "linux-image-extra-$(uname -r)"
-# needed linux-headers-generic-lts-trusty to avoid an install
-# error with linux-image-extra-virtual
-apt-get install -y linux-headers-generic-lts-trusty
-apt-get install -y linux-image-extra-virtual
-apt-get install -y \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    software-properties-common
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
-add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-   $(lsb_release -cs) \
-   stable"
-apt-get update -y
-apt-get install -y docker-ce
+apt-get install -y docker.io
 
 usermod -aG docker vagrant
 service docker restart
@@ -266,12 +210,6 @@ done
 # installed via docker so it's easy to have same version
 # in dev env as well as travis
 #
-
 docker pull koalaman/shellcheck:latest
-
-#
-# install memcached
-#
-apt-get install -y memcached
 
 exit 0
