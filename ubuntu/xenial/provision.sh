@@ -202,7 +202,7 @@ add-apt-repository \
    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
    $(lsb_release -cs) \
    stable"
-apt-get install -y docker-ce
+apt-get install -y --allow-unauthenticated docker-ce
 
 usermod -aG docker vagrant
 service docker restart
