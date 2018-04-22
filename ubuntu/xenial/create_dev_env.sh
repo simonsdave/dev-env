@@ -52,7 +52,7 @@ if [ ! -r "provision.sh" ]; then
     exit 1
 fi
 
-curl -s --output Vagrantfile "https://raw.githubusercontent.com/simonsdave/dev-env/master/ubuntu/xionic/Vagrantfile"
+curl -s --output Vagrantfile "https://raw.githubusercontent.com/simonsdave/dev-env/master/ubuntu/xenial/Vagrantfile"
 
 if [ ! -r "${3:-}" ]; then
     echo "Can't read SSH public key file '${3:-}'"
