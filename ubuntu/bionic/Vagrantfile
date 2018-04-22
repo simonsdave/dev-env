@@ -2,10 +2,6 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "ubuntu/bionic64"
-  # :WARNING: don't change the format of the line below
-  # without also adjusting the code that's in provision.sh
-  # which parses this line to configure nginx
-  config.vm.network "forwarded_port", guest: 8085, host: ENV.fetch("VAGRANT_NGINX_PORT", "0") if "0" != ENV.fetch("VAGRANT_NGINX_PORT", "0")
   config.vm.provision "base", type: "shell", path: "https://raw.githubusercontent.com/simonsdave/dev-env/master/ubuntu/bionic/provision.sh", args: [
     "--timezone",
     ENV.fetch("VAGRANT_TIMEZONE", "EST"),
