@@ -190,19 +190,26 @@ apt-get install -y pandoc
 #
 # Install docker CE per instructions at
 #
-#   -- https://docs.docker.com/install/linux/docker-ce/ubuntu/#extra-steps-for-aufs
+#   -- https://docs.docker.com/install/linux/docker-ce/ubuntu/
 #
 apt-get update -y
+
 apt-get install -y \
     apt-transport-https \
     ca-certificates \
     curl \
     software-properties-common
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+
 add-apt-repository \
    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
    $(lsb_release -cs) \
    stable"
-apt-get install -y --allow-unauthenticated docker-ce
+
+apt-get update -y
+
+apt-get install -y docker-ce
 
 usermod -aG docker vagrant
 service docker restart
