@@ -8,7 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-- Nothing
+- now supporting Ubuntu 16.04 (Xenial) as well as 14.04 (Trusty)
 
 ### Changed
 
