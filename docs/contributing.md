@@ -221,7 +221,7 @@ Uploading dev_env-0.5.2.tar.gz
 (env) ~/dev-env>
 ```
 
-Now look on [https://test.pypi.org/project/dev-env/}(https://test.pypi.org/project/dev-env/)
+Now look on [https://test.pypi.org/project/dev-env/](https://test.pypi.org/project/dev-env/)
 to confirm all is ok and if it is upload to the test version of pypi.
 
 ```bash
@@ -231,7 +231,7 @@ Uploading dev_env-0.5.2.tar.gz
 (env) ~/dev-env>
 ```
 
-Now look on [https://pypi.org/project/dev-env/}(https://pypi.org/project/dev-env/)
+Now look on [https://pypi.org/project/dev-env/](https://pypi.org/project/dev-env/)
 to confirm all is ok and if it is upload to the live version of pypi.
 
 * on the [releases](https://github.com/simonsdave/dev-env/releases)
