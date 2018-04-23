@@ -170,7 +170,7 @@ pip install yq
 # install the dev-env project directly from github as per
 # https://pip.pypa.io/en/stable/reference/pip_install/#vcs-support
 #
-pip install git+https://github.com/simonsdave/dev-env.git@master
+pip install git+https://github.com/simonsdave/dev-env.git@release-0.5.3
 
 #
 # install apache2-utils (mostly to get access to htpasswd)

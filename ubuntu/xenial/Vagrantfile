@@ -3,7 +3,7 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # per https://app.vagrantup.com/ubuntu/boxes/xenial64
   config.vm.box = "ubuntu/xenial64"
-  config.vm.provision "base", type: "shell", path: "https://raw.githubusercontent.com/simonsdave/dev-env/master/ubuntu/xenial/provision.sh", args: [
+  config.vm.provision "base", type: "shell", path: "https://raw.githubusercontent.com/simonsdave/dev-env/release-0.5.3/ubuntu/xenial/provision.sh", args: [
     "--timezone",
     ENV.fetch("VAGRANT_TIMEZONE", "EST"),
     ENV.fetch("VAGRANT_GITHUB_USERNAME", ""),
