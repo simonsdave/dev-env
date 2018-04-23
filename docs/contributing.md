@@ -13,6 +13,10 @@ the release prep
 * make sure your ```~/.pypirc``` is setup
 
 ```bash
+~> pip install ndg-httpsclient
+```
+
+```bash
 ~> prep-for-release.sh 0.5.2
 Already on 'master'
 Your branch is up-to-date with 'origin/master'.
