@@ -12,7 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-- Nothing
+- per [this bug](https://bugs.launchpad.net/cloud-images/+bug/1569237) pinning Xenial to a box version that fixes the bug
 
 ### Removed
 
