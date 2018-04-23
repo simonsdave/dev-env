@@ -1,7 +1,7 @@
 # see setup.py
 -e .
 # dev & test ...
-flake8>=2.5.3
+flake8==3.5.0
 mock==2.0.0
 #
 # ndg-httpsclient is required to avoid various SNI related
@@ -19,5 +19,11 @@ ndg-httpsclient==0.4.4
 nose-cov==1.6
 nose-pudb==1.0
 pudb>=2015.4.1
+# per https://github.com/PyCQA/pycodestyle/issues/741
+# pycodestyle==2.4.0 isn't compatiable with flake8==3.5.0
+# and since we value flake8 over pycodestyle we'll
+# keep pycodestyle @ 2.3.1 until pycodestyle works with
+# flake8==3.5.0 - this decision will result in requires.io
+# flagging the repo as having out of date requirements
 pycodestyle==2.3.1
 twine==1.11.0
