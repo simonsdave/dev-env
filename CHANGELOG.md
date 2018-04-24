@@ -12,7 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-- Nothing
+- ndg-httpsclient 0.4.4 -> 0.5.0
 
 ### Removed
 
