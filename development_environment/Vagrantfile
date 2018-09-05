@@ -1,8 +1,12 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "trusty"
-  config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
+  # per https://app.vagrantup.com/ubuntu/boxes/xenial64
+  config.vm.box = "ubuntu/xenial64"
+  # per this bug https://bugs.launchpad.net/cloud-images/+bug/1569237
+  # pinning to a box version that fixes the bug
+  # see https://app.vagrantup.com/ubuntu/boxes/xenial64/versions/20180420.0.0
+  config.vm.box_version = "20180420.0.0"
   config.vm.provision "base", type: "shell", path: "provision.sh", args: [
     "--timezone",
     ENV.fetch("VAGRANT_TIMEZONE", "EST"),
