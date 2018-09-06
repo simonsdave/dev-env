@@ -4,6 +4,9 @@ python:
 sudo: required
 services:
   - docker
+env:
+  global:
+    - DOCKER_TEMP_TAG=bindle
 install:
   - source cfg4dev
   - docker pull koalaman/shellcheck:latest
@@ -15,3 +18,16 @@ script:
   - travis_fold start "build.python.packages"
   - python setup.py bdist_wheel sdist --formats=gztar
   - travis_fold end "build.python.packages"
+  - travis_fold start "build.docker.image"
+  - ./ubuntu/build-docker-images.sh ${DOCKERHUB_USERNAME} ${DOCKER_TEMP_TAG}
+  - travis_fold end "build.docker.image"
+  # should really do some testing here of the docker image we just built
+deploy:
+  - provider: script
+    script: ./ubuntu/tag-and-push-docker-images.sh ${DOCKERHUB_USERNAME} ${DOCKERHUB_PASSWORD} ${DOCKER_TEMP_TAG} latest
+    on:
+      branch: master
+  - provider: script
+    script: ./ubuntu/tag-and-push-docker-images.sh ${DOCKERHUB_USERNAME} ${DOCKERHUB_PASSWORD} ${DOCKER_TEMP_TAG} ${TRAVIS_TAG}
+    on:
+      tags: true
