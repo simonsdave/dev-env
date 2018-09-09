@@ -24,9 +24,4 @@ RUN pip install --upgrade pip
 #
 RUN apt-get install -y pandoc
 
-#
-# https://github.com/koalaman/shellcheck
-#
-RUN apt-get install -y shellcheck
-
 ENV DEBIAN_FRONTEND newt
