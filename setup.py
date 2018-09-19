@@ -71,6 +71,10 @@ setup(
         'bin/dev_env_nosetests.py',
         'bin/prep-for-release-python.sh',
         'bin/prep-for-release.sh',
+        'bin/run_flake8.sh',
+        'bin/run_pip_check.sh',
+        'bin/run_shellcheck.sh',
+        'bin/run_unit_tests.sh',
     ],
     install_requires=[
         'nose>=1.3.7',

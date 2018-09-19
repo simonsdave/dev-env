@@ -14,7 +14,7 @@ As time went on it became clear that it would be helpful to
 centralize other common development tools and utilities.
 This repo now contains tools, scripts and utilities which:
 
-* provision development environments
+* provision development and CI environments
 * automate cutting releases
 * simplify integration testing
 

@@ -8,7 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-- Nothing
+- added ```run_flake8.sh```, ```run_pip_check.sh```, ```run_shellcheck.sh``` and ```run_unit_tests.sh```
 
 ### Changed
 

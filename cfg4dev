@@ -10,6 +10,11 @@ if [ -f "$PWD/requirements.txt" ]; then
 
     export PATH=$PATH:"$PWD/bin"
     export PYTHONPATH="$PWD"
+
+    # per guidelines in https://github.com/simonsdave/dev-env
+    export DEV_ENV_SOURCE_CODE=$PWD
+    export DEV_ENV_DOCKER_IMAGE=simonsdave/xenial-dev-env:latest
+    export DEV_ENV_PACKAGE=dev_env
 else
     echo "Must source this script from repo's root directory"
 fi
