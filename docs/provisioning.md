@@ -1,6 +1,6 @@
 # Provisioning
 
-To increase predicability and simplify onboarding of new
+To increase predicability and simplify on-boarding of new
 collaborators, a common pattern on many of
 [my projects on github](https://github.com/simonsdave)
 is to create a development environment using a [Vagrant](http://www.vagrantup.com/)
@@ -10,6 +10,15 @@ The provisioning scripts for most of these projects have a
 ton of commonality and it became obvious that it would make
 provisioning script maintenance easier if the scripts were
 defined in a single location.
+
+Also, [my projects on github](https://github.com/simonsdave) use [Travis](https://travis-ci.com/)
+for CI. One challenge with Travis is ensuring tool versions provisioned
+by Travis are the same as those provisioned in development environments.
+To fix this problem and inspired by [Google's Cloud Build](https://cloud.google.com/cloud-build/),
+standard Python development tools ([flake8](https://pypi.org/project/flake8/),
+[pip check](https://pypi.org/project/pip/) and [nose](https://nose.readthedocs.io/en/latest/)) are packaged
+in ```dev-env``` Docker images and ```dev-env``` shell scripts make it very easy
+to use the images.
 
 Below are the (very opinionated) steps for integrating ```dev-env``` into
 your repo to provision a development environment.
@@ -104,6 +113,14 @@ Bringing machine 'default' up with 'virtualbox' provider...
 .
 .
 >
+```
+
+:TODO: do something about this description
+
+```bash
+>export DEV_ENV_SOURCE_CODE=$PWD
+>export DEV_ENV_DOCKER_IMAGE=simonsdave/xenial-dev-env:latest
+>export DEV_ENV_PACKAGE=tor_async_util
 ```
 
 ## Customizations
