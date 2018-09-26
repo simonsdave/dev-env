@@ -14,6 +14,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - ndg-httpsclient 0.4.4 -> 0.5.1
 - development environment Ubuntu 14.04 -> 16.04
+- twine 1.11.0 -> 1.12.1
 
 ### Removed
 
