@@ -5,8 +5,8 @@
 ![PythonVersions](https://img.shields.io/pypi/pyversions/dev-env.svg?style=flat)
 ![status](https://img.shields.io/pypi/status/dev-env.svg?style=flat)
 [![PyPI](https://img.shields.io/pypi/v/dev-env.svg?style=flat)](https://pypi.python.org/pypi/dev-env)
-[![Requirements](https://requires.io/github/simonsdave/dev-env/requirements.svg?branch=master)](https://requires.io/github/simonsdave/dev-env/requirements/?branch=master)
-[![Build Status](https://travis-ci.org/simonsdave/dev-env.svg?branch=master)](https://travis-ci.org/simonsdave/dev-env)
+[![Requirements](https://requires.io/github/simonsdave/dev-env/requirements.svg?branch=release-0.5.5)](https://requires.io/github/simonsdave/dev-env/requirements/?branch=release-0.5.5)
+[![Build Status](https://travis-ci.org/simonsdave/dev-env.svg?branch=release-0.5.5)](https://travis-ci.org/simonsdave/dev-env)
 
 This repo was originally created as a way to centralize
 the code/configuration used to provision development environments.
@@ -20,5 +20,5 @@ This repo now contains tools, scripts and utilities which:
 
 ## What Next
 
-* [here's](docs/using.md) a description of how to start using ```dev-env```
-* if you'd like to help contribute to ```dev-env``` see [this](docs/contributing.md)
+* [here's](https://github.com/simonsdave/dev-env/tree/release-0.5.5/docs/using.md) a description of how to start using ```dev-env```
+* if you'd like to help contribute to ```dev-env``` see [this](https://github.com/simonsdave/dev-env/tree/release-0.5.5/docs/contributing.md)
