@@ -9,7 +9,8 @@ VM running [some version of Ubuntu](http://releases.ubuntu.com).
 The provisioning scripts for most of these projects have a
 ton of commonality and it became obvious that it would make
 provisioning script maintenance easier if the scripts were
-defined in a single location.
+defined in a single location and hence the motivation for
+this project.
 
 Also, [my projects on github](https://github.com/simonsdave) use [Travis](https://travis-ci.com/)
 for CI. One challenge with Travis is ensuring tool versions provisioned
@@ -70,6 +71,16 @@ Create a ```.gitignore```
 ```
 .vagrant
 Vagrantfile
+*.log
+```
+
+Create a text file called ```dev-env-version.txt``` which contains the
+version number of ```dev-env``` which we'll be using.
+
+```
+>cat dev-env-version.txt
+v0.5.5
+>
 ```
 
 Create an executable ```create_dev_env.sh```
@@ -81,13 +92,20 @@ by changing ```master``` with something like ```v0.2.0```.
 ```bash
 #!/usr/bin/env bash
 
+set -e
+
+SCRIPT_DIR_NAME="$( cd "$( dirname "$0" )" && pwd )"
+
 if [ $# != 4 ]; then
     echo "usage: $(basename "$0") <github username> <github email> <github public key> <github private key>" >&2
     exit 1
 fi
 
-curl -s https://raw.githubusercontent.com/simonsdave/dev-env/master/ubuntu/trusty/create_dev_env.sh | bash -s -- "$@"
-exit $?
+DEV_ENV_VERSION=$(cat "$SCRIPT_DIR_NAME/dev-env-version.txt")
+
+curl -s "https://raw.githubusercontent.com/simonsdave/dev-env/$DEV_ENV_VERSION/ubuntu/xenial/create_dev_env.sh" | bash -s -- "$@"
+
+exit 0
 ```
 
 Create a ```provision.sh``` containing project specific customizations
@@ -96,7 +114,79 @@ no customizations.
 
 ```bash
 #!/usr/bin/env bash
+
 exit 0
+```
+
+You'll notice ```provision.sh``` references ```build-docker-image.sh```
+so let's create
+
+```bash
+#!/usr/bin/env bash
+
+set -e
+
+SCRIPT_DIR_NAME="$( cd "$( dirname "$0" )" && pwd )"
+
+if [ $# != 0 ]; then
+    echo "usage: $(basename "$0")" >&2
+    exit 1
+fi
+
+CONTEXT_DIR=$(mktemp -d 2> /dev/null || mktemp -d -t DAS)
+PROJECT_HOME_DIR="$SCRIPT_DIR_NAME/.."
+cp "$PROJECT_HOME_DIR/requirements.txt" "$CONTEXT_DIR/."
+cp "$PROJECT_HOME_DIR/setup.py" "$CONTEXT_DIR/."
+mkdir "$CONTEXT_DIR/tor_async_util"
+cp "$PROJECT_HOME_DIR/tor_async_util/__init__.py" "$CONTEXT_DIR/tor_async_util/."
+
+DEV_ENV_VERSION=$(cat "$SCRIPT_DIR_NAME/dev-env-version.txt")
+
+TEMP_DOCKERFILE=$(mktemp)
+cp "$SCRIPT_DIR_NAME/Dockerfile.template" "$TEMP_DOCKERFILE"
+sed \
+    -i \
+    -e "s|%DEV_ENV_VERSION%|$DEV_ENV_VERSION|g" \
+    "$TEMP_DOCKERFILE"
+
+DOCKER_IMAGE=$(cat "$SCRIPT_DIR_NAME/dev-env-dockerimage.txt")
+
+docker build \
+    -t "$DOCKER_IMAGE" \
+    --file "$TEMP_DOCKERFILE" \
+    "$CONTEXT_DIR"
+
+rm -rf "$CONTEXT_DIR"
+
+exit 0
+```
+
+Last file ... let's create ```Dockerfile.template```
+
+```
+FROM simonsdave/xenial-dev-env:%DEV_ENV_VERSION%
+
+MAINTAINER Dave Simons
+
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt-get install -y build-essential
+RUN apt-get install -y libffi-dev
+RUN apt-get install -y python-crypto
+RUN apt-get install -y libcurl4-openssl-dev
+RUN apt-get install -y libssl-dev
+
+COPY requirements.txt /tmp/requirements.txt
+COPY setup.py /tmp/setup.py
+RUN mkdir /tmp/tor_async_util
+COPY tor_async_util/__init__.py /tmp/tor_async_util/__init__.py
+
+RUN cd /tmp && pip install --requirement "/tmp/requirements.txt"
+
+ENV DEBIAN_FRONTEND newt
+
+WORKDIR /app
+>
 ```
 
 Now it's time to spin up our VM. What's below assumes (in fact
@@ -115,12 +205,35 @@ Bringing machine 'default' up with 'virtualbox' provider...
 >
 ```
 
-:TODO: do something about this description
+:TODO: add something about ```cfg4dev```
 
 ```bash
->export DEV_ENV_SOURCE_CODE=$PWD
->export DEV_ENV_DOCKER_IMAGE=simonsdave/xenial-dev-env:latest
->export DEV_ENV_PACKAGE=tor_async_util
+if [ -f "$PWD/requirements.txt" ]; then
+    # per guidelines in https://github.com/simonsdave/dev-env
+    export DEV_ENV_SOURCE_CODE=$PWD
+    export DEV_ENV_DOCKER_IMAGE="simonsdave/tor-async-util-xenial-dev-env:build"
+    export DEV_ENV_PACKAGE=tor_async_util
+
+    # :TODO: do we actually need to be using virtualenv anymore?
+    if [ -d "$PWD/env" ]; then
+        source "$PWD/env/bin/activate"
+    else
+        virtualenv env
+        source "$PWD/env/bin/activate"
+
+        # this is really here so that travis will work
+        if ! which run_shellcheck.sh; then
+            pip install git+https://github.com/simonsdave/dev-env.git@master
+        fi
+
+        "$PWD/dev_env/build-docker-image.sh" "$DEV_ENV_DOCKER_IMAGE"
+    fi
+
+    export PATH=$PATH:"$PWD/bin"
+    export PYTHONPATH="$PWD"
+else
+    echo "Must source this script from repo's root directory"
+fi
 ```
 
 ## Customizations
