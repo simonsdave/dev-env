@@ -142,7 +142,7 @@ cp "$PROJECT_HOME_DIR/tor_async_util/__init__.py" "$CONTEXT_DIR/tor_async_util/.
 
 DEV_ENV_VERSION=$(cat "$SCRIPT_DIR_NAME/dev-env-version.txt")
 
-TEMP_DOCKERFILE=$(mktemp)
+TEMP_DOCKERFILE=$CONTEXT_DIR/Dockerfile
 cp "$SCRIPT_DIR_NAME/Dockerfile.template" "$TEMP_DOCKERFILE"
 sed \
     -i \
