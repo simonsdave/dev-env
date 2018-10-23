@@ -8,6 +8,7 @@ env:
   global:
     - DOCKER_TEMP_TAG=bindle
 install:
+  - echo $TRAVIS_BRANCH
   - source cfg4dev
   - docker pull koalaman/shellcheck:latest
 script:
