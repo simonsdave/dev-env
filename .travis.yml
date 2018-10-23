@@ -31,4 +31,4 @@ deploy:
     script: ./ubuntu/tag-and-push-docker-images.sh ${DOCKERHUB_USERNAME} ${DOCKERHUB_PASSWORD} ${DOCKER_TEMP_TAG} v${TRAVIS_BRANCH##release-}
     on:
       all_branches: true
-      condition: "$TRAVIS_BRANCH =~ ^release-*$"
+      condition: "$TRAVIS_BRANCH =~ ^release\-*$"
