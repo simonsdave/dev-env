@@ -7,6 +7,7 @@
 [![PyPI](https://img.shields.io/pypi/v/dev-env.svg?style=flat)](https://pypi.python.org/pypi/dev-env)
 [![Requirements](https://requires.io/github/simonsdave/dev-env/requirements.svg?branch=release-0.5.6)](https://requires.io/github/simonsdave/dev-env/requirements/?branch=release-0.5.6)
 [![Build Status](https://travis-ci.org/simonsdave/dev-env.svg?branch=release-0.5.6)](https://travis-ci.org/simonsdave/dev-env)
+[![docker-simonsdave/xenial-dev-env](https://img.shields.io/badge/docker-simonsdave%2Fxenial%20dev%20env-blue.svg)](https://hub.docker.com/r/simonsdave/xenial-dev-env/)
 
 This repo was originally created as a way to centralize
 the code/configuration used to provision development environments.
