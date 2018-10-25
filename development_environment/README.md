@@ -79,6 +79,10 @@ Configure the dev environment
 
 ```bash
 ~> cd dev-env/
+~/dev-env>
+```
+
+```bash
 ~/dev-env> source cfg4dev
 New python executable in /home/vagrant/dev-env/env/bin/python
 Installing setuptools, pip, wheel...done.
