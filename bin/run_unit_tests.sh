@@ -2,10 +2,19 @@
 
 set -e
 
-if [ $# != 0 ]; then
-    echo "usage: $(basename "$0") [<dir1> <dir2> ... <dir N>]" >&2
-    exit 1
-fi
+while true
+do
+    case "${1:-}" in
+        --help)
+            shift
+            echo "usage: $(basename "$0") [--help] [<dir1> <dir2> ... <dir N>]" >&2
+            exit 1
+            ;;
+        *)
+            break
+            ;;
+    esac
+done
 
 USER=$(stat -c "%u" "$0")
 GROUP=$(stat -c "%g" "$0")
