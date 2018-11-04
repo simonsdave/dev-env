@@ -16,14 +16,12 @@ shift
 GROUP=${1:-}
 shift
 
-DIRS=$*
-
 echo nosetests \
     --with-coverage \
     --cover-erase \
     --cover-branches \
     "--cover-package=$PACKAGE" \
-    "${DIRS[@]}"
+    "$@"
 
 chown "$USER.$GROUP" "/app/.coverage"
 
