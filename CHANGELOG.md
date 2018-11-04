@@ -11,6 +11,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - added support for customizing ```--security-opt``` command line option
 to ```docker run``` executed by ```run_unit_tests.sh```
 using the ```DEV_ENV_SECURITY_OPT``` environment variable
+- ```run_unit_tests.sh``` now allows specification on the command line
+of the directories in which unit tests can be found
 
 ### Changed
 

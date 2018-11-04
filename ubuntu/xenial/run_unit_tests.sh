@@ -2,20 +2,28 @@
 
 set -e
 
-if [ $# != 3 ]; then
-    echo "usage: $(basename "$0") <package> <user> <group>" >&2
+if [ $# -lt 3 ]; then
+    echo "usage: $(basename "$0") <package> <user> <group> [<dir1> <dir2> ... <dir N>]" >&2
     exit 1
 fi
 
 PACKAGE=${1:-}
-USER=${2:-}
-GROUP=${3:-}
+shift
 
-nosetests \
+USER=${1:-}
+shift
+
+GROUP=${1:-}
+shift
+
+DIRS=$*
+
+echo nosetests \
     --with-coverage \
     --cover-erase \
     --cover-branches \
-    "--cover-package=$PACKAGE"
+    "--cover-package=$PACKAGE" \
+    "${DIRS[@]}"
 
 chown "$USER.$GROUP" "/app/.coverage"
 
