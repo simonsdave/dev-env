@@ -8,7 +8,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-- Nothing
+- added support for customizing ```--security-opt``` command line option to ```docker run``` executed by ```run_unit_tests.sh```
+using the ```DEV_ENV_SECURITY_OPT``` environment variable
 
 ### Changed
 

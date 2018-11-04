@@ -213,6 +213,8 @@ if [ -f "$PWD/requirements.txt" ]; then
     export DEV_ENV_SOURCE_CODE=$PWD
     export DEV_ENV_DOCKER_IMAGE="simonsdave/tor-async-util-xenial-dev-env:build"
     export DEV_ENV_PACKAGE=tor_async_util
+    # if need special security settings to on "docker run" then set DEV_ENV_SECURITY_OPT
+    # export DEV_ENV_SECURITY_OPT=seccomp:unconfined
 
     # :TODO: do we actually need to be using virtualenv anymore?
     if [ -d "$PWD/env" ]; then
