@@ -3,7 +3,7 @@
 set -e
 
 if [ $# -lt 3 ]; then
-    echo "usage: $(basename "$0") <package> <user> <group> [<dir1> <dir2> ... <dir N>]" >&2
+    echo "usage: $(basename "$0") <package> <user> <group> [<dir1> <dir2> ... <dirN>]" >&2
     exit 1
 fi
 
@@ -16,7 +16,7 @@ shift
 GROUP=${1:-}
 shift
 
-echo nosetests \
+nosetests \
     --with-coverage \
     --cover-erase \
     --cover-branches \
