@@ -4,7 +4,7 @@
 # that looks something like this
 #
 #   #!/usr/bin/env bash
-#   curl -s https://raw.githubusercontent.com/simonsdave/dev-env/master/ubuntu/xenial/create_dev_env.sh | bash -s -- "$@"
+#   curl -s https://raw.githubusercontent.com/simonsdave/dev-env/release-0.5.10/ubuntu/xenial/create_dev_env.sh | bash -s -- "$@"
 #   exit $?
 #
 # to test
@@ -52,7 +52,7 @@ if [ ! -r "provision.sh" ]; then
     exit 1
 fi
 
-curl -s --output Vagrantfile "https://raw.githubusercontent.com/simonsdave/dev-env/master/ubuntu/xenial/Vagrantfile"
+curl -s --output Vagrantfile "https://raw.githubusercontent.com/simonsdave/dev-env/release-0.5.10/ubuntu/xenial/Vagrantfile"
 
 if [ ! -r "${3:-}" ]; then
     echo "Can't read SSH public key file '${3:-}'"
