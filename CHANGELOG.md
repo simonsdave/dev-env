@@ -8,7 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-- Nothing
+- added ```run_repo_security_scanner.sh```
 
 ### Changed
 

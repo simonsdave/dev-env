@@ -75,6 +75,7 @@ setup(
         'bin/run_pip_check.sh',
         'bin/run_shellcheck.sh',
         'bin/run_unit_tests.sh',
+        'bin/run_repo_security_scanner.sh',
     ],
     install_requires=[
         'nose>=1.3.7',
