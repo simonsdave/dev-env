@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 - added ```run_repo_security_scanner.sh```
+- cURL added to docker image ```simonsdave/xenial-dev-env```
 
 ### Changed
 
