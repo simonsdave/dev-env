@@ -12,7 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-- Nothing
+- get ```bin/run_unit_tests.sh``` working again on travis
 
 ### Removed
 
