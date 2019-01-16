@@ -15,11 +15,6 @@ RUN apt-get install -y python-pip
 RUN pip install --upgrade pip
 
 #
-# python unit testing
-#
-COPY run_unit_tests.sh /usr/local/bin/run_unit_tests.sh
-
-#
 # pandoc
 #
 # Common scenario:
