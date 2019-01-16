@@ -207,6 +207,9 @@ Bringing machine 'default' up with 'virtualbox' provider...
 
 :TODO: add something about ```cfg4dev```
 
+For reference, [Seccomp security profiles for Docker](https://docs.docker.com/engine/security/seccomp/)
+on the ```seccomp``` settings described below.
+
 ```bash
 if [ -f "$PWD/requirements.txt" ]; then
     # per guidelines in https://github.com/simonsdave/dev-env
