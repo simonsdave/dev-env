@@ -13,6 +13,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 
 - get ```bin/run_unit_tests.sh``` working again on travis
+- moving ```nose==1.3.7``` from ```setup.py``` to ```requirements.txt```
 
 ### Removed
 

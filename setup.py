@@ -78,7 +78,6 @@ setup(
         'bin/run_repo_security_scanner.sh',
     ],
     install_requires=[
-        'nose>=1.3.7',
     ],
     include_package_data=True,
     version=version,
