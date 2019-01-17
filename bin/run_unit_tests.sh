@@ -16,6 +16,14 @@ do
     esac
 done
 
+#
+# :TRICKY: nosetests is run inside the docker container.
+# and if we simply let this happen the container would
+# set the uid and gid of .coverage which can then make
+# .coverage inaccessible by the host. to solve this
+# problem we create an empty .coverage here (which runs
+# on the host) so we can control .coverage's uid and gid.
+#
 echo "!coverage.py: This is a private format, don't read it directly!{}" > "$DEV_ENV_SOURCE_CODE/.coverage"
 chmod a+wr "$DEV_ENV_SOURCE_CODE/.coverage"
 
