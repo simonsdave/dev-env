@@ -208,7 +208,7 @@ Bringing machine 'default' up with 'virtualbox' provider...
 :TODO: add something about ```cfg4dev```
 
 For reference, [Seccomp security profiles for Docker](https://docs.docker.com/engine/security/seccomp/)
-on the ```seccomp``` settings described below.
+provides some good background/motivation for the ```DEV_ENV_SECURITY_OPT``` environment variable.
 
 ```bash
 if [ -f "$PWD/requirements.txt" ]; then
@@ -229,7 +229,11 @@ if [ -f "$PWD/requirements.txt" ]; then
 
         # this is really here so that travis will work
         if ! which run_shellcheck.sh; then
-            pip install git+https://github.com/simonsdave/dev-env.git@master
+            DEV_ENV_VERSION=$(cat "$PWD/dev_env/dev-env-version.txt")
+            if [ "${DEV_ENV_VERSION:-}" == "latest" ]; then
+                DEV_ENV_VERSION=master
+            fi
+            pip install "git+https://github.com/simonsdave/dev-env.git@$DEV_ENV_VERSION"
         fi
 
         "$PWD/dev_env/build-docker-image.sh" "$DEV_ENV_DOCKER_IMAGE"
