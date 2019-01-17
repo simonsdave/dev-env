@@ -7,7 +7,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # pinning to a box version that fixes the bug
   # see https://app.vagrantup.com/ubuntu/boxes/xenial64/versions/20180420.0.0
   config.vm.box_version = "20180420.0.0"
-  config.vm.provision "base", type: "shell", path: "https://raw.githubusercontent.com/simonsdave/dev-env/master/ubuntu/xenial/provision.sh", args: [
+  config.vm.provision "base", type: "shell", path: "https://raw.githubusercontent.com/simonsdave/dev-env/release-0.5.11/ubuntu/xenial/provision.sh", args: [
     "--timezone",
     ENV.fetch("VAGRANT_TIMEZONE", "EST"),
     ENV.fetch("VAGRANT_GITHUB_USERNAME", ""),
