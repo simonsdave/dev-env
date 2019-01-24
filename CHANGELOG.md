@@ -8,7 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-- Nothing
+- added ```kill-and-rm-all-docker-containers.sh```
 
 ### Changed
 
