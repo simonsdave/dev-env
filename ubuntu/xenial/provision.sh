@@ -230,4 +230,9 @@ done
 #
 docker pull koalaman/shellcheck:latest
 
-exit 0
+#
+# install travis client per install instructions @
+# https://github.com/travis-ci/travis.rb#installation
+#
+apt-get install ruby-dev
+gem install travis -v 1.8.9 --no-rdoc --no-ri

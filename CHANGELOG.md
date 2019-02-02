@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 - added ```build_python_package.sh```
+- added [Travis Client](https://github.com/travis-ci/travis.rb) to Ubuntu 16.04 dev env
 
 ### Changed
 
