@@ -77,6 +77,7 @@ setup(
         'bin/run_unit_tests.sh',
         'bin/run_repo_security_scanner.sh',
         'bin/kill-and-rm-all-docker-containers.sh',
+        'bin/build_python_package.sh',
     ],
     install_requires=[
     ],
