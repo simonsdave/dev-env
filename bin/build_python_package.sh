@@ -27,11 +27,13 @@ if [ $# != 0 ]; then
     exit 1
 fi
 
+set -x
 docker run \
     --rm \
     --volume "$DEV_ENV_SOURCE_CODE:/app" \
     "$DEV_ENV_DOCKER_IMAGE" \
     python setup.py bdist_wheel --bdist-dir="$(mktemp -d)" sdist --formats=gztar
+set +x
 
 ls -la "$DEV_ENV_SOURCE_CODE/dist"
 
