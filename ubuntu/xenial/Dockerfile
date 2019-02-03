@@ -14,6 +14,9 @@ RUN apt-get install -y python-dev
 RUN apt-get install -y python-pip
 RUN pip install --upgrade pip
 
+COPY requirements.txt /tmp/requirements.txt
+RUN cd /tmp && pip install --requirement "/tmp/requirements.txt"
+
 #
 # pandoc
 #

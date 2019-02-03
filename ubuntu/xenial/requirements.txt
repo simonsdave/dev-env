@@ -1,0 +1,19 @@
+flake8==3.7.4
+mock==2.0.0
+#
+# ndg-httpsclient is required to avoid various SNI related
+# warning messages when doing simple things (ex twine upload)
+# the article below provides more details on making requests
+# and SNI work
+#
+#   https://stackoverflow.com/questions/18578439/using-requests-with-tls-doesnt-give-sni-support/18579484#18579484
+#
+# the article below provides requests specific info on SNI
+#
+#   http://docs.python-requests.org/en/master/community/faq/
+#
+ndg-httpsclient==0.5.1
+nose==1.3.7
+nose-cov==1.6
+pycodestyle==2.5.0
+twine==1.12.1

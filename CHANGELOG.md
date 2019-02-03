@@ -10,7 +10,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - added ```build_python_package.sh```
 - added [Travis Client](https://github.com/travis-ci/travis.rb) to Ubuntu 16.04 dev env
-- added core python dev packages to ```setup.py``` as required so that when projects pip install dev-env they'll get these packages which means they won't have to list then in individual ```requirements.txt```
+- added core python dev packages to docker dev env image so that every project doesn't have to add them
 
 ### Changed
 
