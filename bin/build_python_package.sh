@@ -34,7 +34,7 @@ docker run \
     --name "$DOCKER_CONTAINER_NAME" \
     --volume "$DEV_ENV_SOURCE_CODE:/app" \
     "$DEV_ENV_DOCKER_IMAGE" \
-    /bin/bash -c "cp -r /app /tmp/; python /tmp/app/setup.py sdist --formats=gztar"
+    /bin/bash -c "cp -r /app /tmp/; cd /tmp/app; python setup.py sdist --formats=gztar"
 
 rm -rf "$DEV_ENV_SOURCE_CODE/dist"
 mkdir "$DEV_ENV_SOURCE_CODE/dist"
