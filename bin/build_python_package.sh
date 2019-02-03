@@ -28,15 +28,24 @@ if [ $# != 0 ]; then
 fi
 
 set -x
-rm -rf "$DEV_ENV_SOURCE_CODE/dist"
-mkdir "$DEV_ENV_SOURCE_CODE/dist"
-chmod a+rw "$DEV_ENV_SOURCE_CODE/dist"
+DOCKER_CONTAINER_NAME=$(python -c "import uuid; print uuid.uuid4().hex")
+
+DIST_DIR=/dist
 
 docker run \
-    --rm \
+    --name "$DOCKER_CONTAINER_NAME" \
     --volume "$DEV_ENV_SOURCE_CODE:/app" \
     "$DEV_ENV_DOCKER_IMAGE" \
-    python setup.py sdist --formats=gztar
+    python setup.py \
+        bdist_wheel --bdist-dir="$(mktemp -d)" --dist-dir="$DIST_DIR" \
+        sdist --formats=gztar --dist-dir="$DIST_DIR"
+
+rm -rf "$DEV_ENV_SOURCE_CODE/dist"
+mkdir "$DEV_ENV_SOURCE_CODE/dist"
+docker cp "$DOCKER_CONTAINER_NAME:$DIST_DIR/*" "$DEV_ENV_SOURCE_CODE/dist/."
+
+docker rm "$DOCKER_CONTAINER_NAME"
+
 set +x
 
 ls -la "$DEV_ENV_SOURCE_CODE/dist"
