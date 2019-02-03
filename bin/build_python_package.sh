@@ -28,6 +28,10 @@ if [ $# != 0 ]; then
 fi
 
 set -x
+rm -rf "$DEV_ENV_SOURCE_CODE/dist"
+mkdir "$DEV_ENV_SOURCE_CODE/dist"
+chmod a+rw "$DEV_ENV_SOURCE_CODE/dist"
+
 docker run \
     --rm \
     --volume "$DEV_ENV_SOURCE_CODE:/app" \
