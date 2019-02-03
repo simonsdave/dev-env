@@ -30,17 +30,15 @@ fi
 set -x
 DOCKER_CONTAINER_NAME=$(python -c "import uuid; print uuid.uuid4().hex")
 
-DIST_DIR=/dist
-
 docker run \
     --name "$DOCKER_CONTAINER_NAME" \
     --volume "$DEV_ENV_SOURCE_CODE:/app" \
     "$DEV_ENV_DOCKER_IMAGE" \
-    python setup.py sdist --formats=gztar --dist-dir="$DIST_DIR"
+    /bin/bash -c "cp -r /app /tmp/; python /tmp/app/setup.py sdist --formats=gztar"
 
 rm -rf "$DEV_ENV_SOURCE_CODE/dist"
 mkdir "$DEV_ENV_SOURCE_CODE/dist"
-docker cp "$DOCKER_CONTAINER_NAME:$DIST_DIR/*" "$DEV_ENV_SOURCE_CODE/dist/."
+docker cp "$DOCKER_CONTAINER_NAME:/tmp/app/dist/*" "$DEV_ENV_SOURCE_CODE/dist/."
 
 docker rm "$DOCKER_CONTAINER_NAME"
 
