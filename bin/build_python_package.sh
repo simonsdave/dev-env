@@ -36,9 +36,7 @@ docker run \
     --name "$DOCKER_CONTAINER_NAME" \
     --volume "$DEV_ENV_SOURCE_CODE:/app" \
     "$DEV_ENV_DOCKER_IMAGE" \
-    python setup.py \
-        bdist_wheel --bdist-dir="$(mktemp -d)" --dist-dir="$DIST_DIR" \
-        sdist --formats=gztar --dist-dir="$DIST_DIR"
+    python setup.py sdist --formats=gztar --dist-dir="$DIST_DIR"
 
 rm -rf "$DEV_ENV_SOURCE_CODE/dist"
 mkdir "$DEV_ENV_SOURCE_CODE/dist"
