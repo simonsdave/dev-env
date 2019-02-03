@@ -33,17 +33,20 @@ DOCKER_CONTAINER_NAME=$(python -c "import uuid; print uuid.uuid4().hex")
 docker run \
     --name "$DOCKER_CONTAINER_NAME" \
     --volume "$DEV_ENV_SOURCE_CODE:/app" \
+    --security-opt "${DEV_ENV_SECURITY_OPT:-seccomp:unconfined}" \
     "$DEV_ENV_DOCKER_IMAGE" \
-    /bin/bash -c "cp -r /app /tmp/; cd /tmp/app; python setup.py sdist --formats=gztar"
+    python setup.py sdist --formats=gztar
 
-rm -rf "$DEV_ENV_SOURCE_CODE/dist"
-mkdir "$DEV_ENV_SOURCE_CODE/dist"
-docker cp "$DOCKER_CONTAINER_NAME:/tmp/app/dist/*" "$DEV_ENV_SOURCE_CODE/dist/."
+# /bin/bash -c 'mkdir ~/newapp; cp -r /app ~/newapp/.; cd ~/newapp/app; python setup.py sdist --formats=gztar; echo "--------------------"; echo ~; ls -la ~/newapp/app/dist; echo "--------------------"'
+
+# rm -rf "$DEV_ENV_SOURCE_CODE/dist"
+# mkdir "$DEV_ENV_SOURCE_CODE/dist"
+# docker cp "$DOCKER_CONTAINER_NAME:/newapp/app/dist/*" "$DEV_ENV_SOURCE_CODE/dist/."
 
 docker rm "$DOCKER_CONTAINER_NAME"
 
-set +x
-
 ls -la "$DEV_ENV_SOURCE_CODE/dist"
+
+set +x
 
 exit 0
