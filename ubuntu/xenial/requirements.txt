@@ -1,4 +1,4 @@
-flake8==3.7.4
+flake8==3.7.5
 mock==2.0.0
 #
 # ndg-httpsclient is required to avoid various SNI related
