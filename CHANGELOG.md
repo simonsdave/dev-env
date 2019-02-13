@@ -13,7 +13,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 
 - flake8 3.7.4 -> 3.7.5
-- fixed but in ```run_shellcheck.sh``` where docker containers weren't being removed are they had exited
+- twine 1.12.1 -> 1.13.0
+- fixed bug in ```run_shellcheck.sh``` where docker containers weren't being removed are they had exited
 
 ### Removed
 

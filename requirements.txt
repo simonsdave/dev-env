@@ -21,4 +21,4 @@ nose-cov==1.6
 nose-pudb==1.0
 pudb>=2015.4.1
 pycodestyle==2.5.0
-twine==1.12.1
+twine==1.13.0
