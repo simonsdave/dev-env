@@ -29,7 +29,7 @@ do
     fi
     MNT_DIR=$(dirname "$FILENAME")
     MNT_FILE=$(basename "$FILENAME")
-    docker run -v "$MNT_DIR:/mnt" koalaman/shellcheck:latest "$MNT_FILE"
+    docker run --rm -v "$MNT_DIR:/mnt" koalaman/shellcheck:latest "$MNT_FILE"
 done
 
 exit 0
