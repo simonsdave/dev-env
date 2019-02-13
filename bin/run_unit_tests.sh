@@ -4,7 +4,7 @@ set -e
 
 while true
 do
-    case "${1:-}" in
+    case "$(echo "${1:-}" | tr "[:upper:]" "[:lower:]")" in
         --help)
             shift
             echo "usage: $(basename "$0") [--help] [<dir1> <dir2> ... <dir N>]" >&2

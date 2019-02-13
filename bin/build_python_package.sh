@@ -5,12 +5,12 @@
 set -e
 
 usage() {
-    echo "usage: $(basename "$0")" >&2
+    echo "usage: $(basename "$0") [--help]" >&2
 }
 
 while true
 do
-    case "${1:-}" in
+    case "$(echo "${1:-}" | tr "[:upper:]" "[:lower:]")" in
         --help)
             shift
             usage

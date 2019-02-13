@@ -14,7 +14,7 @@ TIMEZONE=EST
 
 while true
 do
-    case "${1,,}" in
+    case "$(echo "${1:-}" | tr "[:upper:]" "[:lower:]")" in
         --timezone)
             shift
             TIMEZONE=${1:-EST}

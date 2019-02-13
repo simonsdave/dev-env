@@ -19,13 +19,7 @@ TIMEZONE=EST
 
 while true
 do
-    # note - was using "${1,,}" so command line args where not case sensitive
-    # but was getting "bad substitution" errors on
-    #
-    #    GNU bash, version 3.2.57(1)-release (x86_64-apple-darwin15)
-    #
-    # which is why reverted to using the sub-optimal "${1:-}"
-    case "${1:-}" in
+    case "$(echo "${1:-}" | tr "[:upper:]" "[:lower:]")" in
         --memory)
             shift
             MEMORY_IN_MB=${1:-}

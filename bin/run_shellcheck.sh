@@ -6,7 +6,7 @@ VERBOSE=0
 
 while true
 do
-    case "${1,,}" in
+    case "$(echo "${1:-}" | tr "[:upper:]" "[:lower:]")" in
         -v)
             shift
             VERBOSE=1
