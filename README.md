@@ -19,6 +19,10 @@ This repo now contains tools, scripts and utilities which:
 * automate cutting releases
 * simplify integration testing
 
+## References
+
+* [21 Nov '18 - How to fully utilise Docker during development](https://medium.com/tsftech/how-to-fully-utilise-docker-during-development-42bb3cdc3017)
+
 ## What Next
 
 * [here's](docs/using.md) a description of how to start using ```dev-env```
