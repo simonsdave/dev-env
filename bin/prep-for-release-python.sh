@@ -18,7 +18,7 @@ fi
 REPO_ROOT_DIR=$(git rev-parse --show-toplevel)
 REPO=$(basename "$REPO_ROOT_DIR")
 INIT_DOT_PY=$REPO_ROOT_DIR/${REPO//-/_}/__init__.py
-CURRENT_VERSION=$(grep __version__ "$INIT_DOT_PY" | sed -e "s|^.*=\\s*['\"]||g" | sed -e "s|['\"].*$||g")
+CURRENT_VERSION=$(grep __version__ "$INIT_DOT_PY" | sed -e "s|^.*=[[:space:]]*['\"]||g" | sed -e "s|['\"].*$||g")
 
 prep-for-release.sh "$CURRENT_VERSION"
 
