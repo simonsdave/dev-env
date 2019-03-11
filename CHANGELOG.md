@@ -15,7 +15,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - flake8 3.7.4 -> 3.7.7
 - twine 1.12.1 -> 1.13.0
 - fixed bug in ```run_shellcheck.sh``` where docker containers weren't being removed are they had exited
-- using ```"$(echo "${1:-}" | tr "[:upper:]" "[:lower:]")"``` instead of ```"${1,,}"``` so scripts work on macOS and Ubuntu
+- using ```"$(echo "${1:-}" | tr "[:upper:]" "[:lower:]")"``` instead of ```"${1,,}"``` and ```[[:space:]]``` instead of ```\s``` with sed so scripts work on macOS and Ubuntu
+- ```prep-for-release.sh``` now uses ```cut_changelog_dot_md.py``` and ```add_new_changelog_dot_md_release.py``` to improve portability across macOS and Ubuntu as well as simplifying ```prep-for-release.sh```
 
 ### Removed
 

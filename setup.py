@@ -68,6 +68,8 @@ setup(
         'dev_env',
     ],
     scripts=[
+        'bin/add_new_changelog_dot_md_release.py',
+        'bin/cut_changelog_dot_md.py',
         'bin/dev_env_nosetests.py',
         'bin/prep-for-release-python.sh',
         'bin/prep-for-release.sh',

@@ -77,26 +77,25 @@ fi
 
 #
 # on the master branch update CHANGELOG.md with version # and release date (today),
-# put CHANGELOG.md in good shape for the next release and
 # figure out what COMMIT_ID in master the release is based# off.
 #
+
 git checkout master
 
+#
 # this check is enforced so commands like "git diff" and "git commit"
 # can be executed across the entire repo rather than picking out
 # individual files which is important because want this script to
 # provide a framework which other repos can extend (specifically other
 # repos should be able to provide their own customizations to the
 # release branch.
+#
 if ! git diff-index --quiet HEAD --; then
     echo "$(basename "$0") won't work if there are outstanding commits on master" >&2
     exit 2
 fi
 
-sed \
-    -i \
-    -e "s|## \\[%RELEASE_VERSION%\\] \\- \\[%RELEASE_DATE%\\]|## \\[$VERSION\\] \\- \\[$RELEASE_DATE\\]|g" \
-    "$CHANGELOG_DOT_MD"
+cut_changelog_dot_md.py "$VERSION" "$RELEASE_DATE" "$CHANGELOG_DOT_MD"
 # :TODO: check if the above sed command actually did anything
 
 git diff
@@ -111,10 +110,7 @@ MASTER_RELEASE_COMMIT_ID=$(git rev-parse HEAD)
 # changes to master to prep for next release
 #
 
-sed \
-    -i \
-    -e "s|## \\[$VERSION\\] \\- \\[$RELEASE_DATE\\]|## [%RELEASE_VERSION%] \\- [%RELEASE_DATE%]\\n\\n### Added\\n\\n- Nothing\\n\\n### Changed\\n\\n- Nothing\\n\\n### Removed\\n\\n- Nothing\\n\\n\\## [$VERSION\\] \\- \\[$RELEASE_DATE\\]|g" \
-    "$CHANGELOG_DOT_MD"
+add_new_changelog_dot_md_release.py "$CHANGELOG_DOT_MD"
 # :TODO: check if the above sed command actually did anything
 
 # the while loop pattern below looks awkward but came as a result
