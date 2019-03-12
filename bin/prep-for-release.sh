@@ -118,9 +118,11 @@ add_new_changelog_dot_md_release.py "$CHANGELOG_DOT_MD"
 echo_if_verbose "Looking for and executing master branch change scripts"
 while IFS= read -r -d '' MASTER_BRANCH_CHANGE_SCRIPT
 do
-    echo_if_verbose "Executing '$MASTER_BRANCH_CHANGE_SCRIPT'"
-    "$MASTER_BRANCH_CHANGE_SCRIPT"
-done < <(find "$REPO_ROOT_DIR" -executable -name .prep-for-release-master-branch-changes.sh -print0)
+    if [ -x "$MASTER_BRANCH_CHANGE_SCRIPT" ]; then
+        echo_if_verbose "Executing '$MASTER_BRANCH_CHANGE_SCRIPT'"
+        "$MASTER_BRANCH_CHANGE_SCRIPT"
+    fi
+done < <(find "$REPO_ROOT_DIR" -name .prep-for-release-master-branch-changes.sh)
 echo_if_verbose "Done looking for and executing master branch change scripts"
 
 git diff
@@ -147,9 +149,11 @@ git checkout "$RELEASE_BRANCH"
 echo_if_verbose "Looking for and executing release branch change scripts"
 while IFS= read -r -d '' RELEASE_BRANCH_CHANGE_SCRIPT
 do
-    echo_if_verbose "Executing '$RELEASE_BRANCH_CHANGE_SCRIPT'"
-    "$RELEASE_BRANCH_CHANGE_SCRIPT" "$RELEASE_BRANCH"
-done < <(find "$REPO_ROOT_DIR" -executable -name .prep-for-release-release-branch-changes.sh -print0)
+    if [ -x "$RELEASE_BRANCH_CHANGE_SCRIPT" ]; then
+        echo_if_verbose "Executing '$RELEASE_BRANCH_CHANGE_SCRIPT'"
+        "$RELEASE_BRANCH_CHANGE_SCRIPT" "$RELEASE_BRANCH"
+    fi
+done < <(find "$REPO_ROOT_DIR" -name .prep-for-release-release-branch-changes.sh)
 echo_if_verbose "Done looking for and executing release branch change scripts"
 
 git diff 
