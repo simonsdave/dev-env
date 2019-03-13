@@ -116,13 +116,12 @@ add_new_changelog_dot_md_release.py "$CHANGELOG_DOT_MD"
 # the while loop pattern below looks awkward but came as a result
 # dealing with https://github.com/koalaman/shellcheck/wiki/SC2044
 echo_if_verbose "Looking for and executing master branch change scripts"
-while IFS= read -r -d '' MASTER_BRANCH_CHANGE_SCRIPT
-do
+find "$REPO_ROOT_DIR" -name .prep-for-release-master-branch-changes.sh | while IFS= read -r MASTER_BRANCH_CHANGE_SCRIPT; do
     if [ -x "$MASTER_BRANCH_CHANGE_SCRIPT" ]; then
         echo_if_verbose "Executing '$MASTER_BRANCH_CHANGE_SCRIPT'"
         "$MASTER_BRANCH_CHANGE_SCRIPT"
     fi
-done < <(find "$REPO_ROOT_DIR" -name .prep-for-release-master-branch-changes.sh)
+done
 echo_if_verbose "Done looking for and executing master branch change scripts"
 
 git diff
@@ -147,13 +146,12 @@ git checkout "$RELEASE_BRANCH"
 # the while loop pattern below looks awkward but came as a result
 # dealing with https://github.com/koalaman/shellcheck/wiki/SC2044
 echo_if_verbose "Looking for and executing release branch change scripts"
-while IFS= read -r -d '' RELEASE_BRANCH_CHANGE_SCRIPT
-do
+find "$REPO_ROOT_DIR" -name .prep-for-release-release-branch-changes.sh | while IFS= read -r RELEASE_BRANCH_CHANGE_SCRIPT; do
     if [ -x "$RELEASE_BRANCH_CHANGE_SCRIPT" ]; then
         echo_if_verbose "Executing '$RELEASE_BRANCH_CHANGE_SCRIPT'"
         "$RELEASE_BRANCH_CHANGE_SCRIPT" "$RELEASE_BRANCH"
     fi
-done < <(find "$REPO_ROOT_DIR" -name .prep-for-release-release-branch-changes.sh)
+done
 echo_if_verbose "Done looking for and executing release branch change scripts"
 
 git diff 
