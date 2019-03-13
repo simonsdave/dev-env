@@ -80,6 +80,7 @@ setup(
         'bin/run_repo_security_scanner.sh',
         'bin/kill-and-rm-all-docker-containers.sh',
         'bin/build_python_package.sh',
+        'bin/build_readme_dot_rst.sh',
     ],
     install_requires=[
     ],
