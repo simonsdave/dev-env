@@ -33,6 +33,35 @@ RUN apt-get install -y pandoc
 RUN apt-get install -y curl
 
 #
+# git
+#
+RUN apt-get install -y git
+
+#
+# Install docker CE per instructions at
+#
+#   -- https://docs.docker.com/install/linux/docker-ce/ubuntu/
+#
+RUN apt-get update -y
+
+RUN apt-get install -y \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common
+
+RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+
+RUN add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+
+RUN apt-get update -y
+
+RUN apt-get install -y docker-ce
+
+#
 # repo-security-scanner
 #
 # -- https://github.com/UKHomeOffice/repo-security-scanner
