@@ -8,7 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-- Nothing
+- added ```current-python-version.sh``` which is used to extract a python project's version number
 
 ### Changed
 
