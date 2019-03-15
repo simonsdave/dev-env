@@ -8,7 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-- Nothing
+- added git to Ubuntu Xenial docker image
 
 ### Changed
 
