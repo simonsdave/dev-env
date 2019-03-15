@@ -15,8 +15,6 @@ typically has has a section that looks like:
     - flake8 3.7.4 -> 3.7.7
     - twine 1.12.1 -> 1.13.0
     - fixed bug in ```run_shellcheck.sh``` where docker containers weren't being removed are they had exited
-    - using ```"$(echo "${1:-}" | tr "[:upper:]" "[:lower:]")"``` instead of ```"${1,,}"``` and ```[[:space:]]``` instead of ```\s``` with sed so scripts work on macOS and Ubuntu
-    - ```prep-for-release.sh``` now uses ```cut_changelog_dot_md.py``` and ```add_new_changelog_dot_md_release.py``` to improve portability across macOS and Ubuntu as well as simplifying ```prep-for-release.sh```
 
     ### Removed
 
@@ -34,11 +32,8 @@ CHANGELOG.md will be updated in place.
 
 import logging
 import optparse
-import os
 import re
-import tempfile
 import time
-import sys
 
 _logger = None
 
@@ -138,7 +133,7 @@ if __name__ == '__main__':
 
     _logger.info('read %d lines from existing CHANGELOG.md @ "%s"', len(lines), clp.changelog)
 
-    specific_version_reg_ex_pattern = r'\s*##\s*\[%s\].*$' % clp.version.replace('.', '\.')
+    specific_version_reg_ex_pattern = r'\s*##\s*\[%s\].*$' % clp.version.replace('.', r'\.')
     specific_version_reg_ex = re.compile(specific_version_reg_ex_pattern)
 
     specific_version_found = False
