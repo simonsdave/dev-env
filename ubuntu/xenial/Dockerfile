@@ -33,6 +33,11 @@ RUN apt-get install -y pandoc
 RUN apt-get install -y curl
 
 #
+# git
+#
+RUN apt-get install -y git
+
+#
 # repo-security-scanner
 #
 # -- https://github.com/UKHomeOffice/repo-security-scanner
