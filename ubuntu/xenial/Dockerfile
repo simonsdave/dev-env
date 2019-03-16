@@ -79,10 +79,11 @@ RUN cd /tmp && \
 # shellcheck
 # -- install instructions from https://github.com/koalaman/shellcheck/issues/704
 #
-pushd /tmp
-curl -s -o ./shellcheck.tar.xz https://storage.googleapis.com/shellcheck/shellcheck-latest.linux.x86_64.tar.xz
-tar xvf shellcheck.tar.xz
-cp shellcheck-latest/shellcheck /usr/local/bin/.
-popd
+RUN pushd /tmp && \
+    curl -s -o ./shellcheck.tar.xz https://storage.googleapis.com/shellcheck/shellcheck-latest.linux.x86_64.tar.xz && \
+    tar xvf shellcheck.tar.xz && \
+    cp shellcheck-latest/shellcheck /usr/local/bin/. && \
+    rm -rf shellcheck-latest shellcheck.tar.xz && \
+    popd
 
 ENV DEBIAN_FRONTEND newt
