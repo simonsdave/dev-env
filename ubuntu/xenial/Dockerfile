@@ -85,4 +85,16 @@ RUN cd /tmp && \
     cp shellcheck-latest/shellcheck /usr/local/bin/. && \
     rm -rf shellcheck-latest shellcheck.tar.xz
 
+#
+# Markdown Proofer
+# -- https://github.com/felicianotech/md-proofer
+# -- https://circleci.com/blog/markdown-proofer/
+# -- md-proofer lint <files>
+#
+RUN cd /tmp && \
+    curl -s -o md-proofer.tar.gz -L https://github.com/felicianotech/md-proofer/releases/download/v0.1.0/md-proofer-v0.1.0-linux-amd64.tar.gz && \
+    tar xvf md-proofer.tar.gz && \
+    cp md-proofer /usr/local/bin/. && \
+    rm -rf md-proofer md-proofer.tar.gz
+
 ENV DEBIAN_FRONTEND newt
