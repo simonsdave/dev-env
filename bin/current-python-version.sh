@@ -15,6 +15,11 @@
 #
 # -- the python project is in a git repo
 #
+# -- if the repo is called de-mo, the __init__.py containing the version
+#    number will be found in de_mo/__init__.py relative to the top of
+#    the project's repo - note that - was transformed by a _ which is
+#    done for all _'s
+#
 # -- the PWD is somewhere in the git repo - this assumption can be
 #    overridden using the -d command line option.
 #
