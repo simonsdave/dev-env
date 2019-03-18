@@ -35,7 +35,7 @@ docker run \
     nosetests --with-coverage --cover-branches "--cover-package=$DEV_ENV_PACKAGE" "$@"
 
 if [ -e "$DEV_ENV_SOURCE_CODE/.coverage" ]; then
-    sed -i -e "s|/app/|$DEV_ENV_SOURCE_CODE/|g" "$DEV_ENV_SOURCE_CODE/.coverage"
+    sed -i .bak -e "s|/app/|$DEV_ENV_SOURCE_CODE/|g" "$DEV_ENV_SOURCE_CODE/.coverage"
 fi
 
 exit 0
