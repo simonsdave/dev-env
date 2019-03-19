@@ -15,7 +15,7 @@ TAG=${2:-}
 CONTEXT_DIR=$(mktemp -d 2> /dev/null || mktemp -d -t DAS)
 
 pushd "$(git rev-parse --show-toplevel)/bin/in_container"
-tar zcvf "$CONTEXT_DIR/in_container_sh_scripts.tar.gz" *.sh
+tar zcvf "$CONTEXT_DIR/in_container_sh_scripts.tar.gz" ./*.sh
 popd
 
 cp "$SCRIPT_DIR_NAME/requirements.txt" "$CONTEXT_DIR/."
