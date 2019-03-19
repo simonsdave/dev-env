@@ -83,6 +83,10 @@ setup(
         'bin/kill-and-rm-all-docker-containers.sh',
         'bin/build_python_package.sh',
         'bin/build_readme_dot_rst.sh',
+        'bin/repo.sh',
+        'bin/in_container/repo.sh',
+        'bin/repo-root-dir.sh',
+        'bin/in_container/repo-root-dir.sh',
     ],
     install_requires=[
     ],

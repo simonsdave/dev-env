@@ -26,6 +26,8 @@
 
 set -e
 
+SCRIPT_DIR_NAME="$( cd "$( dirname "$0" )" && pwd )"
+
 DIR_IN_REPO=$PWD
 
 while true
@@ -49,9 +51,8 @@ fi
 
 pushd "$DIR_IN_REPO" > /dev/null
 
-REPO_ROOT_DIR=$(git rev-parse --show-toplevel)
-REPO=$(git config --get remote.origin.url | sed -e 's|^.*/||g' | sed -e 's|.git||g')
-INIT_DOT_PY=$REPO_ROOT_DIR/${REPO//-/_}/__init__.py
+REPO=$($SCRIPT_DIR_NAME/repo.sh)
+INIT_DOT_PY=$($SCRIPT_DIR_NAME/repo-root-dir.sh)/${REPO//-/_}/__init__.py
 grep __version__ "$INIT_DOT_PY" | sed -e "s|^.*=[[:space:]]*['\"]||g" | sed -e "s|['\"].*$||g"
 
 popd > /dev/null
