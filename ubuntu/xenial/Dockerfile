@@ -97,4 +97,12 @@ RUN cd /tmp && \
     cp md-proofer /usr/local/bin/. && \
     rm -rf md-proofer md-proofer.tar.gz
 
+#
+# jq is just so generally useful for parsing json docs
+#
+JQ_SOURCE=https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
+JQ_BIN=/usr/local/bin/jq
+curl -s -L --output "$JQ_BIN" "$JQ_SOURCE"
+chmod a+x "$JQ_BIN"
+
 ENV DEBIAN_FRONTEND newt
