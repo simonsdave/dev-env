@@ -7,6 +7,14 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update -y
 
 #
+# some of the dev env shell scripts depend on in container
+# shell scripts which we'll want to access in /usr/local/bin
+#
+COPY in_container_sh_scripts.tar.gz /tmp/.
+RUN ls -la /tmp/in_container_sh_scripts.tar.gz
+RUN cd /usr/local/bin && tar xvf /tmp/in_container_sh_scripts.tar.gz
+
+#
 # python development
 #
 RUN apt-get install -y python
