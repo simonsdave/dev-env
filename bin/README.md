@@ -28,6 +28,10 @@ the root directory of your git repo is accomplished by calling ```repo-root-dir.
 
 ## [build_readme_dot_rst.sh](build_readme_dot_rst.sh)
 
+# Python Packages
+
+## [build_python_package.sh](build_python_package.sh)
+
 # Cutting a Release
 
 ## [prep-for-release.sh](prep-for-release.sh)
@@ -51,7 +55,3 @@ the root directory of your git repo is accomplished by calling ```repo-root-dir.
 # Security Assessment
 
 ## [run_repo_security_scanner.sh](run_repo_security_scanner.sh)
-
-# Other
-
-## [build_python_package.sh](build_python_package.sh)
