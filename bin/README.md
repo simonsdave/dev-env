@@ -38,6 +38,8 @@ the root directory of your git repo is accomplished by calling ```repo-root-dir.
 
 ## [kill-and-rm-all-docker-containers.sh](kill-and-rm-all-docker-containers.sh)
 
+## [rm-dangling-docker-images.sh](rm-dangling-docker-images.sh)
+
 # Static Analysis / Linting
 
 ## [run_flake8.sh](run_flake8.sh)
