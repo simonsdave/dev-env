@@ -8,6 +8,9 @@
 
 set -e
 
-docker rmi $(docker images --filter "dangling=true" -q)
+docker images --filter "dangling=true" -q | while IFS='' read -r IMAGE_ID
+do
+    docker rmi "$IMAGE_ID"
+done
 
 exit 0
