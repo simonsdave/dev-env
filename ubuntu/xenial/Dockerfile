@@ -94,16 +94,14 @@ RUN cd /tmp && \
     rm -rf shellcheck-latest shellcheck.tar.xz
 
 #
-# Markdown Proofer
-# -- https://github.com/felicianotech/md-proofer
-# -- https://circleci.com/blog/markdown-proofer/
-# -- md-proofer lint <files>
+# Markdown Lint
+# -- https://github.com/igorshubovych/markdownlint-cli
 #
-RUN cd /tmp && \
-    curl -s -o md-proofer.tar.gz -L https://github.com/felicianotech/md-proofer/releases/download/v0.1.0/md-proofer-v0.1.0-linux-amd64.tar.gz && \
-    tar xvf md-proofer.tar.gz && \
-    cp md-proofer /usr/local/bin/. && \
-    rm -rf md-proofer md-proofer.tar.gz
+# RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash && \
+#     . /root/.nvm/nvm.sh && \
+#     nvm install 6 && \
+#     nvm use 6 && \
+#     npm install -g markdownlint-cli
 
 #
 # jq is just so generally useful for parsing json docs
