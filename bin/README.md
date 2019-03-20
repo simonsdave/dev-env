@@ -10,7 +10,7 @@ the root directory of your git repo is accomplished by calling ```repo-root-dir.
 
 ## [repo-root-dir.sh](repo-root-dir.sh)
 
-## [current-python-version.sh](current-python-version.sh)
+## [python-version.sh](python-version.sh)
 
 # Testing
 

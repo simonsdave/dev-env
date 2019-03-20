@@ -8,7 +8,7 @@ typically has has a section that looks like:
 
     ### Added
 
-    - added ```current-python-version.sh``` which is used to extract a python project's version number
+    - added ```python-version.sh``` which is used to extract a python project's version number
 
     ### Changed
 
