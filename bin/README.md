@@ -32,6 +32,8 @@ the root directory of your git repo is accomplished by calling ```repo-root-dir.
 
 ## [build_python_package.sh](build_python_package.sh)
 
+## [run_pip_check.sh](run_pip_check.sh)
+
 # Cutting a Release
 
 ## [prep-for-release.sh](prep-for-release.sh)
@@ -44,11 +46,9 @@ the root directory of your git repo is accomplished by calling ```repo-root-dir.
 
 ## [rm-dangling-docker-images.sh](rm-dangling-docker-images.sh)
 
-# Static Analysis / Linting
+# [Static Analysis](https://en.wikipedia.org/wiki/Static_program_analysis)
 
 ## [run_flake8.sh](run_flake8.sh)
-
-## [run_pip_check.sh](run_pip_check.sh)
 
 ## [run_shellcheck.sh](run_shellcheck.sh)
 
