@@ -4,14 +4,14 @@ set -e
 
 SCRIPT_DIR_NAME="$( cd "$( dirname "$0" )" && pwd )"
 
-VERBOSE=0
+VERBOSE=""
 
 while true
 do
     case "$(echo "${1:-}" | tr "[:upper:]" "[:lower:]")" in
         -v)
             shift
-            VERBOSE=1
+            VERBOSE=-v
             ;;
         *)
             break
@@ -28,8 +28,8 @@ SNYK_TOKEN=${1:-}
 
 docker run \
     --rm \
-    --volume "$($SCRIPT_DIR_NAME/repo-root-dir.sh):/app" \
+    --volume "$("$SCRIPT_DIR_NAME/repo-root-dir.sh"):/app" \
     "$DEV_ENV_DOCKER_IMAGE" \
-    run_snyk.sh "$SNYK_TOKEN"
+    run_snyk.sh "$VERBOSE" "$SNYK_TOKEN"
 
 exit 0
