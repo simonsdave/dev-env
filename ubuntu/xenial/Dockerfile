@@ -97,11 +97,12 @@ RUN cd /tmp && \
 # Markdown Lint
 # -- https://github.com/igorshubovych/markdownlint-cli
 #
-# RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash && \
-#     . /root/.nvm/nvm.sh && \
-#     nvm install 6 && \
-#     nvm use 6 && \
-#     npm install -g markdownlint-cli
+RUN curl -s -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash && \
+    . /root/.nvm/nvm.sh && \
+    nvm install 6 && \
+    nvm use 6
+
+# npm install -g markdownlint-cli
 
 #
 # jq is just so generally useful for parsing json docs
