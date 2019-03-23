@@ -77,7 +77,7 @@ RUN apt-get install -y docker-ce
 # -- git log -p | docker run -i --rm simonsdave/xenial-dev-env:bindle scanrepo
 #
 RUN cd /tmp && \
-    curl -L -o scanrepo.tar.gz https://github.com/UKHomeOffice/repo-security-scanner/releases/download/0.4.0/scanrepo-0.4.0-linux-386.tar.gz && \
+    curl -s -L -o scanrepo.tar.gz https://github.com/UKHomeOffice/repo-security-scanner/releases/download/0.4.0/scanrepo-0.4.0-linux-386.tar.gz && \
     tar xvf scanrepo.tar.gz && \
     mv scanrepo /usr/bin/scanrepo && \
     chown root.root /usr/bin/scanrepo && \
@@ -95,11 +95,19 @@ RUN cd /tmp && \
 
 #
 # nvm
+# -- see https://stackoverflow.com/questions/25899912/install-nvm-in-docker
 #
-RUN curl -s -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash && \
-    . /root/.nvm/nvm.sh && \
-    nvm install 6 && \
-    nvm use 6
+RUN mkdir /root/.nvm
+ENV NVM_DIR /root/.nvm
+ENV NODE_VERSION 8.9.4
+
+RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.9/install.sh | bash
+RUN chmod +x $HOME/.nvm/nvm.sh
+RUN . $HOME/.nvm/nvm.sh && nvm install $NODE_VERSION && nvm alias default $NODE_VERSION && nvm use default && npm install -g npm
+
+RUN ln -sf /root/.nvm/versions/node/v$NODE_VERSION/bin/node /usr/bin/nodejs
+RUN ln -sf /root/.nvm/versions/node/v$NODE_VERSION/bin/node /usr/bin/node
+RUN ln -sf /root/.nvm/versions/node/v$NODE_VERSION/bin/npm /usr/bin/npm
 
 #
 # Markdown Lint
