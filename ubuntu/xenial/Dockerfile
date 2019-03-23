@@ -105,12 +105,12 @@ RUN curl -s -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install
 # Markdown Lint
 # -- https://github.com/igorshubovych/markdownlint-cli
 #
-npm install -g markdownlint-cli
+RUN npm install -g markdownlint-cli
 
 #
 # https://snyk.io/
 #
-npm install -g snyk
+RUN npm install -g snyk
 
 #
 # jq is just so generally useful for parsing json docs
