@@ -72,7 +72,6 @@ setup(
         'bin/changelog_dot_md_release_comments.py',
         'bin/cut_changelog_dot_md.py',
         'bin/python-version.sh',
-        'bin/in_container/python-version.sh',
         'bin/dev_env_nosetests.py',
         'bin/prep-for-release-python.sh',
         'bin/prep-for-release.sh',
@@ -85,9 +84,7 @@ setup(
         'bin/build_python_package.sh',
         'bin/build_readme_dot_rst.sh',
         'bin/repo.sh',
-        'bin/in_container/repo.sh',
         'bin/repo-root-dir.sh',
-        'bin/in_container/repo-root-dir.sh',
         'bin/run_snyk.sh',
     ],
     install_requires=[
