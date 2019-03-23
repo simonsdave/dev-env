@@ -86,6 +86,7 @@ setup(
         'bin/repo.sh',
         'bin/repo-root-dir.sh',
         'bin/run_snyk.sh',
+        'bin/rm-dangling-docker-images.sh',
     ],
     install_requires=[
     ],
