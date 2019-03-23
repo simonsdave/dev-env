@@ -88,6 +88,7 @@ setup(
         'bin/in_container/repo.sh',
         'bin/repo-root-dir.sh',
         'bin/in_container/repo-root-dir.sh',
+        'bin/run_snyk.sh',
     ],
     install_requires=[
     ],
