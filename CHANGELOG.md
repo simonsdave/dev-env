@@ -11,6 +11,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - added ```current-python-version.sh``` which is used to extract a python project's version number
 - added ```changelog_dot_md_release_comments.py``` which is used to extract the notes for a single release from ```CHANGELOG.md```
 - added snyk, nvm, node, markdownlint-cli, jq, git, docker-ce and shellcheck to Ubuntu Xenial docker image
+- added ```run_snyc.sh``` to simplify running [snyc](https://snyk.io/) CLI against a repo
 
 ### Changed
 

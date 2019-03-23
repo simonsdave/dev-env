@@ -3,29 +3,11 @@
 # see contributing.md for where this script fits into
 # the release process
 
-#
-# notes for automating release creation
-#
-# -- personal access tokens ... only need repo access
-# -- https://developer.github.com/v3/auth/#basic-authentication
-# -- curl -H 'Authorization: token 5b18cc966931b62c51b99776f5bcac1491bb17b0' https://api.github.com/repos/simonsdave/dev-env/releases
-# -- validate token curl -o /dev/null -sH 'Authorization: token 5b18cc966931b62c51b99776f5bcac1491bb17b0' https://api.github.com/repos/simonsdave/dev-env
-#
-# creating a release
-# -- https://developer.github.com/v3/repos/releases/#create-a-release
-#
-# "name": "dev_env-0.5.14-py2-none-any.whl",
-# "content_type": "application/octet-stream",
-# "browser_download_url": "https://github.com/simonsdave/dev-env/releases/download/v0.5.14/dev_env-0.5.14-py2-none-any.whl"
-# 
-# "name": "dev_env-0.5.14.tar.gz",
-# "content_type": "application/x-gzip",
-# "browser_download_url": "https://github.com/simonsdave/dev-env/releases/download/v0.5.14/dev_env-0.5.14.tar.gz"
-#
-
 set -e
 
-REPO_ROOT_DIR=$(git rev-parse --show-toplevel)
+SCRIPT_DIR_NAME="$( cd "$( dirname "$0" )" && pwd )"
+
+REPO_ROOT_DIR=$("${SCRIPT_DIR_NAME}/repo-root-dir.sh")
 
 echo_if_verbose() {
     if [ "1" -eq "${VERBOSE:-0}" ]; then
@@ -197,6 +179,40 @@ git push origin master
 git checkout "$RELEASE_BRANCH"
 git push origin "$RELEASE_BRANCH"
 
+#----------------------------------------------------------------------
+
+#
+# with the new release branch created we can now create the github release
+#
+
+#
+# notes for automating release creation
+#
+# -- personal access tokens ... only need repo access
+# -- https://developer.github.com/v3/auth/#basic-authentication
+# -- curl -H 'Authorization: token 5b18cc966931b62c51b99776f5bcac1491bb17b0' https://api.github.com/repos/simonsdave/dev-env/releases
+# -- validate token curl -o /dev/null -sH 'Authorization: token 5b18cc966931b62c51b99776f5bcac1491bb17b0' https://api.github.com/repos/simonsdave/dev-env
+#
+# -- https://gist.github.com/foca/38d82e93e32610f5241709f8d5720156
+#
+# creating a release
+# -- https://developer.github.com/v3/repos/releases/#create-a-release
+#
+# "name": "dev_env-0.5.14-py2-none-any.whl",
+# "content_type": "application/octet-stream",
+# "browser_download_url": "https://github.com/simonsdave/dev-env/releases/download/v0.5.14/dev_env-0.5.14-py2-none-any.whl"
+# 
+# "name": "dev_env-0.5.14.tar.gz",
+# "content_type": "application/x-gzip",
+# "browser_download_url": "https://github.com/simonsdave/dev-env/releases/download/v0.5.14/dev_env-0.5.14.tar.gz"
+#
+
+#----------------------------------------------------------------------
+
+#
+# get back to the master branch so we're ready for dev now the release
+# has been cut
+#
 git checkout master
 
 #
