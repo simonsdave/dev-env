@@ -85,7 +85,7 @@ setup(
         'bin/build_readme_dot_rst.sh',
         'bin/repo.sh',
         'bin/repo-root-dir.sh',
-        'bin/run_snyk.sh',
+        'bin/run-snyk.sh',
         'bin/rm-dangling-docker-images.sh',
     ],
     install_requires=[
