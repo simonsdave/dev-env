@@ -4,20 +4,8 @@ set -e
 
 SCRIPT_DIR_NAME="$( cd "$( dirname "$0" )" && pwd )"
 
-while true
-do
-    case "$(echo "${1:-}" | tr "[:upper:]" "[:lower:]")" in
-        -v)
-            shift
-            ;;
-        *)
-            break
-            ;;
-    esac
-done
-
 if [ $# != 1 ]; then
-    echo "usage: $(basename "$0") [-v] <synk-token>" >&2
+    echo "usage: $(basename "$0") <synk-token>" >&2
     exit 1
 fi
 
