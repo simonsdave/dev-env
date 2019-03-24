@@ -56,4 +56,4 @@ the root directory of your git repo is accomplished by calling ```repo-root-dir.
 
 ## [run_repo_security_scanner.sh](run_repo_security_scanner.sh)
 
-## [run_snyk.sh](run_snyk.sh) - runs [snyk](https://snyk.io/) vulnerability assessor on the repo
+## [run-snyk.sh](run-snyk.sh) - runs [snyk](https://snyk.io/) vulnerability assessor on the repo

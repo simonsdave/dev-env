@@ -15,6 +15,6 @@ docker run \
     --rm \
     --volume "$("$SCRIPT_DIR_NAME/repo-root-dir.sh"):/app" \
     "$DEV_ENV_DOCKER_IMAGE" \
-    run_snyk.sh "$SNYK_TOKEN"
+    run-snyk.sh "$SNYK_TOKEN"
 
 exit 0
