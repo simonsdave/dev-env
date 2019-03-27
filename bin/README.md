@@ -14,25 +14,25 @@ the root directory of your git repo is accomplished by calling ```repo-root-dir.
 
 # Testing
 
-## [run_unit_tests.sh](run_unit_tests.sh)
+## [run-unit-tests.sh](run-unit-tests.sh)
 
-## [dev_env_nosetests.py](dev_env_nosetests.py)
+## [dev-env-nosetests.py](dev-env-nosetests.py)
 
 # Working with ```CHANGELOG.md```
 
-## [add_new_changelog_dot_md_release.py](add_new_changelog_dot_md_release.py)
+## [add-new-changelog-dot-md-release.py](add-new-changelog-dot-md-release.py)
 
-## [changelog_dot_md_release_comments.py](changelog_dot_md_release_comments.py)
+## [changelog-dot-md-release-comments.py](changelog-dot-md-release-comments.py)
 
-## [cut_changelog_dot_md.py](cut_changelog_dot_md.py)
+## [cut-changelog-dot-md.py](cut-changelog-dot-md.py)
 
-## [build_readme_dot_rst.sh](build_readme_dot_rst.sh)
+## [build-readme-dot-rst.sh](build-readme-dot-rst.sh)
 
 # Python Packages
 
-## [build_python_package.sh](build_python_package.sh)
+## [build-python-package.sh](build-python-package.sh)
 
-## [run_pip_check.sh](run_pip_check.sh)
+## [run-pip-check.sh](run-pip-check.sh)
 
 # Cutting a Release
 
@@ -48,12 +48,12 @@ the root directory of your git repo is accomplished by calling ```repo-root-dir.
 
 # [Static Analysis](https://en.wikipedia.org/wiki/Static_program_analysis)
 
-## [run_flake8.sh](run_flake8.sh)
+## [run-flake8.sh](run-flake8.sh)
 
-## [run_shellcheck.sh](run_shellcheck.sh)
+## [run-shellcheck.sh](run-shellcheck.sh)
 
 # Security Assessment
 
-## [run_repo_security_scanner.sh](run_repo_security_scanner.sh)
+## [run-repo-security-scanner.sh](run-repo-security-scanner.sh)
 
 ## [run-snyk.sh](run-snyk.sh) - runs [snyk](https://snyk.io/) vulnerability assessor on the repo
