@@ -9,9 +9,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 - added ```current-python-version.sh``` which is used to extract a python project's version number
-- added ```changelog_dot_md_release_comments.py``` which is used to extract the notes for a single release from ```CHANGELOG.md```
+- added ```changelog-dot-md-release-comments.py``` which is used to extract the notes for a single release from ```CHANGELOG.md```
 - added snyk, nvm, node, markdownlint-cli, jq, git, docker-ce and shellcheck to Ubuntu Xenial docker image
-- added ```run_snyc.sh``` to simplify running [snyc](https://snyk.io/) CLI against a repo
+- added ```run-snyc.sh``` to simplify running [snyc](https://snyk.io/) CLI against a repo
 
 ### Changed
 
@@ -19,7 +19,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - twine 1.12.1 -> 1.13.0
 - fixed bug in ```run_shellcheck.sh``` where docker containers weren't being removed are they had exited
 - using ```"$(echo "${1:-}" | tr "[:upper:]" "[:lower:]")"``` instead of ```"${1,,}"``` and ```[[:space:]]``` instead of ```\s``` with sed so scripts work on macOS and Ubuntu
-- ```prep-for-release.sh``` now uses ```cut_changelog_dot_md.py``` and ```add_new_changelog_dot_md_release.py``` to improve portability across macOS and Ubuntu as well as simplifying ```prep-for-release.sh```
+- ```prep-for-release.sh``` now uses ```cut-changelog-dot-md.py``` and ```add-new-changelog-dot-md-release.py``` to improve portability across macOS and Ubuntu as well as simplifying ```prep-for-release.sh```
 
 ### Removed
 
