@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-MAINTAINER Dave Simons
+LABEL maintainer="Dave Simons" 
 
 ENV DEBIAN_FRONTEND noninteractive
 
