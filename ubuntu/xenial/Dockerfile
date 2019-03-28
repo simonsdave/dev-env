@@ -94,36 +94,40 @@ RUN cd /tmp && \
     rm -rf shellcheck-latest shellcheck.tar.xz
 
 #
-# nvm
+# jq is just so generally useful for parsing json docs
+#
+RUN curl -s -L -o "/usr/local/bin/jq" "https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64" && \
+    chmod a+x "/usr/local/bin/jq"
+
+#
+# nvm with node and npm
 # -- see https://stackoverflow.com/questions/25899912/install-nvm-in-docker
+# -- nvm = Node Version Manager = tool that allows managemnt of multiple versions of node.js same machine
+# -- npm = is a package manager for Node.js
 #
 RUN mkdir /root/.nvm
 ENV NVM_DIR /root/.nvm
 ENV NODE_VERSION 8.9.4
 
-RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.9/install.sh | bash
-RUN chmod +x $HOME/.nvm/nvm.sh
-RUN . $HOME/.nvm/nvm.sh && nvm install $NODE_VERSION && nvm alias default $NODE_VERSION && nvm use default && npm install -g npm
+RUN curl -s https://raw.githubusercontent.com/creationix/nvm/v0.33.9/install.sh | bash \
+    && . $NVM_DIR/nvm.sh \
+    && nvm install $NODE_VERSION \
+    && nvm alias default $NODE_VERSION \
+    && nvm use default
 
-RUN ln -sf /root/.nvm/versions/node/v$NODE_VERSION/bin/node /usr/bin/nodejs
-RUN ln -sf /root/.nvm/versions/node/v$NODE_VERSION/bin/node /usr/bin/node
-RUN ln -sf /root/.nvm/versions/node/v$NODE_VERSION/bin/npm /usr/bin/npm
+ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
+ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 
 #
-# Markdown Lint
+# markdown Lint
 # -- https://github.com/igorshubovych/markdownlint-cli
 #
 RUN npm install -g markdownlint-cli
 
 #
-# https://snyk.io/
+# snyk
+# -- https://snyk.io/
 #
 RUN npm install -g snyk
-
-#
-# jq is just so generally useful for parsing json docs
-#
-RUN curl -s -L --output "/usr/local/bin/jq" "https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64" && \
-    chmod a+x "/usr/local/bin/jq"
 
 ENV DEBIAN_FRONTEND newt
