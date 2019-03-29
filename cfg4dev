@@ -1,4 +1,9 @@
 if [ -f "$PWD/requirements.txt" ]; then
+    # per guidelines in https://github.com/simonsdave/dev-env
+    export DEV_ENV_SOURCE_CODE=$PWD
+    export DEV_ENV_DOCKER_IMAGE=simonsdave/xenial-dev-env:build
+    export DEV_ENV_PACKAGE=dev_env
+
     if [ -d "$PWD/env" ]; then
         source "$PWD/env/bin/activate"
     else
@@ -10,13 +15,8 @@ if [ -f "$PWD/requirements.txt" ]; then
         pip install --requirement "$PWD/requirements.txt"
     fi
 
-    export PATH=$PATH:"$PWD/bin"
+    export PATH="$PWD/bin":$PATH
     export PYTHONPATH="$PWD"
-
-    # per guidelines in https://github.com/simonsdave/dev-env
-    export DEV_ENV_SOURCE_CODE=$PWD
-    export DEV_ENV_DOCKER_IMAGE=simonsdave/xenial-dev-env:latest
-    export DEV_ENV_PACKAGE=dev_env
 else
-    echo "Must source this script from repo's root directory"
+    echo "Must source this script from project's root directory" >&2
 fi
