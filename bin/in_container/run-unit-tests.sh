@@ -18,6 +18,6 @@ do
     esac
 done
 
-nosetests --with-coverage --cover-branches "--cover-package=$("$SCRIPT_DIR_NAME/repo.sh")" "$@"
+nosetests --with-coverage --cover-branches "--cover-package=$("$SCRIPT_DIR_NAME/repo.sh" -u)" "$@"
 
 exit 0
