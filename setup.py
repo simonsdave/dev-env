@@ -87,6 +87,7 @@ setup(
         'bin/repo-root-dir.sh',
         'bin/run-snyk.sh',
         'bin/rm-dangling-docker-images.sh',
+        'bin/run-markdownlint.sh',
     ],
     install_requires=[
     ],
