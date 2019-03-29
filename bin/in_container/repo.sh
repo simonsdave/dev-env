@@ -24,7 +24,7 @@ do
 done
 
 if [ $# != 0 ]; then
-    echo "usage: $(basename "$0") [-d <dir-in-repo>]" >&2
+    echo "usage: $(basename "$0") [-d] <dir-in-repo>" >&2
     exit 1
 fi
 
