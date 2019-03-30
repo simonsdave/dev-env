@@ -4,26 +4,8 @@
 
 set -e
 
-usage() {
-    echo "usage: $(basename "$0") [--help]" >&2
-}
-
-while true
-do
-    case "$(echo "${1:-}" | tr "[:upper:]" "[:lower:]")" in
-        --help)
-            shift
-            usage
-            exit 1
-            ;;
-        *)
-            break
-            ;;
-    esac
-done
-
 if [ $# != 0 ]; then
-    usage
+    echo "usage: $(basename "$0")" >&2
     exit 1
 fi
 
