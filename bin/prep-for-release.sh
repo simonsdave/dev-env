@@ -97,7 +97,7 @@ if ! git diff-index --quiet HEAD --; then
     exit 2
 fi
 
-cut_changelog_dot_md.py "$VERSION" "$RELEASE_DATE" "$CHANGELOG_DOT_MD"
+"$SCRIPT_DIR_NAME/cut-changelog-dot-md.py" "$VERSION" "$RELEASE_DATE" "$CHANGELOG_DOT_MD"
 # :TODO: check if the above sed command actually did anything
 
 git diff
@@ -112,7 +112,7 @@ MASTER_RELEASE_COMMIT_ID=$(git rev-parse HEAD)
 # changes to master to prep for next release
 #
 
-add_new_changelog_dot_md_release.py "$CHANGELOG_DOT_MD"
+"$SCRIPT_DIR_NAME/add-new-changelog-dot-md-release.py" "$CHANGELOG_DOT_MD"
 # :TODO: check if the above sed command actually did anything
 
 # the while loop pattern below looks awkward but came as a result
