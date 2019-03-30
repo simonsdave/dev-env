@@ -2,28 +2,12 @@
 
 set -e
 
-usage() {
-    echo "usage: $(basename "$0") [--help]" >&2
-}
-
-while true
-do
-    case "$(echo "${1:-}" | tr "[:upper:]" "[:lower:]")" in
-        --help)
-            shift
-            usage
-            exit 1
-            ;;
-        *)
-            break
-            ;;
-    esac
-done
-
 if [ $# != 0 ]; then
-    usage
+    echo "usage: $(basename "$0")" >&2
     exit 1
 fi
+
+REPO_ROOT_DIR=$(repo-root-dir.sh)
 
 #
 # :TRICKY: The implementation below feels more complicated than it
@@ -39,13 +23,13 @@ DOCKER_CONTAINER_NAME=$(python -c "import uuid; print uuid.uuid4().hex")
 
 docker run \
     --name "$DOCKER_CONTAINER_NAME" \
-    --volume "$DEV_ENV_SOURCE_CODE:/app" \
+    --volume "$REPO_ROOT_DIR:/app" \
     "$DEV_ENV_DOCKER_IMAGE" \
     /bin/bash -c 'pandoc /app/README.md -o ~/README.rst'
 
 HOME_DIR_IN_CONTAINER=$(docker run --rm "$DEV_ENV_DOCKER_IMAGE" /bin/bash -c 'echo ~')
-rm -f "$DEV_ENV_SOURCE_CODE/README.rst"
-docker container cp "$DOCKER_CONTAINER_NAME:$HOME_DIR_IN_CONTAINER/README.rst" "$DEV_ENV_SOURCE_CODE"
+rm -f "$REPO_ROOT_DIR/README.rst"
+docker container cp "$DOCKER_CONTAINER_NAME:$HOME_DIR_IN_CONTAINER/README.rst" "$REPO_ROOT_DIR"
 
 docker container rm "$DOCKER_CONTAINER_NAME"
 

@@ -2,19 +2,13 @@
 
 set -e
 
-while true
-do
-    case "$(echo "${1:-}" | tr "[:upper:]" "[:lower:]")" in
-        --help)
-            shift
-            echo "usage: $(basename "$0") [--help] [<dir1> <dir2> ... <dir N>]" >&2
-            exit 1
-            ;;
-        *)
-            break
-            ;;
-    esac
-done
+if [ $# != 0 ]; then
+    echo "usage: $(basename "$0")" >&2
+    exit 1
+fi
+
+REPO_ROOT_DIR=$(repo-root-dir.sh)
+DOT_COVERAGE=$REPO_ROOT_DIR/.coverage
 
 #
 # :TRICKY: nosetests is run inside the docker container.
@@ -24,18 +18,18 @@ done
 # problem we create an empty .coverage here (which runs
 # on the host) so we can control .coverage's uid and gid.
 #
-echo "!coverage.py: This is a private format, don't read it directly!{}" > "$DEV_ENV_SOURCE_CODE/.coverage"
-chmod a+wr "$DEV_ENV_SOURCE_CODE/.coverage"
+echo "!coverage.py: This is a private format, don't read it directly!{}" > "$DOT_COVERAGE"
+chmod a+wr "$DOT_COVERAGE"
 
 docker run \
     --rm \
     --security-opt "${DEV_ENV_SECURITY_OPT:-seccomp:unconfined}" \
-    --volume "$DEV_ENV_SOURCE_CODE:/app" \
+    --volume "$REPO_ROOT_DIR:/app" \
     "$DEV_ENV_DOCKER_IMAGE" \
-    nosetests --with-coverage --cover-branches "--cover-package=$DEV_ENV_PACKAGE" "$@"
+    /bin/bash -c "cd /app && nosetests --with-coverage --cover-branches --cover-package=$(repo.sh -u)"
 
-if [ -e "$DEV_ENV_SOURCE_CODE/.coverage" ]; then
-    sed -i '' -e "s|/app/|$DEV_ENV_SOURCE_CODE/|g" "$DEV_ENV_SOURCE_CODE/.coverage"
+if [ -e "$DOT_COVERAGE" ]; then
+    sed -i '' -e "s|/app/|$REPO_ROOT_DIR/|g" "$DOT_COVERAGE"
 fi
 
 exit 0

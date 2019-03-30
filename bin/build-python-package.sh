@@ -27,6 +27,8 @@ if [ $# != 0 ]; then
     exit 1
 fi
 
+REPO_ROOT_DIR=$(repo-root-dir.sh)
+
 #
 # :TRICKY: The implementation below feels more complicated than it
 # should be but was arrived at to deal with permissioning instability/inconsistency
@@ -41,13 +43,13 @@ DOCKER_CONTAINER_NAME=$(python -c "import uuid; print uuid.uuid4().hex")
 
 docker run \
     --name "$DOCKER_CONTAINER_NAME" \
-    --volume "$DEV_ENV_SOURCE_CODE:/app" \
+    --volume "$REPO_ROOT_DIR:/app" \
     "$DEV_ENV_DOCKER_IMAGE" \
     /bin/bash -c 'cp -r /app ~; cd ~/app; python setup.py bdist_wheel sdist --formats=gztar'
 
 DIST_DIR_IN_CONTAINER=$(docker run --rm "$DEV_ENV_DOCKER_IMAGE" /bin/bash -c 'echo ~')/app/dist
-rm -rf "$DEV_ENV_SOURCE_CODE/dist"
-docker container cp "$DOCKER_CONTAINER_NAME:$DIST_DIR_IN_CONTAINER" "$DEV_ENV_SOURCE_CODE"
+rm -rf "$REPO_ROOT_DIR/dist"
+docker container cp "$DOCKER_CONTAINER_NAME:$DIST_DIR_IN_CONTAINER" "$REPO_ROOT_DIR"
 
 docker container rm "$DOCKER_CONTAINER_NAME"
 

@@ -12,6 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - added ```changelog-dot-md-release-comments.py``` which is used to extract the notes for a single release from ```CHANGELOG.md```
 - added snyk, nvm, node, markdownlint-cli, jq, git, docker-ce and shellcheck to Ubuntu Xenial docker image
 - added ```run-snyc.sh``` to simplify running [snyc](https://snyk.io/) CLI against a repo
+- added ```-u``` command line option to ```repo.sh``` to convert dashes in repo's name to underscores
 
 ### Changed
 
@@ -23,7 +24,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Removed
 
-- Nothing
+- no longer need to set ```DEV_ENV_PACKAGE``` and ```DEV_ENV_SOURCE_CODE```
 
 ## [0.5.14] - [2019-02-03]
 

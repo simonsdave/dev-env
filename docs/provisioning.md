@@ -213,9 +213,7 @@ provides some good background/motivation for the ```DEV_ENV_SECURITY_OPT``` envi
 ```bash
 if [ -f "$PWD/requirements.txt" ]; then
     # per guidelines in https://github.com/simonsdave/dev-env
-    export DEV_ENV_SOURCE_CODE=$PWD
     export DEV_ENV_DOCKER_IMAGE="simonsdave/tor-async-util-xenial-dev-env:build"
-    export DEV_ENV_PACKAGE=tor_async_util
     # if special security settings are needed on "docker run" then set DEV_ENV_SECURITY_OPT
     # DEV_ENV_SECURITY_OPT defaults to seccomp:unconfined which is equivalent to saying:
     #   export DEV_ENV_SECURITY_OPT=seccomp:unconfined
@@ -227,20 +225,17 @@ if [ -f "$PWD/requirements.txt" ]; then
         virtualenv env
         source "$PWD/env/bin/activate"
 
-        # this is really here so that travis will work
-        if ! which run_shellcheck.sh; then
-            DEV_ENV_VERSION=$(cat "$PWD/dev_env/dev-env-version.txt")
-            if [ "${DEV_ENV_VERSION:-}" == "latest" ]; then
-                DEV_ENV_VERSION=master
-            fi
-            pip install "git+https://github.com/simonsdave/dev-env.git@$DEV_ENV_VERSION"
-        fi
+        pip install --upgrade pip
+
+        DEV_ENV_VERSION=$(cat "$PWD/dev_env/dev-env-version.txt")
+        if [ "${DEV_ENV_VERSION:-}" == "latest" ]; then DEV_ENV_VERSION=master; fi
+        pip install "git+https://github.com/simonsdave/dev-env.git@$DEV_ENV_VERSION"
+        unset DEV_ENV_VERSION
 
         "$PWD/dev_env/build-docker-image.sh" "$DEV_ENV_DOCKER_IMAGE"
     fi
 
     export PATH=$PATH:"$PWD/bin"
-    export PYTHONPATH="$PWD"
 else
     echo "Must source this script from repo's root directory"
 fi
