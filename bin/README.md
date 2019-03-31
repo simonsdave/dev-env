@@ -34,6 +34,40 @@ the root directory of your git repo is accomplished by calling ```repo-root-dir.
 
 ## [run-pip-check.sh](run-pip-check.sh)
 
+## [upload-dist-to-pypi.sh](upload-dist-to-pypi.sh)
+
+* publish Python packages on pypi using [twine](https://pypi.org/project/twine/)
+* usage
+
+```bash
+~> ./upload-dist-to-pypi.sh
+usage: upload-dist-to-pypi.sh <repo>
+~>
+```
+
+* expects Python packages to have already been built (probably by [build-python-package.sh](#build-python-packagesh)) and available in the ```dist``` subdirectory of the directory identified by [repo-root-dir.sh](#repo-root-dirsh)
+* expects ```"$HOME:/pypirc``` to exist and be of the format illustrated below
+
+```ini
+[distutils]
+index-servers =
+  pypi
+  testpypi
+
+[pypi]
+repository=https://upload.pypi.org/legacy/
+username=simonsdave
+password=supersecret
+
+[testpypi]
+repository=https://test.pypi.org/legacy/
+username=simonsdave
+password=secret
+```
+
+* requires a single command line parameter which is the repo to which the packages
+should be uploaded - from the above ```.pypirc``` this would be either ```pypi``` or ```testpypi```
+
 # Cutting a Release
 
 ## [prep-for-release.sh](prep-for-release.sh)

@@ -88,6 +88,7 @@ setup(
         'bin/run-snyk.sh',
         'bin/rm-dangling-docker-images.sh',
         'bin/run-markdownlint.sh',
+        'bin/upload-dist-to-pypi.sh',
     ],
     install_requires=[
     ],

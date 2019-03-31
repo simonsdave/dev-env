@@ -13,6 +13,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - added snyk, nvm, node, markdownlint-cli, jq, git, docker-ce and shellcheck to Ubuntu Xenial docker image
 - added ```run-snyc.sh``` to simplify running [snyc](https://snyk.io/) CLI against a repo
 - added ```-u``` command line option to ```repo.sh``` to convert dashes in repo's name to underscores
+- added ```upload-dist-to-pypi.sh``` (both in container and on host) to publish Python packages on pypi using [twine](https://pypi.org/project/twine/)
 
 ### Changed
 
