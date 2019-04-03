@@ -5,35 +5,35 @@ _defaults: &defaults
   docker:
   - image: circleci/python:2.7.16
   environment:
-    DOCKER_TEMP_IMAGE: simonsdave/dev-env:bindle
+    DOCKER_TEMP_IMAGE=simonsdave/dev-env:bindle
 
 jobs:
-  build_test_and_save_artifacts:
+  build_test_and_deploy:
     <<: *defaults
 
     steps:
       - checkout
+      - setup_remote_docker:
       - run:
-          name: Install Virtualenv
+          name: Build docker image
           command: |
-            virtualenv env
-            source "env/bin/activate"
-            pip install --upgrade pip
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "requirements.txt" }}
-            - v1-dependencies-
+            ubuntu/xenial/build-docker-images.sh "${DOCKER_TEMP_IMAGE}"
       - run:
-          name: Install Python prerequisites
-          command: pip install --requirement requirements.txt
-      - save_cache:
-          paths:
-            - ./env
-          key: v1-dependencies-{{ checksum "requirements.txt" }}
+          name: Test docker image
+          command: echo 'should do some integration testing on the docker image just created'
+      - deploy:
+          name: Push docker image to Dockerhub
+          command: |
+            if [[ "${CIRCLE_BRANCH}" == "master" ]]; then
+              ubuntu/xenial/tag-and-push-docker-image.sh "${DOCKER_TEMP_IMAGE}" "latest" "${DOCKER_PASSWORD}"
+            fi
+            if [[ "${CIRCLE_BRANCH}" =~ ^release\-[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+              ubuntu/xenial/tag-and-push-docker-image.sh "${DOCKER_TEMP_IMAGE}" "v${CIRCLE_BRANCH##release-}" "${DOCKER_PASSWORD}"
+            fi
 
 workflows:
   version: 2
-  build_test_and_save_artifacts:
+  build_test_and_deploy:
     jobs:
-      - build_test_and_save_artifacts:
+      - build_test_and_deploy:
           context: dev-env
