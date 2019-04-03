@@ -4,12 +4,14 @@
 
 set -e
 
+SCRIPT_DIR_NAME="$( cd "$( dirname "$0" )" && pwd )"
+
 if [ $# != 0 ]; then
     echo "usage: $(basename "$0")" >&2
     exit 1
 fi
 
-REPO_ROOT_DIR=$(repo-root-dir.sh)
+REPO_ROOT_DIR=$("$SCRIPT_DIR_NAME/repo-root-dir.sh")
 
 #
 # :TRICKY: The implementation below feels more complicated than it
