@@ -17,7 +17,7 @@ jobs:
       - run:
           name: Build docker image
           command: |
-            ubuntu/xenial/build-docker-images.sh "${DOCKER_TEMP_IMAGE}"
+            ubuntu/xenial/build-docker-image.sh "${DOCKER_TEMP_IMAGE}"
       - run:
           name: Test docker image
           command: echo 'should do some integration testing on the docker image just created'
