@@ -5,7 +5,9 @@ _defaults: &defaults
   docker:
   - image: circleci/python:2.7.16
   environment:
-    DOCKER_TEMP_IMAGE=simonsdave/dev-env:bindle
+    # use DEV_ENV_DOCKER_IMAGE because all the bin/*.sh scripts
+    # will reference DEV_ENV_DOCKER_IMAGE
+    DEV_ENV_DOCKER_IMAGE=simonsdave/dev-env:bindle
 
 jobs:
   build_test_and_deploy:
@@ -17,18 +19,18 @@ jobs:
       - run:
           name: Build docker image
           command: |
-            ubuntu/xenial/build-docker-image.sh "${DOCKER_TEMP_IMAGE}"
+            ubuntu/xenial/build-docker-image.sh "${DEV_ENV_DOCKER_IMAGE}"
       - run:
-          name: Test docker image
-          command: echo 'should do some integration testing on the docker image just created'
+          name: Scan repo for passwords, private keys, etc.
+          command: bin/run-repo-security-scanner.sh
       - deploy:
           name: Push docker image to Dockerhub
           command: |
             if [[ "${CIRCLE_BRANCH}" == "master" ]]; then
-              ubuntu/xenial/tag-and-push-docker-image.sh "${DOCKER_TEMP_IMAGE}" "latest" "${DOCKER_PASSWORD}"
+              ubuntu/xenial/tag-and-push-docker-image.sh "${DEV_ENV_DOCKER_IMAGE}" "latest" "${DOCKER_PASSWORD}"
             fi
             if [[ "${CIRCLE_BRANCH}" =~ ^release\-[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-              ubuntu/xenial/tag-and-push-docker-image.sh "${DOCKER_TEMP_IMAGE}" "v${CIRCLE_BRANCH##release-}" "${DOCKER_PASSWORD}"
+              ubuntu/xenial/tag-and-push-docker-image.sh "${DEV_ENV_DOCKER_IMAGE}" "v${CIRCLE_BRANCH##release-}" "${DOCKER_PASSWORD}"
             fi
 
 workflows:
