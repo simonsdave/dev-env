@@ -20,20 +20,20 @@ jobs:
           name: Build docker image
           command: |
             ubuntu/xenial/build-docker-image.sh "${DEV_ENV_DOCKER_IMAGE}"
-      - run: run-flake8.sh
-      - run: run-pip-check.sh
+      - run: bin/run-flake8.sh
+      - run: bin/run-pip-check.sh
       - run:
           name: Scan repo for passwords, private keys, etc.
           command: bin/run-repo-security-scanner.sh
       - run:
           name: Snyk vulnerability assessment
-          command: run-snyk.sh "$SNYK_TOKEN"
+          command: bin/run-snyk.sh "$SNYK_TOKEN"
       - run:
           name: Run unit tests
-          command: run-unit-tests.sh
+          command: bin/run-unit-tests.sh
       - run:
           name: Build python packages
-          command: build-python-package.sh
+          command: bin/build-python-package.sh
       - deploy:
           name: Push docker image to Dockerhub
           command: |
