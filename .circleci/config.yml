@@ -17,14 +17,15 @@ jobs:
           name: Install Virtualenv
           command: |
             virtualenv env
-            source "env/bin/activate"
-            pip install --upgrade pip
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "requirements.txt" }}
       - run:
           name: Install Python prerequisites
-          command: pip install --requirement requirements.txt
+          command: |
+            source "env/bin/activate"
+            pip install --upgrade pip
+            pip install --requirement requirements.txt
       - save_cache:
           paths:
             - ./env
