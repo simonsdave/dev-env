@@ -22,7 +22,6 @@ jobs:
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "requirements.txt" }}
-            - v1-dependencies-
       - run:
           name: Install Python prerequisites
           command: pip install --requirement requirements.txt
