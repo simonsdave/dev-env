@@ -8,13 +8,10 @@ if [ -f "$PWD/requirements.txt" ]; then
         virtualenv env
         source "$PWD/env/bin/activate"
 
-        pip install --upgrade pip
-
-        pip install --requirement "$PWD/requirements.txt"
+        ./ubuntu/xenial/build-docker-image.sh "$DEV_ENV_DOCKER_IMAGE"
     fi
 
     export PATH="$PWD/bin":$PATH
-    export PYTHONPATH="$PWD"
 else
     echo "Must source this script from project's root directory" >&2
 fi
