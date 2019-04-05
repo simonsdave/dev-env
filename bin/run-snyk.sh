@@ -15,6 +15,6 @@ docker run \
     --rm \
     --volume "$("$SCRIPT_DIR_NAME/repo-root-dir.sh"):/app" \
     "$DEV_ENV_DOCKER_IMAGE" \
-    /bin/bash -c "cd /app && run-snyk.sh '$SNYK_TOKEN'"
+    /bin/bash -c "snyk auth '$SNYK_TOKEN' && snyk test /app"
 
 exit 0
