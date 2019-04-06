@@ -10,7 +10,7 @@ of creating releases - take a look at [this](prep-for-release-dot-sh.md) descrip
 
 ## What Next
 
-* take a look at [my other projects on github](https://github.com/simonsdave)
+* take a look at [other projects on github](https://github.com/simonsdave)
 for examples of how ```dev-env``` is being used
 * as you start to integrate ```dev-env``` into your projects
 some feedback would be great - create [issues](../../../issues) and/or

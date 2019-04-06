@@ -11,7 +11,7 @@
 [![docker-simonsdave/xenial-dev-env](https://img.shields.io/badge/docker-simonsdave%2Fxenial%20dev%20env-blue.svg)](https://hub.docker.com/r/simonsdave/xenial-dev-env/)
 
 This repo was originally created as a way to centralize
-the code/configuration used to provision development environments.
+and document the processes of provisioning a development environments.
 As time went on it became clear that it would be helpful to
 centralize other common development tools and utilities.
 This repo now contains tools, scripts and utilities which:
@@ -19,6 +19,8 @@ This repo now contains tools, scripts and utilities which:
 * provision development and CI environments
 * automate cutting releases
 * simplify integration testing
+
+
 
 ## References
 
