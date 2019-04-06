@@ -29,10 +29,12 @@ fi
 
 SNYK_TOKEN=${1:-}
 
+set -x
 docker run \
     --rm \
     --volume "$("$SCRIPT_DIR_NAME/repo-root-dir.sh"):/app" \
     "$DEV_ENV_DOCKER_IMAGE" \
     /bin/bash -c "if [ $PIP_INSTALL == 1 ]; then cd /app && pwd && ls -la && pip install -r requirements.txt; fi && snyk auth '$SNYK_TOKEN' && snyk test /app"
+set -x
 
 exit 0
