@@ -1,27 +1,3 @@
-#
-# Steps below build the distribution @ dev_env-*.*.*.tar.gz
-# (FYI ... use of pandoc is as per https://github.com/pypa/pypi-legacy/issues/148#issuecomment-226939424
-# since pypi requires long description in RST but the repo's readme is in
-# markdown)
-#
-#   >git clone https://github.com/simonsdave/dev-env.git
-#   >cd dev-env
-#   >source cfg4dev
-#   >pandoc README.md -o README.rst
-#   >python setup.py bdist_wheel sdist --formats=gztar
-#
-# update pypi with both meta data and source distribution
-#
-#   >twine upload dist/* -r testpypi
-#
-# you will be able to find the package at
-#
-#   https://test.pypi.org/project/dev-env/
-#
-# use the uploaded package
-#
-#   >pip install -i https://test.pypi.org/pypi dev-env
-#
 import re
 from setuptools import setup
 
