@@ -9,6 +9,14 @@ if [ $# != 0 ]; then
     exit 1
 fi
 
-docker run --rm --volume "$("$SCRIPT_DIR_NAME/repo-root-dir.sh"):/app" "$DEV_ENV_DOCKER_IMAGE" flake8 /app
+DUMMY_DOCKER_CONTAINER_NAME=$("${SCRIPT_DIR_NAME}/create-dummy-docker-container.sh")
+
+docker run \
+    --rm \
+    --volumes-from "${DUMMY_DOCKER_CONTAINER_NAME}" \
+    "$DEV_ENV_DOCKER_IMAGE" \
+    flake8 /app
+
+docker rm "${DUMMY_DOCKER_CONTAINER_NAME}" > /dev/null
 
 exit 0
