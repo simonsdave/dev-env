@@ -10,6 +10,7 @@ if [ $# != 0 ]; then
 fi
 
 REPO_ROOT_DIR=$("${SCRIPT_DIR_NAME}/repo-root-dir.sh")
+REPO=$("${SCRIPT_DIR_NAME}/repo.sh" -u)
 DOT_COVERAGE=$REPO_ROOT_DIR/.coverage
 
 #
@@ -30,7 +31,7 @@ docker run \
     --security-opt "${DEV_ENV_SECURITY_OPT:-seccomp:unconfined}" \
     --volumes-from "${DUMMY_DOCKER_CONTAINER_NAME}" \
     "$DEV_ENV_DOCKER_IMAGE" \
-    /bin/bash -c "cd /app && nosetests --with-coverage --cover-branches --cover-package=$(repo.sh -u)"
+    /bin/bash -c "cd /app && nosetests --with-coverage --cover-branches --cover-package=${REPO}"
 
 docker rm "${DUMMY_DOCKER_CONTAINER_NAME}" > /dev/null
 
