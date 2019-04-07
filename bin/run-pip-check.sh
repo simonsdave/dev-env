@@ -9,10 +9,14 @@ if [ $# != 0 ]; then
     exit 1
 fi
 
+DUMMY_DOCKER_CONTAINER_NAME=$("${SCRIPT_DIR_NAME}/create-dummy-docker-container.sh")
+
 docker run \
-        --rm \
-        --volume "$("$SCRIPT_DIR_NAME/repo-root-dir.sh"):/app" \
-        "$DEV_ENV_DOCKER_IMAGE" \
-        /bin/bash -c 'cd /app && pip check'
+    --rm \
+    --volumes-from "${DUMMY_DOCKER_CONTAINER_NAME}" \
+    "$DEV_ENV_DOCKER_IMAGE" \
+    /bin/bash -c 'cd /app && pip check'
+
+docker rm "${DUMMY_DOCKER_CONTAINER_NAME}" > /dev/null
 
 exit 0

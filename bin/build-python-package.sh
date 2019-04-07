@@ -25,16 +25,20 @@ REPO_ROOT_DIR=$("$SCRIPT_DIR_NAME/repo-root-dir.sh")
 #
 DOCKER_CONTAINER_NAME=$(python -c "import uuid; print uuid.uuid4().hex")
 
+DUMMY_DOCKER_CONTAINER_NAME=$("${SCRIPT_DIR_NAME}/create-dummy-docker-container.sh")
+
 docker run \
     --name "$DOCKER_CONTAINER_NAME" \
-    --volume "$REPO_ROOT_DIR:/app" \
+    --volumes-from "${DUMMY_DOCKER_CONTAINER_NAME}" \
     "$DEV_ENV_DOCKER_IMAGE" \
     /bin/bash -c 'cp -r /app ~; cd ~/app; python setup.py bdist_wheel sdist --formats=gztar'
+
+docker rm "${DUMMY_DOCKER_CONTAINER_NAME}" > /dev/null
 
 DIST_DIR_IN_CONTAINER=$(docker run --rm "$DEV_ENV_DOCKER_IMAGE" /bin/bash -c 'echo ~')/app/dist
 rm -rf "$REPO_ROOT_DIR/dist"
 docker container cp "$DOCKER_CONTAINER_NAME:$DIST_DIR_IN_CONTAINER" "$REPO_ROOT_DIR"
 
-docker container rm "$DOCKER_CONTAINER_NAME"
+docker container rm "$DOCKER_CONTAINER_NAME" > /dev/null
 
 exit 0

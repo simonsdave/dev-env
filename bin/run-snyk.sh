@@ -29,10 +29,14 @@ fi
 
 SNYK_TOKEN=${1:-}
 
+DUMMY_DOCKER_CONTAINER_NAME=$("${SCRIPT_DIR_NAME}/create-dummy-docker-container.sh")
+
 docker run \
     --rm \
-    --volume "$("$SCRIPT_DIR_NAME/repo-root-dir.sh"):/app" \
+    --volumes-from "${DUMMY_DOCKER_CONTAINER_NAME}" \
     "$DEV_ENV_DOCKER_IMAGE" \
-    /bin/bash -c "if [ $PIP_INSTALL == 1 ]; then pushd /app && pip install -r requirements.txt && popd; fi && snyk auth '$SNYK_TOKEN' && snyk test /app"
+    /bin/bash -c "if [ $PIP_INSTALL == 1 ]; then pushd /app > /dev/null && pip install -r requirements.txt > /dev/null && popd > /dev/null; fi && snyk auth '$SNYK_TOKEN' && snyk test /app"
+
+docker rm "${DUMMY_DOCKER_CONTAINER_NAME}" > /dev/null
 
 exit 0
