@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# https://circleci.com/docs/2.0/building-docker-images/#mounting-folders
+
 set -e
 
 SCRIPT_DIR_NAME="$( cd "$( dirname "$0" )" && pwd )"
@@ -10,6 +12,9 @@ if [ $# != 0 ]; then
 fi
 
 DUMMY_CONTAINER_NAME=$(python -c "import uuid; print uuid.uuid4().hex")
+
+# explict pull to create opportunity to swallow stdout
+docker pull alpine:3.4 > /dev/null
 
 docker create \
     -v /app \
