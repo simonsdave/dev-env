@@ -22,10 +22,13 @@ docker run \
 
 REPO_ROOT_DIR=$("${SCRIPT_DIR_NAME}/repo-root-dir.sh")
 DOT_COVERAGE=$REPO_ROOT_DIR/.coverage
+set -x
 docker container cp "$DOCKER_CONTAINER_NAME:/app/.coverage" "$DOT_COVERAGE"
 if [ -e "$DOT_COVERAGE" ]; then
+    ls -la "$DOT_COVERAGE"
     sed -i '' -e "s|/app/|$REPO_ROOT_DIR/|g" "$DOT_COVERAGE"
 fi
+set +x
 
 docker container rm "$DOCKER_CONTAINER_NAME" > /dev/null
 
