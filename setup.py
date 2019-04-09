@@ -66,6 +66,7 @@ setup(
         'bin/run-markdownlint.sh',
         'bin/upload-dist-to-pypi.sh',
         'bin/create-dummy-docker-container.sh',
+        'bin/get-dev-env-version-from-circleci-config.sh',
     ],
     install_requires=[
     ],
