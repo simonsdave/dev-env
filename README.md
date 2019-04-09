@@ -11,22 +11,47 @@
 [![docker-simonsdave/xenial-dev-env](https://img.shields.io/badge/docker-simonsdave%2Fxenial%20dev%20env-blue.svg)](https://hub.docker.com/r/simonsdave/xenial-dev-env/)
 
 This repo was originally created as a way to centralize
-and document the processes of provisioning a development environments.
+and document the process of provisioning development environments (dev env).
 As time went on it became clear that it would be helpful to
 centralize other common development tools and utilities.
 This repo now contains tools, scripts and utilities which:
 
-* provision development and CI environments
+* provision dev and CI environments using [Docker](https://www.docker.com/) with confidence that both the development and CI environments are the same
 * automate cutting releases
 * simplify integration testing
 
+The tools, scripts and utilities in this repo assume the user follows a pre-defined set of patterns and practices.
 
+## Key Concepts
 
-## References
+* a project is hosted in either public or private github repo
+* at the project's root is a text file called ```cfg4dev``` which configures the project's dev env
+* after git cloning the repo, a developer configures the dev env by executing ```source cfg4dev```
+* ```dev-env``` publishes dev env docker images to [Docker Hub](https://hub.docker.com/)
+* the docker images are docker pulled to a developer's machine by ```cfg4dev```
+* [CircleCI](https://www.circleci.com) can use a ```dev-env``` docker image as a [docker executor](https://circleci.com/docs/2.0/executor-types/#using-docker)
+* [shell and python scripts](bin) are run on a developer's machine to access the dev env packaged in the docker image
+* the scripts are installed on a developer's machine by ```cfg4dev```
+* at the project's root is a text file called ```CHANGELOG.md``` which is manually curated by developers to record key changes to the project
+
+## Assumptions
+
+* developers use [macOS](https://www.apple.com/ca/macos/)
+* ```dev-env``` targets projects which are shell and python centric
+* projects use a branching strategy something like
+  * all development is done on the ```master``` branch (optionally using [feature branches](https://guides.github.com/introduction/flow/))
+  * use [Semantic Versioning](http://semver.org/)
+  * for each release a new branch is created from master called ```release-<version>```
+* ```CHANGELOG.md``` follows a predefined format / structure
+
+## References/Inspirations
 
 * [21 Nov '18 - How to fully utilise Docker during development](https://medium.com/tsftech/how-to-fully-utilise-docker-during-development-42bb3cdc3017)
+* [semantic-release - fully automated version management and package publishing](https://github.com/semantic-release/semantic-release)
 
 ## What Next
 
+* take a look at the [shell and python scripts](bin) to assess ```dev-env``` capability
 * [here's](docs/using.md) a description of how to start using ```dev-env```
+* take a look at [this](https://github.com/simonsdave/dev-env-testing) github repo which illustrates how to use ```dev-env```
 * if you'd like to help contribute to ```dev-env``` see [this](docs/contributing.md)

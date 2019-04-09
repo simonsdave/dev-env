@@ -245,7 +245,7 @@ page hit the <Draft a new release> button in the upper right corner
 * don't forget to attach to the release the ```dev_env-*.whl``` and ```dev-env-*.tar.gz```
 copied to ```/vagrant``` in one of the above steps
 
-![](release-form.png)
+![](images/release-form.png)
 
 ## What Next
 
