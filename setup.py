@@ -65,6 +65,7 @@ setup(
         'bin/rm-dangling-docker-images.sh',
         'bin/run-markdownlint.sh',
         'bin/upload-dist-to-pypi.sh',
+        'bin/create-dummy-docker-container.sh',
     ],
     install_requires=[
     ],
