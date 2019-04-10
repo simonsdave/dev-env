@@ -37,7 +37,16 @@ The tools, scripts and utilities in this repo assume the user follows a pre-defi
 ## Assumptions
 
 * developers use [macOS](https://www.apple.com/ca/macos/)
-* ```dev-env``` targets projects which are shell and python centric
+* ```dev-env``` targets projects which are shell and Python centric
+* if a project's repo is called ```abc-def-ghi``` and the project builds
+a Python package, the package is called ```abc_def_ghi``` and the source
+code for the package is in a sub-directory of the project's root directory
+called ```abc_def_ghi``` - in addition, the ```abc_def_ghi``` directory
+contains a file called ```__init__.py``` that contains at least a single
+line that looks like ```__version__ = '1.2.0'``` which declares the Python
+package version
+* scripts and Dockerfiles to build a project's development environment
+are in a sub-directory of the project's root directory called ```dev_env```
 * projects use a branching strategy something like
   * all development is done on the ```master``` branch (optionally using [feature branches](https://guides.github.com/introduction/flow/))
   * use [Semantic Versioning](http://semver.org/)
