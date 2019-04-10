@@ -130,4 +130,20 @@ RUN npm install -g markdownlint-cli
 #
 RUN npm install -g snyk
 
+#
+# if you look @ most of the host scripts in dev-env
+# you'll notice that many of them mount /app in the
+# dev-env container to the project's root directory.
+#
+# under the assumption that the projects's executables
+# in in the bin subdirectory we'll add /app/bin to
+# the dev-env docker image's path.
+# 
+# same kind of logic about re /app/bin applies to
+# python projects and PYTHONPATH.
+#
+ENV PATH "/app/bin:${PATH}"
+ENV PYTHONPATH /app
+WORKDIR /app
+
 ENV DEBIAN_FRONTEND newt
