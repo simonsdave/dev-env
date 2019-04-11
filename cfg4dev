@@ -8,7 +8,7 @@ if [ -f "$PWD/requirements.txt" ]; then
         virtualenv env
         source "$PWD/env/bin/activate"
 
-        ./ubuntu/xenial/build-docker-image.sh "$DEV_ENV_DOCKER_IMAGE"
+        ./ubuntu/build-docker-image.sh "$DEV_ENV_DOCKER_IMAGE"
     fi
 
     export PATH="$PWD/bin":$PATH

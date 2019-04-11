@@ -19,7 +19,7 @@ jobs:
       - run:
           name: Build docker image
           command: |
-            ubuntu/xenial/build-docker-image.sh "${DEV_ENV_DOCKER_IMAGE}"
+            ubuntu/build-docker-image.sh "${DEV_ENV_DOCKER_IMAGE}"
       - run: bin/run-flake8.sh
       - run: bin/run-pip-check.sh
       - run:
@@ -38,10 +38,10 @@ jobs:
           name: Push docker image to Dockerhub
           command: |
             if [[ "${CIRCLE_BRANCH}" == "master" ]]; then
-              ubuntu/xenial/tag-and-push-docker-image.sh "${DEV_ENV_DOCKER_IMAGE}" "latest" "${DOCKER_PASSWORD}"
+              ubuntu/tag-and-push-docker-image.sh "${DEV_ENV_DOCKER_IMAGE}" "latest" "${DOCKER_PASSWORD}"
             fi
             if [[ "${CIRCLE_BRANCH}" =~ ^release\-[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-              ubuntu/xenial/tag-and-push-docker-image.sh "${DEV_ENV_DOCKER_IMAGE}" "v${CIRCLE_BRANCH##release-}" "${DOCKER_PASSWORD}"
+              ubuntu/tag-and-push-docker-image.sh "${DEV_ENV_DOCKER_IMAGE}" "v${CIRCLE_BRANCH##release-}" "${DOCKER_PASSWORD}"
             fi
 workflows:
   version: 2
