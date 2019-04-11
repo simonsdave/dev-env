@@ -13,14 +13,15 @@ IMAGE_NAME=${1:-}
 
 CONTEXT_DIR=$(mktemp -d 2> /dev/null || mktemp -d -t DAS)
 
-cp "$SCRIPT_DIR_NAME/Dockerfile" "$CONTEXT_DIR/."
-
 pushd "$(git rev-parse --show-toplevel)/bin/in_container"
-tar zcvf "$CONTEXT_DIR/in_container_sh_scripts.tar.gz" ./*.sh
+tar zcf "${CONTEXT_DIR}/scripts.tar.gz" ./*.sh
 popd
 
-cp "$SCRIPT_DIR_NAME/requirements.txt" "$CONTEXT_DIR/."
+cp "${SCRIPT_DIR_NAME}/requirements.txt" "${CONTEXT_DIR}/."
 
-docker build -t "$IMAGE_NAME" --file "$CONTEXT_DIR/Dockerfile" "$CONTEXT_DIR"
+docker build \
+    -t "${IMAGE_NAME}" \
+    --file "${SCRIPT_DIR_NAME}/Dockerfile" \
+    "${CONTEXT_DIR}"
 
 exit 0
