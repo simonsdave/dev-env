@@ -11,6 +11,11 @@ fi
 
 REPO_ROOT_DIR=$("${SCRIPT_DIR_NAME}/repo-root-dir.sh")
 
+if [ ! -e "${REPO_ROOT_DIR}/.yamllint" ]; then
+    echo "could not find .yamllint in root directory of project" >&2
+    exit 1
+fi
+
 find "${REPO_ROOT_DIR}" -name '*.yml' -or -name '*.yaml' | grep -v ./env | while IFS='' read -r FILENAME
 do
     echo "$FILENAME"
