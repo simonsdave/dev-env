@@ -9,10 +9,12 @@ if [ $# != 0 ]; then
     exit 1
 fi
 
-find "$("${SCRIPT_DIR_NAME}/repo-root-dir.sh")" -name '*.yml' -or -name '*.yaml' | grep -v ./env | while IFS='' read -r FILENAME
+REPO_ROOT_DIR=$("${SCRIPT_DIR_NAME}/repo-root-dir.sh")
+
+find "${REPO_ROOT_DIR}" -name '*.yml' -or -name '*.yaml' | grep -v ./env | while IFS='' read -r FILENAME
 do
     echo "$FILENAME"
-    yamllint "$FILENAME"
+    yamllint -c "${REPO_ROOT_DIR}/.yamllint" "$FILENAME"
 done
 
 exit 0

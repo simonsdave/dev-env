@@ -15,7 +15,7 @@ docker run \
     --rm \
     --volumes-from "${DUMMY_DOCKER_CONTAINER_NAME}" \
     "$DEV_ENV_DOCKER_IMAGE" \
-    /bin/bash -c 'for YAML_FILE_NAME in $(find /app -name '*.yml' -or -name '*.yaml' | egrep -v "^/app/(build|env)"); do echo "$YAML_FILE_NAME" && yamllint "$YAML_FILE_NAME"; done'
+    /bin/bash -c 'for YAML_FILE_NAME in $(find /app -name '*.yml' -or -name '*.yaml' | egrep -v "^/app/(build|env)"); do echo "$YAML_FILE_NAME" && yamllint -c /app/.yamllint "$YAML_FILE_NAME"; done'
 
 docker rm "${DUMMY_DOCKER_CONTAINER_NAME}" > /dev/null
 
