@@ -129,6 +129,13 @@ RUN npm install -g markdownlint-cli
 RUN npm install -g snyk
 
 #
+# yamllint
+# -- https://yamllint.readthedocs.io/en/stable/quickstart.html#installing-yamllint
+# -- start with python3-pkg-resources install as per https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=860075 
+#
+RUN pip install yamllint
+
+#
 # if you look @ most of the host scripts in dev-env
 # you'll notice that many of them mount /app in the
 # dev-env container to the project's root directory.

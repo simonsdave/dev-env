@@ -127,6 +127,11 @@ should be uploaded - from the above ```.pypirc``` this would be either ```pypi``
 
 ## [run-shellcheck.sh](run-shellcheck.sh)
 
+## [run-yamllint.sh](run-yamllint.sh)
+
+* thin wrapper around [yamllint](https://yamllint.readthedocs.io/en/stable/index.html)
+* runs [yamllint](https://yamllint.readthedocs.io/en/stable/index.html) against all files in the repo with a ```yaml``` or ```yml``` extension
+
 # Security Assessment
 
 ## [run-repo-security-scanner.sh](run-repo-security-scanner.sh)
