@@ -14,7 +14,7 @@ IMAGE_NAME=${1:-}
 CONTEXT_DIR=$(mktemp -d 2> /dev/null || mktemp -d -t DAS)
 
 pushd "$(git rev-parse --show-toplevel)/bin/in_container"
-tar zcf "${CONTEXT_DIR}/scripts.tar.gz" ./*.sh
+tar zvcf "${CONTEXT_DIR}/scripts.tar.gz" ./*.sh
 popd
 
 cp "${SCRIPT_DIR_NAME}/requirements.txt" "${CONTEXT_DIR}/."
