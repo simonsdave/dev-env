@@ -136,6 +136,12 @@ RUN npm install -g snyk
 RUN pip install yamllint
 
 #
+# CircleCI CLI
+# -- https://circleci.com/docs/2.0/local-cli/
+#
+RUN curl -fLSs https://circle.ci/cli | bash
+
+#
 # if you look @ most of the host scripts in dev-env
 # you'll notice that many of them mount /app in the
 # dev-env container to the project's root directory.

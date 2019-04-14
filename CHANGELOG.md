@@ -16,6 +16,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - added ```upload-dist-to-pypi.sh``` (both in container and on host) to publish Python packages on pypi using [twine](https://pypi.org/project/twine/)
 - added ```get-dev-env-version-from-circleci-config.sh```
 - added ```run-yamllint.sh``` to make it easy to run [yamllint](https://yamllint.readthedocs.io)
+- added ```run-circleci.sh``` to simplify running the [CircleCI](https://circleci.com) [CLI](https://circleci.com/docs/2.0/local-cli/) inside a dev env container
 
 ### Changed
 

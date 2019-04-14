@@ -12,45 +12,6 @@ the root directory of your git repo is accomplished by calling ```repo-root-dir.
 
 ## [python-version.sh](python-version.sh)
 
-## [get-dev-env-version-from-circleci-config.sh](get-dev-env-version-from-circleci-config.sh)
-
-* historically each repo would contain a
-file ```$(repo-root-dir.sh)/dev_env/dev-env-version.txt```
-which looked something like
-
-```text
-latest
-```
-
-* the idea behind ```dev-env-version.txt``` was to have the
-project's ```dev-env``` version in a single location
-* projects which use ```dev-env``` and CircleCI will have a
-file ```$(repo-root-dir.sh)/.circleci/config.yml```
-that typically starts out something like
-
-```yaml
-version: 2
-
-_defaults: &defaults
-  working_directory: ~/repo
-  docker:
-  - image: simonsdave/xenial-dev-env:latest
-  environment:
-    DOCKER_TEMP_IMAGE: simonsdave/cloudfeaster-xenial-dev-env:bindle
-
-jobs:
-  build_test_deploy:
-.
-.
-.
-```
-
-* the challenge once CircleCI started to be used was that
-there were two places for the ```dev-env``` version
-* to solve this problem ```get-dev-env-version-from-circleci-config.sh```
-extracts the ```dev-env``` version from ```$(repo-root-dir.sh)/.circleci/config.yml```
-and removes ```$(repo-root-dir.sh)/dev_env/dev-env-version.txt```
-
 # Testing
 
 ## [run-unit-tests.sh](run-unit-tests.sh)
@@ -112,6 +73,61 @@ should be uploaded - from the above ```.pypirc``` this would be either ```pypi``
 ## [prep-for-release.sh](prep-for-release.sh)
 
 ## [prep-for-release-python.sh](prep-for-release-python.sh)
+
+# Working with CircleCI
+
+## [run-circleci.sh](run-circleci.sh)
+
+* the [CircleCI](https://circleci.com) [CLI](https://circleci.com/docs/2.0/local-cli/) can be helpful
+* mostly used thus far to validate ```.circleci/config.yml``` per below
+
+```bash
+~> run-circleci.sh config validate
+Config file at .circleci/config.yml is valid.
+~>
+```
+
+* all command line args are passed directly to ```circleci``` which is run inside
+the dev env container
+
+## [get-dev-env-version-from-circleci-config.sh](get-dev-env-version-from-circleci-config.sh)
+
+* historically each repo would contain a
+file ```$(repo-root-dir.sh)/dev_env/dev-env-version.txt```
+which looked something like
+
+```text
+latest
+```
+
+* the idea behind ```dev-env-version.txt``` was to have the
+project's ```dev-env``` version in a single location
+* projects which use ```dev-env``` and CircleCI will have a
+file ```$(repo-root-dir.sh)/.circleci/config.yml```
+that typically starts out something like
+
+```yaml
+version: 2
+
+_defaults: &defaults
+  working_directory: ~/repo
+  docker:
+  - image: simonsdave/xenial-dev-env:latest
+  environment:
+    DOCKER_TEMP_IMAGE: simonsdave/cloudfeaster-xenial-dev-env:bindle
+
+jobs:
+  build_test_deploy:
+.
+.
+.
+```
+
+* the challenge once CircleCI started to be used was that
+there were two places for the ```dev-env``` version
+* to solve this problem ```get-dev-env-version-from-circleci-config.sh```
+extracts the ```dev-env``` version from ```$(repo-root-dir.sh)/.circleci/config.yml```
+and removes ```$(repo-root-dir.sh)/dev_env/dev-env-version.txt```
 
 # Working with Docker
 
