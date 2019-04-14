@@ -11,19 +11,20 @@ fi
 
 RELEASE_BRANCH=${1:-}
 
-pushd "$SCRIPT_DIR_NAME"
+sed -i '' \
+    -e \
+    "s|/tree/master|/tree/$RELEASE_BRANCH|g" \
+    "$SCRIPT_DIR_NAME/README.md"
 
-sed -i -e \
-    "s|?branch=master|?branch=$RELEASE_BRANCH|g" \
-    "README.md"
-
-sed -i -e \
+sed -i '' \
+    -e \
     "s|(docs|(https://github.com/simonsdave/dev-env/tree/$RELEASE_BRANCH/docs|g" \
-    "README.md"
+    "$SCRIPT_DIR_NAME/README.md"
 
-pandoc README.md -o README.rst
-python setup.py bdist_wheel sdist --formats=gztar
+rm -f "$SCRIPT_DIR_NAME/README.rst"
+build-readme-dot-rst.sh
 
-popd
+rm -rf "$SCRIPT_DIR_NAME/dist"
+build-python-package.sh
 
 exit 0
