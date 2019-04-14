@@ -9,7 +9,7 @@ if [ $# != 0 ]; then
     exit 1
 fi
 
-if [ ! -e "$(repo-root-dir.sh)/.yamllint" ]; then
+if [ ! -e "$("${SCRIPT_DIR_NAME}/repo-root-dir.sh")/.yamllint" ]; then
     echo "could not find .yamllint in root directory of project" >&2
     exit 1
 fi
