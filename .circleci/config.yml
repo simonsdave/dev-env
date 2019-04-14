@@ -1,9 +1,10 @@
+---
 version: 2
 
 _defaults: &defaults
   working_directory: ~/repo
   docker:
-  - image: circleci/python:2.7.16
+    - image: circleci/python:2.7.16
   environment:
     # use DEV_ENV_DOCKER_IMAGE because all the bin/*.sh scripts
     # will reference DEV_ENV_DOCKER_IMAGE
