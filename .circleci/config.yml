@@ -1,22 +1,22 @@
 ---
-version: 2
+version: 2.1
 
-_defaults: &defaults
-  working_directory: ~/repo
-  docker:
-    - image: circleci/python:2.7.16
-  environment:
-    # use DEV_ENV_DOCKER_IMAGE because all the bin/*.sh scripts
-    # will reference DEV_ENV_DOCKER_IMAGE
-    DEV_ENV_DOCKER_IMAGE=simonsdave/xenial-dev-env:bindle
+executors:
+  dev-env:
+    environment:
+      # use DEV_ENV_DOCKER_IMAGE because all the bin/*.sh scripts
+      # will reference DEV_ENV_DOCKER_IMAGE
+      DEV_ENV_DOCKER_IMAGE=simonsdave/xenial-dev-env:bindle
+    docker:
+      - image: circleci/python:2.7.16
 
 jobs:
   build_test_and_deploy:
-    <<: *defaults
-
+    working_directory: ~/repo
+    executor: dev-env
     steps:
       - checkout
-      - setup_remote_docker:
+      - setup_remote_docker
       - run:
           name: Build docker image
           command: |
@@ -54,7 +54,6 @@ jobs:
             fi
 
 workflows:
-  version: 2
   build_test_and_deploy:
     jobs:
       - build_test_and_deploy:
