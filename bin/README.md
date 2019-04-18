@@ -90,44 +90,41 @@ Config file at .circleci/config.yml is valid.
 * all command line args are passed directly to ```circleci``` which is run inside
 the dev env container
 
-## [get-dev-env-version-from-circleci-config.sh](get-dev-env-version-from-circleci-config.sh)
+## [check-consistent-dev-env-version.sh](check-consistent-dev-env-version.sh)
 
-* historically each repo would contain a
-file ```$(repo-root-dir.sh)/dev_env/dev-env-version.txt```
-which looked something like
+* following ```dev-env``` patterns and practices, a repo is expected to contain a
+file ```$(repo-root-dir.sh)/dev_env/dev-env-version.txt``` which looks something like
 
 ```text
-latest
+0.5.15
 ```
 
 * the idea behind ```dev-env-version.txt``` was to have the
-project's ```dev-env``` version in a single location
+project's ```dev-env``` version defined in a single location
 * projects which use ```dev-env``` and CircleCI will have a
 file ```$(repo-root-dir.sh)/.circleci/config.yml```
 that typically starts out something like
 
 ```yaml
-version: 2
+version: 2.1
 
-_defaults: &defaults
-  working_directory: ~/repo
-  docker:
-  - image: simonsdave/xenial-dev-env:latest
-  environment:
-    DOCKER_TEMP_IMAGE: simonsdave/cloudfeaster-xenial-dev-env:bindle
+executors:
+  dev-env:
+    environment:
+      DOCKER_TEMP_IMAGE: simonsdave/cloudfeaster-xenial-dev-env:bindle
+    docker:
+      - image: simonsdave/xenial-dev-env:v0.5.15
 
 jobs:
-  build_test_deploy:
-.
-.
-.
+  build_test_and_deploy:
+...
 ```
 
-* the challenge once CircleCI started to be used was that
-there were two places for the ```dev-env``` version
-* to solve this problem ```get-dev-env-version-from-circleci-config.sh```
-extracts the ```dev-env``` version from ```$(repo-root-dir.sh)/.circleci/config.yml```
-and removes ```$(repo-root-dir.sh)/dev_env/dev-env-version.txt```
+* the challenge with CircleCI and ```dev-env-version.txt```
+is that there are two places defining the ```dev-env``` version
+* don't know how to fix this problem but ```check-consistent-dev-env-version.sh```
+insert ```check-consistent-dev-env-version.sh``` into the CircleCI pipeline
+at least detects if the two version definitions have drifted
 
 # Working with Docker
 

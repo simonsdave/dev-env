@@ -14,9 +14,14 @@ if [ $# != 0 ]; then
     exit 1
 fi
 
-grep '^\s*\-\s*image\:\s*' "$("${SCRIPT_DIR_NAME}/repo-root-dir.sh")/.circleci/config.yml" | \
+REPO_ROOT_DIR=$("${SCRIPT_DIR_NAME}/repo-root-dir.sh")
+
+CIRCLECI_VERSION=$(grep '^\s*\-\s*image\:\s*' "${REPO_ROOT_DIR}/.circleci/config.yml" | \
     head -1 | \
     sed -e 's|^.*:||g' | \
-    sed -e 's|[[:space:]]*$||g'
+    sed -e 's|[[:space:]]*$||g')
+
+DEV_ENV_VERSION=$(cat "${REPO_ROOT_DIR}/dev_env/dev-env-version.txt")
+echo ">>>$DEV_ENV_VERSION<<<"
 
 exit 0
