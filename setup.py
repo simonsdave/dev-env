@@ -69,6 +69,7 @@ setup(
         'bin/get-dev-env-version-from-circleci-config.sh',
         'bin/run-yamllint.sh',
         'bin/run-circleci.sh',
+        'bin/run-bandit.sh',
     ],
     install_requires=[
     ],
