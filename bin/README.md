@@ -152,4 +152,14 @@ and removes ```$(repo-root-dir.sh)/dev_env/dev-env-version.txt```
 
 ## [run-repo-security-scanner.sh](run-repo-security-scanner.sh)
 
-## [run-snyk.sh](run-snyk.sh) - runs [snyk](https://snyk.io/) vulnerability assessor on the repo
+* runs [UKHomeOffice/repo-security-scanner](https://github.com/UKHomeOffice/repo-security-scanner)
+* CLI tool that finds secrets accidentally committed to a git repo, eg passwords, private keys
+
+## [run-snyk.sh](run-snyk.sh)
+
+* runs [snyk](https://snyk.io/) vulnerability assessor on the repo
+
+## [run-bandit.sh](run-bandit.sh)
+
+* runs [PyCQA/bandit](https://github.com/PyCQA/bandit)
+* Bandit is a tool designed to find common security issues in Python code.

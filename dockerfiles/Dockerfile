@@ -129,6 +129,13 @@ RUN npm install -g markdownlint-cli
 RUN npm install -g snyk
 
 #
+# Bandit
+#   -- https://github.com/PyCQA/bandit
+#   -- bandit --verbose --exclude env -r .
+#
+RUN pip install bandit
+
+#
 # yamllint
 # -- https://yamllint.readthedocs.io/en/stable/quickstart.html#installing-yamllint
 # -- start with python3-pkg-resources install as per https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=860075 
