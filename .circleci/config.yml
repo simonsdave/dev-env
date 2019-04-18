@@ -38,6 +38,9 @@ jobs:
           name: Snyk vulnerability assessment
           command: bin/run-snyk.sh -p "${SNYK_TOKEN}"
       - run:
+          name: Run Bandit
+          command: bin/run-bandit.sh
+      - run:
           name: Run unit tests
           command: bin/run-unit-tests.sh
       - run:
