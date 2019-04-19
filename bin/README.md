@@ -4,6 +4,10 @@ regardless of whether you're trying to do that on the host machine, in the ```de
 Not only should it be easy but it should also be consistent. So, for example, the task of determining
 the root directory of your git repo is accomplished by calling ```repo-root-dir.sh```.
 
+References
+
+* [Shell Parameter Expansion](https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html)
+
 # Repo Info
 
 ## [repo.sh](repo.sh)
