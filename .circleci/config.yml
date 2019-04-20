@@ -36,7 +36,7 @@ jobs:
           command: bin/run-repo-security-scanner.sh
       - run:
           name: Snyk vulnerability assessment
-          command: bin/run-snyk.sh -p "${SNYK_TOKEN}"
+          command: bin/run-snyk.sh -p "${SNYK_TOKEN}" || true
       - run:
           name: Run Bandit
           command: bin/run-bandit.sh
