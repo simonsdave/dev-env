@@ -12,6 +12,7 @@ of creating releases - take a look at [this](prep-for-release-dot-sh.md) descrip
 
 * take a look at [other projects on github](https://github.com/simonsdave)
 for examples of how ```dev-env``` is being used
+* see [this FAQ](faq.md)
 * as you start to integrate ```dev-env``` into your projects
 some feedback would be great - create [issues](../../../issues) and/or
 send me an e-mail [simonsdave@gmail.com](mailto:simonsdave@gmail.com) - thanks in advance!
