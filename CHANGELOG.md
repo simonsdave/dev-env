@@ -14,7 +14,8 @@ is now available in the ```dev-env``` docker image
 
 ### Changed
 
-* Nothing
+* ```run-unit-tests.sh``` now pulls the html coverage reports from inside
+the dev env docker container and onto the host
 
 ### Removed
 
