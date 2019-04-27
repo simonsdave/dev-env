@@ -77,6 +77,7 @@ RUN apt-get install -y docker-ce
 RUN cd /tmp && \
     curl -s -L -o scanrepo.tar.gz https://github.com/UKHomeOffice/repo-security-scanner/releases/download/0.4.0/scanrepo-0.4.0-linux-386.tar.gz && \
     tar xvf scanrepo.tar.gz && \
+    rm scanrepo.tar.gz && \
     mv scanrepo /usr/bin/scanrepo && \
     chown root.root /usr/bin/scanrepo && \
     chmod a+wrx /usr/bin/scanrepo
