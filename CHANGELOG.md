@@ -15,6 +15,8 @@ is now available in the ```dev-env``` docker image
 ### Changed
 
 * ```bin/in_container``` directory renamed to ```bin/in-container``` - should affect no one
+* ```run-unit-tests.sh``` now pulls the html coverage reports from inside
+the dev env docker container and onto the host
 
 ### Removed
 
