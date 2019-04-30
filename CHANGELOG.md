@@ -14,7 +14,7 @@ is now available in the ```dev-env``` docker image
 
 ### Changed
 
-* Nothing
+* ```bin/in_container``` directory renamed to ```bin/in-container``` - should affect no one
 
 ### Removed
 
