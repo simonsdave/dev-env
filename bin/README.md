@@ -42,6 +42,23 @@ dev-env
 
 ## [repo-root-dir.sh](repo-root-dir.sh)
 
+Assuming the PWD is any directory of a git repo, echo to stdout the repo's
+root directory. How's this useful? Assume you have a shell script in some
+child directory of the repo that needs to find a script in the bin directory
+of the repo. Also assume that the same script could be moved to a different
+child directory. Using ```repo-root-dir.sh``` reduces the likihood of
+forgetting to change the script when its moved between child directories.
+
+The example below illustrates what's described above.
+
+```bash
+~> pwd
+/Users/simonsdave/dev-env/bin
+~> ./repo-root-dir.sh
+/Users/simonsdave/dev-env
+~>
+```
+
 ## [python-version.sh](python-version.sh)
 
 # Testing

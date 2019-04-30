@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 
 #
-# Assuming the PWD is any directory of a git repo, echo to stdout the repo's
-# root directory. To do the same for any directory other than the PWD use the
-# -d command line switch.
+# see the README.md in the same directory as this script for a
+# description of why this script exists what this script does
 #
 
 set -e
