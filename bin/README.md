@@ -86,7 +86,16 @@ overridden using the -d command line option.
 The example below illustrates what's described above.
 
 ```bash
+~> pwd
+/Users/simonsdave/dev-env/bin
+~> cat $(repo-root-dir.sh)/dev_env/__init__.py
+__version__ = '0.5.16'
+~> python-version.sh
+0.5.16
+~>
 ```
+
+# Testing
 
 ## [run-unit-tests.sh](run-unit-tests.sh)
 
