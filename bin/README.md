@@ -12,6 +12,34 @@ References
 
 ## [repo.sh](repo.sh)
 
+Assuming the PWD is any directory of a git repo, echo to stdout the repo name.
+To do the same for any directory other than the PWD use the -d command line switch.
+
+This project was started primarily to support python projects. One of the common
+conventions with a python project is to have a single package generated per repo
+and the name of the repo is the same name as the generated package. Further, if
+the repo name contains a dash (ex a-great-tool) the generated package name is
+the same as the repo name with dashes replaced by underscores (ex a_great_tool).
+The optional -u command line switch replaces all dashes in the repo name with
+underscores.
+
+The example below illustrates what's described above.
+
+```bash
+~> echo $PWD
+/Users/simonsdave/dev-env/bin
+~> ./repo.sh
+dev-env
+~> ./repo.sh -u
+dev_env
+~> cd
+~> pwd
+/Users/simonsdave
+~> /Users/simonsdave/dev-env/bin/repo.sh -d /Users/simonsdave/dev-env
+dev-env
+~>
+```
+
 ## [repo-root-dir.sh](repo-root-dir.sh)
 
 ## [python-version.sh](python-version.sh)
