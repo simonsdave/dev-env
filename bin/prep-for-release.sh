@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
-# see contributing.md for where this script fits into
-# the release process
+#
+# see the README.md in the same directory as this script for a
+# description of why this script exists what this script does
+#
 
 set -e
 

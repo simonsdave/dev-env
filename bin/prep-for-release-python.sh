@@ -1,11 +1,8 @@
 #!/usr/bin/env bash
 
 #
-# prep-for-release-python.sh is a python specific wrapper around
-# the general purpose prep-for-release.sh. To run prep-for-release.sh
-# you need the release version number. For Python projects this
-# version number can be extracted from the project's __init__.py
-# file.
+# see the README.md in the same directory as this script for a
+# description of why this script exists what this script does
 #
 
 set -e

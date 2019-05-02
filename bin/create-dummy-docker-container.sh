@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-# https://circleci.com/docs/2.0/building-docker-images/#mounting-folders
+#
+# see the README.md in the same directory as this script for a
+# description of why this script exists what this script does
+#
 
 set -e
 

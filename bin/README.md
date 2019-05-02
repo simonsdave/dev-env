@@ -155,7 +155,58 @@ should be uploaded - from the above ```.pypirc``` this would be either ```pypi``
 
 ## [prep-for-release.sh](prep-for-release.sh)
 
+Your repo probably contains a ```README.md``` in the repo's root
+directory and there's a link to a build badge like the one below.
+
+```
+[![Build Status](https://travis-ci.org/simonsdave/dev-env.svg?branch=master)](https://travis-ci.org/simonsdave/dev-env)
+```
+
+This kind of badge should be updated when cutting a release.
+This is one of the things that ```prep-for-release.sh``` will do
+for you if you create a script called ```.prep-for-release-release-branch-changes.sh```
+and put it in the repo's root directory.
+
+```bash
+#!/usr/bin/env bash
+
+set -e
+
+SCRIPT_DIR_NAME="$( cd "$( dirname "$0" )" && pwd )"
+
+if [ $# != 1 ]; then
+    echo "usage: $(basename "$0") <release-branch>" >&2
+    exit 1
+fi
+
+RELEASE_BRANCH=${1:-}
+
+search_and_replace() {
+    if ! git diff --quiet "${2:-}"; then exit 1; fi
+    sed -i -e "${1:-}" "${2:-}"
+    if git diff --quiet "${2:-}"; then exit 2; fi
+    return 0
+}
+
+search_and_replace \
+    "s|\\?branch=master|?branch=$RELEASE_BRANCH|g" \
+    "$SCRIPT_DIR_NAME/README.md"
+
+exit 0
+```
+
+You can have any number of scripts called ```.prep-for-release-release-branch-changes.sh```
+in any directory of the repo. ```prep-for-release.sh``` will find all
+the scripts named ```.prep-for-release-release-branch-changes.sh``` and run them
+when creating the release branch.
+
 ## [prep-for-release-python.sh](prep-for-release-python.sh)
+
+```prep-for-release-python.sh``` is a Python specific wrapper around
+the general purpose [prep-for-release.sh](#prep-for-releasesh).
+To run ```prep-for-release.sh```
+you need a release version. For Python projects this
+version number can be extracted from the project's ```__init__.py```.
 
 # Working with CircleCI
 
@@ -211,19 +262,31 @@ will at least detects if the two version definitions have drifted
 * ```check-consistent-dev-env-version.sh``` has a zero exit code if the
 two versions are the same and non-zero if the two versions are different
 
+## [create-dummy-docker-container.sh](create-dummy-docker-container.sh)
+
+* only execpt ```create-dummy-docker-container.sh``` to be used by other shell scripts in this directory
+ie. it implements a private "API" so use at your own peril
+* for context read [CircleCI's doc](https://circleci.com/docs/2.0/building-docker-images/#mounting-folders)
+on "mounting a folder from your job space into a container in Remote Docker"
+* ```create-dummy-docker-container.sh``` implements the "create a dummy container"
+
 # Working with Docker
 
 ## [kill-and-rm-all-docker-containers.sh](kill-and-rm-all-docker-containers.sh)
 
 ## [rm-dangling-docker-images.sh](rm-dangling-docker-images.sh)
 
-## [create-dummy-docker-container.sh](create-dummy-docker-container.sh)
-
 # [Static Analysis](https://en.wikipedia.org/wiki/Static_program_analysis)
 
 ## [run-flake8.sh](run-flake8.sh)
 
+* thin wrapper around [flake8](http://flake8.pycqa.org/en/latest/)
+* runs [flake8](http://flake8.pycqa.org/en/latest/) against all files in the repo with a ```py``` extension
+
 ## [run-shellcheck.sh](run-shellcheck.sh)
+
+* thin wrapper around [shellcheck](https://github.com/koalaman/shellcheck)
+* runs [shellcheck](https://github.com/koalaman/shellcheck) against all files in the repo with a ```sh``` extension
 
 ## [run-yamllint.sh](run-yamllint.sh)
 
