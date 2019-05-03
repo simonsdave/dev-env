@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-# https://docs.python.org/2/distutils/sourcedist.html
+#
+# see the README.md in the same directory as this script for a
+# description of why this script exists what this script does
+#
 
 set -e
 
