@@ -264,17 +264,26 @@ two versions are the same and non-zero if the two versions are different
 
 ## [create-dummy-docker-container.sh](create-dummy-docker-container.sh)
 
-* only execpt ```create-dummy-docker-container.sh``` to be used by other shell scripts in this directory
+* expecting ```create-dummy-docker-container.sh``` to be used only by other shell scripts in this directory
 ie. it implements a private "API" so use at your own peril
 * for context read [CircleCI's doc](https://circleci.com/docs/2.0/building-docker-images/#mounting-folders)
 on "mounting a folder from your job space into a container in Remote Docker"
-* ```create-dummy-docker-container.sh``` implements the "create a dummy container"
+* ```create-dummy-docker-container.sh``` implements the "create a dummy container" pattern
+described in [here](https://circleci.com/docs/2.0/building-docker-images/#mounting-folders)
 
 # Working with Docker
 
 ## [kill-and-rm-all-docker-containers.sh](kill-and-rm-all-docker-containers.sh)
 
+* this is super destructive - use with caution
+* great for "resetting" your development environment
+* ```docker container kill``` and ```docker container rm``` all docker containers
+
 ## [rm-dangling-docker-images.sh](rm-dangling-docker-images.sh)
+
+* removes all "dangling docker images"
+* see [this](https://docs.docker.com/engine/reference/commandline/images/#filtering)
+for a description of "dangling docker images"
 
 # [Static Analysis](https://en.wikipedia.org/wiki/Static_program_analysis)
 

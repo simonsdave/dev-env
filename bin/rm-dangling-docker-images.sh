@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
+
 #
-# Remove all dangling images.
-#
-# Helpful reference(s):
-# -- https://docs.docker.com/engine/reference/commandline/images/#filtering
+# see the README.md in the same directory as this script for a
+# description of why this script exists what this script does
 #
 
 set -e
