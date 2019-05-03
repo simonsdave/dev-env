@@ -1,33 +1,6 @@
 #!/usr/bin/env python
-"""Every repo should have a CHANGELOG.md in the root directory.
-This file describes, at a high-level, all the changes that have
-been made for each release. In the CHANGELOG.md, each release
-typically has has a section that looks like:
-
-    ## [0.5.14] - [2019-02-03]
-
-    ### Added
-
-    - added ```python-version.sh``` which is used to extract a python project's version number
-
-    ### Changed
-
-    - flake8 3.7.4 -> 3.7.7
-    - twine 1.12.1 -> 1.13.0
-    - fixed bug in ```run_shellcheck.sh``` where docker containers weren't being removed are they had exited
-
-    ### Removed
-
-    - Nothing
-
-Given a release number, this script extracts the section of CHANGELOG.md
-corresponding to version.
-
-Expected innvocation for this script from a bash prompt is something like:
-
-    ~>  changelog_dot_md_release_comments.py '0.5.14' ./CHANGELOG.md
-
-CHANGELOG.md will be updated in place.
+"""See the README.md in the same directory as this script for a
+description of why this script exists what this script does.
 """
 
 import logging

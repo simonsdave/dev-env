@@ -107,9 +107,75 @@ __version__ = '0.5.16'
 
 ## [changelog-dot-md-release-comments.py](changelog-dot-md-release-comments.py)
 
+* every repo should have a ```CHANGELOG.md``` in the root directory
+* ```CHANGELOG.md``` describes, at a high-level, all the changes that have
+been made for a  release
+* in ```CHANGELOG.md``` each release typically has has a section that looks like
+
+```
+## [0.5.14] - [2019-02-03]
+
+### Added
+
+- added ```python-version.sh``` which is used to extract a python project's version number
+
+### Changed
+
+- flake8 3.7.4 -> 3.7.7
+- twine 1.12.1 -> 1.13.0
+- fixed bug in ```run_shellcheck.sh``` where docker containers weren't being removed are they had exited
+
+### Removed
+
+- Nothing
+```
+
+* given a release version, this script extracts the section of ```CHANGELOG.md``` corresponding to the release version
+* ```CHANGELOG.md``` is updated in place
+* expected usage
+
+```bash
+~> changelog_dot_md_release_comments.py '0.5.14' ./CHANGELOG.md
+.
+.
+.
+~>
+```
+
 ## [cut-changelog-dot-md.py](cut-changelog-dot-md.py)
 
+* every repo should have a CHANGELOG.md in the root directory
+* this file will have the same format with the head of the file looking like
+
+```
+# Change Log
+All notable changes to this project will be documented in this file.
+Format of this file follows [these](http://keepachangelog.com/) guidelines.
+This project adheres to [Semantic Versioning](http://semver.org/).
+
+## [%RELEASE_VERSION%] - [%RELEASE_DATE%]
+
+### Added
+.
+.
+.
+```
+
+* when cutting a release ```%RELEASE_VERSION%``` and ```%RELEASE_DATE%``` need to be
+replaced with an actual release number and release date which is
+what ```cut_changelog_dot_md.py``` does
+* ```CHANGELOG.md``` is updated in place
+* expected usage
+
+```bash
+~> cut_changelog_dot_md.py '1.2.3' '4-Jan-1936' ./CHANGELOG.md
+~>
+```
+
 ## [build-readme-dot-rst.sh](build-readme-dot-rst.sh)
+
+* run [pandoc]() to create ```README.rst``` in the project's root directory
+from ```README.md``` in the same root directory
 
 # Python Packages
 
@@ -127,154 +193,9 @@ running build_py
 creating build
 creating build/lib.linux-x86_64-2.7
 creating build/lib.linux-x86_64-2.7/dev_env
-copying dev_env/nose_plugins.py -> build/lib.linux-x86_64-2.7/dev_env
-copying dev_env/__init__.py -> build/lib.linux-x86_64-2.7/dev_env
-running egg_info
-writing dev_env.egg-info/PKG-INFO
-writing top-level names to dev_env.egg-info/top_level.txt
-writing dependency_links to dev_env.egg-info/dependency_links.txt
-reading manifest file 'dev_env.egg-info/SOURCES.txt'
-reading manifest template 'MANIFEST.in'
-writing manifest file 'dev_env.egg-info/SOURCES.txt'
-running build_scripts
-creating build/scripts-2.7
-copying and adjusting bin/add-new-changelog-dot-md-release.py -> build/scripts-2.7
-copying and adjusting bin/changelog-dot-md-release-comments.py -> build/scripts-2.7
-copying and adjusting bin/cut-changelog-dot-md.py -> build/scripts-2.7
-copying bin/python-version.sh -> build/scripts-2.7
-copying and adjusting bin/dev-env-nosetests.py -> build/scripts-2.7
-copying bin/prep-for-release-python.sh -> build/scripts-2.7
-copying bin/prep-for-release.sh -> build/scripts-2.7
-copying bin/run-flake8.sh -> build/scripts-2.7
-copying bin/run-pip-check.sh -> build/scripts-2.7
-copying bin/run-shellcheck.sh -> build/scripts-2.7
-copying bin/run-unit-tests.sh -> build/scripts-2.7
-copying bin/run-repo-security-scanner.sh -> build/scripts-2.7
-copying bin/kill-and-rm-all-docker-containers.sh -> build/scripts-2.7
-copying bin/build-python-package.sh -> build/scripts-2.7
-copying bin/build-readme-dot-rst.sh -> build/scripts-2.7
-copying bin/repo.sh -> build/scripts-2.7
-copying bin/repo-root-dir.sh -> build/scripts-2.7
-copying bin/run-snyk.sh -> build/scripts-2.7
-copying bin/rm-dangling-docker-images.sh -> build/scripts-2.7
-copying bin/run-markdownlint.sh -> build/scripts-2.7
-copying bin/upload-dist-to-pypi.sh -> build/scripts-2.7
-copying bin/create-dummy-docker-container.sh -> build/scripts-2.7
-copying bin/check-consistent-dev-env-version.sh -> build/scripts-2.7
-copying bin/run-yamllint.sh -> build/scripts-2.7
-copying bin/run-circleci.sh -> build/scripts-2.7
-copying bin/run-bandit.sh -> build/scripts-2.7
-changing mode of build/scripts-2.7/add-new-changelog-dot-md-release.py from 644 to 755
-changing mode of build/scripts-2.7/changelog-dot-md-release-comments.py from 644 to 755
-changing mode of build/scripts-2.7/cut-changelog-dot-md.py from 644 to 755
-changing mode of build/scripts-2.7/dev-env-nosetests.py from 644 to 755
-installing to build/bdist.linux-x86_64/wheel
-running install
-running install_lib
-creating build/bdist.linux-x86_64
-creating build/bdist.linux-x86_64/wheel
-creating build/bdist.linux-x86_64/wheel/dev_env
-copying build/lib.linux-x86_64-2.7/dev_env/nose_plugins.py -> build/bdist.linux-x86_64/wheel/dev_env
-copying build/lib.linux-x86_64-2.7/dev_env/__init__.py -> build/bdist.linux-x86_64/wheel/dev_env
-running install_egg_info
-Copying dev_env.egg-info to build/bdist.linux-x86_64/wheel/dev_env-0.5.16.egg-info
-running install_scripts
-creating build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data
-creating build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts
-copying build/scripts-2.7/run-shellcheck.sh -> build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts
-copying build/scripts-2.7/prep-for-release-python.sh -> build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts
-copying build/scripts-2.7/build-readme-dot-rst.sh -> build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts
-copying build/scripts-2.7/add-new-changelog-dot-md-release.py -> build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts
-copying build/scripts-2.7/python-version.sh -> build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts
-copying build/scripts-2.7/run-bandit.sh -> build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts
-copying build/scripts-2.7/run-flake8.sh -> build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts
-copying build/scripts-2.7/create-dummy-docker-container.sh -> build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts
-copying build/scripts-2.7/run-markdownlint.sh -> build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts
-copying build/scripts-2.7/run-yamllint.sh -> build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts
-copying build/scripts-2.7/cut-changelog-dot-md.py -> build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts
-copying build/scripts-2.7/dev-env-nosetests.py -> build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts
-copying build/scripts-2.7/run-snyk.sh -> build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts
-copying build/scripts-2.7/run-unit-tests.sh -> build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts
-copying build/scripts-2.7/run-pip-check.sh -> build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts
-copying build/scripts-2.7/repo.sh -> build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts
-copying build/scripts-2.7/upload-dist-to-pypi.sh -> build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts
-copying build/scripts-2.7/build-python-package.sh -> build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts
-copying build/scripts-2.7/repo-root-dir.sh -> build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts
-copying build/scripts-2.7/check-consistent-dev-env-version.sh -> build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts
-copying build/scripts-2.7/changelog-dot-md-release-comments.py -> build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts
-copying build/scripts-2.7/run-circleci.sh -> build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts
-copying build/scripts-2.7/prep-for-release.sh -> build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts
-copying build/scripts-2.7/rm-dangling-docker-images.sh -> build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts
-copying build/scripts-2.7/kill-and-rm-all-docker-containers.sh -> build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts
-copying build/scripts-2.7/run-repo-security-scanner.sh -> build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts
-changing mode of build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts/run-shellcheck.sh to 755
-changing mode of build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts/prep-for-release-python.sh to 755
-changing mode of build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts/build-readme-dot-rst.sh to 755
-changing mode of build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts/add-new-changelog-dot-md-release.py to 755
-changing mode of build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts/python-version.sh to 755
-changing mode of build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts/run-bandit.sh to 755
-changing mode of build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts/run-flake8.sh to 755
-changing mode of build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts/create-dummy-docker-container.sh to 755
-changing mode of build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts/run-markdownlint.sh to 755
-changing mode of build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts/run-yamllint.sh to 755
-changing mode of build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts/cut-changelog-dot-md.py to 755
-changing mode of build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts/dev-env-nosetests.py to 755
-changing mode of build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts/run-snyk.sh to 755
-changing mode of build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts/run-unit-tests.sh to 755
-changing mode of build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts/run-pip-check.sh to 755
-changing mode of build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts/repo.sh to 755
-changing mode of build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts/upload-dist-to-pypi.sh to 755
-changing mode of build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts/build-python-package.sh to 755
-changing mode of build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts/repo-root-dir.sh to 755
-changing mode of build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts/check-consistent-dev-env-version.sh to 755
-changing mode of build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts/changelog-dot-md-release-comments.py to 755
-changing mode of build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts/run-circleci.sh to 755
-changing mode of build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts/prep-for-release.sh to 755
-changing mode of build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts/rm-dangling-docker-images.sh to 755
-changing mode of build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts/kill-and-rm-all-docker-containers.sh to 755
-changing mode of build/bdist.linux-x86_64/wheel/dev_env-0.5.16.data/scripts/run-repo-security-scanner.sh to 755
-creating build/bdist.linux-x86_64/wheel/dev_env-0.5.16.dist-info/WHEEL
-running sdist
-running check
-warning: sdist: standard file not found: should have one of README, README.rst, README.txt
-
-creating dev_env-0.5.16
-creating dev_env-0.5.16/bin
-creating dev_env-0.5.16/dev_env
-creating dev_env-0.5.16/dev_env.egg-info
-making hard links in dev_env-0.5.16...
-hard linking MANIFEST.in -> dev_env-0.5.16
-hard linking setup.cfg -> dev_env-0.5.16
-hard linking setup.py -> dev_env-0.5.16
-hard linking bin/add-new-changelog-dot-md-release.py -> dev_env-0.5.16/bin
-hard linking bin/build-python-package.sh -> dev_env-0.5.16/bin
-hard linking bin/build-readme-dot-rst.sh -> dev_env-0.5.16/bin
-hard linking bin/changelog-dot-md-release-comments.py -> dev_env-0.5.16/bin
-hard linking bin/check-consistent-dev-env-version.sh -> dev_env-0.5.16/bin
-hard linking bin/create-dummy-docker-container.sh -> dev_env-0.5.16/bin
-hard linking bin/cut-changelog-dot-md.py -> dev_env-0.5.16/bin
-hard linking bin/dev-env-nosetests.py -> dev_env-0.5.16/bin
-hard linking bin/kill-and-rm-all-docker-containers.sh -> dev_env-0.5.16/bin
-hard linking bin/prep-for-release-python.sh -> dev_env-0.5.16/bin
-hard linking bin/prep-for-release.sh -> dev_env-0.5.16/bin
-hard linking bin/python-version.sh -> dev_env-0.5.16/bin
-hard linking bin/repo-root-dir.sh -> dev_env-0.5.16/bin
-hard linking bin/repo.sh -> dev_env-0.5.16/bin
-hard linking bin/rm-dangling-docker-images.sh -> dev_env-0.5.16/bin
-hard linking bin/run-bandit.sh -> dev_env-0.5.16/bin
-hard linking bin/run-circleci.sh -> dev_env-0.5.16/bin
-hard linking bin/run-flake8.sh -> dev_env-0.5.16/bin
-hard linking bin/run-markdownlint.sh -> dev_env-0.5.16/bin
-hard linking bin/run-pip-check.sh -> dev_env-0.5.16/bin
-hard linking bin/run-repo-security-scanner.sh -> dev_env-0.5.16/bin
-hard linking bin/run-shellcheck.sh -> dev_env-0.5.16/bin
-hard linking bin/run-snyk.sh -> dev_env-0.5.16/bin
-hard linking bin/run-unit-tests.sh -> dev_env-0.5.16/bin
-hard linking bin/run-yamllint.sh -> dev_env-0.5.16/bin
-hard linking bin/upload-dist-to-pypi.sh -> dev_env-0.5.16/bin
-hard linking dev_env/__init__.py -> dev_env-0.5.16/dev_env
-hard linking dev_env/nose_plugins.py -> dev_env-0.5.16/dev_env
-hard linking dev_env.egg-info/PKG-INFO -> dev_env-0.5.16/dev_env.egg-info
+.
+.
+.
 hard linking dev_env.egg-info/SOURCES.txt -> dev_env-0.5.16/dev_env.egg-info
 hard linking dev_env.egg-info/dependency_links.txt -> dev_env-0.5.16/dev_env.egg-info
 hard linking dev_env.egg-info/top_level.txt -> dev_env-0.5.16/dev_env.egg-info

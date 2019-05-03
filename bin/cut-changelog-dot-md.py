@@ -1,29 +1,6 @@
 #!/usr/bin/env python
-"""Every repo should have a CHANGELOG.md in the root directory.
-This file will have the same format with the head of the file
-looking like:
-
-    # Change Log
-    All notable changes to this project will be documented in this file.
-    Format of this file follows [these](http://keepachangelog.com/) guidelines.
-    This project adheres to [Semantic Versioning](http://semver.org/).
-
-    ## [%RELEASE_VERSION%] - [%RELEASE_DATE%]
-
-    ### Added
-    .
-    .
-    .
-
-When cutting a release %RELEASE_VERSION% and %RELEASE_DATE% need to be
-replaced with an actual release number and release date which is what
-this script does.
-
-Expected innvocation for this script from a bash prompt is something like:
-
-    ~> cut_changelog_dot_md.py '1.2.3' '4-Jan-1936' ./CHANGELOG.md
-
-CHANGELOG.md will be updated in place.
+"""See the README.md in the same directory as this script for a
+description of why this script exists what this script does.
 """
 
 import logging
