@@ -105,6 +105,64 @@ __version__ = '0.5.16'
 
 ## [add-new-changelog-dot-md-release.py](add-new-changelog-dot-md-release.py)
 
+* every repo should have a ```CHANGELOG.md``` in the root directory
+* ```CHANGELOG.md``` has the same format with the head of the file illustrated below
+
+```
+# Change Log
+All notable changes to this project will be documented in this file.
+Format of this file follows [these](http://keepachangelog.com/) guidelines.
+This project adheres to [Semantic Versioning](http://semver.org/).
+
+## [1.2.3] - [2019-03-11]
+
+### Added
+.
+.
+.
+```
+
+* ```add-new-changelog-dot-md-release.py``` updates ```CHANGELOG.md``` with a new
+release template so the head of the file looks something like the file
+illustrated below
+
+```bash
+# Change Log
+All notable changes to this project will be documented in this file.
+Format of this file follows [these](http://keepachangelog.com/) guidelines.
+This project adheres to [Semantic Versioning](http://semver.org/).
+
+## [%RELEASE_VERSION%] - [%RELEASE_DATE%]
+
+### Added
+
+* Nothing
+
+### Changed
+
+* Nothing
+
+### Removed
+
+* Nothing
+
+## [1.2.3] - [2019-03-11]
+
+### Added
+.
+.
+.
+```
+
+* ```CHANGELOG.md``` will be updated in place.
+* expected usage
+
+```bash
+~> add_new_changelog_dot_md_release.py./CHANGELOG.md
+~>
+```
+
+
 ## [changelog-dot-md-release-comments.py](changelog-dot-md-release-comments.py)
 
 * every repo should have a ```CHANGELOG.md``` in the root directory
@@ -174,7 +232,7 @@ what ```cut_changelog_dot_md.py``` does
 
 ## [build-readme-dot-rst.sh](build-readme-dot-rst.sh)
 
-* run [pandoc]() to create ```README.rst``` in the project's root directory
+* run [pandoc](https://pandoc.org/) to create ```README.rst``` in the project's root directory
 from ```README.md``` in the same root directory
 
 # Python Packages
