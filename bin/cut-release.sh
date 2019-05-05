@@ -60,20 +60,20 @@ do
     esac
 done
 
-if [ $# != 1 ]; then
-    echo "usage: $(basename "$0") [--verbose|--quiet] <version>" >&2
+if [ $# != 0 ]; then
+    echo "usage: $(basename "$0") [--verbose|--quiet]" >&2
     exit 1
 fi
 
-VERSION=${1:-}
+VERSION=$("${REPO_ROOT_DIR}/.cut-release-version.sh")
 RELEASE_DATE=$(date "+%Y-%m-%d")
 
 #
 # CHANGELOG.md must exist @ the top of the repo
 #
-CHANGELOG_DOT_MD=$REPO_ROOT_DIR/CHANGELOG.md
-if [ ! -r "$CHANGELOG_DOT_MD" ]; then
-    echo "could not find change log @ '$CHANGELOG_DOT_MD'" >&2
+CHANGELOG_DOT_MD=${REPO_ROOT_DIR}/CHANGELOG.md
+if [ ! -r "${CHANGELOG_DOT_MD}" ]; then
+    echo "could not find change log @ '${CHANGELOG_DOT_MD}'" >&2
     exit 2
 fi
 
@@ -120,7 +120,7 @@ MASTER_RELEASE_COMMIT_ID=$(git rev-parse HEAD)
 # the while loop pattern below looks awkward but came as a result
 # dealing with https://github.com/koalaman/shellcheck/wiki/SC2044
 echo_if_verbose "Looking for and executing master branch change scripts"
-find "$REPO_ROOT_DIR" -name .prep-for-release-master-branch-changes.sh | while IFS= read -r MASTER_BRANCH_CHANGE_SCRIPT; do
+find "$REPO_ROOT_DIR" -name .cut-release-master-branch-changes.sh | while IFS= read -r MASTER_BRANCH_CHANGE_SCRIPT; do
     if [ -x "$MASTER_BRANCH_CHANGE_SCRIPT" ]; then
         echo_if_verbose "Executing '$MASTER_BRANCH_CHANGE_SCRIPT'"
         "$MASTER_BRANCH_CHANGE_SCRIPT"
@@ -150,7 +150,7 @@ git checkout "$RELEASE_BRANCH"
 # the while loop pattern below looks awkward but came as a result
 # dealing with https://github.com/koalaman/shellcheck/wiki/SC2044
 echo_if_verbose "Looking for and executing release branch change scripts"
-find "$REPO_ROOT_DIR" -name .prep-for-release-release-branch-changes.sh | while IFS= read -r RELEASE_BRANCH_CHANGE_SCRIPT; do
+find "$REPO_ROOT_DIR" -name .cut-release-release-branch-changes.sh | while IFS= read -r RELEASE_BRANCH_CHANGE_SCRIPT; do
     if [ -x "$RELEASE_BRANCH_CHANGE_SCRIPT" ]; then
         echo_if_verbose "Executing '$RELEASE_BRANCH_CHANGE_SCRIPT'"
         "$RELEASE_BRANCH_CHANGE_SCRIPT" "$RELEASE_BRANCH"

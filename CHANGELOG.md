@@ -16,11 +16,11 @@ is now available in the ```dev-env``` docker image
 
 * ```bin/in_container``` directory renamed to ```bin/in-container``` - should affect no one
 * ```run-unit-tests.sh``` now pulls the html coverage reports from inside
-the dev env docker container and onto the host
+* renamed ```prep-for-release.sh``` -> ```cut-release.sh```
 
 ### Removed
 
-* Nothing
+* removed ```prep-for-release-python.sh``` and replaced with ```cut-release.sh``` which is a far more generalizable version of ```prep-for-release.sh```
 
 ## [0.5.15] - [2019-04-14]
 

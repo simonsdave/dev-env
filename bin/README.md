@@ -314,28 +314,26 @@ should be uploaded - from the above ```.pypirc``` this would be either ```pypi``
 
 # Cutting a Release
 
-## [prep-for-release.sh](prep-for-release.sh)
+## [cut-release.sh](cut-release.sh)
 
-* :TODO: release number shouldn't be passed on command line - put script in root directory caled ```.prep-for-release-version.sh```
-
-* ```prep-for-release.sh``` automates the process of cutting a release
+* ```cut-release.sh``` automates the process of cutting a release
 * assumptions
     * all development is done on the ```master``` branch
     * [Semantic Versioning](http://semver.org/) is used
     * for each release a new branch is created from master called ```release-<version>```
     * ```CHANGELOG.md``` exits in the project's root directory and follows [these](https://keepachangelog.com/en/1.0.0/) formatting guidelines
-* ```prep-for-release.sh``` does the following
-    * release version number is passed to ```prep-for-release.sh``` on the command line
+* ```cut-release.sh``` does the following
+    * get release version by executing ```.cut-release-version.sh``` in the root directory of the repo
     * release date is generated using ```date "+%Y-%m-%d"```
     * confirms there's a ```CHANGELOG.md``` in the project's root directory
     * use [```cut-changelog-dot-md.py```](#cut-changelog-dot-mdpy) to replace ```%RELEASE_VERSION%``` and ```%RELEASE_DATE%``` in ```CHANGELOG.md```
     * ```git commit``` the ```CHANGELOG.md``` changes on the master branch and save the commit ID - let's call this the "master release commit id"
     * use [```add-new-changelog-dot-md-release.py```](#add-new-changelog-dot-md-releasepy) to add a new release template to ```CHANGELOG.md```
-    * find and execute all files called ```.prep-for-release-master-branch-changes.sh``` - typically this is used to increment the project's version number
-    * ```git commit``` the ```CHANGELOG.md``` changes and ```.prep-for-release-master-branch-changes.sh``` changes on the master branch
+    * find and execute all files called ```.cut-release-master-branch-changes.sh``` - typically this is used to increment the project's version number
+    * ```git commit``` the ```CHANGELOG.md``` changes and ```.cut-release-master-branch-changes.sh``` changes on the master branch
     * create a new git branch called ```release-<VERSION>``` based on the "master release commit id" and let's call this the "release branch"
     * ```git checkout``` the release branch 
-    * find and execute all files called ```.prep-for-release-release-branch-changes.sh```
+    * find and execute all files called ```.cut-release-release-branch-changes.sh```
     * git commit all release branch changes
     * push all changes on master and release branches to github
 
@@ -347,8 +345,8 @@ directory and there's a link to a build badge like the one below.
 ```
 
 This kind of badge should be updated when cutting a release.
-This is one of the things that ```prep-for-release.sh``` will do
-for you if you create a script called ```.prep-for-release-release-branch-changes.sh```
+This is one of the things that ```cut-release.sh``` will do
+for you if you create a script called ```.cut-release-release-branch-changes.sh```
 and put it in the repo's root directory.
 
 ```bash
@@ -379,18 +377,10 @@ search_and_replace \
 exit 0
 ```
 
-You can have any number of scripts called ```.prep-for-release-release-branch-changes.sh```
-in any directory of the repo. ```prep-for-release.sh``` will find all
-the scripts named ```.prep-for-release-release-branch-changes.sh``` and run them
+You can have any number of scripts called ```.cut-release-release-branch-changes.sh```
+in any directory of the repo. ```cut-release.sh``` will find all
+the scripts named ```.cut-release-release-branch-changes.sh``` and run them
 when creating the release branch.
-
-## [prep-for-release-python.sh](prep-for-release-python.sh)
-
-```prep-for-release-python.sh``` is a Python specific wrapper around
-the general purpose [prep-for-release.sh](#prep-for-releasesh).
-To run ```prep-for-release.sh```
-you need a release version. For Python projects this
-version number can be extracted from the project's ```__init__.py```.
 
 # Working with CircleCI
 
