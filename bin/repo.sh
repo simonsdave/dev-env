@@ -10,8 +10,6 @@ set -e
 DIR_IN_REPO=$PWD
 DASH_TO_UNDERSCORE=0
 
-DAVE=dave
-
 while true
 do
     case "$(echo "${1:-}" | tr "[:upper:]" "[:lower:]")" in
