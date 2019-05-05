@@ -324,18 +324,44 @@ should be uploaded - from the above ```.pypirc``` this would be either ```pypi``
     * ```CHANGELOG.md``` exits in the project's root directory and follows [these](https://keepachangelog.com/en/1.0.0/) formatting guidelines
 * ```cut-release.sh``` does the following
     * get release version by executing ```.cut-release-version.sh``` in the root directory of the repo
-    * release date is generated using ```date "+%Y-%m-%d"```
-    * confirms there's a ```CHANGELOG.md``` in the project's root directory
+    * generate a release date using ```date "+%Y-%m-%d"```
+    * confirm there's a ```CHANGELOG.md``` in the project's root directory
     * use [```cut-changelog-dot-md.py```](#cut-changelog-dot-mdpy) to replace ```%RELEASE_VERSION%``` and ```%RELEASE_DATE%``` in ```CHANGELOG.md```
     * ```git commit``` the ```CHANGELOG.md``` changes on the master branch and save the commit ID - let's call this the "master release commit id"
-    * use [```add-new-changelog-dot-md-release.py```](#add-new-changelog-dot-md-releasepy) to add a new release template to ```CHANGELOG.md```
-    * find and execute all files called ```.cut-release-master-branch-changes.sh``` - typically this is used to increment the project's version number
-    * ```git commit``` the ```CHANGELOG.md``` changes and ```.cut-release-master-branch-changes.sh``` changes on the master branch
-    * create a new git branch called ```release-<VERSION>``` based on the "master release commit id" and let's call this the "release branch"
-    * ```git checkout``` the release branch 
-    * find and execute all files called ```.cut-release-release-branch-changes.sh```
-    * git commit all release branch changes
+    * prep master branch for development of next release
+        * use [```add-new-changelog-dot-md-release.py```](#add-new-changelog-dot-md-releasepy) to add a new release template to ```CHANGELOG.md```
+        * find and execute all files in the repo called ```.cut-release-master-branch-changes.sh``` - typically this is used to increment the project's version number - there are no guarantees on the order in which the various ```.cut-release-master-branch-changes.sh``` scripts are executed
+        * ```git commit``` the ```CHANGELOG.md``` changes and ```.cut-release-master-branch-changes.sh``` changes on the master branch
+    * create the release branch
+        * create a new git branch called ```release-<VERSION>``` based on the "master release commit id" and let's call this the "release branch"
+        * ```git checkout``` the release branch
+        * find and execute all files in the repo called ```.cut-release-release-branch-changes.sh``` - there are no guarantees on the order in which the various ```.cut-release-release-branch-changes.sh``` scripts are executed
+        * ```git commit``` all release branch changes
     * push all changes on master and release branches to github
+
+### ``` .cut-release-version.sh```
+
+```bash
+#!/usr/bin/env bash
+
+set -e
+
+if [ $# != 0 ]; then
+    echo "usage: $(basename "$0")" >&2
+    exit 1
+fi
+
+python-version.sh
+
+exit 0
+```
+
+### ```.cut-release-master-branch-changes.sh```
+
+* these scripts are used to prep the master branch for development of the next release
+* typically this is used to increment the project's version number
+
+### ```.cut-release-release-branch-changes.sh```
 
 Your repo probably contains a ```README.md``` in the repo's root
 directory and there's a link to a build badge like the one below.
