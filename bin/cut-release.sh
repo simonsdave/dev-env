@@ -99,13 +99,13 @@ if ! git diff-index --quiet HEAD --; then
     exit 2
 fi
 
-"$SCRIPT_DIR_NAME/cut-changelog-dot-md.py" "$VERSION" "$RELEASE_DATE" "$CHANGELOG_DOT_MD"
+"${SCRIPT_DIR_NAME}/cut-changelog-dot-md.py" "${VERSION}" "${RELEASE_DATE}" "${CHANGELOG_DOT_MD}"
 # :TODO: check if the above sed command actually did anything
 
 git diff
 confirm_ok_to_proceed "These changes to master for release look ok?"
 
-git commit -a -m "$VERSION pre-release prep"
+git commit -a -m "${VERSION} pre-release prep"
 MASTER_RELEASE_COMMIT_ID=$(git rev-parse HEAD)
 
 #----------------------------------------------------------------------
@@ -114,16 +114,16 @@ MASTER_RELEASE_COMMIT_ID=$(git rev-parse HEAD)
 # changes to master to prep for next release
 #
 
-"$SCRIPT_DIR_NAME/add-new-changelog-dot-md-release.py" "$CHANGELOG_DOT_MD"
+"${SCRIPT_DIR_NAME}/add-new-changelog-dot-md-release.py" "${CHANGELOG_DOT_MD}"
 # :TODO: check if the above sed command actually did anything
 
 # the while loop pattern below looks awkward but came as a result
 # dealing with https://github.com/koalaman/shellcheck/wiki/SC2044
 echo_if_verbose "Looking for and executing master branch change scripts"
-find "$REPO_ROOT_DIR" -name .cut-release-master-branch-changes.sh | while IFS= read -r MASTER_BRANCH_CHANGE_SCRIPT; do
-    if [ -x "$MASTER_BRANCH_CHANGE_SCRIPT" ]; then
-        echo_if_verbose "Executing '$MASTER_BRANCH_CHANGE_SCRIPT'"
-        "$MASTER_BRANCH_CHANGE_SCRIPT"
+find "${REPO_ROOT_DIR}" -name .cut-release-master-branch-changes.sh | while IFS= read -r MASTER_BRANCH_CHANGE_SCRIPT; do
+    if [ -x "${MASTER_BRANCH_CHANGE_SCRIPT}" ]; then
+        echo_if_verbose "Executing '${MASTER_BRANCH_CHANGE_SCRIPT}'"
+        "${MASTER_BRANCH_CHANGE_SCRIPT}"
     fi
 done
 echo_if_verbose "Done looking for and executing master branch change scripts"
@@ -143,28 +143,28 @@ git commit -a -m "Prep CHANGELOG.md for next release"
 # and finally commit the changes
 #
 
-RELEASE_BRANCH="release-$VERSION"
-git branch "$RELEASE_BRANCH" "$MASTER_RELEASE_COMMIT_ID"
-git checkout "$RELEASE_BRANCH"
+RELEASE_BRANCH="release-${VERSION}"
+git branch "${RELEASE_BRANCH}" "${MASTER_RELEASE_COMMIT_ID}"
+git checkout "${RELEASE_BRANCH}"
 
 # the while loop pattern below looks awkward but came as a result
 # dealing with https://github.com/koalaman/shellcheck/wiki/SC2044
 echo_if_verbose "Looking for and executing release branch change scripts"
-find "$REPO_ROOT_DIR" -name .cut-release-release-branch-changes.sh | while IFS= read -r RELEASE_BRANCH_CHANGE_SCRIPT; do
-    if [ -x "$RELEASE_BRANCH_CHANGE_SCRIPT" ]; then
-        echo_if_verbose "Executing '$RELEASE_BRANCH_CHANGE_SCRIPT'"
-        "$RELEASE_BRANCH_CHANGE_SCRIPT" "$RELEASE_BRANCH"
+find "${REPO_ROOT_DIR}" -name .cut-release-release-branch-changes.sh | while IFS= read -r RELEASE_BRANCH_CHANGE_SCRIPT; do
+    if [ -x "${RELEASE_BRANCH_CHANGE_SCRIPT}" ]; then
+        echo_if_verbose "Executing '${RELEASE_BRANCH_CHANGE_SCRIPT}'"
+        "${RELEASE_BRANCH_CHANGE_SCRIPT}" "${RELEASE_BRANCH}"
     fi
 done
 echo_if_verbose "Done looking for and executing release branch change scripts"
 
 git diff 
-confirm_ok_to_proceed "These changes to $RELEASE_BRANCH look ok?"
+confirm_ok_to_proceed "These changes to ${RELEASE_BRANCH} look ok?"
 
 # "git commit" will fail if there are no changes to commit
 # this should be a very rare case
 if ! git diff-index --quiet HEAD --; then
-    git commit -a -m "$VERSION release prep"
+    git commit -a -m "${VERSION} release prep"
     RELEASE_COMMIT_ID=$(git rev-parse HEAD)
 fi
 
@@ -178,8 +178,8 @@ confirm_ok_to_proceed "All changes made locally. Ok to push changes to github?"
 git checkout master
 git push origin master
 
-git checkout "$RELEASE_BRANCH"
-git push origin "$RELEASE_BRANCH"
+git checkout "${RELEASE_BRANCH}"
+git push origin "${RELEASE_BRANCH}"
 
 #----------------------------------------------------------------------
 
@@ -223,6 +223,6 @@ git checkout master
 #
 # all done:-)
 #
-echo_if_verbose "Release should be based on commit '$RELEASE_COMMIT_ID' in branch '$RELEASE_BRANCH' with name & tag = 'v$VERSION'"
+echo_if_verbose "Release should be based on commit '${RELEASE_COMMIT_ID}' in branch '${RELEASE_BRANCH}' with name & tag = 'v${VERSION}'"
 
 exit 0
