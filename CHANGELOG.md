@@ -11,6 +11,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * [Bandit (a tool designed to find common security issues in Python code)](https://github.com/PyCQA/bandit)
 is now available in the ```dev-env``` docker image
 * added ```check-consistent-dev-env-version.sh``` to detect dev-env version drift
+* ```install-dev-env.sh``` is now the recommended way for ```dev-env``` to be installed by a ```cfg4dev``` script
 
 ### Changed
 
