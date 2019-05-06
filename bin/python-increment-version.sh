@@ -11,7 +11,7 @@ SCRIPT_DIR_NAME="$( cd "$( dirname "$0" )" && pwd )"
 
 INIT_DOT_PY=$("${SCRIPT_DIR_NAME}/repo-root-dir.sh")/$("${SCRIPT_DIR_NAME}/repo.sh" -u)/__init__.py
 CURRENT_VERSION=$(python-version.sh)
-NEXT_VERSION=$("${SCRIPT_DIR_NAME}/increment_version.sh" "$@")
+NEXT_VERSION=$("${SCRIPT_DIR_NAME}/increment_version.sh" "$@" "${CURRENT_VERSION}")
 
 sed \
     -i "" \
