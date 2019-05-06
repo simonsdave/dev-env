@@ -48,6 +48,7 @@ setup(
         'bin/changelog-dot-md-release-comments.py',
         'bin/cut-changelog-dot-md.py',
         'bin/python-version.sh',
+        'bin/python-increment-version.sh',
         'bin/dev-env-nosetests.py',
         'bin/cut-release.sh',
         'bin/run-flake8.sh',

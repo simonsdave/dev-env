@@ -95,6 +95,11 @@ __version__ = '0.5.16'
 ~>
 ```
 
+## [python-increment-version.sh](python-increment-version.sh)
+
+* ```python-increment-version.sh``` was created to simplify the implementation of ```.cut-release-master-branch-changes.sh```
+* see [this](#cut-release-master-branch-changessh) for more details on ```.cut-release-master-branch-changes.sh```
+
 # Testing
 
 ## [run-unit-tests.sh](run-unit-tests.sh)
