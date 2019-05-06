@@ -366,6 +366,21 @@ exit 0
 * these scripts are used to prep the master branch for development of the next release
 * typically this is used to increment the project's version number
 
+```bash
+#!/usr/bin/env bash
+
+set -e
+
+if [ $# != 0 ]; then
+    echo "usage: $(basename "$0")" >&2
+    exit 1
+fi
+
+python-increment-version.sh -m
+
+exit 0
+```
+
 ### ```.cut-release-release-branch-changes.sh```
 
 Your repo probably contains a ```README.md``` in the repo's root
