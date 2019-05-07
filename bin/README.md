@@ -344,6 +344,7 @@ should be uploaded - from the above ```.pypirc``` this would be either ```pypi``
         * create a new git branch called ```release-<VERSION>``` based on the "master release commit id" and let's call this the "release branch"
         * ```git checkout``` the release branch
         * find and execute all files in the repo called ```.cut-release-release-branch-changes.sh```
+            * these scripts do things like rewrite URLs in markdown docs to point at release branches instead of the master branch
             * there are no guarantees on the order in which the various ```.cut-release-release-branch-changes.sh``` scripts are executed
             * see [this](#cut-release-release-branch-changessh) for more details on ```.cut-release-release-branch-changes.sh```
         * ```git commit``` all release branch changes
@@ -388,17 +389,9 @@ exit 0
 
 ### ```.cut-release-release-branch-changes.sh```
 
-Your repo probably contains a ```README.md``` in the repo's root
-directory and there's a link to a build badge like the one below.
-
-```
-[![Build Status](https://travis-ci.org/simonsdave/dev-env.svg?branch=master)](https://travis-ci.org/simonsdave/dev-env)
-```
-
-This kind of badge should be updated when cutting a release.
-This is one of the things that ```cut-release.sh``` will do
-for you if you create a script called ```.cut-release-release-branch-changes.sh```
-and put it in the repo's root directory.
+* these scripts do things like rewrite URLs in markdown docs to point at release branches instead of the master branch
+* in the extreme, every directory in the repo could have its own ```.cut-release-release-branch-changes.sh```
+* below is an example of typical ```.cut-release-release-branch-changes.sh``` that you would find in the root directory of a repo
 
 ```bash
 #!/usr/bin/env bash
@@ -414,24 +407,22 @@ fi
 
 RELEASE_BRANCH=${1:-}
 
-search_and_replace() {
-    if ! git diff --quiet "${2:-}"; then exit 1; fi
-    sed -i -e "${1:-}" "${2:-}"
-    if git diff --quiet "${2:-}"; then exit 2; fi
-    return 0
-}
+pushd "${SCRIPT_DIR_NAME}"
 
-search_and_replace \
-    "s|\\?branch=master|?branch=$RELEASE_BRANCH|g" \
-    "$SCRIPT_DIR_NAME/README.md"
+sed -i "" \
+    -e "s|tree/master|tree/${RELEASE_BRANCH}|g" \
+    "${SCRIPT_DIR_NAME}/README.md"
+
+rm -f "${SCRIPT_DIR_NAME}/README.rst"
+build-readme-dot-rst.sh
+
+rm -rf "${SCRIPT_DIR_NAME}/dist"
+build-python-package.sh
+
+popd
 
 exit 0
 ```
-
-You can have any number of scripts called ```.cut-release-release-branch-changes.sh```
-in any directory of the repo. ```cut-release.sh``` will find all
-the scripts named ```.cut-release-release-branch-changes.sh``` and run them
-when creating the release branch.
 
 # Working with CircleCI
 
