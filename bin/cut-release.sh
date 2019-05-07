@@ -187,21 +187,21 @@ git push origin "${RELEASE_BRANCH}"
 # with the new release branch created we can now create the github release
 #
 
+# 
+# -- creating a release @ https://developer.github.com/v3/repos/releases/#create-a-release
 #
-# notes for automating release creation
-#
-# -- [github: other authentication methiods](https://developer.github.com/v3/auth/)
-# -- personal access tokens ... only need repo access
 # -- https://developer.github.com/v3/auth/#basic-authentication
-# -- curl -H 'Authorization: token 5b18cc966931b62c51b99776f5bcac1491bb17b0' https://api.github.com/repos/simonsdave/dev-env/releases
-# -- validate token curl -o /dev/null -sH 'Authorization: token 5b18cc966931b62c51b99776f5bcac1491bb17b0' https://api.github.com/repos/simonsdave/dev-env
+# -- create a personal access tokens @ https://github.com/settings/tokens/new ... only need repo access
+# -- save personal access token git config --global github.token TOKEN
+# -- GITHUB_PERSONAL_ACCESS_TOKEN=$(git config --global github.token)
+#
+# -- REPO=$(git config --get remote.origin.url | sed -e 's|^.*:||g' | sed -e 's|.git||g')
+# -- curl -u :$GITHUB_PERSONAL_ACCESS_TOKEN https://api.github.com/repos/${REPO}/releases
+# -- validate token curl -s -o /dev/null -u :${GITHUB_PERSONAL_ACCESS_TOKEN} https://api.github.com/repos/${REPO}/releases
+#
+# -- changelog-dot-md-release-comments.py "${VERSION}" "${REPO_ROOT_DIR}/CHANGELOG.md"
 #
 # -- [Small shell script to create GitHub releases from the command line](https://gist.github.com/foca/38d82e93e32610f5241709f8d5720156)
-#
-# -- [A curl tutorial using GitHub's API](https://gist.github.com/caspyin/2288960)
-#
-# creating a release
-# -- https://developer.github.com/v3/repos/releases/#create-a-release
 #
 # "name": "dev_env-0.5.14-py2-none-any.whl",
 # "content_type": "application/octet-stream",
