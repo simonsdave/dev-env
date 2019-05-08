@@ -6,6 +6,7 @@ description of why this script exists what this script does.
 import logging
 import optparse
 import re
+import sys
 import time
 
 _logger = None
@@ -63,6 +64,14 @@ class CommandLineParser(optparse.OptionParser):
             dest="logging_level",
             default=default,
             type="logginglevel",
+            help=help)
+
+        help = "generate release comments for github release description"
+        self.add_option(
+            "--github",
+            action="store_true",
+            dest="github_release_description",
+            default=False,
             help=help)
 
     def parse_args(self, *args, **kwargs):
@@ -136,5 +145,6 @@ if __name__ == '__main__':
     while release_lines and not release_lines[-1]:
         release_lines = release_lines[:-1]
 
+    end_of_line = r'\r\n' if clo.github_release_description else '\n'
     for line in release_lines:
-        print line
+        sys.stdout.write('%s%s' % (line, end_of_line))
