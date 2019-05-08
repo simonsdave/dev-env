@@ -24,6 +24,7 @@ is now available in the ```dev-env``` docker image
 ### Removed
 
 * removed ```prep-for-release-python.sh``` and replaced with ```cut-release.sh``` which is a far more generalizable version of ```prep-for-release.sh```
+* removed ```dev-env-nosetests.py``` since it no longer seemed to be used
 
 ## [0.5.15] - [2019-04-14]
 

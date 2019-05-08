@@ -104,8 +104,6 @@ __version__ = '0.5.16'
 
 ## [run-unit-tests.sh](run-unit-tests.sh)
 
-## [dev-env-nosetests.py](dev-env-nosetests.py)
-
 # Working with ```CHANGELOG.md```
 
 ## [add-new-changelog-dot-md-release.py](add-new-changelog-dot-md-release.py)
