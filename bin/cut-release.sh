@@ -197,9 +197,9 @@ git push origin "${RELEASE_BRANCH}"
 #
 # -- REPO=$(git config --get remote.origin.url | sed -e 's|^.*:||g' | sed -e 's|.git||g')
 # -- curl -u :$GITHUB_PERSONAL_ACCESS_TOKEN https://api.github.com/repos/${REPO}/releases
-# -- validate token curl -s -o /dev/null -u :${GITHUB_PERSONAL_ACCESS_TOKEN} https://api.github.com/repos/${REPO}/releases
+# -- validate token = test $? after executing curl -s -o /dev/null -u :${GITHUB_PERSONAL_ACCESS_TOKEN} https://api.github.com/repos/${REPO}/releases
 #
-# -- changelog-dot-md-release-comments.py "${VERSION}" "${REPO_ROOT_DIR}/CHANGELOG.md"
+# -- changelog-dot-md-release-comments.py --github "${VERSION}" "${REPO_ROOT_DIR}/CHANGELOG.md"
 #
 # -- [Small shell script to create GitHub releases from the command line](https://gist.github.com/foca/38d82e93e32610f5241709f8d5720156)
 #
