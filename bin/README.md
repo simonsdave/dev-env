@@ -104,6 +104,25 @@ __version__ = '0.5.16'
 
 ## [run-unit-tests.sh](run-unit-tests.sh)
 
+* using [nose](https://nose.readthedocs.io/en/latest/) run all unit tests
+* ```run-unit-tests.sh``` assumes a ```.coveragerc``` exists in the repo's root directory - below is an example of ```.coveragerc``` from [this repo](https://github.com/simonsdave/dev-env-testing)
+
+```ini
+[run]
+branch = True
+include =
+    ./dev_env_testing/*
+omit =
+    *tests*
+    *__init__*
+
+[html]
+directory = coverage_report
+```
+
+* running unit tests generate coverage data which can be found in ```.coverage``` in the repo's root directory
+as well as an HTML coverage report in the directory defined in ```.coveragerc```
+
 # Working with ```CHANGELOG.md```
 
 ## [add-new-changelog-dot-md-release.py](add-new-changelog-dot-md-release.py)
