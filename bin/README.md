@@ -99,6 +99,7 @@ __version__ = '0.5.16'
 
 * ```python-increment-version.sh``` was created to simplify the implementation of ```.cut-release-master-branch-changes.sh```
 * see [this](#cut-release-master-branch-changessh) for more details on ```.cut-release-master-branch-changes.sh```
+* ```python-increment-version.sh``` depends on [increment_version.sh](https://github.com/fmahnke/shell-semver) to generate the new version number - all command line args to ```python-increment-version.sh``` are passed to [increment_version.sh](https://github.com/fmahnke/shell-semver) and thus [increment_version.sh](https://github.com/fmahnke/shell-semver) defines the comnmand line arguments for ```python-increment-version.sh```
 
 # Testing
 
