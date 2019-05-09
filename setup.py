@@ -50,6 +50,7 @@ setup(
         'bin/python-version.sh',
         'bin/python-increment-version.sh',
         'bin/cut-release.sh',
+        'bin/create-github-release.sh',
         'bin/run-flake8.sh',
         'bin/run-pip-check.sh',
         'bin/run-shellcheck.sh',
