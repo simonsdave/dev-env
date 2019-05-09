@@ -4,6 +4,8 @@
 # see the README.md in the same directory as this script for a
 # description of why this script exists what this script does
 #
+# see https://github.com/fmahnke/shell-semver for details on increment_version.sh
+#
 
 set -e
 
