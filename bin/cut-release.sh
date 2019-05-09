@@ -165,7 +165,6 @@ confirm_ok_to_proceed "These changes to ${RELEASE_BRANCH} look ok?"
 # this should be a very rare case
 if ! git diff-index --quiet HEAD --; then
     git commit -a -m "${VERSION} release prep"
-    RELEASE_COMMIT_ID=$(git rev-parse HEAD)
 fi
 
 #----------------------------------------------------------------------
@@ -184,33 +183,9 @@ git push origin "${RELEASE_BRANCH}"
 #----------------------------------------------------------------------
 
 #
-# with the new release branch created we can now create the github release
+# create a github release
 #
-
-# 
-# -- creating a release @ https://developer.github.com/v3/repos/releases/#create-a-release
-#
-# -- https://developer.github.com/v3/auth/#basic-authentication
-# -- create a personal access tokens @ https://github.com/settings/tokens/new ... only need repo access
-# -- save personal access token git config --global github.token TOKEN
-# -- GITHUB_PERSONAL_ACCESS_TOKEN=$(git config --global github.token)
-#
-# -- REPO=$(git config --get remote.origin.url | sed -e 's|^.*:||g' | sed -e 's|.git||g')
-# -- curl -u :$GITHUB_PERSONAL_ACCESS_TOKEN https://api.github.com/repos/${REPO}/releases
-# -- validate token = test $? after executing curl -s -o /dev/null -u :${GITHUB_PERSONAL_ACCESS_TOKEN} https://api.github.com/repos/${REPO}/releases
-#
-# -- changelog-dot-md-release-comments.py --github "${VERSION}" "${REPO_ROOT_DIR}/CHANGELOG.md"
-#
-# -- [Small shell script to create GitHub releases from the command line](https://gist.github.com/foca/38d82e93e32610f5241709f8d5720156)
-#
-# "name": "dev_env-0.5.14-py2-none-any.whl",
-# "content_type": "application/octet-stream",
-# "browser_download_url": "https://github.com/simonsdave/dev-env/releases/download/v0.5.14/dev_env-0.5.14-py2-none-any.whl"
-# 
-# "name": "dev_env-0.5.14.tar.gz",
-# "content_type": "application/x-gzip",
-# "browser_download_url": "https://github.com/simonsdave/dev-env/releases/download/v0.5.14/dev_env-0.5.14.tar.gz"
-#
+"${SCRIPT_DIR_NAME}/create-github-release.sh" "${VERSION}" "${RELEASE_BRANCH}"
 
 #----------------------------------------------------------------------
 
@@ -223,6 +198,6 @@ git checkout master
 #
 # all done:-)
 #
-echo_if_verbose "Release should be based on commit '${RELEASE_COMMIT_ID}' in branch '${RELEASE_BRANCH}' with name & tag = 'v${VERSION}'"
+echo_if_verbose "All done!"
 
 exit 0
