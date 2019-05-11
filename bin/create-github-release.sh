@@ -4,6 +4,9 @@
 # this is a private script (for now) which is intended only to be
 # used by ```cut-release.sh```.
 #
+# helpful references to understand this code
+# -- https://developer.github.com/v3/repos/releases/#create-a-release
+#
 
 set -e
 
@@ -90,25 +93,6 @@ echo_if_verbose "Created github release - branch='${RELEASE_BRANCH}'; tag='${TAG
 exit 0
 
 #----------------------------------------------------------------------
-
-#
-# with the new release branch created we can now create the github release
-#
-
-# 
-# -- creating a release @ https://developer.github.com/v3/repos/releases/#create-a-release
-#
-# -- https://developer.github.com/v3/auth/#basic-authentication
-# -- create a personal access tokens @ https://github.com/settings/tokens/new ... only need repo access
-# -- save personal access token git config --global github.token TOKEN
-# -- GITHUB_PERSONAL_ACCESS_TOKEN=$(git config --global github.token)
-#
-# -- REPO=$(git config --get remote.origin.url | sed -e 's|^.*:||g' | sed -e 's|.git||g')
-# -- curl -u :$GITHUB_PERSONAL_ACCESS_TOKEN https://api.github.com/repos/${REPO}/releases
-# -- validate token = test $? after executing curl -s -o /dev/null -u :${GITHUB_PERSONAL_ACCESS_TOKEN} https://api.github.com/repos/${REPO}/releases
-#
-# -- changelog-dot-md-release-comments.py --github "${VERSION}" "${REPO_ROOT_DIR}/CHANGELOG.md"
-#
 # -- application/x-gzip
 # -- application/octet-stream
 #

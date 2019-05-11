@@ -345,6 +345,9 @@ should be uploaded - from the above ```.pypirc``` this would be either ```pypi``
     * [Semantic Versioning](http://semver.org/) is used
     * for each release a new branch is created from master called ```release-<version>```
     * ```CHANGELOG.md``` exits in the project's root directory and follows [these](https://keepachangelog.com/en/1.0.0/) formatting guidelines
+    * a [personal access token](https://github.blog/2013-05-16-personal-api-tokens/)
+    as been created (see [this](https://github.com/settings/tokens/new) and note that only
+    "repo" access is required for this token) and has been saved using ```git config --global github.token TOKEN```
 * ```cut-release.sh``` does the following
     * get release version by executing ```.cut-release-version.sh``` in the root directory of the repo
     * generate a release date using ```date "+%Y-%m-%d"```
@@ -367,6 +370,7 @@ should be uploaded - from the above ```.pypirc``` this would be either ```pypi``
             * see [this](#cut-release-release-branch-changessh) for more details on ```.cut-release-release-branch-changes.sh```
         * ```git commit``` all release branch changes
     * push all changes on master and release branches to github
+    * use [create-github-release.sh](#create-github-releasesh) to create a [github release](https://help.github.com/en/articles/about-releases)
 
 ### ``` .cut-release-version.sh```
 
@@ -441,6 +445,16 @@ popd
 
 exit 0
 ```
+
+## [create-github-release.sh](create-github-release.sh)
+
+* expecting ```create-dummy-docker-container.sh``` to be used only by other shell scripts in this directory
+ie. it implements a private "API" so use at your own peril
+* ```create-github-release.sh``` creates [github release](https://help.github.com/en/articles/about-releases)
+* assumptions
+  * a [personal access token](https://github.blog/2013-05-16-personal-api-tokens/)
+  as been created (see [this](https://github.com/settings/tokens/new) and note that only
+  "repo" access is required for this token) and has been saved using ```git config --global github.token TOKEN```. The token is used to [authenticate to the github API](https://developer.github.com/v3/auth/#basic-authentication).
 
 # Working with CircleCI
 
