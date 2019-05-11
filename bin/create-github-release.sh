@@ -45,7 +45,7 @@ RELEASE_BRANCH=${2:-}
 
 TAG=v${VERSION:-}
 
-GITHUB_PERSONAL_ACCESS_TOKEN=$(git config --global github.token)
+GITHUB_PERSONAL_ACCESS_TOKEN=$(git config --global github.token || true)
 if [ "" == "${GITHUB_PERSONAL_ACCESS_TOKEN:-}" ]; then
     echo "error getting github access token" >&2
     exit 1
