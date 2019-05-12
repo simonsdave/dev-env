@@ -504,7 +504,7 @@ jobs:
 
 * the challenge with CircleCI and ```dev-env-version.txt```
 is that there are two places defining the ```dev-env``` version
-* don't know how to fix this problem but ```check-consistent-dev-env-version.sh```
+* don't know how to fix this problem but
 inserting ```check-consistent-dev-env-version.sh``` into the CircleCI pipeline
 will at least detects if the two version definitions have drifted
 * ```check-consistent-dev-env-version.sh``` has a zero exit code if the
