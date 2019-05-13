@@ -67,7 +67,7 @@ CREATE_RELEASE_PAYLOAD=$(
   jq --null-input \
      --arg tag "${TAG}" \
      --arg branch "${RELEASE_BRANCH}" \
-     --arg body "$(changelog-dot-md-release-comments.py --github "${VERSION}" "${CHANGELOG_DOT_MD}")" \
+     --arg body "$(changelog-dot-md-release-comments.py "${VERSION}" "${CHANGELOG_DOT_MD}")" \
      '{ tag_name: $tag, name: $tag, target_commitish: $branch, body: $body, draft: false, prerelease: false }'
 )
 
