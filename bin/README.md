@@ -452,9 +452,11 @@ exit 0
 ie. it implements a private "API" so use at your own peril
 * ```create-github-release.sh``` creates [github release](https://help.github.com/en/articles/about-releases)
 * assumptions
-  * a [personal access token](https://github.blog/2013-05-16-personal-api-tokens/)
-  as been created (see [this](https://github.com/settings/tokens/new) and note that only
-  "repo" access is required for this token) and has been saved using ```git config --global github.token TOKEN```. The token is used to [authenticate to the github API](https://developer.github.com/v3/auth/#basic-authentication).
+    * need a [personal access token](https://github.blog/2013-05-16-personal-api-tokens/)
+    to [authenticate to the github API](https://developer.github.com/v3/auth/#basic-authentication)
+    * create a new token [here](https://github.com/settings/tokens/new)
+    * note the token only needs "repo" access
+    * save the token using ```git config --global github.token TOKEN```
 
 # Working with CircleCI
 
