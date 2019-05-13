@@ -448,7 +448,7 @@ exit 0
 
 ## [create-github-release.sh](create-github-release.sh)
 
-* expecting ```create-github-release.sh``` to be used only by other shell scripts in this directory
+* expecting ```create-github-release.sh``` to be used only by [cut-release.sh](#cut-releasesh)
 ie. it implements a private "API" so use at your own peril
 * ```create-github-release.sh``` creates [github release](https://help.github.com/en/articles/about-releases)
 * assumptions
