@@ -65,7 +65,15 @@ if [ $# != 0 ]; then
     exit 1
 fi
 
-VERSION=$("${REPO_ROOT_DIR}/.cut-release-version.sh")
+#
+# .cut-release-version.sh must exist @ the top of the repo and be executable
+#
+DOT_CUT_RELEASE_VERSION=${REPO_ROOT_DIR}/.cut-release-version.sh
+if [ ! -x "${DOT_CUT_RELEASE_VERSION}" ]; then
+    echo "could not find executable '${DOT_CUT_RELEASE_VERSION}'" >&2
+    exit 2
+fi
+VERSION=$("${DOT_CUT_RELEASE_VERSION}")
 RELEASE_DATE=$(date "+%Y-%m-%d")
 
 #
