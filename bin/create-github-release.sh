@@ -75,7 +75,6 @@ CREATE_RELEASE_OUTPUT=$(mktemp 2> /dev/null || mktemp -t DAS)
 
 curl \
     -s \
-    --fail \
     -u ":${GITHUB_PERSONAL_ACCESS_TOKEN}" \
     -o "${CREATE_RELEASE_OUTPUT}" \
     -X POST \
@@ -84,6 +83,10 @@ curl \
     "https://api.github.com/repos/${REPO}/releases"
 
 ASSET_UPLOAD_URL=$(jq -r .upload_url "${CREATE_RELEASE_OUTPUT}")
+if [ "null" == "${ASSET_UPLOAD_URL}" ]; then
+    echo "error creating release - error details in '${CREATE_RELEASE_OUTPUT}'" >&2
+    exit 1
+fi
 ASSET_UPLOAD_URL=${ASSET_UPLOAD_URL%%{*}
 
 rm -f "${CREATE_RELEASE_OUTPUT}"
@@ -113,7 +116,7 @@ find "${REPO_ROOT_DIR}/dist" -name \* | while IFS= read -r ASSET; do
         "${ASSET_UPLOAD_URL}?name=$(basename "${ASSET}")"
 
     if [ "null" == "$(jq -r .browser_download_url "${UPLOAD_ASSET_OUTPUT}")" ]; then
-        echo "error uploading '${ASSET}' - error details in '${UPLOAD_ASSET_OUTPUT}'" >&2
+        echo "error uploading asset '${ASSET}' - error details in '${UPLOAD_ASSET_OUTPUT}'" >&2
         exit 1
     fi
 done
