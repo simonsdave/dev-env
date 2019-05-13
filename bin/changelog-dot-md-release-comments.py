@@ -6,7 +6,6 @@ description of why this script exists what this script does.
 import logging
 import optparse
 import re
-import sys
 import time
 
 _logger = None
