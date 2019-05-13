@@ -66,14 +66,6 @@ class CommandLineParser(optparse.OptionParser):
             type="logginglevel",
             help=help)
 
-        help = "generate release comments for github release description"
-        self.add_option(
-            "--github",
-            action="store_true",
-            dest="github_release_description",
-            default=False,
-            help=help)
-
     def parse_args(self, *args, **kwargs):
         (clo, cla) = optparse.OptionParser.parse_args(self, *args, **kwargs)
         if 2 != len(cla):
@@ -145,6 +137,5 @@ if __name__ == '__main__':
     while release_lines and not release_lines[-1]:
         release_lines = release_lines[:-1]
 
-    end_of_line = r'\r\n' if clo.github_release_description else '\n'
     for line in release_lines:
-        sys.stdout.write('%s%s' % (line, end_of_line))
+        print line
