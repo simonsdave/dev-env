@@ -31,7 +31,7 @@ CIRCLECI_VERSION=$(grep '^\s*\-\s*image\:\s*' "${REPO_ROOT_DIR}/.circleci/config
     head -1 | \
     sed -e 's|^.*:||g' | \
     sed -e 's|[[:space:]]*$||g')
-CIRCLECL_VERSION=$(normalize "${CIRCLECL_VERSION}")
+CIRCLECI_VERSION=$(normalize "${CIRCLECI_VERSION}")
 
 DEV_ENV_VERSION=$(cat "${REPO_ROOT_DIR}/dev_env/dev-env-version.txt")
 DEV_ENV_VERSION=$(normalize "${DEV_ENV_VERSION}")

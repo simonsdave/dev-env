@@ -12,7 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-* Nothing
+* fixed bug in ```check-consistent-dev-env-version.sh``` when normalizing of version numbers
 
 ### Removed
 
