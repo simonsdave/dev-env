@@ -1,5 +1,5 @@
 flake8==3.7.7
-mock==2.0.0
+mock==3.0.5
 #
 # ndg-httpsclient is required to avoid various SNI related
 # warning messages when doing simple things (ex twine upload)

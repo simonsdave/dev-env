@@ -13,6 +13,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 
 * fixed bug in ```check-consistent-dev-env-version.sh``` when normalizing of version numbers
+* mock 2.0.0 -> 3.0.5
 
 ### Removed
 
