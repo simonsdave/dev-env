@@ -17,7 +17,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Removed
 
-* Nothing
+* ```requirements.txt``` in the repo's root directory since it's no longer used
 
 ## [0.5.16] - [2019-05-13]
 
