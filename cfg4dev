@@ -1,17 +1,14 @@
-if [ -f "$PWD/requirements.txt" ]; then
-    # per guidelines in https://github.com/simonsdave/dev-env
-    export DEV_ENV_DOCKER_IMAGE=simonsdave/xenial-dev-env:build
+pushd "$(git rev-parse --show-toplevel)" > /dev/null
 
-    if [ -d "$PWD/env" ]; then
-        source "$PWD/env/bin/activate"
-    else
-        virtualenv env
-        source "$PWD/env/bin/activate"
+export DEV_ENV_DOCKER_IMAGE=simonsdave/xenial-dev-env:build
 
-        ./dockerfiles/build-docker-image.sh "$DEV_ENV_DOCKER_IMAGE"
-    fi
-
-    export PATH="$PWD/bin":$PATH
+if [ -d "$PWD/env" ]; then
+    source "./env/bin/activate"
 else
-    echo "Must source this script from project's root directory" >&2
+    virtualenv env
+    source "./env/bin/activate"
+
+    ./dockerfiles/build-docker-image.sh "$DEV_ENV_DOCKER_IMAGE"
 fi
+
+export PATH="$PWD/bin":$PATH
