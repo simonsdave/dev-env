@@ -61,6 +61,6 @@ are in a sub-directory of the project's root directory called ```dev_env```
 ## What Next
 
 * take a look at the [shell and python scripts](bin) to assess ```dev-env``` capability
-* [here's](docs/using.md) a description of how to start using ```dev-env```
+* [here's](https://github.com/simonsdave/dev-env/tree/release-0.5.17/docs/using.md) a description of how to start using ```dev-env```
 * take a look at [this](https://github.com/simonsdave/dev-env-testing) github repo which illustrates how to use ```dev-env```
-* if you'd like to help contribute to ```dev-env``` see [this](docs/contributing.md)
+* if you'd like to help contribute to ```dev-env``` see [this](https://github.com/simonsdave/dev-env/tree/release-0.5.17/docs/contributing.md)
