@@ -2,13 +2,15 @@ pushd "$(git rev-parse --show-toplevel)" > /dev/null
 
 export DEV_ENV_DOCKER_IMAGE=simonsdave/xenial-dev-env:build
 
-if [ -d "$PWD/env" ]; then
-    source "./env/bin/activate"
+if [ -d ./env ]; then
+    source ./env/bin/activate
 else
     virtualenv env
-    source "./env/bin/activate"
+    source ./env/bin/activate
 
-    ./dockerfiles/build-docker-image.sh "$DEV_ENV_DOCKER_IMAGE"
+    ./dockerfiles/build-docker-image.sh "${DEV_ENV_DOCKER_IMAGE}"
 fi
 
 export PATH="$PWD/bin":$PATH
+
+popd
