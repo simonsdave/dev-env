@@ -463,6 +463,13 @@ ie. it implements a private "API" so use at your own peril
 ## [run-circleci.sh](run-circleci.sh)
 
 * the [CircleCI](https://circleci.com) [CLI](https://circleci.com/docs/2.0/local-cli/) can be helpful
+* to see the CLI version
+
+```bash
+~> run-circleci.sh version
+0.1.5607+f705856
+~>
+```
 * mostly used thus far to validate ```.circleci/config.yml``` per below
 
 ```bash
