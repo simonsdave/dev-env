@@ -9,6 +9,19 @@ set -e
 
 SCRIPT_DIR_NAME="$( cd "$( dirname "$0" )" && pwd )"
 
+VERBOSE=0
+
+usage() {
+    echo "usage: $(basename "$0") [--verbose]" >&2
+}
+
+echo_if_verbose() {
+    if [ "1" -eq "${VERBOSE:-0}" ]; then
+        echo "${1:-}"
+    fi
+    return 0
+}
+
 normalize() {
     VERSION=${1:-}
     # intent = remove leading and trailing spaces
@@ -20,8 +33,26 @@ normalize() {
     echo ${VERSION}
 }
 
+while true
+do
+    case "${1:-}" in
+        --verbose)
+            shift
+            VERBOSE=1
+            ;;
+        --help)
+            shift
+            usage
+            exit 0
+            ;;
+        *)
+            break
+            ;;
+    esac
+done
+
 if [ $# != 0 ]; then
-    echo "usage: $(basename "$0")" >&2
+    usage
     exit 1
 fi
 
@@ -31,10 +62,12 @@ CIRCLECI_VERSION=$(grep '^\s*\-\s*image\:\s*' "${REPO_ROOT_DIR}/.circleci/config
     head -1 | \
     sed -e 's|^.*:||g' | \
     sed -e 's|[[:space:]]*$||g')
-CIRCLECL_VERSION=$(normalize "${CIRCLECL_VERSION}")
+CIRCLECI_VERSION=$(normalize "${CIRCLECI_VERSION}")
 
 DEV_ENV_VERSION=$(cat "${REPO_ROOT_DIR}/dev_env/dev-env-version.txt")
 DEV_ENV_VERSION=$(normalize "${DEV_ENV_VERSION}")
+
+echo_if_verbose "Comparing dev-env-version.txt of '${DEV_ENV_VERSION}' with CircelCI '${CIRCLECI_VERSION}'"
 
 if [ "${CIRCLECI_VERSION}" != "${DEV_ENV_VERSION}" ]; then
     exit 1

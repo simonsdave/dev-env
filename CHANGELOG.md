@@ -12,7 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-* Nothing
+* ```bin/check-consistent-dev-env-version.sh``` and ```bin/in-container/check-consistent-dev-env-version.sh``` are now the same
 
 ### Removed
 
