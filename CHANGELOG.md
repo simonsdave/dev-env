@@ -8,7 +8,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-* Nothing
+* created ```bin/in-container/should-be-the-same.sh``` and called it from the CI pipeline to ensure
+scripts on ```bin``` and ```bin/in-container``` that are supposed to be the same really are the same
 
 ### Changed
 

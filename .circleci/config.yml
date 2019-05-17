@@ -16,6 +16,7 @@ jobs:
     executor: dev-env
     steps:
       - checkout
+      - bin/in-container/should-be-the-same.sh
       - setup_remote_docker
       - run:
           name: Build docker image
