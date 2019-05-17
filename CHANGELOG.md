@@ -8,7 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-* Nothing
+* add ```--verbose``` command line option to ```check-consistent-dev-env-version.sh``` 
 
 ### Changed
 

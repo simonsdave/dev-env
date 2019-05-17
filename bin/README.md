@@ -506,11 +506,36 @@ jobs:
 
 * the challenge with CircleCI and ```dev-env-version.txt```
 is that there are two places defining the ```dev-env``` version
-* don't know how to fix this problem but
+* don't know how to fix this problem so let's at least automate detection of the problem by
 inserting ```check-consistent-dev-env-version.sh``` into the CircleCI pipeline
-will at least detects if the two version definitions have drifted
+
+```yaml
+jobs:
+  build_test_and_deploy:
+    working_directory: ~/repo
+    executor: dev-env
+    steps:
+      - checkout
+      - run: check-consistent-dev-env-version.sh
+      - restore_cache:
+          keys:
+```
+
 * ```check-consistent-dev-env-version.sh``` has a zero exit code if the
 two versions are the same and non-zero if the two versions are different
+* usage for ```check-consistent-dev-env-version.sh```
+
+```bash
+~> ./check-consistent-dev-env-version.sh --help
+usage: check-consistent-dev-env-version.sh [--verbose]
+~>
+```
+
+* the ```--verbose``` command line option can be useful after ```check-consistent-dev-env-version.sh```
+is inserted into the CircleCI pipeline and it returns a non-zero exit code but a visual
+inspection of ```dev-env-version.txt``` and ```config.yml``` don't reveal where there's a version
+mismatch - adding ```--verbose``` to the pipeline should generate enough information to
+debug the problem
 
 ## [create-dummy-docker-container.sh](create-dummy-docker-container.sh)
 
