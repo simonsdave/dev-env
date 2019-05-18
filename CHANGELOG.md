@@ -12,7 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-* Nothing
+* fixed bug in ```run-unit-tests.sh``` which wasn't looking for ```.coveragerc``` in the repo root directory
 
 ### Removed
 

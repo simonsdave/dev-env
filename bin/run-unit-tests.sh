@@ -37,7 +37,7 @@ docker container cp \
     "${DOCKER_CONTAINER_NAME}:/app/.coverage" \
     "${DOT_COVERAGE}"
 
-COVERAGE_REPORT=$(grep directory .coveragerc | sed -e 's|.*=[[:space:]]*||g' | sed -e 's|[[:space:]]*$||g')
+COVERAGE_REPORT=$(grep directory "${REPO_ROOT_DIR:-}/.coveragerc" | sed -e 's|.*=[[:space:]]*||g' | sed -e 's|[[:space:]]*$||g')
 
 rm -rf "${REPO_ROOT_DIR:-}/${COVERAGE_REPORT:-}"
 
