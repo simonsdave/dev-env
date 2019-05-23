@@ -18,29 +18,29 @@ v0.5.15
 ## ```cfg4dev```
 
 ```bash
-if [ -f "$PWD/requirements.txt" ]; then
-    # per guidelines in https://github.com/simonsdave/dev-env
-    export DEV_ENV_DOCKER_IMAGE="simonsdave/dev-env-testing-xenial-dev-env:build"
+pushd "$(git rev-parse --show-toplevel)" > /dev/null
 
-    if [ -d "$PWD/env" ]; then
-        source "$PWD/env/bin/activate"
-    else
-        virtualenv env
-        source "$PWD/env/bin/activate"
+export DEV_ENV_DOCKER_IMAGE=simonsdave/cloudfeaster-xenial-dev-env:build
 
-        DEV_ENV_VERSION=$(cat "$PWD/dev_env/dev-env-version.txt")
-        if [ "${DEV_ENV_VERSION:-}" == "latest" ]; then DEV_ENV_VERSION=master; fi
-        curl -s -L https://raw.githubusercontent.com/simonsdave/dev-env/${DEV_ENV_VERSION}/bin/install-dev-env.sh | bash -s --
-        unset DEV_ENV_VERSION
-
-        "$PWD/dev_env/build-docker-image.sh" "$DEV_ENV_DOCKER_IMAGE"
-    fi
-
-    export PATH="$PWD/bin":$PATH
+if [ -d ./env ]; then
+    source ./env/bin/activate
 else
-    echo "Must source this script from project's root directory" >&2
-    return 1
+    virtualenv env
+    source ./env/bin/activate
+
+    pip install --upgrade pip
+
+    DEV_ENV_VERSION=$(cat ./dev_env/dev-env-version.txt)
+    if [ "${DEV_ENV_VERSION}" == "latest" ]; then DEV_ENV_VERSION=master; fi
+    pip install "git+https://github.com/simonsdave/dev-env.git@${DEV_ENV_VERSION}"
+    unset DEV_ENV_VERSION
+
+    ./dev_env/build-docker-image.sh "${DEV_ENV_DOCKER_IMAGE}"
 fi
+
+export PATH="$PWD/bin":$PATH
+
+popd > /dev/null
 ```
 
 ## [shell scripts to work with the dev-env docker image](https://github.com/simonsdave/dev-env/tree/master/bin)
