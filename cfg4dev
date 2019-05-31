@@ -11,6 +11,6 @@ else
     ./dockerfiles/build-docker-image.sh "${DEV_ENV_DOCKER_IMAGE}"
 fi
 
-export PATH="$PWD/bin":$PATH
+export PATH="${PWD}/bin":$PATH
 
-popd
+popd > /dev/null
