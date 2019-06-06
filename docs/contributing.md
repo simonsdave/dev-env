@@ -1,10 +1,43 @@
 # Contributing
 
-## Branch Management and Versioning Strategy
+## Key Concepts
+
+### Changelog
+
+* at top of the repo there's a [markdown](https://en.wikipedia.org/wiki/Markdown) file
+called [```CHANGELOG.md```](../CHANGELOG.md) which is a hand curated changlelog
+* ```CHANGELOG.md``` is intended to be read by humans
+ala [this](https://keepachangelog.com/en/1.0.0/) thinking
+
+### Branching
 
 * all development is done on the ```master``` branch
-* we use [Semantic Versioning](http://semver.org/)
-* for each release a new branch is created from master called ```release-<version>```
+* the ```master``` branch is protected
+* [GitHub flow](https://guides.github.com/introduction/flow/) is used to
+introduce changes to the ```master``` branch
+* before creating a [pull request](https://help.github.com/en/articles/about-pull-requests)
+to merge a feature branch back into ```master```,
+all changes on the feature branch should be squashed down to a single buildable
+commit and then rebased from the up-to-date ```master``` branch -
+see [this](https://blog.carbonfive.com/2017/08/28/always-squash-and-rebase-your-git-commits/)
+for additional details
+* cutting a release involves creating a new branch from ```master```
+called ```release-<version>```
+
+### Commit Messaging
+
+* commit messaging follows
+the [Conventional Commits specification](https://www.conventionalcommits.org) to
+enable automated generation of release version numbers
+* more accurately, the single squashed and rebased commit used in a
+pull request follows the conventional commits specification
+
+### Versioning
+
+* [semantic versioning](http://semver.org/) is used
+* the current release number is stored
+in [```dev_env/__init__.py```](../dev_env/__init__.py)
+* <<< new release number calculated >>>
 
 ## How To Cut a Release
 
