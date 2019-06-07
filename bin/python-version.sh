@@ -32,8 +32,8 @@ fi
 
 pushd "$DIR_IN_REPO" > /dev/null
 
-REPO=$("${SCRIPT_DIR_NAME}/repo.sh")
-INIT_DOT_PY=$("${SCRIPT_DIR_NAME}/repo-root-dir.sh")/${REPO//-/_}/__init__.py
+PACKAGE=$("${SCRIPT_DIR_NAME}/repo.sh" -u)
+INIT_DOT_PY=$("${SCRIPT_DIR_NAME}/repo-root-dir.sh")/${PACKAGE}/__init__.py
 grep __version__ "$INIT_DOT_PY" | sed -e "s|^.*=[[:space:]]*['\"]||g" | sed -e "s|['\"].*$||g"
 
 popd > /dev/null
