@@ -8,6 +8,9 @@ else
     virtualenv env
     source ./env/bin/activate
 
+    curl -s -L -o ./bin/increment_version.sh 'https://raw.githubusercontent.com/fmahnke/shell-semver/master/increment_version.sh'
+    chmod a+x ./bin/increment_version.sh
+
     ./dockerfiles/build-docker-image.sh "${DEV_ENV_DOCKER_IMAGE}"
 fi
 

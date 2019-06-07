@@ -8,7 +8,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-* Nothing
+* ```cfg4dev``` now installs [increment_version.sh](https://github.com/fmahnke/shell-semver) in the ```bin``` directory
+so that development of ```python-increment-version.sh``` is possible
 
 ### Changed
 
