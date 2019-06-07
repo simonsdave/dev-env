@@ -31,13 +31,19 @@ the [Conventional Commits specification](https://www.conventionalcommits.org) to
 enable automated generation of release version numbers
 * more accurately, the single squashed and rebased commit used in a
 pull request follows the conventional commits specification
+* perhaps comment on [commitlint](https://github.com/conventional-changelog/commitlint)
 
 ### Versioning
 
-* [semantic versioning](http://semver.org/) is used
-* the current release number is stored
+* [semantic versioning](http://semver.org/) is used and defines 3 types of
+releases major, minor, patch
+* the initial version number is ```0.0.0```
+* the version number is stored
 in [```dev_env/__init__.py```](../dev_env/__init__.py)
-* <<< new release number calculated >>>
+* the version number for a new release is generated based on the current
+version number and the release type
+* the release type is calculated by analyzing commit messages for all commits
+to the ```master``` branch since the last release
 
 ## How To Cut a Release
 
