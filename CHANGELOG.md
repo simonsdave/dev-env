@@ -14,6 +14,7 @@ so that development of ```python-increment-version.sh``` is possible
 ### Changed
 
 * fixed bug in ```run-unit-tests.sh``` which wasn't looking for ```.coveragerc``` in the repo root directory
+* ```run-shellcheck.sh``` sorts shell scripts before scanning
 
 ### Removed
 

@@ -24,7 +24,7 @@ if [ $# != 0 ]; then
     exit 1
 fi
 
-find "$("${SCRIPT_DIR_NAME}/repo-root-dir.sh")" -name '*.sh' | grep -v ./env | while IFS='' read -r FILENAME
+find "$("${SCRIPT_DIR_NAME}/repo-root-dir.sh")" -name '*.sh' | grep -v ./env | sort | while IFS='' read -r FILENAME
 do
     if [ "1" -eq "${VERBOSE:-0}" ]; then
         echo "$FILENAME"
