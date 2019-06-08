@@ -11,9 +11,29 @@ set -e
 
 SCRIPT_DIR_NAME="$( cd "$( dirname "$0" )" && pwd )"
 
+VERSION_CHANGE_TYPE=''
+
+while true
+do
+    case "${1:-}" in
+        -M|-m|-p)
+            VERSION_CHANGE_TYPE=${1:-}
+            shift
+            ;;
+        *)
+            break
+            ;;
+    esac
+done
+
+if [ $# != 0 ]; then
+    echo "usage: $(basename "$0") [-M|-m|-p]" >&2
+    exit 1
+fi
+
 INIT_DOT_PY=$("${SCRIPT_DIR_NAME}/repo-root-dir.sh")/$("${SCRIPT_DIR_NAME}/repo.sh" -u)/__init__.py
 CURRENT_VERSION=$(python-version.sh)
-NEXT_VERSION=$("${SCRIPT_DIR_NAME}/increment_version.sh" "$@" "${CURRENT_VERSION}")
+NEXT_VERSION=$("${SCRIPT_DIR_NAME}/increment_version.sh" "${VERSION_CHANGE_TYPE}" "${CURRENT_VERSION}")
 
 sed \
     -i "" \
