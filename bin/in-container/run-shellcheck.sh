@@ -26,11 +26,20 @@ fi
 
 find "$("${SCRIPT_DIR_NAME}/repo-root-dir.sh")" -name '*.sh' | grep -v ./env | sort | while IFS='' read -r FILENAME
 do
-    if [ "1" -eq "${VERBOSE:-0}" ]; then
-        echo "$FILENAME"
+    if [ -r "$(dirname "${FILENAME}")/.shellcheckignore" ]; then
+        if grep --silent "$(basename "${FILENAME}")" "$(dirname "${FILENAME}")/.shellcheckignore"; then
+            if [ "1" -eq "${VERBOSE:-0}" ]; then
+                echo "Ignoring ${FILENAME}"
+            fi
+            continue
+        fi
     fi
 
-    shellcheck "$FILENAME"
+    if [ "1" -eq "${VERBOSE:-0}" ]; then
+        echo "${FILENAME}"
+    fi
+
+    shellcheck "${FILENAME}"
 done
 
 exit 0
