@@ -20,7 +20,7 @@ docker run \
     --rm \
     --volumes-from "${DUMMY_DOCKER_CONTAINER_NAME}" \
     "$DEV_ENV_DOCKER_IMAGE" \
-    /bin/bash -c 'for SHELL_SCRIPT in $(find /app -name '*.sh' | egrep -v "^/app/(build|env)" | sort); do echo "$SHELL_SCRIPT" && shellcheck "$SHELL_SCRIPT"; done'
+    /bin/bash -c 'for SHELL_SCRIPT in $(find /app -name '*.sh' | egrep -v "^/app/(build|env)" | sort); do if ( [ -r "$(dirname "${SHELL_SCRIPT}")/.shellcheckignore" ] && ! grep --silent "$(basename "${SHELL_SCRIPT}")" "$(dirname "${SHELL_SCRIPT}")/.shellcheckignore" ) || [ ! -r "$(dirname "${SHELL_SCRIPT}")/.shellcheckignore" ]; then echo "$SHELL_SCRIPT" && shellcheck "$SHELL_SCRIPT"; fi; done'
 
 docker rm "${DUMMY_DOCKER_CONTAINER_NAME}" > /dev/null
 

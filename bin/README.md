@@ -576,7 +576,17 @@ for a description of "dangling docker images"
 ## [run-shellcheck.sh](run-shellcheck.sh)
 
 * thin wrapper around [shellcheck](https://github.com/koalaman/shellcheck)
-* runs [shellcheck](https://github.com/koalaman/shellcheck) against all files in the repo with a ```sh``` extension
+* runs [shellcheck](https://github.com/koalaman/shellcheck) against all files
+in the repo with a ```sh``` extension
+* files are scanned in alphabetical order
+* create a file called ```.shellcheckignore```
+in the same directory as ```example.sh``` that looks like the one below
+to avoid running [shellcheck](https://github.com/koalaman/shellcheck)
+on the file ```example.sh```
+
+```
+example.sh
+```
 
 ## [run-yamllint.sh](run-yamllint.sh)
 

@@ -10,6 +10,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 * ```cfg4dev``` now installs [increment_version.sh](https://github.com/fmahnke/shell-semver) in the ```bin``` directory
 so that development of ```python-increment-version.sh``` is possible
+* add support for ```.shellcheckignore``` so ```run-shellcheck.sh``` can ignore
+specific files
 
 ### Changed
 
