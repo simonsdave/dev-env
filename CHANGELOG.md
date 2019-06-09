@@ -17,6 +17,8 @@ specific files
 
 * fixed bug in ```run-unit-tests.sh``` which wasn't looking for ```.coveragerc``` in the repo root directory
 * ```run-shellcheck.sh``` sorts shell scripts before scanning
+* ```python-increment-version.sh``` now accepts command line arguments of ```M```, ```m``` and ```p```
+instead of ```-M```, ```-m``` and ```-p```
 
 ### Removed
 
