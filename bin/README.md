@@ -97,9 +97,43 @@ __version__ = '0.5.16'
 
 ## [python-increment-version.sh](python-increment-version.sh)
 
-* ```python-increment-version.sh``` was created to simplify the implementation of ```.cut-release-master-branch-changes.sh```
-* see [this](#cut-release-master-branch-changessh) for more details on ```.cut-release-master-branch-changes.sh```
-* ```python-increment-version.sh``` depends on [increment_version.sh](https://github.com/fmahnke/shell-semver) to generate the new version number - all command line args to ```python-increment-version.sh``` are passed to [increment_version.sh](https://github.com/fmahnke/shell-semver) and thus [increment_version.sh](https://github.com/fmahnke/shell-semver) defines the comnmand line arguments for ```python-increment-version.sh```
+* ```python-increment-version.sh``` increments a Python project's version number
+* the sequence below illustrates how ```python-increment-version.sh``` can be used
+
+```bash
+~> python-increment-version.sh
+usage: python-increment-version.sh <release-type>
+~> python-increment-version.sh M
+~> echo $?
+0
+~> git diff
+diff --git a/dev_env/__init__.py b/dev_env/__init__.py
+index e7a8889..1f356cc 100644
+--- a/dev_env/__init__.py
++++ b/dev_env/__init__.py
+@@ -1 +1 @@
+-__version__ = '0.5.20'
++__version__ = '1.0.0'
+~> python-increment-version.sh m
+~> git diff
+diff --git a/dev_env/__init__.py b/dev_env/__init__.py
+index e7a8889..1a72d32 100644
+--- a/dev_env/__init__.py
++++ b/dev_env/__init__.py
+@@ -1 +1 @@
+-__version__ = '0.5.20'
++__version__ = '1.1.0'
+~> python-increment-version.sh p
+~> git diff
+diff --git a/dev_env/__init__.py b/dev_env/__init__.py
+index e7a8889..b3ddbc4 100644
+--- a/dev_env/__init__.py
++++ b/dev_env/__init__.py
+@@ -1 +1 @@
+-__version__ = '0.5.20'
++__version__ = '1.1.1'
+~>
+```
 
 # Testing
 
