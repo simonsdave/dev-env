@@ -21,6 +21,11 @@ sed -i '' \
     "s|(docs|(https://github.com/simonsdave/dev-env/tree/$RELEASE_BRANCH/docs|g" \
     "$SCRIPT_DIR_NAME/README.md"
 
+sed -i '' \
+    -e \
+    "s|(bin|(https://github.com/simonsdave/dev-env/tree/$RELEASE_BRANCH/bin|g" \
+    "$SCRIPT_DIR_NAME/README.md"
+
 rm -f "$SCRIPT_DIR_NAME/README.rst"
 build-readme-dot-rst.sh
 
