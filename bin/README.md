@@ -291,6 +291,8 @@ what ```cut_changelog_dot_md.py``` does
 
 * run [pandoc](https://pandoc.org/) to create ```README.rst``` in the project's root directory
 from ```README.md``` in the same root directory
+* the [Online Sphinx editor](https://livesphinx.herokuapp.com/) is a handy tool for
+previewing [RST](https://en.wikipedia.org/wiki/ReStructuredText)
 
 # Python Packages
 
