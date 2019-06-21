@@ -7,6 +7,7 @@ the root directory of your git repo is accomplished by calling ```repo-root-dir.
 References
 
 * [Shell Parameter Expansion](https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html)
+* [11 May '19 - Seven Surprising Bash Variables](https://zwischenzugs.com/2019/05/11/seven-surprising-bash-variables/)
 
 # Repo Info
 
