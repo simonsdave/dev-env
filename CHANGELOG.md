@@ -8,7 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-* Nothing
+* add ```--dev-env-version``` command line option to ```install-dev-env.sh```
 
 ### Changed
 

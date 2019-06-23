@@ -7,14 +7,41 @@
 
 set -e
 
+usage() {
+    echo "usage: $(basename "$0") [--dev-env-version <version>]" >&2
+}
+
+DEV_ENV_VERSION=""
+
+while true
+do
+    case "$(echo "${1:-}" | tr "[:upper:]" "[:lower:]")" in
+        --dev-env-version)
+            shift
+            DEV_ENV_VERSION=${1:-}
+            shift
+            ;;
+        --help)
+            shift
+            usage
+            exit 0
+            ;;
+        *)
+            break
+            ;;
+    esac
+done
+
 if [ $# != 0 ]; then
-    echo "usage: $(basename "$0")" >&2
+    usage
     exit 1
 fi
 
-REPO_ROOT_DIR=$(git rev-parse --show-toplevel)
-DEV_ENV_VERSION=$(cat "${REPO_ROOT_DIR}/dev_env/dev-env-version.txt")
-if [ "${DEV_ENV_VERSION:-}" == "latest" ]; then DEV_ENV_VERSION=master; fi
+if [ "${DEV_ENV_VERSION:-}" == "" ]; then
+    REPO_ROOT_DIR=$(git rev-parse --show-toplevel)
+    DEV_ENV_VERSION=$(cat "${REPO_ROOT_DIR}/dev_env/dev-env-version.txt")
+    if [ "${DEV_ENV_VERSION:-}" == "latest" ]; then DEV_ENV_VERSION=master; fi
+fi
 
 pip install "git+https://github.com/simonsdave/dev-env.git@$DEV_ENV_VERSION"
 
