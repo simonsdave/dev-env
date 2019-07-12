@@ -12,7 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-* Nothing
+* flake8 3.7.7 -> 3.7.8
 
 ### Removed
 
