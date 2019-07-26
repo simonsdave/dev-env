@@ -13,6 +13,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 
 * flake8 3.7.7 -> 3.7.8
+* ```bin/in-container/run-bandit.sh``` incorrectly named packages to be tested
+when package name contains a dash
 
 ### Removed
 
@@ -71,7 +73,7 @@ scripts on ```bin``` and ```bin/in-container``` that are supposed to be the same
 
 ### Added
 
-* add ```--verbose``` command line option to ```check-consistent-dev-env-version.sh``` 
+* add ```--verbose``` command line option to ```check-consistent-dev-env-version.sh```
 
 ### Changed
 
@@ -318,7 +320,7 @@ coverage data upload was failing
 
 ### Changed
 
-- default value for ```--nginx``` command line option of ```create_dev_env.sh``` 
+- default value for ```--nginx``` command line option of ```create_dev_env.sh```
 is now zero which means by default the VM's port 8085 is not exposed to the host
 which means nginx won't be exposed to the host by default
 - changes to enable ```dev_env_nosetests.py``` to work when ```dev-env```
