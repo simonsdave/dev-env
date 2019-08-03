@@ -150,6 +150,21 @@ RUN pip install yamllint
 RUN curl -fLSs https://circle.ci/cli | bash
 
 #
+# AWS CLI
+# -- https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html
+# -- https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html#install-tool-pip
+# -- per https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html
+#
+# set the following in the CircleCI context
+#
+#   AWS_ACCESS_KEY_ID
+#   AWS_SECRET_ACCESS_KEY
+#   AWS_DEFAULT_REGION
+#   AWS_DEFAULT_OUTPUT=text
+#
+RUN pip install awscli
+
+#
 # if you look @ most of the host scripts in dev-env
 # you'll notice that many of them mount /app in the
 # dev-env container to the project's root directory.
