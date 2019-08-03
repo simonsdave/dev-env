@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 * add [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)
+* add [truffleHog](https://github.com/dxa4481/truffleHog) to scan for secrets in git source code repos
 
 ### Changed
 

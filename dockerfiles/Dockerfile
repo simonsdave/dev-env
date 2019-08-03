@@ -165,6 +165,12 @@ RUN curl -fLSs https://circle.ci/cli | bash
 RUN pip install awscli
 
 #
+# truffleHog
+# -- https://github.com/dxa4481/truffleHog
+#
+RUN pip install truffleHog
+
+#
 # if you look @ most of the host scripts in dev-env
 # you'll notice that many of them mount /app in the
 # dev-env container to the project's root directory.
