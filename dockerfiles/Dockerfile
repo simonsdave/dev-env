@@ -177,11 +177,6 @@ RUN pip install aws-sam-cli
 RUN pip install truffleHog
 
 #
-# coveralls
-#
-RUN pip install coveralls
-
-#
 # codecov
 # -- https://codecov.io
 # -- https://pypi.org/project/codecov/

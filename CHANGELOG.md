@@ -16,7 +16,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Removed
 
-* Nothing
+* remove [coveralls CLI](https://pypi.org/project/coveralls/)
 
 ## [0.5.24] - [2019-08-04]
 
