@@ -165,6 +165,12 @@ RUN curl -fLSs https://circle.ci/cli | bash
 RUN pip install awscli
 
 #
+# AWS SAM CLI
+# -- https://aws.amazon.com/serverless/sam/
+#
+RUN pip install aws-sam-cli
+
+#
 # truffleHog
 # -- https://github.com/dxa4481/truffleHog
 #

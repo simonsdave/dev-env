@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 * add [coveralls CLI](https://pypi.org/project/coveralls/)
+* add [AWS SAM CLI](https://aws.amazon.com/serverless/sam/)
 
 ### Changed
 
