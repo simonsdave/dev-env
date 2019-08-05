@@ -171,6 +171,11 @@ RUN pip install awscli
 RUN pip install truffleHog
 
 #
+# coveralls
+#
+RUN pip install coveralls
+
+#
 # if you look @ most of the host scripts in dev-env
 # you'll notice that many of them mount /app in the
 # dev-env container to the project's root directory.
