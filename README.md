@@ -30,7 +30,7 @@ The tools, scripts and utilities in this repo assume the user follows a pre-defi
 * ```dev-env``` publishes dev env docker images to [Docker Hub](https://hub.docker.com/)
 * the docker images are docker pulled to a developer's machine by ```cfg4dev```
 * [CircleCI](https://www.circleci.com) can use a ```dev-env``` docker image as a [docker executor](https://circleci.com/docs/2.0/executor-types/#using-docker)
-* [shell and python scripts](bin) are run on a developer's machine to access the dev env packaged in the docker image
+* [shell and python scripts](https://github.com/simonsdave/dev-env/tree/release-0.5.24/bin) are run on a developer's machine to access the dev env packaged in the docker image
 * the scripts are installed on a developer's machine by ```cfg4dev```
 * at the project's root is a text file called ```CHANGELOG.md``` which is manually curated by developers to record key changes to the project
 
@@ -60,7 +60,7 @@ are in a sub-directory of the project's root directory called ```dev_env```
 
 ## What Next
 
-* take a look at the [shell and python scripts](bin) to assess ```dev-env``` capability
-* [here's](docs/using.md) a description of how to start using ```dev-env```
+* take a look at the [shell and python scripts](https://github.com/simonsdave/dev-env/tree/release-0.5.24/bin) to assess ```dev-env``` capability
+* [here's](https://github.com/simonsdave/dev-env/tree/release-0.5.24/docs/using.md) a description of how to start using ```dev-env```
 * take a look at [this](https://github.com/simonsdave/dev-env-testing) github repo which illustrates how to use ```dev-env```
-* if you'd like to help contribute to ```dev-env``` see [this](docs/contributing.md)
+* if you'd like to help contribute to ```dev-env``` see [this](https://github.com/simonsdave/dev-env/tree/release-0.5.24/docs/contributing.md)
