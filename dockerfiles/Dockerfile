@@ -182,6 +182,13 @@ RUN pip install truffleHog
 RUN pip install coveralls
 
 #
+# codecov
+# -- https://codecov.io
+# -- https://pypi.org/project/codecov/
+#
+RUN pip install codecov
+
+#
 # if you look @ most of the host scripts in dev-env
 # you'll notice that many of them mount /app in the
 # dev-env container to the project's root directory.
