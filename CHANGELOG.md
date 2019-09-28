@@ -16,7 +16,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Removed
 
-* Nothing
+* remove [Snyc](https://snyk.io/) support
 
 ## [0.5.25] - [2019-08-05]
 

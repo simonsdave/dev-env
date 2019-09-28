@@ -124,12 +124,6 @@ ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 RUN npm install -g markdownlint-cli
 
 #
-# snyk
-# -- https://snyk.io/
-#
-RUN npm install -g snyk
-
-#
 # Bandit
 #   -- https://github.com/PyCQA/bandit
 #   -- bandit --verbose --exclude env -r .
