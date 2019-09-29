@@ -61,7 +61,6 @@ setup(
         'bin/build-readme-dot-rst.sh',
         'bin/repo.sh',
         'bin/repo-root-dir.sh',
-        'bin/run-snyk.sh',
         'bin/rm-dangling-docker-images.sh',
         'bin/run-markdownlint.sh',
         'bin/upload-dist-to-pypi.sh',
