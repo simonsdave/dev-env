@@ -53,7 +53,7 @@ setup(
         'bin/create-github-release.sh',
         'bin/run-flake8.sh',
         'bin/run-pip-check.sh',
-        'bin/run-shellcheck.sh',
+        'bin/run-shelllint.sh',
         'bin/run-unit-tests.sh',
         'bin/run-repo-security-scanner.sh',
         'bin/kill-and-rm-all-docker-containers.sh',

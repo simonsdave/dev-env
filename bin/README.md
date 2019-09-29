@@ -610,13 +610,13 @@ for a description of "dangling docker images"
 * thin wrapper around [flake8](http://flake8.pycqa.org/en/latest/)
 * runs [flake8](http://flake8.pycqa.org/en/latest/) against all files in the repo with a ```py``` extension
 
-## [run-shellcheck.sh](run-shellcheck.sh)
+## [run-shelllint.sh](run-shelllint.sh)
 
 * thin wrapper around [shellcheck](https://github.com/koalaman/shellcheck)
 * runs [shellcheck](https://github.com/koalaman/shellcheck) against all files
 in the repo with a ```sh``` extension
 * files are scanned in alphabetical order
-* create a file called ```.shellcheckignore```
+* create a file called ```.shelllintignore```
 in the same directory as ```example.sh``` that looks like the one below
 to avoid running [shellcheck](https://github.com/koalaman/shellcheck)
 on the file ```example.sh```
