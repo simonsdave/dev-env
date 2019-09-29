@@ -29,7 +29,7 @@ jobs:
           command: bin/run-flake8.sh
       - run:
           name: Lint Shell Scripts
-          command: bin/run-shellcheck.sh
+          command: bin/run-shelllint.sh
       - run:
           name: Lint YAML Files
           command: bin/run-yamllint.sh
