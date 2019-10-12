@@ -13,7 +13,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 
 * ```run-shellcheck.sh``` -> ```run-shelllint.sh``` - there's a breaking change in here = need to rename ```.shellcheckignore``` to ```.shelllintignore```
-* twine 1.13.0 -> 2.0.0
+* twine 1.13.0 -> 1.15.0
 
 ### Removed
 
