@@ -37,12 +37,6 @@ jobs:
           name: Scan repo for passwords, private keys, etc.
           command: bin/run-repo-security-scanner.sh
       - run:
-          # really don't like the "|| true" but can't figure out how
-          # to allow a "snyk test" to pass if a vulnerability exists
-          # but the vulnerability has been surpressed in synk's ui
-          name: Snyk vulnerability assessment
-          command: bin/run-snyk.sh -p "${SNYK_TOKEN}" || true
-      - run:
           name: Run Bandit
           command: bin/run-bandit.sh
       - run:
