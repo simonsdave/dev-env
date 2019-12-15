@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 
 LABEL maintainer="Dave Simons" 
 
@@ -13,15 +13,23 @@ RUN apt-get update -y
 ADD scripts.tar.gz /usr/local/bin
 
 #
-# python development
+# python 3 development
+# -- inspired by https://websiteforstudents.com/installing-the-latest-python-3-7-on-ubuntu-16-04-18-04/
+# -- python versions @ https://www.python.org/downloads/
+# -- pip3 inspired by https://linuxize.com/post/how-to-install-pip-on-ubuntu-18.04/
 #
-RUN apt-get install -y python
-RUN apt-get install -y python-dev
-RUN apt-get install -y python-pip
-RUN pip install --upgrade pip
+RUN apt-get install -y software-properties-common
+RUN add-apt-repository -y ppa:deadsnakes/ppa
+RUN apt-get update -y
+RUN apt-get install -y python3.7
+RUN apt-get install -y python3-dev
+RUN apt-get install -y python3-pip
 
+#
+# install core python packages
+#
 COPY requirements.txt /tmp/requirements.txt
-RUN cd /tmp && pip install --requirement requirements.txt
+RUN cd /tmp && pip3 install --requirement requirements.txt && rm requirements.txt
 
 #
 # pandoc
@@ -72,7 +80,7 @@ RUN apt-get install -y docker-ce
 #
 # -- https://github.com/UKHomeOffice/repo-security-scanner
 # -- git log -p | scanrepo
-# -- git log -p | docker run -i --rm simonsdave/xenial-dev-env:bindle scanrepo
+# -- git log -p | docker run -i --rm simonsdave/bionic-dev-env:bindle scanrepo
 #
 RUN cd /tmp && \
     curl -s -L -o scanrepo.tar.gz https://github.com/UKHomeOffice/repo-security-scanner/releases/download/0.4.0/scanrepo-0.4.0-linux-386.tar.gz && \
@@ -128,14 +136,14 @@ RUN npm install -g markdownlint-cli
 #   -- https://github.com/PyCQA/bandit
 #   -- bandit --verbose --exclude env -r .
 #
-RUN pip install bandit
+RUN pip3 install bandit
 
 #
 # yamllint
 # -- https://yamllint.readthedocs.io/en/stable/quickstart.html#installing-yamllint
 # -- start with python3-pkg-resources install as per https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=860075 
 #
-RUN pip install yamllint
+RUN pip3 install yamllint
 
 #
 # CircleCI CLI
@@ -156,26 +164,26 @@ RUN curl -fLSs https://circle.ci/cli | bash
 #   AWS_DEFAULT_REGION
 #   AWS_DEFAULT_OUTPUT=text
 #
-RUN pip install awscli
+RUN pip3 install awscli
 
 #
 # AWS SAM CLI
 # -- https://aws.amazon.com/serverless/sam/
 #
-RUN pip install aws-sam-cli
+RUN pip3 install aws-sam-cli
 
 #
 # truffleHog
 # -- https://github.com/dxa4481/truffleHog
 #
-RUN pip install truffleHog
+RUN pip3 install truffleHog
 
 #
 # codecov
 # -- https://codecov.io
 # -- https://pypi.org/project/codecov/
 #
-RUN pip install codecov
+RUN pip3 install codecov
 
 #
 # if you look @ most of the host scripts in dev-env

@@ -14,7 +14,7 @@ if [ $# != 0 ]; then
     exit 1
 fi
 
-DUMMY_CONTAINER_NAME=$(python -c "import uuid; print uuid.uuid4().hex")
+DUMMY_CONTAINER_NAME=$(python3 -c "import uuid; print(uuid.uuid4().hex)")
 
 # explict pull to create opportunity to swallow stdout
 docker pull alpine:3.4 > /dev/null

@@ -20,7 +20,7 @@ docker run \
     --rm \
     --volumes-from "${DUMMY_DOCKER_CONTAINER_NAME}" \
     "$DEV_ENV_DOCKER_IMAGE" \
-    /bin/bash -c 'cd /app && pip check'
+    /bin/bash -c 'cd /app && pip3 check'
 
 docker rm "${DUMMY_DOCKER_CONTAINER_NAME}" > /dev/null
 

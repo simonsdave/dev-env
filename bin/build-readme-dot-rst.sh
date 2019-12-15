@@ -16,7 +16,7 @@ fi
 
 REPO_ROOT_DIR=$("$SCRIPT_DIR_NAME/repo-root-dir.sh")
 
-DOCKER_CONTAINER_NAME=$(python -c "import uuid; print uuid.uuid4().hex")
+DOCKER_CONTAINER_NAME=$(python3 -c "import uuid; print(uuid.uuid4().hex)")
 
 docker run \
     --name "$DOCKER_CONTAINER_NAME" \

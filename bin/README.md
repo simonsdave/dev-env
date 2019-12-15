@@ -538,9 +538,9 @@ version: 2.1
 executors:
   dev-env:
     environment:
-      DOCKER_TEMP_IMAGE: simonsdave/cloudfeaster-xenial-dev-env:bindle
+      DOCKER_TEMP_IMAGE: simonsdave/cloudfeaster-bionic-dev-env:bindle
     docker:
-      - image: simonsdave/xenial-dev-env:v0.5.15
+      - image: simonsdave/bionic-dev-env:v0.6.0
 
 jobs:
   build_test_and_deploy:

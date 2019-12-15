@@ -1,10 +1,12 @@
 pushd "$(git rev-parse --show-toplevel)" > /dev/null
 
-export DEV_ENV_DOCKER_IMAGE=simonsdave/xenial-dev-env:build
+export DEV_ENV_DOCKER_IMAGE=simonsdave/bionic-dev-env:build
 
 if [ -d ./env ]; then
     source ./env/bin/activate
 else
+    pip3 install virtualenv
+
     virtualenv env
     source ./env/bin/activate
 

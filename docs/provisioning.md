@@ -20,7 +20,7 @@ v0.5.15
 ```bash
 pushd "$(git rev-parse --show-toplevel)" > /dev/null
 
-export DEV_ENV_DOCKER_IMAGE=simonsdave/cloudfeaster-xenial-dev-env:build
+export DEV_ENV_DOCKER_IMAGE=simonsdave/cloudfeaster-bionic-dev-env:build
 
 if [ -d ./env ]; then
     source ./env/bin/activate

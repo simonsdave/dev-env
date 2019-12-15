@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3.7
 """See the README.md in the same directory as this script for a
 description of why this script exists what this script does.
 """
@@ -137,4 +137,4 @@ if __name__ == '__main__':
         release_lines = release_lines[:-1]
 
     for line in release_lines:
-        print line
+        print(line)

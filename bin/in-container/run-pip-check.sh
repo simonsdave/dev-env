@@ -7,6 +7,6 @@ if [ $# != 0 ]; then
     exit 1
 fi
 
-pip check
+pip3 check
 
 exit 0

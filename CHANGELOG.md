@@ -12,7 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-* Nothing
+* *material change* = generated docker images Ubuntu 16.04 (Xenial) -> Ubuntu 18.04 (Bionic) and Python 2.7 -> Python 3.7
 
 ### Removed
 
