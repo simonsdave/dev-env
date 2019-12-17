@@ -12,7 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-* Nothing
+* fixed ```upload-dist-to-pypi.sh``` after upgrade to Python 3.7
 
 ### Removed
 
