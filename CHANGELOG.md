@@ -8,7 +8,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-* Nothing
+* add ```create-dummy-docker-container.sh``` to ```bin/in-container``` and
+ensure ```create-dummy-docker-container.sh``` is always the same as the version
+in ```bin```
 
 ### Changed
 
