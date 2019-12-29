@@ -15,6 +15,7 @@ removed scripts were always run together anyway (ii) the naming
 scheme didn't scream the destructure nature loudly enough (iii) there
 were no safeguards to protect users who ran the scripts without
 understanding their destructure nature
+* add ```bin/run-jsonlint.sh``` and ```bin/in-container/run-jsonlint.sh```
 
 ### Changed
 

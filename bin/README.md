@@ -629,6 +629,10 @@ example.sh
 * thin wrapper around [yamllint](https://yamllint.readthedocs.io/en/stable/index.html)
 * runs [yamllint](https://yamllint.readthedocs.io/en/stable/index.html) against all files in the repo with a ```yaml``` or ```yml``` extension
 
+## [run-jsonlint.sh](run-jsonlint.sh)
+
+* looks for all files in the repo with a ```json``` extension and uses ```jq``` to determine if the file contains valid [JSON](https://www.json.org)
+
 # Security Assessment
 
 ## [run-repo-security-scanner.sh](run-repo-security-scanner.sh)
