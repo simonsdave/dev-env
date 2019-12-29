@@ -52,6 +52,7 @@ setup(
         'bin/cut-release.sh',
         'bin/create-github-release.sh',
         'bin/run-flake8.sh',
+        'bin/run-jsonlint.sh',
         'bin/run-pip-check.sh',
         'bin/run-shelllint.sh',
         'bin/run-unit-tests.sh',
