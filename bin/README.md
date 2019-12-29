@@ -636,10 +636,6 @@ example.sh
 * runs [UKHomeOffice/repo-security-scanner](https://github.com/UKHomeOffice/repo-security-scanner)
 * CLI tool that finds secrets accidentally committed to a git repo, eg passwords, private keys
 
-## [run-snyk.sh](run-snyk.sh)
-
-* runs [snyk](https://snyk.io/) vulnerability assessor on the repo
-
 ## [run-bandit.sh](run-bandit.sh)
 
 * runs [PyCQA/bandit](https://github.com/PyCQA/bandit)
