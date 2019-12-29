@@ -591,16 +591,15 @@ described in [here](https://circleci.com/docs/2.0/building-docker-images/#mounti
 
 # Working with Docker
 
-## [kill-and-rm-all-docker-containers.sh](kill-and-rm-all-docker-containers.sh)
+## [docker-destructive-cleanup.sh](docker-destructive-cleanup.sh)
 
-* this is super destructive - use with caution
+* this is a super destructive command - use with caution - by default ```docker-destructive-cleanup.sh```
+interactively confirms if it's ok to proceed - the ```--yes``` command line option can be used to
+skip the confirmation
 * great for "resetting" your development environment
 * ```docker container kill``` and ```docker container rm``` all docker containers
-
-## [rm-dangling-docker-images.sh](rm-dangling-docker-images.sh)
-
-* removes all "dangling docker images"
-* see [this](https://docs.docker.com/engine/reference/commandline/images/#filtering)
+* removes all "dangling docker images" - see
+[this](https://docs.docker.com/engine/reference/commandline/images/#filtering)
 for a description of "dangling docker images"
 
 # [Static Analysis](https://en.wikipedia.org/wiki/Static_program_analysis)

@@ -8,7 +8,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-* Nothing
+* add ```bin/docker-destructive-cleanup.sh``` to replace
+both ```bin/kill-and-rm-all-docker-containers.sh```
+and ```bin/rm-dangling-docker-images.sh``` - motivation was (i) both
+removed scripts were always run together anyway (ii) the naming
+scheme didn't scream the destructure nature loudly enough (iii) there
+were no safeguards to protect users who ran the scripts without
+understanding their destructure nature
 
 ### Changed
 
@@ -16,7 +22,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Removed
 
-* Nothing
+* remove ```bin/kill-and-rm-all-docker-containers.sh``` and ```bin/rm-dangling-docker-images.sh``` - see
+the notes under "Added" for more details
 
 ## [0.6.2] - [2019-12-28]
 
