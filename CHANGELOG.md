@@ -16,6 +16,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * markdown lint [https://github.com/igorshubovych/markdownlint-cli](https://github.com/igorshubovych/markdownlint-cli) -> [https://github.com/markdownlint/markdownlint](https://github.com/markdownlint/markdownlint)
 * ```build-python-package.sh``` now does a ```twine check``` after building
   distributions to ensure an upload to pypi will succeed
+* added ```--text``` command line option to ```build-readme-dot-rst.sh```
+  to optionally indicate a ```README.txt``` should be created from
+  ```README.md``` in addition to ```README.rst```
 
 ### Removed
 

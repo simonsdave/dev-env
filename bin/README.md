@@ -291,9 +291,12 @@ what ```cut_changelog_dot_md.py``` does
 ## [build-readme-dot-rst.sh](build-readme-dot-rst.sh)
 
 * run [pandoc](https://pandoc.org/) to create ```README.rst``` in the project's root directory
-from ```README.md``` in the same root directory
+  from ```README.md``` in the same root directory
 * the [Online Sphinx editor](https://livesphinx.herokuapp.com/) is a handy tool for
-previewing [RST](https://en.wikipedia.org/wiki/ReStructuredText)
+  previewing [RST](https://en.wikipedia.org/wiki/ReStructuredText)
+* the ```--text``` command line option for ```build-readme-dot-rst.sh```
+  is optionally used indicate a ```README.txt``` should be created from
+  ```README.md``` in addition to ```README.rst```
 
 # Python Packages
 
