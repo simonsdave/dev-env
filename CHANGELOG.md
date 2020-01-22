@@ -12,7 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-* Nothing
+* pandoc 1.19.2.4 -> 2.9.1.1
 
 ### Removed
 

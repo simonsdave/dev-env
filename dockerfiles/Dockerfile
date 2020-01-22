@@ -32,16 +32,6 @@ COPY requirements.txt /tmp/requirements.txt
 RUN cd /tmp && pip3 install --requirement requirements.txt && rm requirements.txt
 
 #
-# pandoc
-#
-# Common scenario:
-#   -- projects have a README.md
-#   -- setup.py creates long description by reading README.rst
-#   -- README.rst is created by pypandoc reading README.md
-#
-RUN apt-get install -y pandoc
-
-#
 # cURL
 #
 RUN apt-get install -y curl
@@ -50,6 +40,19 @@ RUN apt-get install -y curl
 # git
 #
 RUN apt-get install -y git
+
+#
+# pandoc
+#
+# Common scenario:
+#   -- projects have a README.md
+#   -- setup.py creates long description by reading README.rst
+#   -- README.rst is created by pypandoc reading README.md
+#
+# :TRICKY: "apt-get install -y pandoc" installed a very old
+# version (1.19.2.4) of pandoc so using the massive mess below
+#
+RUN PDVERSION=2.9.1.1; cd /tmp; curl -s -L -o pandoc.tar.gz https://github.com/jgm/pandoc/releases/download/${PDVERSION}/pandoc-${PDVERSION}-linux-amd64.tar.gz; tar xvf pandoc.tar.gz; mv ./pandoc-$PDVERSION/bin/pandoc /usr/bin/.; rm -rf ./pandoc-$PDVERSION
 
 #
 # Install docker CE per instructions at
