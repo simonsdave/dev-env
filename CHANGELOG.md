@@ -13,6 +13,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 
 * pandoc 1.19.2.4 -> 2.9.1.1
+* markdown lint [https://github.com/igorshubovych/markdownlint-cli](https://github.com/igorshubovych/markdownlint-cli) -> [https://github.com/markdownlint/markdownlint](https://github.com/markdownlint/markdownlint)
 
 ### Removed
 

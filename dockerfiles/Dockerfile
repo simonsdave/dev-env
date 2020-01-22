@@ -129,10 +129,11 @@ ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
 ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 
 #
-# markdown Lint
-# -- https://github.com/igorshubovych/markdownlint-cli
+# markdown lint
+# -- https://github.com/markdownlint/markdownlint
 #
-RUN npm install -g markdownlint-cli
+RUN apt install -y ruby-full
+RUN gem install mdl
 
 #
 # Bandit
