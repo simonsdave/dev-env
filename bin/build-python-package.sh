@@ -14,7 +14,7 @@ if [ $# != 0 ]; then
     exit 1
 fi
 
-REPO_ROOT_DIR=$("$SCRIPT_DIR_NAME/repo-root-dir.sh")
+REPO_ROOT_DIR=$("${SCRIPT_DIR_NAME}/repo-root-dir.sh")
 
 #
 # :TRICKY: The implementation below feels more complicated than it
@@ -31,17 +31,16 @@ DOCKER_CONTAINER_NAME=$(python3 -c "import uuid; print(uuid.uuid4().hex)")
 DUMMY_DOCKER_CONTAINER_NAME=$("${SCRIPT_DIR_NAME}/create-dummy-docker-container.sh")
 
 docker run \
-    --name "$DOCKER_CONTAINER_NAME" \
+    --name "${DOCKER_CONTAINER_NAME}" \
     --volumes-from "${DUMMY_DOCKER_CONTAINER_NAME}" \
-    "$DEV_ENV_DOCKER_IMAGE" \
-    /bin/bash -c 'cp -r /app ~; cd ~/app; python3 setup.py bdist_wheel sdist --formats=gztar'
+    "${DEV_ENV_DOCKER_IMAGE}" \
+    /bin/bash -c 'cd /app; python3.7 setup.py bdist sdist --formats=gztar; twine check dist/*'
 
-docker rm "${DUMMY_DOCKER_CONTAINER_NAME}" > /dev/null
+docker container rm "${DUMMY_DOCKER_CONTAINER_NAME}" > /dev/null
 
-DIST_DIR_IN_CONTAINER=$(docker run --rm "$DEV_ENV_DOCKER_IMAGE" /bin/bash -c 'echo ~')/app/dist
-rm -rf "$REPO_ROOT_DIR/dist"
-docker container cp "$DOCKER_CONTAINER_NAME:$DIST_DIR_IN_CONTAINER" "$REPO_ROOT_DIR"
+rm -rf "${REPO_ROOT_DIR}/dist"
+docker container cp "${DOCKER_CONTAINER_NAME}:/app/dist" "${REPO_ROOT_DIR}"
 
-docker container rm "$DOCKER_CONTAINER_NAME" > /dev/null
+docker container rm "${DOCKER_CONTAINER_NAME}" > /dev/null
 
 exit 0

@@ -14,6 +14,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 * pandoc 1.19.2.4 -> 2.9.1.1
 * markdown lint [https://github.com/igorshubovych/markdownlint-cli](https://github.com/igorshubovych/markdownlint-cli) -> [https://github.com/markdownlint/markdownlint](https://github.com/markdownlint/markdownlint)
+* ```build-python-package.sh``` now does a ```twine check``` after building
+  distributions to ensure an upload to pypi will succeed
 
 ### Removed
 

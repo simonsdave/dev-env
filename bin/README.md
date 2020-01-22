@@ -302,6 +302,8 @@ previewing [RST](https://en.wikipedia.org/wiki/ReStructuredText)
 * create a [source distribution](https://docs.python.org/2/distutils/sourcedist.html)
 and [built distribution](https://docs.python.org/2/distutils/builtdist.html) per the
 example below
+* after creating the distributions a ```twine check``` is done to confirm an
+  upload to pypi will succeed
 
 ```bash
 ~> build-python-package.sh
