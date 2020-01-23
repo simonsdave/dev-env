@@ -7,6 +7,11 @@ if [ $# != 0 ]; then
     exit 1
 fi
 
-markdownlint /app
+for MD_FILE_NAME in $(find /app -name "*.md" | grep -E "^/app/(build|env)"); do
+    echo "${MD_FILE_NAME}"
+    if ! mdl --style /app/.markdownlint-style.rb "${MD_FILE_NAME}"; then
+        exit 1
+    fi
+done
 
 exit 0

@@ -688,6 +688,21 @@ example.sh
 
 * looks for all files in the repo with a ```json``` extension and uses ```jq``` to determine if the file contains valid [JSON](https://www.json.org)
 
+## [run-markdownlint.sh])(run-markdownlint.sh)
+
+* thin wrapper around [markdownlint](https://github.com/markdownlint)
+* runs [markdownlint](https://github.com/markdownlint) against all files in the repo with a ```MD``` extension
+* if using [run-markdownlint.sh])(run-markdownlint.sh) there must be
+  a ```.markdownlint-style.rb``` in the repo's root directory
+  which is a [markdownlint style](https://github.com/markdownlint/markdownlint/blob/master/docs/creating_styles.md)
+
+```
+all
+exclude_rule 'MD013'
+exclude_rule 'MD024'
+exclude_rule 'MD026'
+```
+
 # Security Assessment
 
 ## [run-repo-security-scanner.sh](run-repo-security-scanner.sh)
