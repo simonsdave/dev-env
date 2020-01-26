@@ -688,7 +688,7 @@ example.sh
 
 * looks for all files in the repo with a ```json``` extension and uses ```jq``` to determine if the file contains valid [JSON](https://www.json.org)
 
-## [run-markdownlint.sh])(run-markdownlint.sh)
+## [run-markdownlint.sh](run-markdownlint.sh)
 
 * thin wrapper around [markdownlint](https://github.com/markdownlint)
 * runs [markdownlint](https://github.com/markdownlint) against all files in the repo with a ```MD``` extension
