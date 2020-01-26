@@ -2,8 +2,23 @@
 
 set -e
 
+VERBOSE=0
+
+while true
+do
+    case "$(echo "${1:-}" | tr "[:upper:]" "[:lower:]")" in
+        -v|--verbose)
+            shift
+            VERBOSE=1
+            ;;
+        *)
+            break
+            ;;
+    esac
+done
+
 if [ $# != 0 ]; then
-    echo "usage: $(basename "$0")" >&2
+    echo "usage: $(basename "$0") [-v]" >&2
     exit 1
 fi
 
@@ -16,9 +31,16 @@ fi
 EXIT_CODE=0
 
 for MD_FILE_NAME in $(find /app -name '*.md' | grep -v -E "^/app/(build|env)"); do
-    echo "${MD_FILE_NAME}"
+    if [ "1" -eq "${VERBOSE:-0}" ]; then
+        echo -n "${MD_FILE_NAME} ... "
+    fi
+
     if ! mdl --style "${MARKDOWNLINT_STYLE_RB}" "${MD_FILE_NAME}"; then
         EXIT_CODE=1
+    else
+        if [ "1" -eq "${VERBOSE:-0}" ]; then
+            echo "ok"
+        fi
     fi
 done
 

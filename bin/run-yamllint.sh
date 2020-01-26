@@ -9,14 +9,18 @@ set -e
 
 SCRIPT_DIR_NAME="$( cd "$( dirname "$0" )" && pwd )"
 
-if [ $# != 0 ]; then
-    echo "usage: $(basename "$0")" >&2
-    exit 1
-fi
-
-if [ ! -e "$("${SCRIPT_DIR_NAME}/repo-root-dir.sh")/.yamllint" ]; then
-    echo "could not find .yamllint in root directory of project" >&2
-    exit 1
+#
+# :TRICKY: want to use this script to run for app repos
+# as well as the dev-env repo. All works for app repos
+# but with dev-env the "docker run" below runs run-markdownlint.sh
+# and since the dev-env docker build puts /app/bin
+# at the start of the PATH, the docker run will actually
+# run this script instead of the intended script in the
+# in-container directory.
+#
+if [[ "/app/bin/${0##*/}" == "${0}" ]]; then
+    "${SCRIPT_DIR_NAME}/in-container/${0##*/}" "$@"
+    exit $?
 fi
 
 DUMMY_DOCKER_CONTAINER_NAME=$("${SCRIPT_DIR_NAME}/create-dummy-docker-container.sh")
@@ -24,8 +28,8 @@ DUMMY_DOCKER_CONTAINER_NAME=$("${SCRIPT_DIR_NAME}/create-dummy-docker-container.
 docker run \
     --rm \
     --volumes-from "${DUMMY_DOCKER_CONTAINER_NAME}" \
-    "$DEV_ENV_DOCKER_IMAGE" \
-    /bin/bash -c 'for YAML_FILE_NAME in $(find /app -name '*.yml' -or -name '*.yaml' | egrep -v "^/app/(build|env)"); do echo "$YAML_FILE_NAME" && yamllint -c /app/.yamllint "$YAML_FILE_NAME"; done'
+    "${DEV_ENV_DOCKER_IMAGE}" \
+    "${0##*/}" "$@"
 
 docker rm "${DUMMY_DOCKER_CONTAINER_NAME}" > /dev/null
 

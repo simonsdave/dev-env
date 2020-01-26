@@ -9,7 +9,7 @@ VERBOSE=0
 while true
 do
     case "$(echo "${1:-}" | tr "[:upper:]" "[:lower:]")" in
-        -v)
+        -v|--verbose)
             shift
             VERBOSE=1
             ;;
@@ -26,20 +26,24 @@ fi
 
 find "$("${SCRIPT_DIR_NAME}/repo-root-dir.sh")" -name '*.sh' | grep -v ./env | sort | while IFS='' read -r FILENAME
 do
+    if [ "1" -eq "${VERBOSE:-0}" ]; then
+        echo -n "${FILENAME} ... "
+    fi
+
     if [ -r "$(dirname "${FILENAME}")/.shelllintignore" ]; then
         if grep --silent "$(basename "${FILENAME}")" "$(dirname "${FILENAME}")/.shelllintignore"; then
             if [ "1" -eq "${VERBOSE:-0}" ]; then
-                echo "Ignoring ${FILENAME}"
+                echo "ignoring"
             fi
             continue
         fi
     fi
 
-    if [ "1" -eq "${VERBOSE:-0}" ]; then
-        echo "${FILENAME}"
-    fi
-
     shellcheck "${FILENAME}"
+
+    if [ "1" -eq "${VERBOSE:-0}" ]; then
+        echo "ok"
+    fi
 done
 
 exit 0

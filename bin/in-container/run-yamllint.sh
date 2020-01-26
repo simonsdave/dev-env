@@ -4,8 +4,23 @@ set -e
 
 SCRIPT_DIR_NAME="$( cd "$( dirname "$0" )" && pwd )"
 
+VERBOSE=0
+
+while true
+do
+    case "$(echo "${1:-}" | tr "[:upper:]" "[:lower:]")" in
+        -v|--verbose)
+            shift
+            VERBOSE=1
+            ;;
+        *)
+            break
+            ;;
+    esac
+done
+
 if [ $# != 0 ]; then
-    echo "usage: $(basename "$0")" >&2
+    echo "usage: $(basename "$0") [-v]" >&2
     exit 1
 fi
 
@@ -18,8 +33,15 @@ fi
 
 find "${REPO_ROOT_DIR}" -name '*.yml' -or -name '*.yaml' | grep -v ./env | while IFS='' read -r FILENAME
 do
-    echo "$FILENAME"
+    if [ "1" -eq "${VERBOSE:-0}" ]; then
+        echo -n "${FILENAME} ... "
+    fi
+
     yamllint -c "${REPO_ROOT_DIR}/.yamllint" "$FILENAME"
+
+    if [ "1" -eq "${VERBOSE:-0}" ]; then
+        echo "ok"
+    fi
 done
 
 exit 0

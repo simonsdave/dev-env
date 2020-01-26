@@ -9,8 +9,8 @@ if [ $# != 0 ]; then
     exit 1
 fi
 
-REPO_ROOT_DIR=$("$SCRIPT_DIR_NAME/repo-root-dir.sh")
-PACKAGE=$("$SCRIPT_DIR_NAME/repo.sh" -u)
+REPO_ROOT_DIR=$("${SCRIPT_DIR_NAME}/repo-root-dir.sh")
+PACKAGE=$("${SCRIPT_DIR_NAME}/repo.sh" -u)
 
 bandit --verbose --exclude "${REPO_ROOT_DIR}/env" -r "${REPO_ROOT_DIR}/${PACKAGE}"
 
