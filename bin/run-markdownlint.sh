@@ -15,7 +15,7 @@ docker run \
     --rm \
     --volumes-from "${DUMMY_DOCKER_CONTAINER_NAME}" \
     "${DEV_ENV_DOCKER_IMAGE}" \
-    /bin/bash -c 'for MD_FILE_NAME in $(find /app -name "*.md" | grep -E "^/app/(build|env)"); do echo "${MD_FILE_NAME}" && if ! mdl --style /app/.markdownlint-style.rb "${MD_FILE_NAME}"; then exit 1; fi; done; exit 0'
+    run-markdownlint.sh
 
 docker rm "${DUMMY_DOCKER_CONTAINER_NAME}" > /dev/null
 

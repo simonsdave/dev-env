@@ -695,6 +695,7 @@ example.sh
 * if using [run-markdownlint.sh])(run-markdownlint.sh) there must be
   a ```.markdownlint-style.rb``` in the repo's root directory
   which is a [markdownlint style](https://github.com/markdownlint/markdownlint/blob/master/docs/creating_styles.md)
+* below is an example of a typical ```.markdownlint-style.rb```
 
 ```
 all

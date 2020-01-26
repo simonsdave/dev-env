@@ -8,7 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-* ```run-markdownlint.sh``` now works
+* ```run-markdownlint.sh``` now works and is documented
 
 ### Changed
 
