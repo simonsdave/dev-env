@@ -7,10 +7,10 @@
 * have a ```CHANGELOG.md``` in a repo's root directory
 * ```CHANGELOG.md``` has a specific format
 * for each release a new branch (```release-<version>```) is created
-based on the current version of master
+  based on the current version of master
 * repos may contain things like ```README.md``` with references to
-branch specific badges and these branch references need to be
-updated prior to cutting a release
+  branch specific badges and these branch references need to be
+  updated prior to cutting a release
 
 ## The Basics
 
@@ -22,7 +22,7 @@ As an example, your repo
 probably contains a ```README.md``` in the repo's root directory and there's
 a link to a build badge.
 
-```
+```markdown
 [![Build Status](https://travis-ci.org/simonsdave/dev-env.svg?branch=master)](https://travis-ci.org/simonsdave/dev-env)
 ```
 
@@ -67,7 +67,7 @@ when creating the release branch.
 ## What Next
 
 * take a look at [my other projects on github](https://github.com/simonsdave)
-for examples of how ```dev-env``` is being used
+  for examples of how ```dev-env``` is being used
 * as you start to integrate ```dev-env``` into your projects
-some feedback would be great - create [issues](../../../issues) and/or
-send me an e-mail [simonsdave@gmail.com](mailto:simonsdave@gmail.com) - thanks in advance!
+  some feedback would be great - create [issues](../../../issues) and/or
+  send me an e-mail [simonsdave@gmail.com](mailto:simonsdave@gmail.com) - thanks in advance!

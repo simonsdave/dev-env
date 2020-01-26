@@ -17,8 +17,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * ```build-python-package.sh``` now does a ```twine check``` after building
   distributions to ensure an upload to pypi will succeed
 * added ```--text``` command line option to ```build-readme-dot-rst.sh```
-  to optionally indicate a ```README.txt``` should be created from
-  ```README.md``` in addition to ```README.rst```
+  to optionally indicate a ```README.txt``` should be created
+  from ```README.md``` in addition to ```README.rst```
 
 ### Removed
 
@@ -29,12 +29,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 * add ```bin/docker-destructive-cleanup.sh``` to replace
-both ```bin/kill-and-rm-all-docker-containers.sh```
-and ```bin/rm-dangling-docker-images.sh``` - motivation was (i) both
-removed scripts were always run together anyway (ii) the naming
-scheme didn't scream the destructure nature loudly enough (iii) there
-were no safeguards to protect users who ran the scripts without
-understanding their destructure nature
+  both ```bin/kill-and-rm-all-docker-containers.sh```
+  and ```bin/rm-dangling-docker-images.sh``` - motivation was (i) both
+  removed scripts were always run together anyway (ii) the naming
+  scheme didn't scream the destructure nature loudly enough (iii) there
+  were no safeguards to protect users who ran the scripts without
+  understanding their destructure nature
 * add ```bin/run-jsonlint.sh``` and ```bin/in-container/run-jsonlint.sh```
 
 ### Changed
@@ -44,15 +44,15 @@ understanding their destructure nature
 ### Removed
 
 * remove ```bin/kill-and-rm-all-docker-containers.sh``` and ```bin/rm-dangling-docker-images.sh``` - see
-the notes under "Added" for more details
+  the notes under "Added" for more details
 
 ## [0.6.2] - [2019-12-28]
 
 ### Added
 
 * add ```create-dummy-docker-container.sh``` to ```bin/in-container``` and
-ensure ```create-dummy-docker-container.sh``` is always the same as the version
-in ```bin```
+  ensure ```create-dummy-docker-container.sh``` is always the same as the version
+  in ```bin```
 
 ### Changed
 
@@ -159,7 +159,7 @@ in ```bin```
 
 * flake8 3.7.7 -> 3.7.8
 * ```bin/in-container/run-bandit.sh``` incorrectly named packages to be tested
-when package name contains a dash
+  when package name contains a dash
 
 ### Removed
 
@@ -184,16 +184,16 @@ when package name contains a dash
 ### Added
 
 * ```cfg4dev``` now installs [increment_version.sh](https://github.com/fmahnke/shell-semver) in the ```bin``` directory
-so that development of ```python-increment-version.sh``` is possible
+  so that development of ```python-increment-version.sh``` is possible
 * add support for ```.shellcheckignore``` so ```run-shellcheck.sh``` can ignore
-specific files
+  specific files
 
 ### Changed
 
 * fixed bug in ```run-unit-tests.sh``` which wasn't looking for ```.coveragerc``` in the repo root directory
 * ```run-shellcheck.sh``` sorts shell scripts before scanning
 * ```python-increment-version.sh``` now accepts command line arguments of ```M```, ```m``` and ```p```
-instead of ```-M```, ```-m``` and ```-p```
+  instead of ```-M```, ```-m``` and ```-p```
 
 ### Removed
 
@@ -204,7 +204,7 @@ instead of ```-M```, ```-m``` and ```-p```
 ### Added
 
 * created ```bin/in-container/should-be-the-same.sh``` and called it from the CI pipeline to ensure
-scripts on ```bin``` and ```bin/in-container``` that are supposed to be the same really are the same
+  scripts on ```bin``` and ```bin/in-container``` that are supposed to be the same really are the same
 
 ### Changed
 
@@ -248,7 +248,7 @@ scripts on ```bin``` and ```bin/in-container``` that are supposed to be the same
 ### Added
 
 * [Bandit (a tool designed to find common security issues in Python code)](https://github.com/PyCQA/bandit)
-is now available in the ```dev-env``` docker image
+  is now available in the ```dev-env``` docker image
 * added ```check-consistent-dev-env-version.sh``` to detect dev-env version drift
 * ```install-dev-env.sh``` is now the recommended way for ```dev-env``` to be installed by a ```cfg4dev``` script
 * added ```python-increment-version.sh``` for use in ```.cut-release-master-branch-changes.sh```
@@ -269,308 +269,308 @@ is now available in the ```dev-env``` docker image
 
 ### Added
 
-- added ```current-python-version.sh``` which is used to extract a python project's version number
-- added ```changelog-dot-md-release-comments.py``` which is used to extract the notes for a single release from ```CHANGELOG.md```
-- added snyk, nvm, node, markdownlint-cli, jq, git, docker-ce and shellcheck to Ubuntu Xenial docker image
-- added ```run-snyc.sh``` to simplify running [snyc](https://snyk.io/) CLI against a repo
-- added ```-u``` command line option to ```repo.sh``` to convert dashes in repo's name to underscores
-- added ```upload-dist-to-pypi.sh``` (both in container and on host) to publish Python packages on pypi using [twine](https://pypi.org/project/twine/)
-- added ```get-dev-env-version-from-circleci-config.sh```
-- added ```run-yamllint.sh``` to make it easy to run [yamllint](https://yamllint.readthedocs.io)
-- added ```run-circleci.sh``` to simplify running the [CircleCI](https://circleci.com) [CLI](https://circleci.com/docs/2.0/local-cli/) inside a dev env container
+* added ```current-python-version.sh``` which is used to extract a python project's version number
+* added ```changelog-dot-md-release-comments.py``` which is used to extract the notes for a single release from ```CHANGELOG.md```
+* added snyk, nvm, node, markdownlint-cli, jq, git, docker-ce and shellcheck to Ubuntu Xenial docker image
+* added ```run-snyc.sh``` to simplify running [snyc](https://snyk.io/) CLI against a repo
+* added ```-u``` command line option to ```repo.sh``` to convert dashes in repo's name to underscores
+* added ```upload-dist-to-pypi.sh``` (both in container and on host) to publish Python packages on pypi using [twine](https://pypi.org/project/twine/)
+* added ```get-dev-env-version-from-circleci-config.sh```
+* added ```run-yamllint.sh``` to make it easy to run [yamllint](https://yamllint.readthedocs.io)
+* added ```run-circleci.sh``` to simplify running the [CircleCI](https://circleci.com) [CLI](https://circleci.com/docs/2.0/local-cli/) inside a dev env container
 
 ### Changed
 
-- flake8 3.7.4 -> 3.7.7
-- twine 1.12.1 -> 1.13.0
-- fixed bug in ```run_shellcheck.sh``` where docker containers weren't being removed are they had exited
-- using ```"$(echo "${1:-}" | tr "[:upper:]" "[:lower:]")"``` instead of ```"${1,,}"``` and ```[[:space:]]``` instead of ```\s``` with sed so scripts work on macOS and Ubuntu
-- ```prep-for-release.sh``` now uses ```cut-changelog-dot-md.py``` and ```add-new-changelog-dot-md-release.py``` to improve portability across macOS and Ubuntu as well as simplifying ```prep-for-release.sh```
+* flake8 3.7.4 -> 3.7.7
+* twine 1.12.1 -> 1.13.0
+* fixed bug in ```run_shellcheck.sh``` where docker containers weren't being removed are they had exited
+* using ```"$(echo "${1:-}" | tr "[:upper:]" "[:lower:]")"``` instead of ```"${1,,}"``` and ```[[:space:]]``` instead of ```\s``` with sed so scripts work on macOS and Ubuntu
+* ```prep-for-release.sh``` now uses ```cut-changelog-dot-md.py``` and ```add-new-changelog-dot-md-release.py``` to improve portability across macOS and Ubuntu as well as simplifying ```prep-for-release.sh```
 
 ### Removed
 
-- no longer need to set ```DEV_ENV_PACKAGE``` and ```DEV_ENV_SOURCE_CODE```
+* no longer need to set ```DEV_ENV_PACKAGE``` and ```DEV_ENV_SOURCE_CODE```
 
 ## [0.5.14] - [2019-02-03]
 
 ### Added
 
-- added ```build_python_package.sh```
-- added [Travis Client](https://github.com/travis-ci/travis.rb) to Ubuntu 16.04 dev env
-- added core python dev packages to docker dev env image so that every project doesn't have to add them
+* added ```build_python_package.sh```
+* added [Travis Client](https://github.com/travis-ci/travis.rb) to Ubuntu 16.04 dev env
+* added core python dev packages to docker dev env image so that every project doesn't have to add them
 
 ### Changed
 
-- Nothing
+* Nothing
 
 ### Removed
 
-- Nothing
+* Nothing
 
 ## [0.5.12] - [2019-01-27]
 
 ### Added
 
-- added ```kill-and-rm-all-docker-containers.sh```
+* added ```kill-and-rm-all-docker-containers.sh```
 
 ### Changed
 
-- Nothing
+* Nothing
 
 ### Removed
 
-- Nothing
+* Nothing
 
 ## [0.5.11] - [2019-01-16]
 
 ### Added
 
-- Nothing
+* Nothing
 
 ### Changed
 
-- get ```bin/run_unit_tests.sh``` working again on travis
-- moving ```nose==1.3.7``` from ```setup.py``` to ```requirements.txt```
+* get ```bin/run_unit_tests.sh``` working again on travis
+* moving ```nose==1.3.7``` from ```setup.py``` to ```requirements.txt```
 
 ### Removed
 
-- Nothing
+* Nothing
 
 ## [0.5.10] - [2019-01-13]
 
 ### Added
 
-- added ```run_repo_security_scanner.sh```
-- cURL added to docker image ```simonsdave/xenial-dev-env```
+* added ```run_repo_security_scanner.sh```
+* cURL added to docker image ```simonsdave/xenial-dev-env```
 
 ### Changed
 
-- Nothing
+* Nothing
 
 ### Removed
 
-- Nothing
+* Nothing
 
 ## [0.5.9] - [2018-12-05]
 
 ### Added
 
-- Nothing
+* Nothing
 
 ### Changed
 
-- ```run_unit_tests.sh``` no longer chown's ```/app/.coverage```
+* ```run_unit_tests.sh``` no longer chown's ```/app/.coverage```
 
 ### Removed
 
-- Nothing
+* Nothing
 
 ## [0.5.8] - [2018-11-12]
 
 ### Added
 
-- added support for customizing ```--security-opt``` command line option
-to ```docker run``` executed by ```run_unit_tests.sh```
-using the ```DEV_ENV_SECURITY_OPT``` environment variable
-- ```run_unit_tests.sh``` now allows specification on the command line
-of the directories in which unit tests can be found
+* added support for customizing ```--security-opt``` command line option
+  to ```docker run``` executed by ```run_unit_tests.sh```
+  using the ```DEV_ENV_SECURITY_OPT``` environment variable
+* ```run_unit_tests.sh``` now allows specification on the command line
+  of the directories in which unit tests can be found
 
 ### Changed
 
-- Nothing
+* Nothing
 
 ### Removed
 
-- Nothing
+* Nothing
 
 ## [0.5.7] - [2018-10-24]
 
 ### Added
 
-- Nothing
+* Nothing
 
 ### Changed
 
-- Nothing
+* Nothing
 
 ### Removed
 
-- Nothing
+* Nothing
 
 ## [0.5.6] - [2018-10-21]
 
 ### Added
 
-- Nothing
+* Nothing
 
 ### Changed
 
-- ```.coverage``` files generated by ```run_unit_tests.sh``` was incorrectly
-referencing source code in ```/app``` which mean [coveralls](https://pypi.org/project/coveralls/)
-coverage data upload was failing
+* ```.coverage``` files generated by ```run_unit_tests.sh``` was incorrectly
+  referencing source code in ```/app``` which mean [coveralls](https://pypi.org/project/coveralls/)
+  coverage data upload was failing
 
 ### Removed
 
-- Nothing
+* Nothing
 
 ## [0.5.5] - [2018-09-30]
 
 ### Added
 
-- added ```run_flake8.sh```, ```run_pip_check.sh```, ```run_shellcheck.sh``` and ```run_unit_tests.sh```
+* added ```run_flake8.sh```, ```run_pip_check.sh```, ```run_shellcheck.sh``` and ```run_unit_tests.sh```
 
 ### Changed
 
-- ndg-httpsclient 0.4.4 -> 0.5.1
-- development environment Ubuntu 14.04 -> 16.04
-- twine 1.11.0 -> 1.12.1
+* ndg-httpsclient 0.4.4 -> 0.5.1
+* development environment Ubuntu 14.04 -> 16.04
+* twine 1.11.0 -> 1.12.1
 
 ### Removed
 
-- Nothing
+* Nothing
 
 ## [0.5.4] - [2018-04-24]
 
 ### Added
 
-- Nothing
+* Nothing
 
 ### Changed
 
-- per [this bug](https://bugs.launchpad.net/cloud-images/+bug/1569237) pinning Xenial to a box version that fixes the bug
+* per [this bug](https://bugs.launchpad.net/cloud-images/+bug/1569237) pinning Xenial to a box version that fixes the bug
 
 ### Removed
 
-- Nothing
+* Nothing
 
 ## [0.5.3] - [2018-04-23]
 
 ### Added
 
-- now supporting Ubuntu 16.04 (Xenial) as well as 14.04 (Trusty)
+* now supporting Ubuntu 16.04 (Xenial) as well as 14.04 (Trusty)
 
 ### Changed
 
-- twine 1.10.0 -> 1.11.0
+* twine 1.10.0 -> 1.11.0
 
 ### Removed
 
-- Nothing
+* Nothing
 
 ## [0.5.2] - [2018-02-10]
 
 ### Added
 
-- [memcached](http://memcached.org) is now installed as part of standard provisioning
+* [memcached](http://memcached.org) is now installed as part of standard provisioning
 
 ### Changed
 
-- default value for ```--nginx``` command line option of ```create_dev_env.sh```
-is now zero which means by default the VM's port 8085 is not exposed to the host
-which means nginx won't be exposed to the host by default
-- changes to enable ```dev_env_nosetests.py``` to work when ```dev-env```
-installed as a site package
-- ndg-httpsclient 0.4.3 -> 0.4.4
+* default value for ```--nginx``` command line option of ```create_dev_env.sh```
+  is now zero which means by default the VM's port 8085 is not exposed to the host
+  which means nginx won't be exposed to the host by default
+* changes to enable ```dev_env_nosetests.py``` to work when ```dev-env```
+  installed as a site package
+* ndg-httpsclient 0.4.3 -> 0.4.4
 
 ### Removed
 
-- Nothing
+* Nothing
 
 ## [0.5.1] - [2017-11-18]
 
 ### Added
 
-- Nothing
+* Nothing
 
 ### Changed
 
-- fixed bug in ```ubuntu/trusty/.prep-for-release-branch-changes.sh``` which
-meant ```ubuntu/trusty/.prep-for-release-branch-changes.sh``` wasn't installing
-the right version of various shell scripts.
-- fix bug in ```.prep-for-release-release-branch-changes.sh```
-to support running ```bin/prep-for-release-python.sh```
-and ```bin/prep-for-release.sh``` from any directory
+* fixed bug in ```ubuntu/trusty/.prep-for-release-branch-changes.sh``` which
+  meant ```ubuntu/trusty/.prep-for-release-branch-changes.sh``` wasn't installing
+  the right version of various shell scripts.
+* fix bug in ```.prep-for-release-release-branch-changes.sh```
+  to support running ```bin/prep-for-release-python.sh```
+  and ```bin/prep-for-release.sh``` from any directory
 
 ### Removed
 
-- Nothing
+* Nothing
 
 ## [0.5.0] - [2017-11-14]
 
 ### Added
 
-- ```dev_env_nosetests.py``` and ```dev_env/nose_plugins.FileCapture```
-for the basis for supporting integration testing
+* ```dev_env_nosetests.py``` and ```dev_env/nose_plugins.FileCapture```
+  for the basis for supporting integration testing
 
 ### Changed
 
-- Nothing
+* Nothing
 
 ### Removed
 
-- Nothing
+* Nothing
 
 ## [0.4.0] - [2017-10-25]
 
 ### Added
 
-- ```create_dev_env.sh``` now has a ```--memory``` command line option
-allowing customization of amount of RAM is provisioned for a VM
-- by default nginx is installed on a VM and exposed to the host
-on port 8085 - ```create_dev_env.sh``` now has an ```--nginx``` command
-line option allowing customization of the port
-- ```create_dev_env.sh``` now has a ```--timezone``` command line option
-allowing customization of the provisioned VM's timezone - the value
-of the timezone argument comes from ```timedatectl list-timezones```
+* ```create_dev_env.sh``` now has a ```--memory``` command line option
+  allowing customization of amount of RAM is provisioned for a VM
+* by default nginx is installed on a VM and exposed to the host
+  on port 8085 - ```create_dev_env.sh``` now has an ```--nginx``` command
+  line option allowing customization of the port
+* ```create_dev_env.sh``` now has a ```--timezone``` command line option
+  allowing customization of the provisioned VM's timezone - the value
+  of the timezone argument comes from ```timedatectl list-timezones```
 
 ### Changed
 
-- ```prep-for-release.sh``` now executes  ```.prep-for-release-release-branch-changes.sh```
-instead of ```.prep-for-release-branch-changes.sh```
-- ```provision.sh``` now installs latest CE version of docker
+* ```prep-for-release.sh``` now executes  ```.prep-for-release-release-branch-changes.sh```
+  instead of ```.prep-for-release-branch-changes.sh```
+* ```provision.sh``` now installs latest CE version of docker
 
 ### Removed
 
-- ```ubuntu/trusty/provision.sh``` no longer installs ```raml2md```
+* ```ubuntu/trusty/provision.sh``` no longer installs ```raml2md```
 
 ## [0.3.0] - [2017-09-21]
 
 ### Added
 
-- Nothing
+* Nothing
 
 ### Changed
 
-- ```prep-for-release.sh``` now fails if there are outstanding commits
-on the master branch
-- ```provision.sh``` now installs [yq](https://yq.readthedocs.io/en/latest/)
-- ```provision.sh``` installs ```prep-for-release.sh```
-- update ```prep-for-release.sh``` with support for repo specific release
-branch change scripts so ```prep-for-release.sh``` can be used in more than
-just this repo
-- ```provision.sh``` now installs a basic python dev env (since it's used so often)
+* ```prep-for-release.sh``` now fails if there are outstanding commits
+  on the master branch
+* ```provision.sh``` now installs [yq](https://yq.readthedocs.io/en/latest/)
+* ```provision.sh``` installs ```prep-for-release.sh```
+* update ```prep-for-release.sh``` with support for repo specific release
+  branch change scripts so ```prep-for-release.sh``` can be used in more than
+  just this repo
+* ```provision.sh``` now installs a basic python dev env (since it's used so often)
 
 ### Removed
 
-- Nothing
+* Nothing
 
 ## [0.2.0] - [2017-09-15]
 
 ### Added
 
-- Nothing
+* Nothing
 
 ### Changed
 
-- improved create_dev_env.sh command line arg checking
-- no longer need to pass provision.sh to create_dev_env.sh
+* improved create_dev_env.sh command line arg checking
+* no longer need to pass provision.sh to create_dev_env.sh
 
 ### Removed
 
-- Nothing
+* Nothing
 
 ## [0.1.0] - [2017-08-20]
 
 ### Added
 
-- Initial Release - still a WIP
+* Initial Release - still a WIP

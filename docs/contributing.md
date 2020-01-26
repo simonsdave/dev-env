@@ -5,45 +5,45 @@
 ### Changelog
 
 * at top of the repo there's a [markdown](https://en.wikipedia.org/wiki/Markdown) file
-called [```CHANGELOG.md```](../CHANGELOG.md) which is a hand curated changlelog
+  called [```CHANGELOG.md```](../CHANGELOG.md) which is a hand curated changlelog
 * ```CHANGELOG.md``` is intended to be read by humans
-ala [this](https://keepachangelog.com/en/1.0.0/) thinking
+  ala [this](https://keepachangelog.com/en/1.0.0/) thinking
 
 ### Branching
 
 * all development is done on the ```master``` branch
 * the ```master``` branch is protected
 * [GitHub flow](https://guides.github.com/introduction/flow/) is used to
-introduce changes to the ```master``` branch
+  introduce changes to the ```master``` branch
 * before creating a [pull request](https://help.github.com/en/articles/about-pull-requests)
-to merge a feature branch back into ```master```,
-all changes on the feature branch should be squashed down to a single buildable
-commit and then rebased from the up-to-date ```master``` branch -
-see [this](https://blog.carbonfive.com/2017/08/28/always-squash-and-rebase-your-git-commits/)
-for additional details
+  to merge a feature branch back into ```master```,
+  all changes on the feature branch should be squashed down to a single buildable
+  commit and then rebased from the up-to-date ```master``` branch -
+  see [this](https://blog.carbonfive.com/2017/08/28/always-squash-and-rebase-your-git-commits/)
+  for additional details
 * cutting a release involves creating a new branch from ```master```
-called ```release-<version>```
+  called ```release-<version>```
 
 ### Commit Messaging
 
 * commit messaging follows
-the [Conventional Commits specification](https://www.conventionalcommits.org) to
-enable automated generation of release version numbers
+  the [Conventional Commits specification](https://www.conventionalcommits.org) to
+  enable automated generation of release version numbers
 * more accurately, the single squashed and rebased commit used in a
-pull request follows the conventional commits specification
+  pull request follows the conventional commits specification
 * perhaps comment on [commitlint](https://github.com/conventional-changelog/commitlint)
 
 ### Versioning
 
 * [semantic versioning](http://semver.org/) is used and defines 3 types of
-releases major, minor, patch
+  releases major, minor, patch
 * the initial version number is ```0.0.0```
 * the version number is stored
-in [```dev_env/__init__.py```](../dev_env/__init__.py)
+  in [```dev_env/__init__.py```](../dev_env/__init__.py)
 * the version number for a new release is generated based on the current
-version number and the release type
+  version number and the release type
 * the release type is calculated by analyzing commit messages for all commits
-to the ```master``` branch since the last release
+  to the ```master``` branch since the last release
 
 ## How To Cut a Release
 

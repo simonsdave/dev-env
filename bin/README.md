@@ -1,3 +1,5 @@
+# ```dev-env``` Scripts
+
 This directory contains a collection of scripts which simplify working with your development environment.
 For example, it should be easy to figure out the root directory of the git repo in which you're working
 regardless of whether you're trying to do that on the host machine, in the ```dev_env``` or in a CI/CD pipeline.
@@ -78,11 +80,11 @@ Assumptions
 
 * the python project is in a git repo
 * if the repo is called de-mo, the ```__init__.py``` containing the version
-number will be found in ```de_mo/__init__.py``` relative to the top of
-the project's repo - note that "-" was transformed to a "_" which is
-done for all underscores
+  number will be found in ```de_mo/__init__.py``` relative to the top of
+  the project's repo - note that "-" was transformed to a "_" which is
+  done for all underscores
 * the PWD is somewhere in the git repo - this assumption can be
-overridden using the -d command line option.
+  overridden using the -d command line option.
 
 The example below illustrates what's described above.
 
@@ -157,7 +159,7 @@ directory = coverage_report
 ```
 
 * running unit tests generate coverage data which can be found in ```.coverage``` in the repo's root directory
-as well as an HTML coverage report in the directory defined in ```.coveragerc```
+  as well as an HTML coverage report in the directory defined in ```.coveragerc```
 
 # Working with ```CHANGELOG.md```
 
@@ -166,8 +168,9 @@ as well as an HTML coverage report in the directory defined in ```.coveragerc```
 * every repo should have a ```CHANGELOG.md``` in the root directory
 * ```CHANGELOG.md``` has the same format with the head of the file illustrated below
 
-```
+```markdown
 # Change Log
+
 All notable changes to this project will be documented in this file.
 Format of this file follows [these](http://keepachangelog.com/) guidelines.
 This project adheres to [Semantic Versioning](http://semver.org/).
@@ -181,11 +184,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ```
 
 * ```add-new-changelog-dot-md-release.py``` updates ```CHANGELOG.md``` with a new
-release template so the head of the file looks something like the file
-illustrated below
+  release template so the head of the file looks something like the file
+  illustrated below
 
 ```bash
 # Change Log
+
 All notable changes to this project will be documented in this file.
 Format of this file follows [these](http://keepachangelog.com/) guidelines.
 This project adheres to [Semantic Versioning](http://semver.org/).
@@ -220,15 +224,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ~>
 ```
 
-
 ## [changelog-dot-md-release-comments.py](changelog-dot-md-release-comments.py)
 
 * every repo should have a ```CHANGELOG.md``` in the root directory
 * ```CHANGELOG.md``` describes, at a high-level, all the changes that have
-been made for a  release
+  been made for a  release
 * in ```CHANGELOG.md``` each release typically has has a section that looks like
 
-```
+```markdown
 ## [0.5.14] - [2019-02-03]
 
 ### Added
@@ -263,8 +266,9 @@ been made for a  release
 * every repo should have a CHANGELOG.md in the root directory
 * this file will have the same format with the head of the file looking like
 
-```
+```markdown
 # Change Log
+
 All notable changes to this project will be documented in this file.
 Format of this file follows [these](http://keepachangelog.com/) guidelines.
 This project adheres to [Semantic Versioning](http://semver.org/).
@@ -278,8 +282,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ```
 
 * when cutting a release ```%RELEASE_VERSION%``` and ```%RELEASE_DATE%``` need to be
-replaced with an actual release number and release date which is
-what ```cut_changelog_dot_md.py``` does
+  replaced with an actual release number and release date which is
+  what ```cut_changelog_dot_md.py``` does
 * ```CHANGELOG.md``` is updated in place
 * expected usage
 
@@ -295,16 +299,16 @@ what ```cut_changelog_dot_md.py``` does
 * the [Online Sphinx editor](https://livesphinx.herokuapp.com/) is a handy tool for
   previewing [RST](https://en.wikipedia.org/wiki/ReStructuredText)
 * the ```--text``` command line option for ```build-readme-dot-rst.sh```
-  is optionally used indicate a ```README.txt``` should be created from
-  ```README.md``` in addition to ```README.rst```
+  is optionally used indicate a ```README.txt``` should be created
+  from ```README.md``` in addition to ```README.rst```
 
 # Python Packages
 
 ## [build-python-package.sh](build-python-package.sh)
 
 * create a [source distribution](https://docs.python.org/2/distutils/sourcedist.html)
-and [built distribution](https://docs.python.org/2/distutils/builtdist.html) per the
-example below
+  and [built distribution](https://docs.python.org/2/distutils/builtdist.html) per the
+  example below
 * after creating the distributions a ```twine check``` is done to confirm an
   upload to pypi will succeed
 
@@ -375,7 +379,7 @@ password=secret
 ```
 
 * requires a single command line parameter which is the repo to which the packages
-should be uploaded - from the above ```.pypirc``` this would be either ```pypi``` or ```testpypi```
+  should be uploaded - from the above ```.pypirc``` this would be either ```pypi``` or ```testpypi```
 
 # Cutting a Release
 
@@ -383,36 +387,36 @@ should be uploaded - from the above ```.pypirc``` this would be either ```pypi``
 
 * ```cut-release.sh``` automates the process of cutting a release
 * assumptions
-    * all development is done on the ```master``` branch
-    * [Semantic Versioning](http://semver.org/) is used
-    * for each release a new branch is created from master called ```release-<version>```
-    * ```CHANGELOG.md``` exits in the project's root directory and follows [these](https://keepachangelog.com/en/1.0.0/) formatting guidelines
-    * a [personal access token](https://github.blog/2013-05-16-personal-api-tokens/)
+  * all development is done on the ```master``` branch
+  * [Semantic Versioning](http://semver.org/) is used
+  * for each release a new branch is created from master called ```release-<version>```
+  * ```CHANGELOG.md``` exits in the project's root directory and follows [these](https://keepachangelog.com/en/1.0.0/) formatting guidelines
+  * a [personal access token](https://github.blog/2013-05-16-personal-api-tokens/)
     as been created (see [this](https://github.com/settings/tokens/new) and note that only
     "repo" access is required for this token) and has been saved using ```git config --global github.token TOKEN```
 * ```cut-release.sh``` does the following
-    * get release version by executing ```.cut-release-version.sh``` in the root directory of the repo
-    * generate a release date using ```date "+%Y-%m-%d"```
-    * confirm there's a ```CHANGELOG.md``` in the project's root directory
-    * use [```cut-changelog-dot-md.py```](#cut-changelog-dot-mdpy) to replace ```%RELEASE_VERSION%``` and ```%RELEASE_DATE%``` in ```CHANGELOG.md```
-    * ```git commit``` the ```CHANGELOG.md``` changes on the master branch and save the commit ID - let's call this the "master release commit id"
-    * prep master branch for development of next release
-        * use [```add-new-changelog-dot-md-release.py```](#add-new-changelog-dot-md-releasepy) to add a new release template to ```CHANGELOG.md```
-        * find and execute all files in the repo called ```.cut-release-master-branch-changes.sh```
-            * typically this is used to increment the project's version number
-            * there are no guarantees on the order in which the various ```.cut-release-master-branch-changes.sh``` scripts are executed
-            * see [this](#-cut-release-versionsh) for more details on ```.cut-release-master-branch-changes.sh```
-        * ```git commit``` the ```CHANGELOG.md``` changes and ```.cut-release-master-branch-changes.sh``` changes on the master branch
+  * get release version by executing ```.cut-release-version.sh``` in the root directory of the repo
+  * generate a release date using ```date "+%Y-%m-%d"```
+  * confirm there's a ```CHANGELOG.md``` in the project's root directory
+  * use [```cut-changelog-dot-md.py```](#cut-changelog-dot-mdpy) to replace ```%RELEASE_VERSION%``` and ```%RELEASE_DATE%``` in ```CHANGELOG.md```
+  * ```git commit``` the ```CHANGELOG.md``` changes on the master branch and save the commit ID - let's call this the "master release commit id"
+  * prep master branch for development of next release
+    * use [```add-new-changelog-dot-md-release.py```](#add-new-changelog-dot-md-releasepy) to add a new release template to ```CHANGELOG.md```
+    * find and execute all files in the repo called ```.cut-release-master-branch-changes.sh```
+      * typically this is used to increment the project's version number
+      * there are no guarantees on the order in which the various ```.cut-release-master-branch-changes.sh``` scripts are executed
+      * see [this](#-cut-release-versionsh) for more details on ```.cut-release-master-branch-changes.sh```
+    * ```git commit``` the ```CHANGELOG.md``` changes and ```.cut-release-master-branch-changes.sh``` changes on the master branch
     * create the release branch
-        * create a new git branch called ```release-<VERSION>``` based on the "master release commit id" and let's call this the "release branch"
-        * ```git checkout``` the release branch
-        * find and execute all files in the repo called ```.cut-release-release-branch-changes.sh```
-            * these scripts do things like rewrite URLs in markdown docs to point at release branches instead of the master branch
-            * there are no guarantees on the order in which the various ```.cut-release-release-branch-changes.sh``` scripts are executed
-            * see [this](#cut-release-release-branch-changessh) for more details on ```.cut-release-release-branch-changes.sh```
-        * ```git commit``` all release branch changes
-    * push all changes on master and release branches to github
-    * use [create-github-release.sh](#create-github-releasesh) to create a [github release](https://help.github.com/en/articles/about-releases)
+      * create a new git branch called ```release-<VERSION>``` based on the "master release commit id" and let's call this the "release branch"
+      * ```git checkout``` the release branch
+      * find and execute all files in the repo called ```.cut-release-release-branch-changes.sh```
+        * these scripts do things like rewrite URLs in markdown docs to point at release branches instead of the master branch
+        * there are no guarantees on the order in which the various ```.cut-release-release-branch-changes.sh``` scripts are executed
+        * see [this](#cut-release-release-branch-changessh) for more details on ```.cut-release-release-branch-changes.sh```
+      * ```git commit``` all release branch changes
+  * push all changes on master and release branches to github
+  * use [create-github-release.sh](#create-github-releasesh) to create a [github release](https://help.github.com/en/articles/about-releases)
 
 ### ``` .cut-release-version.sh```
 
@@ -541,14 +545,14 @@ exit 0
 ## [create-github-release.sh](create-github-release.sh)
 
 * expecting ```create-github-release.sh``` to be used only by [cut-release.sh](#cut-releasesh)
-ie. it implements a private "API" so use at your own peril
+  ie. it implements a private "API" so use at your own peril
 * ```create-github-release.sh``` creates [github release](https://help.github.com/en/articles/about-releases)
 * assumptions
-    * need a [personal access token](https://github.blog/2013-05-16-personal-api-tokens/)
+  * need a [personal access token](https://github.blog/2013-05-16-personal-api-tokens/)
     to [authenticate to the github API](https://developer.github.com/v3/auth/#basic-authentication)
-    * create a new token [here](https://github.com/settings/tokens/new)
-    * note the token only needs "repo" access
-    * save the token using ```git config --global github.token TOKEN```
+  * create a new token [here](https://github.com/settings/tokens/new)
+  * note the token only needs "repo" access
+  * save the token using ```git config --global github.token TOKEN```
 
 # Working with CircleCI
 
@@ -575,17 +579,17 @@ Config file at .circleci/config.yml is valid.
 ## [check-consistent-dev-env-version.sh](check-consistent-dev-env-version.sh)
 
 * following ```dev-env``` patterns and practices, a repo is expected to contain a
-file ```$(repo-root-dir.sh)/dev_env/dev-env-version.txt``` which looks something like
+  file ```$(repo-root-dir.sh)/dev_env/dev-env-version.txt``` which looks something like
 
 ```text
 0.5.15
 ```
 
 * the idea behind ```dev-env-version.txt``` was to have the
-project's ```dev-env``` version defined in a single location
+  project's ```dev-env``` version defined in a single location
 * projects which use ```dev-env``` and CircleCI will have a
-file ```$(repo-root-dir.sh)/.circleci/config.yml```
-that typically starts out something like
+  file ```$(repo-root-dir.sh)/.circleci/config.yml```
+  that typically starts out something like
 
 ```yaml
 version: 2.1
@@ -603,9 +607,9 @@ jobs:
 ```
 
 * the challenge with CircleCI and ```dev-env-version.txt```
-is that there are two places defining the ```dev-env``` version
+  is that there are two places defining the ```dev-env``` version
 * don't know how to fix this problem so let's at least automate detection of the problem by
-inserting ```check-consistent-dev-env-version.sh``` into the CircleCI pipeline
+  inserting ```check-consistent-dev-env-version.sh``` into the CircleCI pipeline
 
 ```yaml
 jobs:
@@ -620,7 +624,7 @@ jobs:
 ```
 
 * ```check-consistent-dev-env-version.sh``` has a zero exit code if the
-two versions are the same and non-zero if the two versions are different
+  two versions are the same and non-zero if the two versions are different
 * usage for ```check-consistent-dev-env-version.sh```
 
 ```bash
@@ -630,32 +634,32 @@ usage: check-consistent-dev-env-version.sh [--verbose]
 ```
 
 * the ```--verbose``` command line option can be useful after ```check-consistent-dev-env-version.sh```
-is inserted into the CircleCI pipeline and it returns a non-zero exit code but a visual
-inspection of ```dev-env-version.txt``` and ```config.yml``` don't reveal where there's a version
-mismatch - adding ```--verbose``` to the pipeline should generate enough information to
-debug the problem
+  is inserted into the CircleCI pipeline and it returns a non-zero exit code but a visual
+  inspection of ```dev-env-version.txt``` and ```config.yml``` don't reveal where there's a version
+  mismatch - adding ```--verbose``` to the pipeline should generate enough information to
+  debug the problem
 
 ## [create-dummy-docker-container.sh](create-dummy-docker-container.sh)
 
 * expecting ```create-dummy-docker-container.sh``` to be used only by other shell scripts in this directory
-ie. it implements a private "API" so use at your own peril
+  ie. it implements a private "API" so use at your own peril
 * for context read [CircleCI's doc](https://circleci.com/docs/2.0/building-docker-images/#mounting-folders)
-on "mounting a folder from your job space into a container in Remote Docker"
+  on "mounting a folder from your job space into a container in Remote Docker"
 * ```create-dummy-docker-container.sh``` implements the "create a dummy container" pattern
-described in [here](https://circleci.com/docs/2.0/building-docker-images/#mounting-folders)
+  described in [here](https://circleci.com/docs/2.0/building-docker-images/#mounting-folders)
 
 # Working with Docker
 
 ## [docker-destructive-cleanup.sh](docker-destructive-cleanup.sh)
 
 * this is a super destructive command - use with caution - by default ```docker-destructive-cleanup.sh```
-interactively confirms if it's ok to proceed - the ```--yes``` command line option can be used to
-skip the confirmation
+  interactively confirms if it's ok to proceed - the ```--yes``` command line option can be used to
+  skip the confirmation
 * great for "resetting" your development environment
 * ```docker container kill``` and ```docker container rm``` all docker containers
 * removes all "dangling docker images" - see
-[this](https://docs.docker.com/engine/reference/commandline/images/#filtering)
-for a description of "dangling docker images"
+  [this](https://docs.docker.com/engine/reference/commandline/images/#filtering)
+  for a description of "dangling docker images"
 
 # [Static Analysis](https://en.wikipedia.org/wiki/Static_program_analysis)
 
@@ -668,14 +672,14 @@ for a description of "dangling docker images"
 
 * thin wrapper around [shellcheck](https://github.com/koalaman/shellcheck)
 * runs [shellcheck](https://github.com/koalaman/shellcheck) against all files
-in the repo with a ```sh``` extension
+  in the repo with a ```sh``` extension
 * files are scanned in alphabetical order
 * create a file called ```.shelllintignore```
-in the same directory as ```example.sh``` that looks like the one below
-to avoid running [shellcheck](https://github.com/koalaman/shellcheck)
-on the file ```example.sh```
+  in the same directory as ```example.sh``` that looks like the one below
+  to avoid running [shellcheck](https://github.com/koalaman/shellcheck)
+  on the file ```example.sh```
 
-```
+```text
 example.sh
 ```
 
@@ -697,7 +701,7 @@ example.sh
   which is a [markdownlint style](https://github.com/markdownlint/markdownlint/blob/master/docs/creating_styles.md)
 * below is an example of a typical ```.markdownlint-style.rb```
 
-```
+```text
 all
 exclude_rule 'MD013'
 exclude_rule 'MD024'

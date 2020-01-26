@@ -9,9 +9,9 @@ is to provision a docker image ... :TODO: add more context & motivation
 
 * defines the ```dev-env``` version used by the repo
 * typically an explicit version number (as below) but could also
-be ```master``` or ```latest``` referring to the head of the ```dev-env`` ```master``` branch
+  be ```master``` or ```latest``` referring to the head of the ```dev-env`` ```master``` branch
 
-```
+```text
 v0.5.15
 ```
 
@@ -50,7 +50,7 @@ popd > /dev/null
 ## What Next
 
 * take a look at [my other projects on github](https://github.com/simonsdave)
-for examples of how ```dev-env``` is being used - in particular look at [```dev-env-testing```](https://github.com/simonsdave/dev-env-testing)
-which exists specifically to be an example of how to use ```dev-env```
+  for examples of how ```dev-env``` is being used - in particular look at [```dev-env-testing```](https://github.com/simonsdave/dev-env-testing)
+  which exists specifically to be an example of how to use ```dev-env```
 * as you start to integrate ```dev-env``` into your projects
-some feedback would be great so don't hesitate to create [issues](../../../issues)
+  some feedback would be great so don't hesitate to create [issues](../../../issues)
