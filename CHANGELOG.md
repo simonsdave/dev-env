@@ -8,7 +8,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-* Nothing
+* add ```bin/in-container/build-readme-dot-rst.sh``` so CI pipelines
+  can build ```README.txt``` and ```README.rst```
 
 ### Changed
 

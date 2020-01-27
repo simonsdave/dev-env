@@ -29,22 +29,36 @@ if [ $# != 0 ]; then
     exit 1
 fi
 
+#
+# :TRICKY: want to use this script to run for app repos
+# as well as the dev-env repo. All works for app repos
+# but with dev-env the "docker run" below runs run-markdownlint.sh
+# and since the dev-env docker build puts /app/bin
+# at the start of the PATH, the docker run will actually
+# run this script instead of the intended script in the
+# in-container directory.
+#
+if [[ "/app/bin/${0##*/}" == "${0}" ]]; then
+    "${SCRIPT_DIR_NAME}/in-container/${0##*/}" "$@"
+    exit $?
+fi
+
 REPO_ROOT_DIR=$("${SCRIPT_DIR_NAME}/repo-root-dir.sh")
 
-DOCKER_CONTAINER_NAME=$(python3 -c "import uuid; print(uuid.uuid4().hex)")
+DOCKER_CONTAINER_NAME=$(openssl rand -hex 16)
 
 docker run \
     --name "${DOCKER_CONTAINER_NAME}" \
     --volume "${REPO_ROOT_DIR}:/app" \
     "${DEV_ENV_DOCKER_IMAGE}" \
-    /bin/bash -c 'pandoc "/app/README.md" -o "/tmp/README.rst"; pandoc "/app/README.md" -o "/tmp/README.txt"'
+    build-readme-dot-rst.sh
 
 rm -f "${REPO_ROOT_DIR}/README.rst"
-docker container cp "${DOCKER_CONTAINER_NAME}:/tmp/README.rst" "${REPO_ROOT_DIR}/README.rst"
+docker container cp "${DOCKER_CONTAINER_NAME}:/app/README.rst" "${REPO_ROOT_DIR}/README.rst"
 
 if [[ "${GEN_README_DOT_TXT}" == "1" ]]; then
     rm -f "${REPO_ROOT_DIR}/README.txt"
-    docker container cp "${DOCKER_CONTAINER_NAME}:/tmp/README.txt" "${REPO_ROOT_DIR}/README.txt"
+    docker container cp "${DOCKER_CONTAINER_NAME}:/app/README.txt" "${REPO_ROOT_DIR}/README.txt"
 fi
 
 docker container rm "${DOCKER_CONTAINER_NAME}" > /dev/null
