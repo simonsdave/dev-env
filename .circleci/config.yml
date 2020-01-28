@@ -50,7 +50,7 @@ jobs:
           command: bin/run-unit-tests.sh
       - run:
           name: Build README.rst
-          command: build-readme-dot-rst.sh
+          command: bin/build-readme-dot-rst.sh
       - run:
           name: Build Python Packages
           command: bin/build-python-package.sh
