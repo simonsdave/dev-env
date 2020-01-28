@@ -35,7 +35,10 @@ docker container cp \
 
 COVERAGE_REPORT=$(grep directory "${REPO_ROOT_DIR}/.coveragerc" | sed -e 's|.*=[[:space:]]*||g' | sed -e 's|[[:space:]]*$||g')
 
-rm -rf "${REPO_ROOT_DIR}/${COVERAGE_REPORT}"
+# the :- is only there to avoid generating
+#   SC2115: Use "${var:?}" to ensure this never expands to /
+# on shell linting
+rm -rf "${REPO_ROOT_DIR:-}/${COVERAGE_REPORT}"
 
 docker container cp \
     "${DOCKER_CONTAINER_NAME}:/app/${COVERAGE_REPORT}" \
