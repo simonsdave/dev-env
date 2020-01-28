@@ -19,14 +19,14 @@ REPO_ROOT_DIR=$("${SCRIPT_DIR_NAME}/repo-root-dir.sh")
 #
 # :TRICKY: The implementation below feels more complicated than it
 # should be but was arrived at to deal with permissioning instability/inconsistency
-# when the simple/obvious thing to do would be to have the "python3 setup.py"
+# when the simple/obvious thing to do would be to have the "python3.7 setup.py"
 # run inside the container generating packages directly into a
 # directory on the host mapped into the container using --volume.
 # The solution does all the generation of packages inside the container
 # and then manually pulls the packages out of the container before
 # manually deleting the container. It's a little awkward but it's reliable.
 #
-DOCKER_CONTAINER_NAME=$(python3 -c "import uuid; print(uuid.uuid4().hex)")
+DOCKER_CONTAINER_NAME=$(openssl rand -hex 16)
 
 DUMMY_DOCKER_CONTAINER_NAME=$("${SCRIPT_DIR_NAME}/create-dummy-docker-container.sh")
 

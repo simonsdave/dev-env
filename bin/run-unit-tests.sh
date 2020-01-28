@@ -16,7 +16,7 @@ fi
 
 REPO_ROOT_DIR=$("${SCRIPT_DIR_NAME}/repo-root-dir.sh")
 
-DOCKER_CONTAINER_NAME=$(python3 -c "import uuid; print(uuid.uuid4().hex)")
+DOCKER_CONTAINER_NAME=$(openssl rand -hex 16)
 
 DUMMY_DOCKER_CONTAINER_NAME=$("${SCRIPT_DIR_NAME}/create-dummy-docker-container.sh")
 
@@ -33,9 +33,9 @@ docker container cp \
     "${DOCKER_CONTAINER_NAME}:/app/.coverage" \
     "${DOT_COVERAGE}"
 
-COVERAGE_REPORT=$(grep directory "${REPO_ROOT_DIR:-}/.coveragerc" | sed -e 's|.*=[[:space:]]*||g' | sed -e 's|[[:space:]]*$||g')
+COVERAGE_REPORT=$(grep directory "${REPO_ROOT_DIR}/.coveragerc" | sed -e 's|.*=[[:space:]]*||g' | sed -e 's|[[:space:]]*$||g')
 
-rm -rf "${REPO_ROOT_DIR:-}/${COVERAGE_REPORT:-}"
+rm -rf "${REPO_ROOT_DIR}/${COVERAGE_REPORT}"
 
 docker container cp \
     "${DOCKER_CONTAINER_NAME}:/app/${COVERAGE_REPORT}" \
