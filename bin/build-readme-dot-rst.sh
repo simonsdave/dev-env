@@ -54,11 +54,11 @@ docker run \
     build-readme-dot-rst.sh
 
 rm -f "${REPO_ROOT_DIR}/README.rst"
-docker container cp "${DOCKER_CONTAINER_NAME}:/app/README.rst" "${REPO_ROOT_DIR}/README.rst"
+docker container cp "${DOCKER_CONTAINER_NAME}:/tmp/README.rst" "${REPO_ROOT_DIR}/README.rst"
 
 if [[ "${GEN_README_DOT_TXT}" == "1" ]]; then
     rm -f "${REPO_ROOT_DIR}/README.txt"
-    docker container cp "${DOCKER_CONTAINER_NAME}:/app/README.txt" "${REPO_ROOT_DIR}/README.txt"
+    docker container cp "${DOCKER_CONTAINER_NAME}:/tmp/README.txt" "${REPO_ROOT_DIR}/README.txt"
 fi
 
 docker container rm "${DOCKER_CONTAINER_NAME}" > /dev/null
