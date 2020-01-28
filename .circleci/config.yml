@@ -21,12 +21,15 @@ jobs:
           command: bin/in-container/should-be-the-same.sh
       - setup_remote_docker
       - run:
-          name: Build docker image
+          name: Build Docker Image
           command: dockerfiles/build-docker-image.sh "${DEV_ENV_DOCKER_IMAGE}"
       - run: bin/run-pip-check.sh
       - run:
           name: Lint Python Files
           command: bin/run-flake8.sh
+      - run:
+          name: Run Bandit
+          command: bin/run-bandit.sh
       - run:
           name: Lint Shell Scripts
           command: bin/run-shelllint.sh --verbose
@@ -34,25 +37,25 @@ jobs:
           name: Lint Markdown Files
           command: bin/run-markdownlint.sh --verbose
       - run:
-          name: Lint JSON Files
-          command: bin/run-jsonlint.sh --verbose
-      - run:
           name: Lint YAML Files
           command: bin/run-yamllint.sh --verbose
       - run:
-          name: Scan repo for passwords, private keys, etc.
+          name: Lint JSON Files
+          command: bin/run-jsonlint.sh --verbose
+      - run:
+          name: Scan Repo for Passwords, Private Keys, etc.
           command: bin/run-repo-security-scanner.sh
       - run:
-          name: Run Bandit
-          command: bin/run-bandit.sh
-      - run:
-          name: Run unit tests
+          name: Run Unit Tests
           command: bin/run-unit-tests.sh
       - run:
-          name: Build python packages
+          name: Build README.rst
+          command: build-readme-dot-rst.sh
+      - run:
+          name: Build Python Packages
           command: bin/build-python-package.sh
       - deploy:
-          name: Push docker image to Dockerhub
+          name: Push Docker Image to Dockerhub
           command: |
             if [[ "${CIRCLE_BRANCH}" == "master" ]]; then
               dockerfiles/tag-and-push-docker-image.sh "${DEV_ENV_DOCKER_IMAGE}" "latest" "${DOCKER_PASSWORD}"
