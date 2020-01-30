@@ -39,9 +39,12 @@ fi
 # in-container directory.
 #
 if [[ "/app/bin/${0##*/}" == "${0}" ]]; then
+    echo "000000000000000000000000000000000000000"
     "${SCRIPT_DIR_NAME}/in-container/${0##*/}" "$@"
+    echo "111111111111111111111111111111111111111"
     exit $?
 fi
+echo "222222222222222222222222222222222"
 
 REPO_ROOT_DIR=$("${SCRIPT_DIR_NAME}/repo-root-dir.sh")
 
