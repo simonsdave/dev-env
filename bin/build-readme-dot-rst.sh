@@ -38,13 +38,14 @@ fi
 # run this script instead of the intended script in the
 # in-container directory.
 #
+echo "${0} - aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 if [[ "/app/bin/${0##*/}" == "${0}" ]]; then
-    echo "000000000000000000000000000000000000000"
+    echo "${0} - 000000000000000000000000000000000000000"
     "${SCRIPT_DIR_NAME}/in-container/${0##*/}" "$@"
-    echo "111111111111111111111111111111111111111"
+    echo "${0} - 111111111111111111111111111111111111111"
     exit $?
 fi
-echo "222222222222222222222222222222222"
+echo "${0} - 222222222222222222222222222222222"
 
 REPO_ROOT_DIR=$("${SCRIPT_DIR_NAME}/repo-root-dir.sh")
 
