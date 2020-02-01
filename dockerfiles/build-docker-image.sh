@@ -18,8 +18,6 @@ pushd "$(git rev-parse --show-toplevel)/bin/in-container"
 tar zvcf "${CONTEXT_DIR}/scripts.tar.gz" ./*.sh
 popd
 
-exit 0
-
 cp "${SCRIPT_DIR_NAME}/requirements.txt" "${CONTEXT_DIR}/."
 
 docker build \
