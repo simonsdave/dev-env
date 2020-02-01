@@ -14,33 +14,37 @@ if [ $# != 0 ]; then
     exit 1
 fi
 
-REPO_ROOT_DIR=$("${SCRIPT_DIR_NAME}/repo-root-dir.sh")
-
 #
-# :TRICKY: The implementation below feels more complicated than it
-# should be but was arrived at to deal with permissioning instability/inconsistency
-# when the simple/obvious thing to do would be to have the "python3.7 setup.py"
-# run inside the container generating packages directly into a
-# directory on the host mapped into the container using --volume.
-# The solution does all the generation of packages inside the container
-# and then manually pulls the packages out of the container before
-# manually deleting the container. It's a little awkward but it's reliable.
+# :TRICKY: want to use this script to run for app repos
+# as well as the dev-env repo. All works for app repos
+# but with dev-env the "docker run" below runs run-markdownlint.sh
+# and since the dev-env docker build puts /app/bin
+# at the start of the PATH, the docker run will actually
+# run this script instead of the intended script in the
+# in-container directory.
 #
-DOCKER_CONTAINER_NAME=$(openssl rand -hex 16)
+if [[ "/app/bin/${0##*/}" == "${0}" ]]; then
+    "${SCRIPT_DIR_NAME}/in-container/${0##*/}" "$@"
+    exit $?
+fi
 
 DUMMY_DOCKER_CONTAINER_NAME=$("${SCRIPT_DIR_NAME}/create-dummy-docker-container.sh")
+
+DOCKER_CONTAINER_NAME=$(openssl rand -hex 16)
 
 docker run \
     --name "${DOCKER_CONTAINER_NAME}" \
     --volumes-from "${DUMMY_DOCKER_CONTAINER_NAME}" \
     "${DEV_ENV_DOCKER_IMAGE}" \
-    /bin/bash -c 'cd /app; python3.7 setup.py bdist sdist --formats=gztar; twine check dist/*'
+    "${0##*/}" "$@"
 
-docker container rm "${DUMMY_DOCKER_CONTAINER_NAME}" > /dev/null
+REPO_ROOT_DIR=$("${SCRIPT_DIR_NAME}/repo-root-dir.sh")
 
 rm -rf "${REPO_ROOT_DIR}/dist"
 docker container cp "${DOCKER_CONTAINER_NAME}:/app/dist" "${REPO_ROOT_DIR}"
 
 docker container rm "${DOCKER_CONTAINER_NAME}" > /dev/null
+
+docker container rm "${DUMMY_DOCKER_CONTAINER_NAME}" > /dev/null
 
 exit 0
