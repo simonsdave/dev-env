@@ -38,18 +38,10 @@ fi
 # run this script instead of the intended script in the
 # in-container directory.
 #
-echo "${0} - aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 if [[ "/app/bin/${0##*/}" == "${0}" ]]; then
-    echo "${0} - 000000000000000000000000000000000000000"
     "${SCRIPT_DIR_NAME}/in-container/${0##*/}" "$@"
-    echo "${0} - 111111111111111111111111111111111111111"
     exit $?
 fi
-echo "${0} - 222222222222222222222222222222222"
-
-echo ">>>>>>>>>>>>>${PWD}<<<<<<<<<<<<<<<<<"
-echo ">>>>>>>>>>>>>${SCRIPT_DIR_NAME}<<<<<<<<<<<<<<<<<"
-set -x
 
 DUMMY_DOCKER_CONTAINER_NAME=$("${SCRIPT_DIR_NAME}/create-dummy-docker-container.sh")
 
