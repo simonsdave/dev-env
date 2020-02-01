@@ -13,7 +13,8 @@ IMAGE_NAME=${1:-}
 
 CONTEXT_DIR=$(mktemp -d 2> /dev/null || mktemp -d -t DAS)
 
-pushd "$(repo-root-dir.sh)/bin/in-container"
+# note - can't use repo-root-dir.sh
+pushd "$(git rev-parse --show-toplevel)/bin/in-container"
 tar zvcf "${CONTEXT_DIR}/scripts.tar.gz" ./*.sh
 popd
 
