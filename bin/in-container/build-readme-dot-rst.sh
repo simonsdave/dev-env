@@ -19,13 +19,11 @@ REPO_ROOT_DIR=$("${SCRIPT_DIR_NAME}/repo-root-dir.sh")
 rm -f "${REPO_ROOT_DIR}/README.rst" > /dev/null
 rm -f "${REPO_ROOT_DIR}/README.txt" > /dev/null
 
-pandoc "${REPO_ROOT_DIR}/README.md" -o "/tmp/README.rst"
-pandoc "${REPO_ROOT_DIR}/README.md" -o "/tmp/README.txt"
+pandoc "${REPO_ROOT_DIR}/README.md" -o "${REPO_ROOT_DIR}/README.rst"
+pandoc "${REPO_ROOT_DIR}/README.md" -o "${REPO_ROOT_DIR}/README.txt"
 
 echo "======================================"
 ls -la "${REPO_ROOT_DIR}"
-echo "======================================"
-ls -la /tmp
 echo "======================================"
 
 set +x

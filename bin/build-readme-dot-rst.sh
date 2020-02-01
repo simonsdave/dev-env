@@ -50,24 +50,29 @@ echo "${0} - 222222222222222222222222222222222"
 echo ">>>>>>>>>>>>>${PWD}<<<<<<<<<<<<<<<<<"
 echo ">>>>>>>>>>>>>${SCRIPT_DIR_NAME}<<<<<<<<<<<<<<<<<"
 set -x
-REPO_ROOT_DIR=$("${SCRIPT_DIR_NAME}/repo-root-dir.sh")
+
+DUMMY_DOCKER_CONTAINER_NAME=$("${SCRIPT_DIR_NAME}/create-dummy-docker-container.sh")
 
 DOCKER_CONTAINER_NAME=$(openssl rand -hex 16)
 
 docker run \
     --name "${DOCKER_CONTAINER_NAME}" \
-    --volume "${REPO_ROOT_DIR}:/app" \
+    --volumes-from "${DUMMY_DOCKER_CONTAINER_NAME}" \
     "${DEV_ENV_DOCKER_IMAGE}" \
-    build-readme-dot-rst.sh
+    "${0##*/}" "$@"
+
+REPO_ROOT_DIR=$("${SCRIPT_DIR_NAME}/repo-root-dir.sh")
 
 rm -f "${REPO_ROOT_DIR}/README.rst"
-docker container cp "${DOCKER_CONTAINER_NAME}:/tmp/README.rst" "${REPO_ROOT_DIR}/README.rst"
+docker container cp "${DOCKER_CONTAINER_NAME}:/app/README.rst" "${REPO_ROOT_DIR}/README.rst"
 
 if [[ "${GEN_README_DOT_TXT}" == "1" ]]; then
     rm -f "${REPO_ROOT_DIR}/README.txt"
-    docker container cp "${DOCKER_CONTAINER_NAME}:/tmp/README.txt" "${REPO_ROOT_DIR}/README.txt"
+    docker container cp "${DOCKER_CONTAINER_NAME}:/app/README.txt" "${REPO_ROOT_DIR}/README.txt"
 fi
 
 docker container rm "${DOCKER_CONTAINER_NAME}" > /dev/null
+
+docker rm "${DUMMY_DOCKER_CONTAINER_NAME}" > /dev/null
 
 exit 0
