@@ -65,6 +65,6 @@ fi
 
 docker container rm "${DOCKER_CONTAINER_NAME}" > /dev/null
 
-docker rm "${DUMMY_DOCKER_CONTAINER_NAME}" > /dev/null
+docker container rm "${DUMMY_DOCKER_CONTAINER_NAME}" > /dev/null
 
 exit 0
