@@ -48,6 +48,7 @@ fi
 echo "${0} - 222222222222222222222222222222222"
 
 echo ">>>>>>>>>>>>>${PWD}<<<<<<<<<<<<<<<<<"
+echo ">>>>>>>>>>>>>${SCRIPT_DIR_NAME}<<<<<<<<<<<<<<<<<"
 REPO_ROOT_DIR=$("${SCRIPT_DIR_NAME}/repo-root-dir.sh")
 
 DOCKER_CONTAINER_NAME=$(openssl rand -hex 16)
