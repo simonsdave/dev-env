@@ -30,7 +30,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 * a number of the scripts had ```python3 -c "import uuid; print(uuid.uuid4().hex)"```
   to generate a 16 digit random string but that requires python3 to be installed
-  on the dev machine so it was replaced with ```openssl rand -hex 16````
+  on the dev machine so it was replaced with ```openssl rand -hex 16```
 
 ### Removed
 
