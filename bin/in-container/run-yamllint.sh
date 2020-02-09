@@ -26,9 +26,12 @@ fi
 
 REPO_ROOT_DIR=$("${SCRIPT_DIR_NAME}/repo-root-dir.sh")
 
-if [ ! -e "${REPO_ROOT_DIR}/.yamllint" ]; then
-    echo "could not find .yamllint in root directory of project" >&2
-    exit 1
+if [ -r "${REPO_ROOT_DIR}/.yamllint" ]; then
+    DOT_YAMLLINT=${REPO_ROOT_DIR}/.yamllint
+else
+    DOT_YAMLLINT=$(mktemp 2> /dev/null || mktemp -t DAS)
+    echo '---' >> "${DOT_YAMLLINT}"
+    echo 'extends: default' >> "${DOT_YAMLLINT}"
 fi
 
 find "${REPO_ROOT_DIR}" -name '*.yml' -or -name '*.yaml' | grep -v ./env | while IFS='' read -r FILENAME
@@ -37,11 +40,15 @@ do
         echo -n "${FILENAME} ... "
     fi
 
-    yamllint -c "${REPO_ROOT_DIR}/.yamllint" "$FILENAME"
+    yamllint -c "${DOT_YAMLLINT}" "${FILENAME}"
 
     if [ "1" -eq "${VERBOSE:-0}" ]; then
         echo "ok"
     fi
 done
+
+if [ "${DOT_YAMLLINT}" != "${REPO_ROOT_DIR}/.yamllint" ]; then
+    rm -f "${DOT_YAMLLINT}"
+fi
 
 exit 0

@@ -673,6 +673,16 @@ example.sh
 
 * thin wrapper around [yamllint](https://yamllint.readthedocs.io/en/stable/index.html)
 * runs [yamllint](https://yamllint.readthedocs.io/en/stable/index.html) against all files in the repo with a ```yaml``` or ```yml``` extension
+* below is a very typical ```.yamllint```
+
+```yaml
+---
+extends: default
+
+rules:
+  line-length:
+    max: 256
+```
 
 ## [run-jsonlint.sh](run-jsonlint.sh)
 
