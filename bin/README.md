@@ -673,6 +673,16 @@ example.sh
 
 * thin wrapper around [yamllint](https://yamllint.readthedocs.io/en/stable/index.html)
 * runs [yamllint](https://yamllint.readthedocs.io/en/stable/index.html) against all files in the repo with a ```yaml``` or ```yml``` extension
+* [run-yamllint.sh](run-yamllint.sh) looks for and uses a configuration file called ```.yamllint``` in the repo's root
+  directory - see [this](https://yamllint.readthedocs.io/en/stable/configuration.html#extending-the-default-configuration)
+  for more info on configuration files - if no configuration file is found in the repo's
+  root directory the following configuration file is used
+
+```yaml
+---
+extends: default
+```
+
 * below is a very typical ```.yamllint```
 
 ```yaml

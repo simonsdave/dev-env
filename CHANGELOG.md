@@ -12,7 +12,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-* Nothing
+* ```.run-yamllint.sh``` will now work even if there is no ```.yamllint```
+  in the repo's root directory
 
 ### Removed
 
