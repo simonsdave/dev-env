@@ -25,4 +25,6 @@ docker build \
     --file "${SCRIPT_DIR_NAME}/Dockerfile" \
     "${CONTEXT_DIR}"
 
+rm -rf "${CONTEXT_DIR}"
+
 exit 0
