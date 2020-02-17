@@ -43,7 +43,7 @@ if [ "${DEV_ENV_VERSION:-}" == "" ]; then
     if [ "${DEV_ENV_VERSION:-}" == "latest" ]; then DEV_ENV_VERSION=master; fi
 fi
 
-pip install "git+https://github.com/simonsdave/dev-env.git@$DEV_ENV_VERSION"
+python3.7 -m pip install "git+https://github.com/simonsdave/dev-env.git@$DEV_ENV_VERSION"
 
 REPO_DOT_SH_DIR=$(dirname "$(command -v repo.sh)")
 INCREMENT_VERSION_DOT_SH=${REPO_DOT_SH_DIR}/increment_version.sh

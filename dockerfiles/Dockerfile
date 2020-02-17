@@ -29,7 +29,8 @@ RUN apt-get install -y python3-pip
 # install core python packages
 #
 COPY requirements.txt /tmp/requirements.txt
-RUN cd /tmp && pip3 install --requirement requirements.txt && rm requirements.txt
+RUN python3.7 -m pip install --requirement /tmp/requirements.txt
+RUN rm -r /tmp/requirements.txt
 
 #
 # cURL
@@ -140,14 +141,14 @@ RUN gem install mdl
 #   -- https://github.com/PyCQA/bandit
 #   -- bandit --verbose --exclude env -r .
 #
-RUN pip3 install bandit
+RUN python3.7 -m pip install bandit
 
 #
 # yamllint
 # -- https://yamllint.readthedocs.io/en/stable/quickstart.html#installing-yamllint
 # -- start with python3-pkg-resources install as per https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=860075 
 #
-RUN pip3 install yamllint
+RUN python3.7 -m pip install yamllint
 
 #
 # CircleCI CLI
@@ -168,26 +169,26 @@ RUN curl -fLSs https://circle.ci/cli | bash
 #   AWS_DEFAULT_REGION
 #   AWS_DEFAULT_OUTPUT=text
 #
-RUN pip3 install awscli
+RUN python3.7 -m pip install awscli
 
 #
 # AWS SAM CLI
 # -- https://aws.amazon.com/serverless/sam/
 #
-RUN pip3 install aws-sam-cli
+RUN python3.7 -m pip install aws-sam-cli
 
 #
 # truffleHog
 # -- https://github.com/dxa4481/truffleHog
 #
-RUN pip3 install truffleHog
+RUN python3.7 -m pip install truffleHog
 
 #
 # codecov
 # -- https://codecov.io
 # -- https://pypi.org/project/codecov/
 #
-RUN pip3 install codecov
+RUN python3.7 -m pip install codecov
 
 #
 # if you look @ most of the host scripts in dev-env

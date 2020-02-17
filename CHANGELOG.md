@@ -13,6 +13,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 
 * mock 4.0.0 -> 4.0.1
+* ```pip3 install``` -> ```python3.7 -m pip install```
 
 ### Removed
 

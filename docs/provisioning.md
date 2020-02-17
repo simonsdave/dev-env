@@ -28,11 +28,11 @@ else
     virtualenv env
     source ./env/bin/activate
 
-    pip install --upgrade pip
+    python3.7 -m pip install --upgrade pip
 
     DEV_ENV_VERSION=$(cat ./dev_env/dev-env-version.txt)
     if [ "${DEV_ENV_VERSION}" == "latest" ]; then DEV_ENV_VERSION=master; fi
-    pip install "git+https://github.com/simonsdave/dev-env.git@${DEV_ENV_VERSION}"
+    python3.7 -m pip install "git+https://github.com/simonsdave/dev-env.git@${DEV_ENV_VERSION}"
     unset DEV_ENV_VERSION
 
     ./dev_env/build-docker-image.sh "${DEV_ENV_DOCKER_IMAGE}"
