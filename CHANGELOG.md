@@ -14,6 +14,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 * mock 4.0.0 -> 4.0.1
 * ```pip3 install``` -> ```python3.7 -m pip install```
+* CircleCI wasn't getting installed because ```curl -fLSs https://circle.ci/cli | bash```
+  generated ```curl: (16) Error in the HTTP2 framing layer``` - resolved by getting
+  curl to use HTTP 1.1
 
 ### Removed
 

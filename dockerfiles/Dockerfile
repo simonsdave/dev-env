@@ -154,7 +154,7 @@ RUN python3.7 -m pip install yamllint
 # CircleCI CLI
 # -- https://circleci.com/docs/2.0/local-cli/
 #
-RUN curl -fLSs https://circle.ci/cli | bash
+RUN curl -fLSs --http1.1 https://circle.ci/cli | bash
 
 #
 # AWS CLI
