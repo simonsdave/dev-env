@@ -25,7 +25,7 @@ jobs:
           command: dockerfiles/build-docker-image.sh "${DEV_ENV_DOCKER_IMAGE}"
       - run:
           name: Run pip check
-          command: run-pip-check.sh
+          command: bin/run-pip-check.sh
       - run:
           name: Lint Python Files
           command: bin/run-flake8.sh
