@@ -8,7 +8,7 @@
 [![Requirements](https://requires.io/github/simonsdave/dev-env/requirements.svg?branch=master)](https://requires.io/github/simonsdave/dev-env/requirements/?branch=master)
 [![CircleCI](https://circleci.com/gh/simonsdave/dev-env.svg?style=shield)](https://circleci.com/gh/simonsdave/dev-env)
 [![codecov](https://codecov.io/gh/simonsdave/dev-env/branch/master/graph/badge.svg)](https://codecov.io/gh/simonsdave/dev-env/branch/master)
-[![docker-simonsdave/bionic-dev-env](https://img.shields.io/badge/docker-simonsdave%2Fbionic%20dev%20env-blue.svg)](https://hub.docker.com/r/simonsdave/bionic-dev-env/)
+[![docker-simonsdave/bionic-dev-env](https://img.shields.io/badge/docker-simonsdave%2Fbionic--dev--env-blue.svg)](https://hub.docker.com/r/simonsdave/bionic-dev-env/)
 
 This repo was originally created as a way to centralize
 and document the process of provisioning development environments (dev env).
