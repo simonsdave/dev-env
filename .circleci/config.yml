@@ -70,7 +70,8 @@ jobs:
             fi
 
 workflows:
-  build_test_and_deploy:
+  version: 2
+  commit:
     jobs:
       - build_test_and_deploy:
           context: dev-env
