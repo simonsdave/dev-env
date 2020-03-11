@@ -11,25 +11,47 @@ fi
 
 RELEASE_BRANCH=${1:-}
 
+REPO_ROOT_DIR=$(repo-root-dir.sh)
+
+# README.md -------------------------------------------------------------------
+
+# requires.io
 sed -i '' \
     -e \
-    "s|/tree/master|/tree/$RELEASE_BRANCH|g" \
-    "$SCRIPT_DIR_NAME/README.md"
+    "s|?branch=master|?branch=${RELEASE_BRANCH}|g" \
+    "${REPO_ROOT_DIR}/README.md"
+
+# CodeFactor
+sed -i '' \
+    -e \
+    "s|/badge/master|/badge/${RELEASE_BRANCH}|g" \
+    "${REPO_ROOT_DIR}/README.md"
 
 sed -i '' \
     -e \
-    "s|(docs|(https://github.com/simonsdave/dev-env/tree/$RELEASE_BRANCH/docs|g" \
-    "$SCRIPT_DIR_NAME/README.md"
+    "s|/overview/master|/overview/${RELEASE_BRANCH}|g" \
+    "${REPO_ROOT_DIR}/README.md"
 
+# CircleCI
 sed -i '' \
     -e \
-    "s|(bin|(https://github.com/simonsdave/dev-env/tree/$RELEASE_BRANCH/bin|g" \
-    "$SCRIPT_DIR_NAME/README.md"
+    "s|/tree/master|/tree/${RELEASE_BRANCH}|g" \
+    "${REPO_ROOT_DIR}/README.md"
 
-rm -f "$SCRIPT_DIR_NAME/README.rst"
+# codecov
+sed -i '' \
+    -e \
+    "s|/branch/master|/branch/${RELEASE_BRANCH}|g" \
+    "${REPO_ROOT_DIR}/README.md"
+
+# don't need to do anything for docker images
+
+# -----------------------------------------------------------------------------
+
+rm -f "${SCRIPT_DIR_NAME}/README.rst"
 build-readme-dot-rst.sh
 
-rm -rf "$SCRIPT_DIR_NAME/dist"
+rm -rf "${SCRIPT_DIR_NAME}/dist"
 build-python-package.sh
 
 exit 0
