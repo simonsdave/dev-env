@@ -8,7 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-* [CodeFactor](https://www.codefactor.io] badge to main README.md
+* [CodeFactor](https://www.codefactor.io) badge to main README.md
 
 ### Changed
 
