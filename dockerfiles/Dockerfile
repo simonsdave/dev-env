@@ -151,10 +151,13 @@ RUN python3.7 -m pip install bandit
 RUN python3.7 -m pip install yamllint
 
 #
+# :TRICKY: the for loop complexity here is to deal with the
+# reality that all too often this install seems to fail.
+#
 # CircleCI CLI
 # -- https://circleci.com/docs/2.0/local-cli/
 #
-RUN curl -fLSs --http1.1 https://circle.ci/cli | bash
+RUN for attempt in {1..10}; do curl -fLSs --http1.1 https://circle.ci/cli | bash && if command -v circleci > /dev/null; then break; else echo $attempt && sleep 10; fi; done
 
 #
 # AWS CLI
