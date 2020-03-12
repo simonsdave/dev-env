@@ -53,7 +53,7 @@ jobs:
       - run:
           name: Upload Unit Test Coverage Data to Codecov
           command: |
-            python3.7 -m pip install codecov
+            pip3 install codecov
             codecov
       - run:
           name: Build README.rst
