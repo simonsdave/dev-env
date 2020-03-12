@@ -52,7 +52,9 @@ jobs:
           command: bin/run-unit-tests.sh
       - run:
           name: Upload Unit Test Coverage Data to Codecov
-          command: bash <(curl -s https://codecov.io/bash)
+          command: |
+            python3.7 -m pip install codecov
+            codecov
       - run:
           name: Build README.rst
           command: bin/build-readme-dot-rst.sh
