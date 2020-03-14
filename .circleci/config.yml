@@ -16,6 +16,17 @@ jobs:
     executor: dev-env
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "~/repo/.circleci/requirements.txt" }}
+            - v1-dependencies-
+      - run:
+          name: Install Codecov
+          command: pip3 install --user codecov
+      - save_cache:
+          paths:
+            - ./env
+          key: v1-dependencies-{{ checksum "~/repo/.circleci/requirements.txt" }}
       - run:
           name: bin and in-container consistency check
           command: bin/in-container/should-be-the-same.sh
@@ -52,9 +63,7 @@ jobs:
           command: bin/run-unit-tests.sh
       - run:
           name: Upload Unit Test Coverage Data to Codecov
-          command: |
-            pip3 install --user codecov
-            codecov
+          command: codecov
       - run:
           name: Build README.rst
           command: bin/build-readme-dot-rst.sh
