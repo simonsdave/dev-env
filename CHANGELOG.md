@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 * [CodeFactor](https://www.codefactor.io) badge to main README.md
+* ```in-container/run-markdownlint.sh``` actually works now!!!
 
 ### Changed
 

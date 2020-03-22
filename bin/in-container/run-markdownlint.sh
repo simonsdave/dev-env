@@ -2,6 +2,8 @@
 
 set -e
 
+SCRIPT_DIR_NAME="$( cd "$( dirname "$0" )" && pwd )"
+
 VERBOSE=0
 
 while true
@@ -22,7 +24,9 @@ if [ $# != 0 ]; then
     exit 1
 fi
 
-MARKDOWNLINT_STYLE_RB=/app/.markdownlint-style.rb
+REPO_ROOT_DIR=$("${SCRIPT_DIR_NAME}/repo-root-dir.sh")
+
+MARKDOWNLINT_STYLE_RB=${REPO_ROOT_DIR}/.markdownlint-style.rb
 if [[ ! -r "${MARKDOWNLINT_STYLE_RB}" ]]; then
     MARKDOWNLINT_STYLE_RB=$(mktemp 2> /dev/null || mktemp -t DAS)
     echo 'all' > "${MARKDOWNLINT_STYLE_RB}"
@@ -30,7 +34,7 @@ fi
 
 EXIT_CODE=0
 
-for MD_FILE_NAME in $(find /app -name '*.md' | grep -v -E "^/app/(build|env)"); do
+for MD_FILE_NAME in $(find "${REPO_ROOT_DIR}" -name '*.md' | grep -v -E "/(build|env)"); do
     if [ "1" -eq "${VERBOSE:-0}" ]; then
         echo -n "${MD_FILE_NAME} ... "
     fi
