@@ -26,7 +26,7 @@ REPO_ROOT_DIR=$("${SCRIPT_DIR_NAME}/repo-root-dir.sh")
 
 EXIT_CODE=0
 
-for FILENAME in $(find "${REPO_ROOT_DIR}" -name '*.sh' | grep -v ./env); do
+for FILENAME in $(find "${REPO_ROOT_DIR}" -name '*.sh' | grep -v ./env | sort); do
     if [ "1" -eq "${VERBOSE:-0}" ]; then
         echo -n "${FILENAME} ... "
     fi

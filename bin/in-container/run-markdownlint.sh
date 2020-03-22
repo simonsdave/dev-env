@@ -34,7 +34,7 @@ fi
 
 EXIT_CODE=0
 
-for MD_FILE_NAME in $(find "${REPO_ROOT_DIR}" -name '*.md' | grep -v ./env); do
+for MD_FILE_NAME in $(find "${REPO_ROOT_DIR}" -name '*.md' | grep -v ./env | sort); do
     if [ "1" -eq "${VERBOSE:-0}" ]; then
         echo -n "${MD_FILE_NAME} ... "
     fi
