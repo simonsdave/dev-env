@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -e
-
 SCRIPT_DIR_NAME="$( cd "$( dirname "$0" )" && pwd )"
 
 VERBOSE=0
@@ -24,8 +22,11 @@ if [ $# != 0 ]; then
     exit 1
 fi
 
-find "$("${SCRIPT_DIR_NAME}/repo-root-dir.sh")" -name '*.sh' | grep -v ./env | sort | while IFS='' read -r FILENAME
-do
+REPO_ROOT_DIR=$("${SCRIPT_DIR_NAME}/repo-root-dir.sh")
+
+EXIT_CODE=0
+
+for FILENAME in $(find "${REPO_ROOT_DIR}" -name '*.sh' | grep -v ./env); do
     if [ "1" -eq "${VERBOSE:-0}" ]; then
         echo -n "${FILENAME} ... "
     fi
@@ -39,11 +40,13 @@ do
         fi
     fi
 
-    shellcheck "${FILENAME}"
-
-    if [ "1" -eq "${VERBOSE:-0}" ]; then
-        echo "ok"
+    if ! shellcheck "${FILENAME}"; then
+        EXIT_CODE=1
+    else
+        if [ "1" -eq "${VERBOSE:-0}" ]; then
+            echo "ok"
+        fi
     fi
 done
 
-exit 0
+exit ${EXIT_CODE}
