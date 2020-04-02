@@ -96,13 +96,13 @@ RUN cd /tmp && \
 
 #
 # shellcheck
-# -- install instructions from https://github.com/koalaman/shellcheck/issues/704
+# -- install instructions from https://github.com/koalaman/shellcheck/issues/1871
 #
 RUN cd /tmp && \
-    curl -s -o ./shellcheck.tar.xz https://storage.googleapis.com/shellcheck/shellcheck-latest.linux.x86_64.tar.xz && \
+    curl -L -s -o ./shellcheck.tar.xz https://github.com/koalaman/shellcheck/releases/download/stable/shellcheck-stable.linux.x86_64.tar.xz
     tar xvf shellcheck.tar.xz && \
-    cp shellcheck-latest/shellcheck /usr/local/bin/. && \
-    rm -rf shellcheck-latest shellcheck.tar.xz
+    cp shellcheck-stable/shellcheck /usr/local/bin/. && \
+    rm -rf shellcheck-stable shellcheck.tar.xz
 
 #
 # jq is just so generally useful for parsing json docs

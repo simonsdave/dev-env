@@ -14,6 +14,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 * replaced ```bin/check-consistent-dev-env-version.sh```
   with ```bin/get-circle-ci-executor.sh```
+* ```shellcheck``` now installed per [these](https://github.com/koalaman/shellcheck/issues/1871)
+  instructions
 
 ### Removed
 
