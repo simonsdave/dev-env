@@ -562,17 +562,8 @@ Config file at .circleci/config.yml is valid.
 ~>
 ```
 
-## [check-consistent-dev-env-version.sh](check-consistent-dev-env-version.sh)
+## [get-circle-ci-executor.sh](get-circle-ci-executor.sh)
 
-* following ```dev-env``` patterns and practices, a repo is expected to contain a
-  file ```$(repo-root-dir.sh)/dev_env/dev-env-version.txt``` which looks something like
-
-```text
-0.5.15
-```
-
-* the idea behind ```dev-env-version.txt``` was to have the
-  project's ```dev-env``` version defined in a single location
 * projects which use ```dev-env``` and CircleCI will have a
   file ```$(repo-root-dir.sh)/.circleci/config.yml```
   that typically starts out something like
@@ -589,41 +580,62 @@ executors:
 
 jobs:
   build_test_and_deploy:
-...
+    .
+    .
+    .
 ```
 
-* the challenge with CircleCI and ```dev-env-version.txt```
-  is that there are two places defining the ```dev-env``` version
-* don't know how to fix this problem so let's at least automate detection of the problem by
-  inserting ```check-consistent-dev-env-version.sh``` into the CircleCI pipeline
+* projects which use ```dev-env``` will also have a
+  file ```$(repo-root-dir.sh)/dev-env/Dockerfile.template```
+  which looks like
 
-```yaml
-jobs:
-  build_test_and_deploy:
-    working_directory: ~/repo
-    executor: dev-env
-    steps:
-      - checkout
-      - run: check-consistent-dev-env-version.sh
-      - restore_cache:
-          keys:
+```plaintext
+FROM %CIRCLE_CI_EXECUTOR%
+
+LABEL maintainer="Dave Simons"
+
+ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND newt
 ```
 
-* ```check-consistent-dev-env-version.sh``` has a zero exit code if the
-  two versions are the same and non-zero if the two versions are different
-* usage for ```check-consistent-dev-env-version.sh```
+* finally, projects which use ```dev-env``` will also have a
+  file ```$(repo-root-dir.sh)/dev-env/build-docker-image.sh```
+  which looks like below and this, finally, explains
+  how ```get-circle-ci-executor.sh``` is used
 
 ```bash
-~> ./check-consistent-dev-env-version.sh --help
-usage: check-consistent-dev-env-version.sh [--verbose]
-~>
-```
+#!/usr/bin/env bash
 
-* the ```--verbose``` command line option can be useful after ```check-consistent-dev-env-version.sh```
-  is inserted into the CircleCI pipeline and it returns a non-zero exit code but a visual
-  inspection of ```dev-env-version.txt``` and ```config.yml``` don't reveal where there's a version
-  mismatch - adding ```--verbose``` to the pipeline should generate enough information to
-  debug the problem
+set -e
+
+SCRIPT_DIR_NAME="$( cd "$( dirname "$0" )" && pwd )"
+
+if [ $# != 1 ]; then
+    echo "usage: $(basename "$0") <docker image name>" >&2
+    exit 1
+fi
+
+DOCKER_IMAGE=${1:-}
+
+TEMP_DOCKERFILE=$(mktemp 2> /dev/null || mktemp -t DAS)
+cp "${SCRIPT_DIR_NAME}/Dockerfile.template" "${TEMP_DOCKERFILE}"
+
+sed \
+    -i '' \
+    -e "s|%CIRCLE_CI_EXECUTOR%|$(get-circle-ci-executor.sh)|g" \
+    "${TEMP_DOCKERFILE}"
+
+CONTEXT_DIR=$(mktemp -d 2> /dev/null || mktemp -d -t DAS)
+
+docker build \
+    -t "${DOCKER_IMAGE}" \
+    --file "${TEMP_DOCKERFILE}" \
+    "${CONTEXT_DIR}"
+
+rm -rf "${CONTEXT_DIR}"
+
+exit 0
+```
 
 ## [create-dummy-docker-container.sh](create-dummy-docker-container.sh)
 

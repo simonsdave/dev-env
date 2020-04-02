@@ -8,15 +8,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-* Nothing
+* added ```bin/get-circle-ci-executor.sh```
 
 ### Changed
 
-* Nothing
+* replaced ```bin/check-consistent-dev-env-version.sh```
+  with ```bin/get-circle-ci-executor.sh```
 
 ### Removed
 
-* Nothing
+* removed ```bin/check-consistent-dev-env-version.sh```
 
 ## [0.6.8] - [2020-03-22]
 
