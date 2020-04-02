@@ -34,7 +34,6 @@ if [ $# != 0 ]; then
     exit 1
 fi
 
-confirm_same check-consistent-dev-env-version.sh
 confirm_same create-dummy-docker-container.sh
 confirm_same repo.sh
 confirm_same repo-root-dir.sh
