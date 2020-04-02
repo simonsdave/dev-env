@@ -99,7 +99,7 @@ RUN cd /tmp && \
 # -- install instructions from https://github.com/koalaman/shellcheck/issues/1871
 #
 RUN cd /tmp && \
-    curl -L -s -o ./shellcheck.tar.xz https://github.com/koalaman/shellcheck/releases/download/stable/shellcheck-stable.linux.x86_64.tar.xz
+    curl -L -s -o ./shellcheck.tar.xz https://github.com/koalaman/shellcheck/releases/download/stable/shellcheck-stable.linux.x86_64.tar.xz && \
     tar xvf shellcheck.tar.xz && \
     cp shellcheck-stable/shellcheck /usr/local/bin/. && \
     rm -rf shellcheck-stable shellcheck.tar.xz
