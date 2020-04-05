@@ -1,8 +1,7 @@
 # Using
 
-* the original scenario that ```dev-env``` was designed
-  to support was dev env provisioning - [this](provisioning.md)
-  describes the details
+* ```dev-env``` was originally designed to support provisioning
+  of development environments - [this](provisioning.md) describes the details
 * ```dev-env``` includes a script ([cut-release.sh](../bin/cut-release.sh))
   which, if you follow the required conventions, can dramatically simplify the process
   of creating releases - take a look at [this](../bin/README.md#cut-releasesh) description for more details

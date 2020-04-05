@@ -39,11 +39,11 @@ fi
 
 if [ "${DEV_ENV_VERSION:-}" == "" ]; then
     REPO_ROOT_DIR=$(git rev-parse --show-toplevel)
-    DEV_ENV_VERSION=$(cat "${REPO_ROOT_DIR}/dev_env/dev-env-version.txt")
+    DEV_ENV_VERSION=$(grep 'image:' < "${REPO_ROOT_DIR}/.circleci/config.yml" | tail -1 | sed -e 's|[[:space:]]*$||g' | sed -e 's|^.*dev-env:||g')
     if [ "${DEV_ENV_VERSION:-}" == "latest" ]; then DEV_ENV_VERSION=master; fi
 fi
 
-python3.7 -m pip install "git+https://github.com/simonsdave/dev-env.git@$DEV_ENV_VERSION"
+python3.7 -m pip install "git+https://github.com/simonsdave/dev-env.git@${DEV_ENV_VERSION}"
 
 REPO_DOT_SH_DIR=$(dirname "$(command -v repo.sh)")
 INCREMENT_VERSION_DOT_SH=${REPO_DOT_SH_DIR}/increment_version.sh

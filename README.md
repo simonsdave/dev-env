@@ -54,14 +54,14 @@ The tools, scripts and utilities in this repo assume the user follows a pre-defi
   * for each release a new branch is created from master called ```release-<version>```
 * ```CHANGELOG.md``` follows a predefined format / structure
 
-## References/Inspirations
-
-* [21 Nov '18 - How to fully utilise Docker during development](https://medium.com/tsftech/how-to-fully-utilise-docker-during-development-42bb3cdc3017)
-* [semantic-release - fully automated version management and package publishing](https://github.com/semantic-release/semantic-release)
-
 ## What Next
 
 * take a look at the [shell and python scripts](bin) to assess ```dev-env``` capability
 * [here's](docs/using.md) a description of how to start using ```dev-env```
 * take a look at [this](https://github.com/simonsdave/dev-env-testing) github repo which illustrates how to use ```dev-env```
 * if you'd like to help contribute to ```dev-env``` see [this](docs/contributing.md)
+
+## References/Inspirations
+
+* [21 Nov '18 - How to fully utilise Docker during development](https://medium.com/tsftech/how-to-fully-utilise-docker-during-development-42bb3cdc3017)
+* [semantic-release - fully automated version management and package publishing](https://github.com/semantic-release/semantic-release)
