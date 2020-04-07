@@ -12,7 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-* dramatically simplified use of ```bin/install-dev-env.sh```
+* dramatically simplify use of ```bin/install-dev-env.sh```
 * replaced ```bin/check-consistent-dev-env-version.sh```
   with ```bin/get-circle-ci-executor.sh```
 * ```shellcheck``` now installed per [these](https://github.com/koalaman/shellcheck/issues/1871)
