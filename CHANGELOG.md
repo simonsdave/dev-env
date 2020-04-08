@@ -8,7 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-* Nothing
+* added ```bin/in-container/get-circle-ci-executor.sh```
 
 ### Changed
 

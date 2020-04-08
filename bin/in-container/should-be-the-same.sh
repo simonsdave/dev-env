@@ -35,6 +35,7 @@ if [ $# != 0 ]; then
 fi
 
 confirm_same create-dummy-docker-container.sh
+confirm_same get-circle-ci-executor.sh
 confirm_same repo.sh
 confirm_same repo-root-dir.sh
 
