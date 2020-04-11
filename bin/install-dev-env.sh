@@ -17,6 +17,8 @@ while true
 do
     case "$(echo "${1:-}" | tr "[:upper:]" "[:lower:]")" in
         --dev-env-version)
+            # the only known user of this command line option is cloudfeaster's
+            # install-dev-env-scripts.sh script
             shift
             DEV_ENV_VERSION=${1:-}
             shift
