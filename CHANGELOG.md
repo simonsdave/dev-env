@@ -8,7 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-* Nothing
+* add [Jekyl](https://jekyllrb.com/) and [Bundler](https://bundler.io/) to dev-env docker image
 
 ### Changed
 

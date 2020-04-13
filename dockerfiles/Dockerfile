@@ -130,11 +130,23 @@ ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
 ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 
 #
+# Ruby
+# -- https://www.ruby-lang.org/en/
+#
+RUN apt install -y ruby-full
+
+#
 # markdown lint
 # -- https://github.com/markdownlint/markdownlint
 #
-RUN apt install -y ruby-full
 RUN gem install mdl
+
+#
+# Jekyll and Bundler
+# -- https://jekyllrb.com/
+# -- https://jekyllrb.com/tutorials/using-jekyll-with-bundler
+#
+RUN gem install jekyll bundler
 
 #
 # Bandit
