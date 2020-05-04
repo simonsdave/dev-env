@@ -12,6 +12,6 @@ if [ $# != 0 ]; then
     exit 1
 fi
 
-git log -p | docker run -i --rm "$DEV_ENV_DOCKER_IMAGE" scanrepo
+git log -p | docker run -i --rm "${DEV_ENV_DOCKER_IMAGE}" scanrepo
 
 exit 0
