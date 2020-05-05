@@ -12,7 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-* Nothing
+* ```docker-destructive-cleanup.sh``` now uses ```docker container prune```
 
 ### Removed
 

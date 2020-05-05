@@ -77,10 +77,8 @@ for CONTAINER_ID in $(docker ps -q); do
     docker container kill "${CONTAINER_ID}"
 done
 
-echo_if_verbose "Removing exited containers ..."
-for CONTAINER_ID in $(docker ps -a -q); do
-    docker container rm "${CONTAINER_ID}"
-done
+echo_if_verbose "Removing stopped containers ..."
+docker container prune --force
 
 echo_if_verbose "Removing dangling docker images ..."
 docker images --filter "dangling=true" -q | while IFS='' read -r IMAGE_ID
