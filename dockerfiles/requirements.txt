@@ -1,4 +1,4 @@
-flake8==3.7.9
+flake8==3.8.1
 mock==4.0.2
 #
 # ndg-httpsclient is required to avoid various SNI related
@@ -15,7 +15,7 @@ mock==4.0.2
 ndg-httpsclient==0.5.1
 nose==1.3.7
 nose-cov==1.6
-pycodestyle==2.5.0
+pycodestyle==2.6.0
 twine==3.1.1
 #
 # should be no reason for keyring to be listed here but per

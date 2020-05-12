@@ -12,7 +12,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-* Nothing
+* flake8 3.7.9 -> 3.8.1
+* pycodestyle 2.5.0 -> 2.6.0
 
 ### Removed
 
