@@ -2,4 +2,4 @@
 # directory of a repo ... this pattern was used so:
 # 1/ requires.io could make sure codecov version is tracked
 # 2/ dependancy caching in circleci had something to generate a key
-codecov==2.1.4
+codecov==2.1.7
