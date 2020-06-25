@@ -16,6 +16,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * pycodestyle 2.5.0 -> 2.6.0
 * ```docker-destructive-cleanup.sh``` now uses ```docker container prune```
 * codecov 2.0.22 -> 2.1.7
+* twine 3.1.1 -> 3.2.0
 
 ### Removed
 
