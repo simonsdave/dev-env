@@ -15,7 +15,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * flake8 3.7.9 -> 3.8.3
 * pycodestyle 2.5.0 -> 2.6.0
 * ```docker-destructive-cleanup.sh``` now uses ```docker container prune```
-* codecov 2.0.22 -> 2.1.7
+* codecov 2.0.22 -> 2.1.8
 * twine 3.1.1 -> 3.2.0
 
 ### Removed
