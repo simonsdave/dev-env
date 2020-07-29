@@ -714,7 +714,7 @@ rules:
 
 * thin wrapper around [markdownlint](https://github.com/markdownlint)
 * runs [markdownlint](https://github.com/markdownlint) against all files in the repo with a ```MD``` extension
-* if using [run-markdownlint.sh])(run-markdownlint.sh) you'll probably want
+* if using [run-markdownlint.sh](run-markdownlint.sh) you'll probably want
   a ```.markdownlint-style.rb``` in the repo's root directory
   which is a [markdownlint style](https://github.com/markdownlint/markdownlint/blob/master/docs/creating_styles.md)
 * below is an example of a typical ```.markdownlint-style.rb```

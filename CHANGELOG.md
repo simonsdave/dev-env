@@ -17,6 +17,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * ```docker-destructive-cleanup.sh``` now uses ```docker container prune```
 * codecov 2.0.22 -> 2.1.8
 * twine 3.1.1 -> 3.2.0
+* fixed markdown syntax error in ```bin/README.md```
 
 ### Removed
 
