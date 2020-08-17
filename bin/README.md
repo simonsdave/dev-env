@@ -706,6 +706,15 @@ rules:
     max: 256
 ```
 
+* create a file called ```.yamllintignore```
+  in the same directory as ```helloworld.yaml``` that looks like the one below
+  to avoid running [yamllint](https://yamllint.readthedocs.io/en/stable/index.html)
+  on ```helloworld.yaml```
+
+```text
+helloworld.yaml
+```
+
 ## [run-jsonlint.sh](run-jsonlint.sh)
 
 * looks for all files in the repo with a ```json``` extension and uses ```jq``` to determine if the file contains valid [JSON](https://www.json.org)

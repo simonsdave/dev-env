@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 * add [Jekyl](https://jekyllrb.com/) and [Bundler](https://bundler.io/) to dev-env docker image
+* add support for ```.yamllintignore``` so ```run-yamllint.sh``` can ignore specific files
 
 ### Changed
 

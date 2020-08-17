@@ -40,6 +40,15 @@ do
         echo -n "${FILENAME} ... "
     fi
 
+    if [ -r "$(dirname "${FILENAME}")/.yamllintignore" ]; then
+        if grep --silent "$(basename "${FILENAME}")" "$(dirname "${FILENAME}")/.yamllintignore"; then
+            if [ "1" -eq "${VERBOSE:-0}" ]; then
+                echo "ignoring"
+            fi
+            continue
+        fi
+    fi
+
     yamllint -c "${DOT_YAMLLINT}" "${FILENAME}"
 
     if [ "1" -eq "${VERBOSE:-0}" ]; then
