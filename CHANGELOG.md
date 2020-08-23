@@ -12,7 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-* Nothing
+* ```codecov``` 2.1.8 -> 2.1.9
 
 ### Removed
 
