@@ -12,7 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-* ```codecov``` 2.1.8 -> 2.1.9
+* ```codecov``` 2.1.8 -> 2.1.10
 * ```flake8``` 3.8.3 -> 3.8.4
 
 ### Removed
