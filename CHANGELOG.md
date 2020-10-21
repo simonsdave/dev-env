@@ -14,6 +14,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 * ```codecov``` 2.1.8 -> 2.1.10
 * ```flake8``` 3.8.3 -> 3.8.4
+* per [this](https://discuss.circleci.com/t/old-linux-machine-image-remote-docker-deprecation/37572) article, added
+  explicit version to ```setup_remote_docker``` in CircleCI pipeline
 
 ### Removed
 
