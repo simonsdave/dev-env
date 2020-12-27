@@ -183,7 +183,7 @@ RUN python3.7 -m pip install yamllint
 #    rev of the CLI
 #
 RUN for attempt in {1..10}; do curl -fLSs --http1.1 https://circle.ci/cli | bash && if command -v circleci > /dev/null; then break; else echo $attempt && sleep 10; fi; done
-RUN circleci update
+RUN circleci update install
 
 #
 # AWS CLI
