@@ -19,6 +19,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
   explicit version to ```setup_remote_docker``` in CircleCI pipeline
 * start using venv instead of virtualenv
 * ```twine``` 3.2.0 -> 3.3.0
+* a ```circleci update``` is now performed during docker install to
+  ensure the latest CircleCI CLI is always installed
 
 ### Removed
 
