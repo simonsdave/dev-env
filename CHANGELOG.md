@@ -18,6 +18,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * per [this](https://discuss.circleci.com/t/old-linux-machine-image-remote-docker-deprecation/37572) article, added
   explicit version to ```setup_remote_docker``` in CircleCI pipeline
 * start using venv instead of virtualenv
+* ```twine``` 3.2.0 -> 3.3.0
 
 ### Removed
 
