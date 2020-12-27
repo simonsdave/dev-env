@@ -12,7 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-* ```codecov``` 2.1.8 -> 2.1.10
+* ```codecov``` 2.1.8 -> 2.1.11
 * ```flake8``` 3.8.3 -> 3.8.4
 * ```mock``` 4.0.2 -> 4.0.3
 * per [this](https://discuss.circleci.com/t/old-linux-machine-image-remote-docker-deprecation/37572) article, added
