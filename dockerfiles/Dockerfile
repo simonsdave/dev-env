@@ -138,7 +138,17 @@ RUN apt install -y ruby-full
 #
 # markdown lint
 # -- https://github.com/markdownlint/markdownlint
+# -- don't like the chef-utils version hard coding (actually don't even like
+# having to list it here) however it's the recommended solution to addressing
+# the error below - really should have solved the problem by installing a
+# later version of ruby but the process of getting rvm installed was just
+# too painful.
 #
+#   ERROR:  Error installing mdl:
+#   	The last version of chef-utils (>= 0) to support your Ruby & RubyGems was 16.6.14. Try installing it with `gem install chef-utils -v 16.6.14` and then running the current command again
+#   	chef-utils requires Ruby version >= 2.6.0. The current ruby version is 2.5.0.
+#
+RUN gem install chef-utils -v 16.6.14
 RUN gem install mdl
 
 #
