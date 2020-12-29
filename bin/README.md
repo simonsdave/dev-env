@@ -11,6 +11,14 @@ References
 * [Shell Parameter Expansion](https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html)
 * [11 May '19 - Seven Surprising Bash Variables](https://zwischenzugs.com/2019/05/11/seven-surprising-bash-variables/)
 
+# Install
+
+## [install-dev-env.sh](install-dev-env.sh)
+
+See [this](docs/provisioning.md) for a description of
+how [install-dev-env.sh](install-dev-env.sh) is intended
+to be used to install ```dev-env```.
+
 # Repo Info
 
 ## [repo.sh](repo.sh)

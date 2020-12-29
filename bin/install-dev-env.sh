@@ -11,6 +11,21 @@ usage() {
     echo "usage: $(basename "$0") [--dev-env-version <version>]" >&2
 }
 
+check_version_number() {
+    DEV_ENV_VERSION=${1:-}
+
+    if [ "${DEV_ENV_VERSION}" == "latest" ]; then
+        return 0
+    fi
+
+    if [[ "${DEV_ENV_VERSION}" =~ ^v[0-9]+\.[0-9]+ ]]; then
+        return 0
+    fi
+
+    echo "invalid dev env version >>>${DEV_ENV_VERSION}<<<" >&2
+    exit 1
+}
+
 DEV_ENV_VERSION=""
 
 while true
@@ -21,6 +36,7 @@ do
             # install-dev-env-scripts.sh script
             shift
             DEV_ENV_VERSION=${1:-}
+            check_version_number "${DEV_ENV_VERSION}"
             shift
             ;;
         --help)
@@ -39,16 +55,24 @@ if [ $# != 0 ]; then
     exit 1
 fi
 
+if [ "${VIRTUAL_ENV:-}" == "" ]; then
+    echo "Virtual env not activated - could not find environment variable VIRTUAL_ENV" >&2
+    exit 2
+fi
+
 if [ "${DEV_ENV_VERSION:-}" == "" ]; then
     REPO_ROOT_DIR=$(git rev-parse --show-toplevel)
     DEV_ENV_VERSION=$(grep 'image:' < "${REPO_ROOT_DIR}/.circleci/config.yml" | tail -1 | sed -e 's|[[:space:]]*$||g' | sed -e 's|^.*dev-env:||g')
-    if [ "${DEV_ENV_VERSION:-}" == "latest" ]; then DEV_ENV_VERSION=master; fi
+    check_version_number "${DEV_ENV_VERSION}"
 fi
 
-python3.7 -m pip install "git+https://github.com/simonsdave/dev-env.git@${DEV_ENV_VERSION}"
+if [ "${DEV_ENV_VERSION:-}" == "latest" ]; then
+    DEV_ENV_VERSION=master
+fi
 
-REPO_DOT_SH_DIR=$(dirname "$(command -v repo.sh)")
-INCREMENT_VERSION_DOT_SH=${REPO_DOT_SH_DIR}/increment_version.sh
+pip install "git+https://github.com/simonsdave/dev-env.git@${DEV_ENV_VERSION}"
+
+INCREMENT_VERSION_DOT_SH=${VIRTUAL_ENV}/bin/increment_version.sh
 curl -s -L -o "${INCREMENT_VERSION_DOT_SH}" "https://raw.githubusercontent.com/fmahnke/shell-semver/master/increment_version.sh"
 chmod a+x "${INCREMENT_VERSION_DOT_SH}"
 
