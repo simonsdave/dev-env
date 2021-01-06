@@ -86,4 +86,6 @@ do
     docker rmi "${IMAGE_ID}"
 done
 
+docker builder prune --force
+
 exit 0

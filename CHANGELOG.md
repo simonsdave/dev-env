@@ -8,7 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-* Nothing
+* added ```docker builder prune --force``` to ```docker-destructive-cleanup.sh```
 
 ### Changed
 
