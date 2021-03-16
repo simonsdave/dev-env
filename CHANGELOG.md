@@ -12,7 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-* Nothing
+* ```pycodestyle``` 2.6.0 -> 2.7.0
 
 ### Removed
 
