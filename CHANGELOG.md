@@ -15,6 +15,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * remove explicit requirement for ```pycodestyle``` because ```flake8```
   includes ```pycodestyle``` and that elmininates trying to keep ```pycodestyle```
   and ```flake8``` versions in-sync
+* ```twine``` 3.3.0 -> 3.4.1
 
 ### Removed
 
