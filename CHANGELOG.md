@@ -12,7 +12,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-* ```pycodestyle``` 2.6.0 -> 2.7.0
+* remove explicit requirement for ```pycodestyle``` because ```flake8```
+  includes ```pycodestyle``` and that elmininates trying to keep ```pycodestyle```
+  and ```flake8``` versions in-sync
 
 ### Removed
 

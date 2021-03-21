@@ -4,13 +4,16 @@ LABEL maintainer="Dave Simons"
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update -y
-
 #
 # some of the dev env shell scripts depend on in container
 # shell scripts which we'll want to access in /usr/local/bin
 #
 ADD scripts.tar.gz /usr/local/bin
+
+#
+#
+#
+RUN apt-get update -y
 
 #
 # python 3 development
@@ -24,6 +27,7 @@ RUN apt-get update -y
 RUN apt-get install -y python3.7
 RUN apt-get install -y python3-dev
 RUN apt-get install -y python3-pip
+RUN python3.7 -m pip install -U pip
 
 #
 # install core python packages
