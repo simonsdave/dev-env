@@ -13,6 +13,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 
 * ```flake8``` 3.9.0 -> 3.9.1
+* ```run-pip-check.sh``` now runs pip's check command by using python3.7 specifically
 
 ### Removed
 
