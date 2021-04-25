@@ -54,6 +54,7 @@ setup(
         'bin/run-flake8.sh',
         'bin/run-jsonlint.sh',
         'bin/run-pip-check.sh',
+        'bin/run-semantic-release.sh',
         'bin/run-shelllint.sh',
         'bin/run-unit-tests.sh',
         'bin/run-repo-security-scanner.sh',
