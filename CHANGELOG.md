@@ -17,7 +17,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Removed
 
-* Nothing
+* removed [AWS SAM CLI](https://aws.amazon.com/serverless/sam/) 
+  and [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)
 
 ## [0.6.14] - [2021-03-21]
 

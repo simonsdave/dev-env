@@ -190,27 +190,6 @@ RUN for attempt in {1..10}; do curl -fLSs --http1.1 https://circle.ci/cli | bash
 RUN circleci update install
 
 #
-# AWS CLI
-# -- https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html
-# -- https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html#install-tool-pip
-# -- per https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html
-#
-# set the following in the CircleCI context
-#
-#   AWS_ACCESS_KEY_ID
-#   AWS_SECRET_ACCESS_KEY
-#   AWS_DEFAULT_REGION
-#   AWS_DEFAULT_OUTPUT=text
-#
-RUN python3.7 -m pip install awscli
-
-#
-# AWS SAM CLI
-# -- https://aws.amazon.com/serverless/sam/
-#
-RUN python3.7 -m pip install aws-sam-cli
-
-#
 # truffleHog
 # -- https://github.com/dxa4481/truffleHog
 #
