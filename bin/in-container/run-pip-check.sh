@@ -7,6 +7,6 @@ if [ $# != 0 ]; then
     exit 1
 fi
 
-pip3 check
+python3.7 -m pip check
 
 exit 0
