@@ -27,7 +27,7 @@ RUN apt-get update -y
 RUN apt-get install -y python3.7
 RUN apt-get install -y python3-dev
 RUN apt-get install -y python3-pip
-RUN python3.7 -m pip install -U pip
+RUN python3.7 -m pip install --upgrade pip
 
 #
 # install core python packages
@@ -163,20 +163,6 @@ RUN gem install mdl
 RUN gem install jekyll bundler
 
 #
-# Bandit
-#   -- https://github.com/PyCQA/bandit
-#   -- bandit --verbose --exclude env -r .
-#
-RUN python3.7 -m pip install bandit
-
-#
-# yamllint
-# -- https://yamllint.readthedocs.io/en/stable/quickstart.html#installing-yamllint
-# -- start with python3-pkg-resources install as per https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=860075 
-#
-RUN python3.7 -m pip install yamllint
-
-#
 # :TRICKY: the for loop complexity here is to deal with the
 # reality that all too often this install seems to fail.
 #
@@ -188,19 +174,6 @@ RUN python3.7 -m pip install yamllint
 #
 RUN for attempt in {1..10}; do curl -fLSs --http1.1 https://circle.ci/cli | bash && if command -v circleci > /dev/null; then break; else echo $attempt && sleep 10; fi; done
 RUN circleci update install
-
-#
-# truffleHog
-# -- https://github.com/dxa4481/truffleHog
-#
-RUN python3.7 -m pip install truffleHog
-
-#
-# codecov
-# -- https://codecov.io
-# -- https://pypi.org/project/codecov/
-#
-RUN python3.7 -m pip install codecov
 
 #
 # if you look @ most of the host scripts in dev-env

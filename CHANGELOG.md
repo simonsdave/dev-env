@@ -8,17 +8,20 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-* Nothing
+* added ```python-semantic-release```
 
 ### Changed
 
 * ```flake8``` 3.9.0 -> 3.9.1
 * ```run-pip-check.sh``` now runs pip's check command by using python3.7 specifically
+* simplified pip install of packages in generated docker image
++ ```python3.7 -m pip install``` codecov rather than ```pip3 install``` in the CircleCI pipeline
 
 ### Removed
 
 * removed [AWS SAM CLI](https://aws.amazon.com/serverless/sam/) 
   and [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)
+* removed [truffleHog](https://github.com/dxa4481/truffleHog)
 
 ## [0.6.14] - [2021-03-21]
 
