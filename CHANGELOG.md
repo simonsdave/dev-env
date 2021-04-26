@@ -15,7 +15,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * ```flake8``` 3.9.0 -> 3.9.1
 * ```run-pip-check.sh``` now runs pip's check command by using python3.7 specifically
 * simplified pip install of packages in generated docker image
-+ ```python3.7 -m pip install``` codecov rather than ```pip3 install``` in the CircleCI pipeline
+* ```python3.7 -m pip install``` codecov rather than ```pip3 install``` in the CircleCI pipeline
 
 ### Removed
 
