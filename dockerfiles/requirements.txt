@@ -10,7 +10,7 @@ bandit==1.7.0
 # -- https://pypi.org/project/codecov/
 #
 codecov==2.1.11
-flake8==3.9.1
+flake8==3.9.2
 mock==4.0.3
 #
 # ndg-httpsclient is required to avoid various SNI related
