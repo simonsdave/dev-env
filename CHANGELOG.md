@@ -16,6 +16,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * ```run-pip-check.sh``` now runs pip's check command by using python3.7 specifically
 * simplified pip install of packages in generated docker image
 * ```python3.7 -m pip install``` codecov rather than ```pip3 install``` in the CircleCI pipeline
+* ```twine``` 3.4.1 -> 3.4.2
 
 ### Removed
 
