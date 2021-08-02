@@ -65,7 +65,7 @@ remote:      https://github.com/simonsdave/dev-env-testing/pull/new/use-python-s
 remote:
 To github.com:simonsdave/dev-env-testing.git
  * [new branch]      use-python-semantic-release -> use-python-semantic-release
-~> 
+~>
 ```
 
 ```bash
@@ -74,6 +74,7 @@ To github.com:simonsdave/dev-env-testing.git
 ~> run-semantic-release.sh print-version
 1.24.0%
 ~>
+```
 
 ```bash
 ~> run-semantic-release.sh changelog --verbosity=DEBUG
