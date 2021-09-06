@@ -18,6 +18,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * ```python3.7 -m pip install``` codecov rather than ```pip3 install``` in the CircleCI pipeline
 * ```twine``` 3.4.1 -> 3.4.2
 * ```codecov``` 2.1.11 -> 2.1.12
+* ```yamllint``` 1.26.1 -> 1.26.3
 
 ### Removed
 
