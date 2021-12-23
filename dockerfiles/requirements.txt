@@ -4,12 +4,6 @@
 #   -- bandit --verbose --exclude env -r .
 #
 bandit==1.7.0
-#
-# codecov
-# -- https://codecov.io
-# -- https://pypi.org/project/codecov/
-#
-codecov==2.1.12
 flake8==3.9.2
 mock==4.0.3
 #

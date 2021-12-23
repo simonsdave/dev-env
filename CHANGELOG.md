@@ -12,7 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-* Nothing
+* use new Codecov uploader per https://about.codecov.io/blog/introducing-codecovs-new-uploader
 
 ### Removed
 

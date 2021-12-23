@@ -84,6 +84,13 @@ RUN apt-get update -y
 RUN apt-get install -y docker-ce
 
 #
+# Codecov per https://docs.codecov.com/docs/codecov-uploader
+#
+ENV CODECOV_UPLOADER /usr/local/bin/codecov
+RUN curl -s -o $CODECOV_UPLOADER https://uploader.codecov.io/latest/linux/codecov
+RUN chmod a+x $CODECOV_UPLOADER
+
+#
 # repo-security-scanner
 #
 # -- https://github.com/UKHomeOffice/repo-security-scanner
