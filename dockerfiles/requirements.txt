@@ -3,7 +3,7 @@
 #   -- https://github.com/PyCQA/bandit
 #   -- bandit --verbose --exclude env -r .
 #
-bandit==1.7.0
+bandit==1.7.1
 flake8==3.9.2
 mock==4.0.3
 #

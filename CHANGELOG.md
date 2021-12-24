@@ -13,6 +13,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 
 * use new Codecov uploader per https://about.codecov.io/blog/introducing-codecovs-new-uploader
+* ```bandit``` 1.7.0 -> 1.7.1
 
 ### Removed
 
