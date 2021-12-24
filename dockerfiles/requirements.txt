@@ -4,7 +4,7 @@
 #   -- bandit --verbose --exclude env -r .
 #
 bandit==1.7.1
-flake8==3.9.2
+flake8==4.0.1
 mock==4.0.3
 #
 # ndg-httpsclient is required to avoid various SNI related
