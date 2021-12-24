@@ -15,6 +15,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * use new Codecov uploader per https://about.codecov.io/blog/introducing-codecovs-new-uploader
 * ```bandit``` 1.7.0 -> 1.7.1
 * ```flake8``` 3.9.2 -> 4.0.1
+* ```python-semantic-release``` 7.19.2 -> 7.23.0
 
 ### Removed
 
