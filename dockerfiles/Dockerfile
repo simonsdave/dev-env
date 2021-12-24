@@ -57,7 +57,7 @@ RUN apt-get install -y git
 # :TRICKY: "apt-get install -y pandoc" installed a very old
 # version (1.19.2.4) of pandoc so using the massive mess below
 #
-RUN PDVERSION=2.9.1.1; cd /tmp; curl -s -L -o pandoc.tar.gz https://github.com/jgm/pandoc/releases/download/${PDVERSION}/pandoc-${PDVERSION}-linux-amd64.tar.gz; tar xvf pandoc.tar.gz; mv ./pandoc-$PDVERSION/bin/pandoc /usr/bin/.; rm -rf ./pandoc-$PDVERSION
+RUN PDVERSION=2.16.2; cd /tmp; curl -s -L -o pandoc.tar.gz https://github.com/jgm/pandoc/releases/download/${PDVERSION}/pandoc-${PDVERSION}-linux-amd64.tar.gz; tar xvf pandoc.tar.gz; mv ./pandoc-$PDVERSION/bin/pandoc /usr/bin/.; rm -rf ./pandoc-$PDVERSION
 
 #
 # Install docker CE per instructions at
