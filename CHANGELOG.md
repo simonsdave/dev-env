@@ -18,6 +18,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * ```python-semantic-release``` 7.19.2 -> 7.23.0
 * ```twine``` 3.4.2 -> 3.7.1
 * ```pandoc``` 2.9.1.1 -> 2.16.2
+* ```nvm``` 0.33.9 -> 0.39.1
 
 ### Removed
 

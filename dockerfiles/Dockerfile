@@ -130,8 +130,9 @@ RUN curl -s -L -o "/usr/local/bin/jq" "https://github.com/stedolan/jq/releases/d
 RUN mkdir /root/.nvm
 ENV NVM_DIR /root/.nvm
 ENV NODE_VERSION 8.9.4
+ENV NVM_VERSION v0.39.1
 
-RUN curl -s https://raw.githubusercontent.com/creationix/nvm/v0.33.9/install.sh | bash \
+RUN curl -s https://raw.githubusercontent.com/creationix/nvm/$NVM_VERSION/install.sh | bash \
     && . $NVM_DIR/nvm.sh \
     && nvm install $NODE_VERSION \
     && nvm alias default $NODE_VERSION \
