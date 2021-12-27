@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 LABEL maintainer="Dave Simons" 
 
@@ -21,6 +21,7 @@ RUN apt-get update -y
 # -- python versions @ https://www.python.org/downloads/
 # -- pip3 inspired by https://linuxize.com/post/how-to-install-pip-on-ubuntu-18.04/
 #
+RUN apt-get install -y tzdata
 RUN apt-get install -y software-properties-common
 RUN add-apt-repository -y ppa:deadsnakes/ppa
 RUN apt-get update -y
