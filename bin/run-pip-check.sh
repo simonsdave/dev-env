@@ -19,8 +19,8 @@ DUMMY_DOCKER_CONTAINER_NAME=$("${SCRIPT_DIR_NAME}/create-dummy-docker-container.
 docker run \
     --rm \
     --volumes-from "${DUMMY_DOCKER_CONTAINER_NAME}" \
-    "$DEV_ENV_DOCKER_IMAGE" \
-    /bin/bash -c 'cd /app && python3.7 -m pip check'
+    "${DEV_ENV_DOCKER_IMAGE}" \
+    /bin/bash -c 'cd /app && python3.9 -m pip check'
 
 docker rm "${DUMMY_DOCKER_CONTAINER_NAME}" > /dev/null
 

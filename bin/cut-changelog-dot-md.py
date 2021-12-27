@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.7
+#!/usr/bin/env python3.9
 """See the README.md in the same directory as this script for a
 description of why this script exists what this script does.
 """

@@ -21,20 +21,23 @@ RUN apt-get update -y
 # -- python versions @ https://www.python.org/downloads/
 # -- pip3 inspired by https://linuxize.com/post/how-to-install-pip-on-ubuntu-18.04/
 #
+# python versions @ https://www.python.org/doc/versions/
+#
+ENV PYTHON_VERSION 3.9
 RUN apt-get install -y tzdata
 RUN apt-get install -y software-properties-common
 RUN add-apt-repository -y ppa:deadsnakes/ppa
 RUN apt-get update -y
-RUN apt-get install -y python3.7
+RUN apt-get install -y python$PYTHON_VERSION
 RUN apt-get install -y python3-dev
 RUN apt-get install -y python3-pip
-RUN python3.7 -m pip install --upgrade pip
+RUN python$PYTHON_VERSION -m pip install --upgrade pip
 
 #
 # install core python packages
 #
 COPY requirements.txt /tmp/requirements.txt
-RUN python3.7 -m pip install --requirement /tmp/requirements.txt
+RUN python$PYTHON_VERSION -m pip install --requirement /tmp/requirements.txt
 RUN rm -r /tmp/requirements.txt
 
 #

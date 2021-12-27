@@ -19,7 +19,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * ```twine``` 3.4.2 -> 3.7.1
 * ```pandoc``` 2.9.1.1 -> 2.16.2
 * ```nvm``` 0.33.9 -> 0.39.1
-* base docker image ubuntu 18.04 -> 20.04
+* base docker image Ubuntu 18.04 -> 20.04
+* Python 3.7 -> 3.9
 
 ### Removed
 
