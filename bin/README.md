@@ -151,7 +151,9 @@ index e7a8889..b3ddbc4 100644
 ## [run-unit-tests.sh](run-unit-tests.sh)
 
 * using [nose](https://nose.readthedocs.io/en/latest/) run all unit tests
-* ```run-unit-tests.sh``` assumes a ```.coveragerc``` exists in the repo's root directory - below is an example of ```.coveragerc``` from [this repo](https://github.com/simonsdave/dev-env-testing)
+* ```run-unit-tests.sh``` assumes a ```.coveragerc``` exists in the repo's
+  root directory - below is an example of ```.coveragerc```
+  from [this repo](https://github.com/simonsdave/dev-env-testing)
 
 ```ini
 [run]
