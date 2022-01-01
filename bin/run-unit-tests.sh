@@ -16,6 +16,25 @@ fi
 
 REPO_ROOT_DIR=$("${SCRIPT_DIR_NAME}/repo-root-dir.sh")
 
+#
+# start with some cleanup. doing the cleanup here before
+# creating the temp docker container means in dev envs
+# where the coverage file and coverage report persist they
+# are updated.
+#
+DOT_COVERAGE=${REPO_ROOT_DIR}/.coverage
+if [ -e "${DOT_COVERAGE}" ]; then
+    rm "${DOT_COVERAGE}"
+fi
+
+COVERAGE_REPORT=$(grep directory "${REPO_ROOT_DIR}/.coveragerc" | sed -e 's|.*=[[:space:]]*||g' | sed -e 's|[[:space:]]*$||g')
+if [ -e "${REPO_ROOT_DIR:-}/${COVERAGE_REPORT}" ]; then
+    rm -r "${REPO_ROOT_DIR:-}/${COVERAGE_REPORT}"
+fi
+
+#
+# now into the real logic
+#
 DOCKER_CONTAINER_NAME=$(openssl rand -hex 16)
 
 DUMMY_DOCKER_CONTAINER_NAME=$("${SCRIPT_DIR_NAME}/create-dummy-docker-container.sh")
@@ -27,18 +46,9 @@ docker run \
     "${DEV_ENV_DOCKER_IMAGE}" \
     /bin/bash -c "cd /app && nosetests --with-coverage --cover-branches --cover-package=$("${SCRIPT_DIR_NAME}/repo.sh" -u) && if [ -e /app/.coverage ]; then coverage html; fi"
 
-DOT_COVERAGE=${REPO_ROOT_DIR}/.coverage
-
 docker container cp \
     "${DOCKER_CONTAINER_NAME}:/app/.coverage" \
     "${DOT_COVERAGE}"
-
-COVERAGE_REPORT=$(grep directory "${REPO_ROOT_DIR}/.coveragerc" | sed -e 's|.*=[[:space:]]*||g' | sed -e 's|[[:space:]]*$||g')
-
-# the :- is only there to avoid generating
-#   SC2115: Use "${var:?}" to ensure this never expands to /
-# on shell linting
-rm -rf "${REPO_ROOT_DIR:-}/${COVERAGE_REPORT}"
 
 docker container cp \
     "${DOCKER_CONTAINER_NAME}:/app/${COVERAGE_REPORT}" \
