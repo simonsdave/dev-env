@@ -171,6 +171,14 @@ directory = coverage_report
 * running unit tests generate coverage data which can be found in ```.coverage``` in the repo's root directory
   as well as an HTML coverage report in the directory defined in ```.coveragerc```
 
+## [run-codecov-uploader.sh](run-codecov-uploader.sh)
+
+* [run-unit-tests.sh](#run-unit-testssh) generates coverage data which
+  can be found in ```.coverage```
+* ```run-codecov-uploader.sh``` uploads the coverage data
+  to [Codecov](https://www.codecov.io/) using
+  the [new uploader](https://about.codecov.io/blog/introducing-codecovs-new-uploader/)
+
 # Working with ```CHANGELOG.md```
 
 ## [add-new-changelog-dot-md-release.py](add-new-changelog-dot-md-release.py)

@@ -38,5 +38,6 @@ confirm_same create-dummy-docker-container.sh
 confirm_same get-circle-ci-executor.sh
 confirm_same repo.sh
 confirm_same repo-root-dir.sh
+confirm_same run-codecov-uploader.sh
 
 exit 0
