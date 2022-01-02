@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 * added ```run-codecov-uploader.sh```
+* added [GNU Privacy Guard](https://gnupg.org/) CLI to docker image
 
 ### Changed
 

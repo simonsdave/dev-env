@@ -16,6 +16,11 @@ ADD scripts.tar.gz /usr/local/bin
 RUN apt-get update -y
 
 #
+# https://gnupg.org/
+#
+RUN apt-get install -y gnupg
+
+#
 # python 3 development
 # -- inspired by https://websiteforstudents.com/installing-the-latest-python-3-7-on-ubuntu-16-04-18-04/
 # -- python versions @ https://www.python.org/downloads/
