@@ -7,12 +7,15 @@
 
 set -e
 
+SCRIPT_DIR_NAME="$( cd "$( dirname "$0" )" && pwd )"
+
 if [ $# != 0 ]; then
     echo "usage: $(basename "$0")" >&2
     exit 1
 fi
 
-DOT_COVERAGE=$(repo-root-dir.sh)/.coverage
+REPO_ROOT_DIR=$("${SCRIPT_DIR_NAME}/repo-root-dir.sh")
+DOT_COVERAGE=${REPO_ROOT_DIR}/.coverage
 if [ -e "${DOT_COVERAGE}" ]; then
     codecov -f "${DOT_COVERAGE}"
 fi
