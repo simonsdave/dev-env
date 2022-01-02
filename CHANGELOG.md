@@ -19,7 +19,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Removed
 
-* Nothing
+* removed ```run-codecov.sh``` since it's not being used and
+  also because ```run-codecov-uploader.sh``` has been added
 
 ## [0.6.16] - [2021-12-27]
 
