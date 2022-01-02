@@ -174,10 +174,29 @@ directory = coverage_report
 ## [run-codecov-uploader.sh](run-codecov-uploader.sh)
 
 * [run-unit-tests.sh](#run-unit-testssh) generates coverage data which
-  can be found in ```.coverage```
+  can be found in ```.coverage``` in the repo's root directory
 * ```run-codecov-uploader.sh``` uploads the coverage data
   to [Codecov](https://www.codecov.io/) using
   the [new uploader](https://about.codecov.io/blog/introducing-codecovs-new-uploader/)
+* ```run-codecov-uploader.sh``` assumes the environment variable ```CODECOV_TOKEN```
+  contains the repository upload token
+* below is the expected usage pattern for ```run-codecov-uploader.sh```
+  in a CircleCI config file
+
+```yaml
+.
+.
+.
+- run:
+  name: Run Unit Tests
+  command: run-unit-tests.sh
+- run:
+  name: Upload Unit Test Coverage Data to Codecov
+  command: run-codecov-uploader.sh
+.
+.
+.
+```
 
 # Working with ```CHANGELOG.md```
 
