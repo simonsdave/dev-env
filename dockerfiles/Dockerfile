@@ -97,7 +97,7 @@ RUN apt-get install -y docker-ce
 #
 
 # import Codecov PGP public key
-RUN curl https://keybase.io/codecovsecurity/pgp_keys.asc | gpg --no-default-keyring --keyring trustedkeys.gpg --import # One-time step
+RUN curl https://keybase.io/codecovsecurity/pgp_keys.asc | gpg --no-default-keyring --keyring trustedkeys.gpg --import
 # download Uploader
 RUN curl -Os https://uploader.codecov.io/latest/linux/codecov
 # download Uploader SHA256SUM
