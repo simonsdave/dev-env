@@ -68,6 +68,7 @@ setup(
         'bin/create-dummy-docker-container.sh',
         'bin/get-circle-ci-executor.sh',
         'bin/run-yamllint.sh',
+        'bin/run-codecov-uploader.sh',
         'bin/run-circleci.sh',
         'bin/run-bandit.sh',
     ],
