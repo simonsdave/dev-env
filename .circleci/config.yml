@@ -20,9 +20,6 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "~/repo/.circleci/requirements.txt" }}
             - v1-dependencies-
-      - run:
-          name: Install Codecov
-          command: python3.7 -m pip install --user codecov
       - save_cache:
           paths:
             - ./env
@@ -64,7 +61,7 @@ jobs:
           command: bin/run-unit-tests.sh
       - run:
           name: Upload Unit Test Coverage Data to Codecov
-          command: codecov
+          command: bin/run-codecov-uploader.sh
       - run:
           name: Build README.rst
           command: bin/build-readme-dot-rst.sh
