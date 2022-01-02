@@ -9,6 +9,7 @@ executors:
       DEV_ENV_DOCKER_IMAGE=simonsdave/focal-dev-env:bindle
     docker:
       - image: circleci/python:3.7.5
+    resource_class: medium
 
 jobs:
   build_test_and_deploy:

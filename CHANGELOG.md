@@ -8,7 +8,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-* Nothing
+* added explicit [resource class](https://circleci.com/docs/2.0/configuration-reference/#resourceclass)
+  to CircleCI config
 
 ### Changed
 
