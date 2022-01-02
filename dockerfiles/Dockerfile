@@ -95,9 +95,24 @@ RUN apt-get install -y docker-ce
 #
 # Codecov per https://docs.codecov.com/docs/codecov-uploader
 #
-ENV CODECOV_UPLOADER /usr/local/bin/codecov
-RUN curl -s -o $CODECOV_UPLOADER https://uploader.codecov.io/latest/linux/codecov
-RUN chmod a+x $CODECOV_UPLOADER
+
+# import Codecov PGP public key
+RUN curl https://keybase.io/codecovsecurity/pgp_keys.asc | gpg --no-default-keyring --keyring trustedkeys.gpg --import # One-time step
+# download Uploader
+RUN curl -Os https://uploader.codecov.io/latest/linux/codecov
+# download Uploader SHA256SUM
+RUN curl -Os https://uploader.codecov.io/latest/linux/codecov.SHA256SUM
+# download Uploader SHA256SUM signature
+RUN curl -Os https://uploader.codecov.io/latest/linux/codecov.SHA256SUM.sig
+# verify SHA256SUM is signed using Codecov’s PGP key
+RUN gpgv codecov.SHA256SUM.sig codecov.SHA256SUM
+# verify SHA256SUM matches Uploader
+RUN shasum -a 256 -c codecov.SHA256SUM
+# set codecov permissions and move to final destination
+RUN chmod a+x codecov
+RUN mv codecov /usr/local/bin/.
+# cleanup
+RUN rm codecov.SHA256SUM codecov.SHA256SUM.sig
 
 #
 # repo-security-scanner
