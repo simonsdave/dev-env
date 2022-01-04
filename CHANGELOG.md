@@ -12,7 +12,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-* Nothing
+* see issue # 49 for details - ```run-pip-check.sh``` will, for now,
+  always no-op and exit with a zero status code
 
 ### Removed
 

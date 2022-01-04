@@ -9,25 +9,19 @@ set -e
 
 SCRIPT_DIR_NAME="$( cd "$( dirname "$0" )" && pwd )"
 
-if [ $# != 0 ]; then
-    echo "usage: $(basename "$0")" >&2
-    exit 1
+#
+# :TRICKY: want to use this script to run for app repos
+# as well as the dev-env repo. All works for app repos
+# but with dev-env the "docker run" below runs run-markdownlint.sh
+# and since the dev-env docker build puts /app/bin
+# at the start of the PATH, the docker run will actually
+# run this script instead of the intended script in the
+# in-container directory.
+#
+if [[ "/app/bin/${0##*/}" == "${0}" ]]; then
+    "${SCRIPT_DIR_NAME}/in-container/${0##*/}" "$@"
+    exit $?
 fi
-
-#
-# as of dev-env v0.6.17 "pip check" is failing with the message
-#
-#   pygobject 3.36.0 requires pycairo, which is not installed.
-#
-# not currently clear how to resolve this problem.
-#
-# so that upstream consumers of dev-env don't have to comment out
-# run-pip-check.sh we'll simply exit successfully here until the
-# above is resolved.
-#
-# this has problem is logged as issue # 49 in dev-env.
-#
-exit 0
 
 DUMMY_DOCKER_CONTAINER_NAME=$("${SCRIPT_DIR_NAME}/create-dummy-docker-container.sh")
 
@@ -35,7 +29,7 @@ docker run \
     --rm \
     --volumes-from "${DUMMY_DOCKER_CONTAINER_NAME}" \
     "${DEV_ENV_DOCKER_IMAGE}" \
-    /bin/bash -c 'cd /app && python3.9 -m pip check'
+    "${0##*/}" "$@"
 
 docker rm "${DUMMY_DOCKER_CONTAINER_NAME}" > /dev/null
 
