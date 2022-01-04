@@ -87,5 +87,7 @@ do
 done
 
 docker builder prune --force
+docker image prune --force
+docker system prune --force
 
 exit 0

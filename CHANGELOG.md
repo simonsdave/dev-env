@@ -13,7 +13,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-* Nothing
+* update ```docker-destructive-cleanup.sh``` to try and reclaim additional disk space
 
 ### Removed
 
