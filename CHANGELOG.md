@@ -8,7 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-* Nothing
+* start of integration tests for scripts in ```bin```
 
 ### Changed
 
