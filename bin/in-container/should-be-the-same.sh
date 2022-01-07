@@ -11,10 +11,16 @@ set -e
 
 SCRIPT_DIR_NAME="$( cd "$( dirname "$0" )" && pwd )"
 
+usage() {
+    echo "usage: $(basename "$0") [--help] [--verbose]" >&2
+}
+
 confirm_same() {
     FILENAME=${1:-}
 
-    echo "${FILENAME}"
+    if [ "1" -eq "${VERBOSE:-0}" ]; then
+        echo "${FILENAME}"
+    fi
 
     IN_CONTAINER_PARENT_FILENAME=$(mktemp 2> /dev/null || mktemp -t DAS)
     grep --extended-regexp --invert-match '^[[:space:]]*#' "${SCRIPT_DIR_NAME}/../${FILENAME}" > "${IN_CONTAINER_PARENT_FILENAME}"
@@ -29,8 +35,27 @@ confirm_same() {
     rm -f "${IN_CONTAINER_PARENT_FILENAME}"
 }
 
+VERBOSE=0
+
+while true
+do
+    case "$(echo "${1:-}" | tr "[:upper:]" "[:lower:]")" in
+        -h|--help)
+            usage
+            exit 0
+            ;;
+        -v|--verbose)
+            shift
+            VERBOSE=1
+            ;;
+        *)
+            break
+            ;;
+    esac
+done
+
 if [ $# != 0 ]; then
-    echo "usage: $(basename "$0")" >&2
+    usage
     exit 1
 fi
 

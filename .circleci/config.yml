@@ -19,7 +19,7 @@ jobs:
       - checkout
       - run:
           name: bin and in-container consistency check
-          command: bin/in-container/should-be-the-same.sh
+          command: bin/in-container/should-be-the-same.sh --verbose
       - setup_remote_docker:
           version: 19.03.13
       - run:

@@ -9,6 +9,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 * start of integration tests for scripts in ```bin```
+* added ```--verbose``` flag to ```should-be-the-same.sh``` - also started
+  using the flag in CircleCI pipeline
 
 ### Changed
 
