@@ -3,8 +3,10 @@
 SCRIPT_DIR_NAME="$( cd "$( dirname "$0" )" && pwd )"
 
 usage() {
-    echo "usage: $(basename "$0")" >&2
+    echo "usage: $(basename "$0") [--config <circle ci config file>]" >&2
 }
+
+CIRCLECI_CONFIG=$("${SCRIPT_DIR_NAME}/repo-root-dir.sh")/.circleci/config.yml
 
 while true
 do
@@ -13,6 +15,11 @@ do
             shift
             usage
             exit 0
+            ;;
+        --config)
+            shift
+            CIRCLECI_CONFIG=${1:-}
+            shift
             ;;
         *)
             break
@@ -25,10 +32,13 @@ if [ $# != 0 ]; then
     exit 1
 fi
 
-REPO_ROOT_DIR=$("${SCRIPT_DIR_NAME}/repo-root-dir.sh")
+if [[ ! -f "${CIRCLECI_CONFIG}" ]]; then
+    echo ">>>${CIRCLECI_CONFIG}<<< does not exist" >&2
+    exit 2
+fi
 
-grep 'image:' < "${REPO_ROOT_DIR}/.circleci/config.yml" | \
-    tail -1 | \
+grep 'image:' < "${CIRCLECI_CONFIG}" | \
+    head -1 | \
     sed -e 's|^.*\-[[:space:]]*image\:[[:space:]]*||g' |
     sed -e 's|[[:space:]]*$||g'
 
