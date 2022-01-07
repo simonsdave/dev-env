@@ -15,6 +15,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * ```run-pip-check.sh``` now runs in CircleCI pipeline (although it's a no-op
   so functionality doesn't do anything but once the no-op is replaced we now
   won't have to remember to uncomment the check in the pipeline)
+* fixed ```get-circle-ci-executor.sh``` was failing if multiple ```image:```
+  tags appears in CircleCI configuration
 
 ### Removed
 
