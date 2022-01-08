@@ -5,10 +5,10 @@
 ![PythonVersions](https://img.shields.io/pypi/pyversions/dev-env.svg?style=flat)
 ![status](https://img.shields.io/pypi/status/dev-env.svg?style=flat)
 [![PyPI](https://img.shields.io/pypi/v/dev-env.svg?style=flat)](https://pypi.python.org/pypi/dev-env)
-[![Requirements](https://requires.io/github/simonsdave/dev-env/requirements.svg?branch=master)](https://requires.io/github/simonsdave/dev-env/requirements/?branch=master)
-[![CodeFactor](https://www.codefactor.io/repository/github/simonsdave/dev-env/badge/master)](https://www.codefactor.io/repository/github/simonsdave/dev-env/overview/master)
-[![CircleCI](https://circleci.com/gh/simonsdave/dev-env/tree/master.svg?style=shield)](https://circleci.com/gh/simonsdave/dev-env/tree/master)
-[![codecov](https://codecov.io/gh/simonsdave/dev-env/branch/master/graph/badge.svg)](https://codecov.io/gh/simonsdave/dev-env/branch/master)
+[![Requirements](https://requires.io/github/simonsdave/dev-env/requirements.svg?branch=release-0.6.21)](https://requires.io/github/simonsdave/dev-env/requirements/?branch=release-0.6.21)
+[![CodeFactor](https://www.codefactor.io/repository/github/simonsdave/dev-env/badge/release-0.6.21)](https://www.codefactor.io/repository/github/simonsdave/dev-env/overview/release-0.6.21)
+[![CircleCI](https://circleci.com/gh/simonsdave/dev-env/tree/release-0.6.21.svg?style=shield)](https://circleci.com/gh/simonsdave/dev-env/tree/release-0.6.21)
+[![codecov](https://codecov.io/gh/simonsdave/dev-env/branch/release-0.6.21/graph/badge.svg)](https://codecov.io/gh/simonsdave/dev-env/branch/release-0.6.21)
 [![docker-simonsdave/bionic-dev-env](https://img.shields.io/badge/docker-simonsdave%2Fbionic--dev--env-blue.svg)](https://hub.docker.com/r/simonsdave/bionic-dev-env/)
 
 This repo was originally created as a way to centralize
