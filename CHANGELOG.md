@@ -12,7 +12,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-* Nothing
+* Fixed ```install-dev-env.sh``` to align with the
+  changes made to ```get-circle-ci-executor.sh```
+  in ```0.6.20```
 
 ### Removed
 

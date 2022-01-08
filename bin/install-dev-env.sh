@@ -62,7 +62,7 @@ fi
 
 if [ "${DEV_ENV_VERSION:-}" == "" ]; then
     REPO_ROOT_DIR=$(git rev-parse --show-toplevel)
-    DEV_ENV_VERSION=$(grep 'image:' < "${REPO_ROOT_DIR}/.circleci/config.yml" | tail -1 | sed -e 's|[[:space:]]*$||g' | sed -e 's|^.*dev-env:||g')
+    DEV_ENV_VERSION=$(grep 'image:' < "${REPO_ROOT_DIR}/.circleci/config.yml" | head -1 | sed -e 's|[[:space:]]*$||g' | sed -e 's|^.*dev-env:||g')
     check_version_number "${DEV_ENV_VERSION}"
 fi
 
