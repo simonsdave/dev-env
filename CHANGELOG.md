@@ -12,7 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-* Nothing
+* ```python-semantic-release``` 7.23.0 -> 7.24.0
 
 ### Removed
 
