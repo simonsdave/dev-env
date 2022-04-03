@@ -12,7 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-* ```python-semantic-release``` 7.23.0 -> 7.27.0
+* ```python-semantic-release``` 7.23.0 -> 7.27.1
 * ```bandit``` 1.7.1 -> 1.7.4
 * ```twine``` 3.7.1 -> 4.0.0
 
