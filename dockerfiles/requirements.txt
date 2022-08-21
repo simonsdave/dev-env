@@ -28,4 +28,4 @@ twine==4.0.1
 # -- https://yamllint.readthedocs.io/en/stable/quickstart.html#installing-yamllint
 # -- start with python3-pkg-resources install as per https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=860075
 #
-yamllint==1.26.3
+yamllint==1.27.1

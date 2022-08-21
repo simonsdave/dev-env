@@ -16,6 +16,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * ```bandit``` 1.7.1 -> 1.7.4
 * ```twine``` 3.7.1 -> 4.0.1
 * ```flake8``` 4.0.1 -> 5.0.4
+* ```yamllint``` 1.26.3 -> 1.27.1
 
 ### Removed
 
