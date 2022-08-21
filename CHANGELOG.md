@@ -15,6 +15,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * ```python-semantic-release``` 7.23.0 -> 7.29.1
 * ```bandit``` 1.7.1 -> 1.7.4
 * ```twine``` 3.7.1 -> 4.0.1
+* ```flake8``` 4.0.1 -> 5.0.4
 
 ### Removed
 
