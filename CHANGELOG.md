@@ -20,7 +20,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Removed
 
-* Nothing
+* ```python-semantic-release``` removed from ```python-semantic-release``` - see isse # 50
 
 ## [0.6.21] - [2022-01-07]
 
